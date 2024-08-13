@@ -15,5 +15,5 @@ public class NitroBoost : Ability
         rb.AddForce(rb.transform.forward.normalized * 1000 * boost);
     }
 
-   
+    
 }

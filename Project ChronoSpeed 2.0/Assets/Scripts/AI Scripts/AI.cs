@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using UnityEditor;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-   public enum aI_Difficulty
+    public enum aI_Difficulty
     {
         easy,
         normal,
@@ -14,6 +16,7 @@ public class AI : MonoBehaviour
     public aI_Difficulty difficultness;
     [SerializeField] Rigidbody rb;
     [Header("Adjust the sensor for AI distance")]
+    Ray[] rays = new Ray[10]; 
     Ray frontRay;
     Ray leftRay;
     Ray rightRay;
@@ -28,7 +31,7 @@ public class AI : MonoBehaviour
     private float forceTurn = 25000f;
     [HideInInspector] public float acceration_Value;
     public float speed_Reader;
-    public float speed_Limiter = 200f; 
+    public float speed_Limiter = 200f;
 
     //checking waypoints
     [Header("Waypoints system")]
@@ -38,13 +41,14 @@ public class AI : MonoBehaviour
     [Range(0, 5)] public float steeringForce;
     public Transform currentWaypoint;
     public int currentWaypointIndex;
-    [SerializeField] float waypointApproachThreshold;
+    [SerializeField] float minimumWayPointApproachThreshold;
+    [SerializeField] float maximumWayPointApproachThreshold;
     public int numberOfLaps;
 
     Tracking_Manager_Script valueBeingRead;
     [SerializeField] GameObject bridge;
 
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +75,7 @@ public class AI : MonoBehaviour
         changingDistanceOffset();
         CheckForUpdatedWaypoints();
         AISteer();
-      
+       
     }
 
     private void FixedUpdate()
@@ -177,31 +181,39 @@ public class AI : MonoBehaviour
         }
     }
 
+    [SerializeField] float dists;
+    [SerializeField] Vector3 difference; 
     private void CheckForUpdatedWaypoints() //call this every update
     {
         //These should be defined in the class not as local variables
         // int currentWaypointIndex;
         //float waypointApproachThreshold;
         carAI.maxSpeed = speed_Limiter;
-        Vector3 difference = nodes[currentWaypointIndex].transform.position - rb.transform.position;
-        if (difference.magnitude < waypointApproachThreshold)
+         difference = nodes[currentWaypointIndex].transform.position - rb.transform.position;
+        dists = Vector3.Distance(rb.transform.position, nodes[currentWaypointIndex].transform.position);
+        if (difference.magnitude < minimumWayPointApproachThreshold)
         {
             currentWaypointIndex++;
             currentWaypointIndex %= nodes.Count;
             ChangeMaxSpeed();
         }
 
+        if(difference.magnitude > maximumWayPointApproachThreshold)
+        {
+         
+           // Vector3.Lerp(rb.transform.position, nodes[currentWaypointIndex].transform.position, Time.deltaTime);
+            rb.transform.position = nodes[currentWaypointIndex-4].transform.position;
+        }
     }
+
+
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(currentWaypoint.position, 3);
+        Gizmos.DrawWireSphere(nodes[currentWaypointIndex].transform.position, 3);
+    
     }
 
-    //private void AIAccerate()
-    //{
 
-
-    //}
     private void AISteer()
     {
         Vector3 targetPosition = nodes[(currentWaypointIndex + distanceOffset) % nodes.Count].transform.position;
@@ -245,45 +257,45 @@ public class AI : MonoBehaviour
             {
                 distanceOffset = 2;
                 acceration_Value = 1f;
-                waypointApproachThreshold = 17f;
+                minimumWayPointApproachThreshold = 17f;
             }
             if (difficultness == aI_Difficulty.normal)
             {
                 distanceOffset = 2;
                 acceration_Value = 1.2f;
-                waypointApproachThreshold = 17f;
+                minimumWayPointApproachThreshold = 17f;
             }
             if (difficultness == aI_Difficulty.hard)
             {
                 distanceOffset = 3;
                 acceration_Value = 1.5f;
                 steeringForce = 1.2f;
-                waypointApproachThreshold = 20f;
+                minimumWayPointApproachThreshold = 20f;
                 carAI.downForceValue = 550f;
             }
         }
 
-        if (speed_Reader > 50 && speed_Reader <150)
+        if (speed_Reader > 50 && speed_Reader < 150)
         {
 
             if (difficultness == aI_Difficulty.easy)
             {
                 distanceOffset = 2;
                 acceration_Value = 1f;
-                waypointApproachThreshold = 17f;
+                minimumWayPointApproachThreshold = 17f;
             }
             if (difficultness == aI_Difficulty.normal)
             {
                 distanceOffset = 2;
                 acceration_Value = 1.2f;
-                waypointApproachThreshold = 17f;
+                minimumWayPointApproachThreshold = 17f;
             }
 
             if (difficultness == aI_Difficulty.hard)
             {
                 distanceOffset = 2;
                 acceration_Value = 1.5f;
-                waypointApproachThreshold = 17f; 
+                minimumWayPointApproachThreshold = 17f;
             }
             /*distanceOffset = 2;
             acceration_Value = 1;*/
@@ -293,26 +305,26 @@ public class AI : MonoBehaviour
             if (difficultness == aI_Difficulty.normal)
             {
                 distanceOffset = 2;
-                waypointApproachThreshold = 17f;
+                minimumWayPointApproachThreshold = 17f;
             }
             if (difficultness == aI_Difficulty.hard)
             {
                 distanceOffset = 4;
                 steeringForce = 1f;
-                waypointApproachThreshold = 20f;
+                minimumWayPointApproachThreshold = 20f;
                 carAI.downForceValue = 700f;
             }
-           
+
         }
 
         if (speed_Reader < 50)
         {
             distanceOffset = 1;
             steeringForce = 1f;
-            waypointApproachThreshold = 20f;
+            minimumWayPointApproachThreshold = 20f;
             if (Physics.Raycast(frontRay, out RaycastHit hit, range))
             {
-                waypointApproachThreshold = 50f;
+                minimumWayPointApproachThreshold = 50f;
                 if (hit.collider.CompareTag("walls"))
                 {
                     steeringForce = 1.5f;
@@ -325,7 +337,7 @@ public class AI : MonoBehaviour
 
                     //  Debug.Log("left the enivroment front");
                     carAI.acceration_Value = 1.0f;
-                    waypointApproachThreshold = 20f;
+                    minimumWayPointApproachThreshold = 20f;
                     steeringForce = 1f;
                 }
             }
@@ -338,14 +350,16 @@ public class AI : MonoBehaviour
         carAI.maxSpeed = speed_Limiter;
         if (nodes[currentWaypointIndex].gameObject.CompareTag("AccerateNode"))
         {
-            speed_Limiter = valueBeingRead.changingSpeedToAccerate; 
+            speed_Limiter = valueBeingRead.changingSpeedToAccerate;
         }
-        else if(nodes[currentWaypointIndex].gameObject.CompareTag("SlowNode"))
+        else if (nodes[currentWaypointIndex].gameObject.CompareTag("SlowNode"))
         {
             speed_Limiter = valueBeingRead.changingSpeedToSlowDown;
         }
         else
             return;
-       
+
     }
+
+   
 }
