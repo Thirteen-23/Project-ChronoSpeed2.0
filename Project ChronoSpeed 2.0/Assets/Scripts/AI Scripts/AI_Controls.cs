@@ -1,6 +1,4 @@
-
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class AI_Controls : MonoBehaviour
 {
@@ -80,8 +78,7 @@ public class AI_Controls : MonoBehaviour
     Ray draftingRay;
     Vector3 direction = Vector3.forward;
     [SerializeField] float m_RayRange;
-    [SerializeField] float draftingMultiplierValue;
-    // Start is called before the first frame update 
+
     private void Awake()
     {
 
@@ -92,10 +89,10 @@ public class AI_Controls : MonoBehaviour
         bodyOfCar.centerOfMass = centerMass.localPosition;
         originalPos = gameObject.transform.position;
         rotations = gameObject.transform.rotation;
-        //carNewInputSystem = GetComponent<PlayerInput>();
+
     }
 
-    // Update is called once per frame
+
     private void FixedUpdate()
     {
 
@@ -304,11 +301,14 @@ public class AI_Controls : MonoBehaviour
 
     private void ApplyingDownForce()
     {
+
         bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
+
     }
 
     private void Drafting()
     {
+
         draftingRay = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
         Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
 
@@ -325,6 +325,7 @@ public class AI_Controls : MonoBehaviour
     }
 
     private float driftFactor;
+    private float draftingMultiplierValue;
 
     private void AdjustTractionForDrifting()
     {

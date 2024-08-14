@@ -1,8 +1,3 @@
-
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -89,7 +84,7 @@ public class Car_Movement : MonoBehaviour
 
     [Header("Abilities Value")]
     public bool turnOnAllTerrain = false;
-    public float frictionPlusValueForAbility; 
+    public float frictionPlusValueForAbility;
 
     [Header("Handling & Brakes")]
     [SerializeField] float allBrakeForce;
@@ -112,8 +107,9 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] float draftingMultiplierValue;
 
 
-    public Transform spawnpointer; 
-
+    public Transform spawnpointer;
+    public TrailRenderer leftTrail;
+    public TrailRenderer rightTrail;
     // Start is called before the first frame update 
     private void Awake()
     {
@@ -145,7 +141,8 @@ public class Car_Movement : MonoBehaviour
         rotations = gameObject.transform.rotation;
         bodyOfCar.centerOfMass = centerMass.localPosition;
         exhaust_Shift = GetComponentInChildren<ParticleSystem>();
-        //carNewInputSystem = GetComponent<PlayerInput>();
+        leftTrail.emitting = false;
+        rightTrail.emitting = false; 
     }
 
     // Update is called once per frame
@@ -494,7 +491,7 @@ public class Car_Movement : MonoBehaviour
         if (transmission == TransmissionTypes.Automatic)
         {
             WheelHit wheelHit;
-            switch(drive)
+            switch (drive)
             {
                 case DifferentialTypes.AllWheelDrive:
                     for (int i = 0; i < wheels4.Length; i++)
@@ -531,20 +528,20 @@ public class Car_Movement : MonoBehaviour
                         wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
 
-                        if (engineRPM >= maxRPM )
+                        if (engineRPM >= maxRPM)
                         {
-                            if(slip[i] > amountOfSlipToShift)
+                            if (slip[i] > amountOfSlipToShift)
                             {
                                 return;
                             }
-                           else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
+                            else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                             {
                                 gearNum++;
                                 exhaust_Shift.Play();
                             }
 
                         }
-                       
+
                         if (engineRPM <= minRPM)
                         {
                             if (gearNum > 0)
@@ -559,7 +556,7 @@ public class Car_Movement : MonoBehaviour
                     }
                     break;
                 case DifferentialTypes.FrontWheelDrive:
-                    for (int i = 0; i < wheels4.Length -2; i++)
+                    for (int i = 0; i < wheels4.Length - 2; i++)
                     {
                         wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
@@ -588,7 +585,7 @@ public class Car_Movement : MonoBehaviour
                     }
                     break;
             }
-           
+
         }
     }
 
@@ -624,12 +621,12 @@ public class Car_Movement : MonoBehaviour
         }
     }
 
-    
+
     private void AdjustTractionForDrifting()
     {
         // for each terrain it is on
         WheelHit checkingTerrain;
-        
+
         if (wheels4[0].GetGroundHit(out checkingTerrain))
         {
             forwardFriction = wheels4[0].forwardFriction;
@@ -646,7 +643,7 @@ public class Car_Movement : MonoBehaviour
                             wheels4[i].forwardFriction = forwardFriction;
                             wheels4[i].sidewaysFriction = sidewaysFriction;
                         }
-                        if(checkingTerrain.collider.name == "UtopiaGround")
+                        if (checkingTerrain.collider.name == "UtopiaGround")
                         {
                             forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
                             sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
@@ -656,7 +653,7 @@ public class Car_Movement : MonoBehaviour
                                 wheels4[i].sidewaysFriction = sidewaysFriction;
                             }
                         }
-                        else if(checkingTerrain.collider.name == "DystopiaGround")
+                        else if (checkingTerrain.collider.name == "DystopiaGround")
                         {
                             forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.1f;
                             sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.1f;
@@ -800,7 +797,7 @@ public class Car_Movement : MonoBehaviour
             bodyOfCar.angularDrag = whenNotDrifting;
         }
     }
-   
+
     private void CheckingforSlip()
     {
         WheelHit wheelHit;

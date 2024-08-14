@@ -64,7 +64,7 @@ MonoBehaviour:
   currentWaypoint: {fileID: 0}
   currentWaypointIndex: 0
   minimumWayPointApproachThreshold: 0
-  maximumWayPointApproachThreshold: 50
+  maximumWayPointApproachThreshold: 90
   numberOfLaps: 0
   bridge: {fileID: 0}
   dists: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   isBreaking: 0
   ifHandBraking: 0
   handBrakefrictionMulitplier: 2
-  whenNotDrifting: 10
+  whenNotDrifting: 9
   whenDrifting: 0
   allBrakeForce: 0
   frontBrakeForce: 0
@@ -162,7 +162,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_RayRange: 0
-  draftingMultiplierValue: 0
 --- !u!1001 &2563162987985080505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,7 +191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1397374074, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1397374074, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_SuspensionSpring.damper
@@ -236,7 +235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2065349430, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2065349430, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_ForceAppPointDistance
@@ -256,7 +255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2065349430, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 1.1
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065349430, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065349430, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
+      propertyPath: m_SidewaysFriction.m_AsymptoteValue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2076938277, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_Name
@@ -268,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076938279, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2076938279, guid: 80957048f5165674fb72a475b6ecbabb, type: 3}
       propertyPath: m_SuspensionSpring.damper
@@ -286,6 +293,26 @@ PrefabInstance:
       propertyPath: m_SidewaysFriction.m_Stiffness
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23003008500479120, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 23003008500479120, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
+    - target: {fileID: 23003008500479120, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 23003008500479120, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
     - target: {fileID: 256172842583362973, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_TagString
@@ -296,6 +323,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AI
       objectReference: {fileID: 0}
+    - target: {fileID: 392852923686709518, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 392852923686709518, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
+    - target: {fileID: 392852923686709518, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 392852923686709518, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
     - target: {fileID: 433879451569682293, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_TagString
@@ -329,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 1563017394218635370, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1563017394218635370, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
@@ -354,8 +401,38 @@ PrefabInstance:
     - target: {fileID: 1563017394218635370, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 1.1
+      value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1563017394218635370, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563017394218635370, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_AsymptoteValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571293349035299707, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 1571293349035299707, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
+    - target: {fileID: 1571293349035299707, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 1571293349035299707, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
     - target: {fileID: 1987036940401222018, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_TagString
@@ -499,7 +576,7 @@ PrefabInstance:
     - target: {fileID: 5289430074934784237, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_Drag
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 5289430074934784237, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
@@ -535,7 +612,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 267ed4528bfe8cd47b564d9f3eb3230c, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c8f4c3d066651642b63c0da0e8c204b, type: 2}
     - target: {fileID: 6960096469544621763, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_TagString
@@ -555,7 +632,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 54804b1f69a4f5148898049f6e6e4892, type: 2}
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
     - target: {fileID: 7519849594094684634, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_TagString
@@ -581,6 +658,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AI
       objectReference: {fileID: 0}
+    - target: {fileID: 8827398832031804097, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 8827398832031804097, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
+    - target: {fileID: 8827398832031804097, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e6a07be27e536b4c89918b95f203bf6, type: 2}
+    - target: {fileID: 8827398832031804097, guid: 80957048f5165674fb72a475b6ecbabb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 97ee6d4234f39a24c84c340fae8a84c1, type: 2}
     - target: {fileID: 8981255921327793493, guid: 80957048f5165674fb72a475b6ecbabb,
         type: 3}
       propertyPath: m_TagString

@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,7 +30,7 @@ public class AbilityManager : MonoBehaviour
     abilityState state = abilityState.ready;
     m_2ndAbilityState m_2NdState = m_2ndAbilityState.ready;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         switch (state)
         {
