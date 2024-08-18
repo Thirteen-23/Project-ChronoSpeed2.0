@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PortalDumpTemp",
+                    "type": "Button",
+                    "id": "a621a170-dfb8-4456-b11e-c30e4e3df7e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -340,6 +349,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "2nd - Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c35e077-fb24-41bc-8478-e8198e3f7d2e",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PortalDumpTemp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

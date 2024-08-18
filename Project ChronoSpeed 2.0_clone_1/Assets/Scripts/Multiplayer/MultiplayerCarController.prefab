@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: -7323744297377038524}
   - component: {fileID: 3803689962473558370}
   - component: {fileID: -7357263477841282681}
+  - component: {fileID: 8330332852572580902}
   m_Layer: 0
   m_Name: MultiplayerCarController
   m_TagString: Untagged
@@ -379,6 +380,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4d36641f-5065-4722-ab90-c9e8f2f19928
     m_ActionName: Movement/2nd - Ability[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8330332852572580902}
+        m_TargetAssemblyTypeName: PortalSpawn, Assembly-CSharp
+        m_MethodName: PortalDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a621a170-dfb8-4456-b11e-c30e4e3df7e5
+    m_ActionName: Movement/PortalDumpTemp[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -469,6 +486,23 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 0
   SlerpPosition: 1
+--- !u!114 &8330332852572580902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378636922687387963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706a53f62c410c642af0539468183ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeTillPortalDissapears: 50
+  maxHoldTime: 5
+  cooldown: 20
+  portalPrefab: {fileID: 6514236348907642305, guid: d90f13afb601f3b45ae3ac9f45858b8f,
+    type: 3}
 --- !u!1 &2398125964351155837
 GameObject:
   m_ObjectHideFlags: 0
