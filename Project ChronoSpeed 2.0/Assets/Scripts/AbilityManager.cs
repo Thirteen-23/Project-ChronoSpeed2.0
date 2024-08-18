@@ -7,7 +7,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] List<Ability> storeAbilities;
     public Ability m_1stAbility;
     public Ability m_2stAbility;
-
+   
     enum abilityState
     {
         ready,
@@ -30,6 +30,11 @@ public class AbilityManager : MonoBehaviour
     abilityState state = abilityState.ready;
     m_2ndAbilityState m_2NdState = m_2ndAbilityState.ready;
     // Update is called once per frame
+
+    private void Awake()
+    {
+        AbilityIndex = storeAbilities.Count;
+    }
     void FixedUpdate()
     {
         switch (state)
@@ -109,7 +114,7 @@ public class AbilityManager : MonoBehaviour
         }
 
 
-
+        AIUsingAbilities();
     }
 
     public void ButtonPressed(InputAction.CallbackContext context)
@@ -146,5 +151,21 @@ public class AbilityManager : MonoBehaviour
         {
             m_2ndAbilityUsed = false;
         }
+    }
+
+    public int AbilityIndex;
+    public int chosenAbility;
+    public Ability testAbility;
+    private void AIUsingAbilities()
+    {
+       
+        if (chosenAbility == AbilityIndex)
+        {
+            
+            testAbility = storeAbilities[AbilityIndex];
+            chosenAbility %= storeAbilities.Count;
+        }
+        
+        
     }
 }

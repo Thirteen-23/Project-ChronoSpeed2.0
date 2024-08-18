@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AI : MonoBehaviour
 {
@@ -52,14 +54,14 @@ public class AI : MonoBehaviour
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
         bridge = GameObject.Find("Checkpoints");
         valueBeingRead = bridge.GetComponent<Tracking_Manager_Script>();
-        nodes = waypoints.trackNodes;
+        //nodes = waypoints.trackNodes;
     }
 
     void Awake()
     {
         //waypoints 
         //waypoints = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<TrackWayPoints>();
-        //nodes = waypoints.trackNodes;
+        nodes = waypoints.trackNodes;
 
     }
     // Update is called once per frame
@@ -196,10 +198,10 @@ public class AI : MonoBehaviour
         }
 
         if (difference.magnitude > maximumWayPointApproachThreshold)
-        {
-
-            // Vector3.Lerp(rb.transform.position, nodes[currentWaypointIndex].transform.position, Time.deltaTime);
-            rb.transform.position = nodes[currentWaypointIndex - 4].transform.position;
+        { 
+             //rb.transform.position = Vector3.Lerp(rb.transform.position, nodes[currentWaypointIndex-1].transform.position, Time.deltaTime);
+            rb.transform.position = nodes[currentWaypointIndex - 1].transform.position;
+            rb.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
         }
     }
 
