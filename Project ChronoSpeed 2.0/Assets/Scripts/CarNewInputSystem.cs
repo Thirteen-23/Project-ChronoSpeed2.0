@@ -98,6 +98,15 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PortalDumpTemp"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7cd8c6c-08bf-4de0-bfc5-daac448ce010"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -364,6 +373,17 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""2nd - Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b666cbf8-1444-4892-b4b9-1b8d11cacadd"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PortalDumpTemp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -380,6 +400,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_Movement_Handbrake = m_Movement.FindAction("Handbrake", throwIfNotFound: true);
         m_Movement__1stAbility = m_Movement.FindAction("1st - Ability", throwIfNotFound: true);
         m_Movement__2ndAbility = m_Movement.FindAction("2nd - Ability", throwIfNotFound: true);
+        m_Movement_PortalDumpTemp = m_Movement.FindAction("PortalDumpTemp", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -449,6 +470,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Handbrake;
     private readonly InputAction m_Movement__1stAbility;
     private readonly InputAction m_Movement__2ndAbility;
+    private readonly InputAction m_Movement_PortalDumpTemp;
     public struct MovementActions
     {
         private @CarNewInputSystem m_Wrapper;
@@ -461,6 +483,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Handbrake => m_Wrapper.m_Movement_Handbrake;
         public InputAction @_1stAbility => m_Wrapper.m_Movement__1stAbility;
         public InputAction @_2ndAbility => m_Wrapper.m_Movement__2ndAbility;
+        public InputAction @PortalDumpTemp => m_Wrapper.m_Movement_PortalDumpTemp;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -494,6 +517,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @_2ndAbility.started += instance.On_2ndAbility;
             @_2ndAbility.performed += instance.On_2ndAbility;
             @_2ndAbility.canceled += instance.On_2ndAbility;
+            @PortalDumpTemp.started += instance.OnPortalDumpTemp;
+            @PortalDumpTemp.performed += instance.OnPortalDumpTemp;
+            @PortalDumpTemp.canceled += instance.OnPortalDumpTemp;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -522,6 +548,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @_2ndAbility.started -= instance.On_2ndAbility;
             @_2ndAbility.performed -= instance.On_2ndAbility;
             @_2ndAbility.canceled -= instance.On_2ndAbility;
+            @PortalDumpTemp.started -= instance.OnPortalDumpTemp;
+            @PortalDumpTemp.performed -= instance.OnPortalDumpTemp;
+            @PortalDumpTemp.canceled -= instance.OnPortalDumpTemp;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -549,5 +578,6 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void OnHandbrake(InputAction.CallbackContext context);
         void On_1stAbility(InputAction.CallbackContext context);
         void On_2ndAbility(InputAction.CallbackContext context);
+        void OnPortalDumpTemp(InputAction.CallbackContext context);
     }
 }
