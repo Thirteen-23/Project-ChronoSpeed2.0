@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -106,7 +107,7 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] float m_RayRange;
     [SerializeField] float draftingMultiplierValue;
 
-
+    public Transform spawnpointerBehind;
     public Transform spawnpointer;
     public TrailRenderer leftTrail;
     public TrailRenderer rightTrail;
@@ -499,15 +500,14 @@ public class Car_Movement : MonoBehaviour
                         wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
 
-                        if (engineRPM >= maxRPM && slip[i] < amountOfSlipToShift && gearNum < 3)
+                        if (slip[i] > amountOfSlipToShift)
                         {
-                            if (gearNum < gearSpeedBox.Length - 1)
-                            {
-                                gearNum++;
-                                exhaust_Shift.Play();
-                            }
-
-
+                            return;
+                        }
+                        else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
+                        {
+                            gearNum++;
+                            exhaust_Shift.Play();
                         }
                         if (engineRPM <= minRPM)
                         {
@@ -601,7 +601,22 @@ public class Car_Movement : MonoBehaviour
     }
     private void ApplyingDownForce()
     {
-        bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
+        WheelHit hit;
+        if (wheels4[0].GetGroundHit(out hit))
+        {
+            if (hit.collider == false)
+            {
+                for (int i = 0; i < wheels4.Length; i++)
+                {
+                    downForceValue = 0;
+                    bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
+                }
+            }
+        }
+        else
+        {
+            bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
+        }
     }
 
     private void Drafting()
@@ -768,7 +783,7 @@ public class Car_Movement : MonoBehaviour
                 wheels4[i].sidewaysFriction = sidewaysFriction;
                 wheels4[i].forwardFriction = forwardFriction;
             }
-            sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue = 1.1f;
+            sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue = 1.2f;
 
             // extra grip for front wheels
             for (int i = 0; i < 2; i++)
@@ -787,7 +802,7 @@ public class Car_Movement : MonoBehaviour
             sidewaysFriction = wheels4[0].sidewaysFriction;
 
             forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
-            Mathf.Lerp((forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue), (currentSpeed * handBrakefrictionMulitplier / 300) + 1, Time.deltaTime * 2);
+            Mathf.Lerp((forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue), (currentSpeed * handBrakefrictionMulitplier / 300) + 1, Time.deltaTime * 3f);
 
             for (int i = 0; i < 4; i++)
             {

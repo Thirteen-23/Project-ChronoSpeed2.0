@@ -249,7 +249,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_RayRange: 20
   draftingMultiplierValue: 5
+  spawnpointerBehind: {fileID: 0}
   spawnpointer: {fileID: 2283301613511047555}
+  leftTrail: {fileID: 0}
+  rightTrail: {fileID: 0}
 --- !u!114 &1676145333834778073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +385,9 @@ MonoBehaviour:
   m_2ndActiveTime: 0
   abilityUsed: 0
   m_2ndAbilityUsed: 0
+  AbilityIndex: 0
+  chosenAbility: 0
+  testAbility: {fileID: 0}
 --- !u!1 &1740483888815326803
 GameObject:
   m_ObjectHideFlags: 0

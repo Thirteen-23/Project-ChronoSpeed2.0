@@ -2209,7 +2209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 132886ffc658fbd44b8076b3e3ded830, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 132886ffc658fbd44b8076b3e3ded830,
+    type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -2446,7 +2447,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_RayRange: 5
   draftingMultiplierValue: 2
+  spawnpointerBehind: {fileID: 0}
   spawnpointer: {fileID: 1711849848}
+  leftTrail: {fileID: 0}
+  rightTrail: {fileID: 0}
 --- !u!114 &1318673538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2468,6 +2472,9 @@ MonoBehaviour:
   m_2ndActiveTime: 0
   abilityUsed: 0
   m_2ndAbilityUsed: 0
+  AbilityIndex: 0
+  chosenAbility: 0
+  testAbility: {fileID: 0}
 --- !u!1 &7320924736978161067
 GameObject:
   m_ObjectHideFlags: 0
