@@ -41,12 +41,11 @@ public class Speedo : MonoBehaviour
     private float currentGear = 0f;
     [SerializeField] int gear;
 
-
+    
     public AbilityManager ability;
     //public TextMeshProUGUI positionBoard;
     [SerializeField] GameObject[] list;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -60,10 +59,10 @@ public class Speedo : MonoBehaviour
         
         speedo();
         GearChangeFunction();
-        RPMBar();
-        ExactNumOfRPM();
+        //RPMBar();
+       // ExactNumOfRPM();
         ScoreBoard();
-        AbilityAvailablity();
+        
 
     }
     private void ScoreBoard()
@@ -132,16 +131,7 @@ public class Speedo : MonoBehaviour
 
 
     }
-    public Image image; 
-    private void AbilityAvailablity()
-    {
-        if(0 == 0)
-        {
-            image.color = Color.blue; 
-        }
-        else
-        {
-            image.color = Color.red;
-        }
-    }
+   
+   
+    
 }

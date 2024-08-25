@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -30,10 +31,21 @@ public class AbilityManager : MonoBehaviour
     abilityState state = abilityState.ready;
     m_2ndAbilityState m_2NdState = m_2ndAbilityState.ready;
     // Update is called once per frame
-
+    public Image m_1stAbilityImage;
+    public Image m_2ndAbilityImage;
+    public Color readyColor;
+    public Color activeColor;
+    public Color cooldownColor;
     private void Awake()
     {
         AbilityIndex = storeAbilities.Count;
+      
+    }
+
+    private void Start()
+    {
+        m_1stAbilityImage.color = readyColor;
+        m_2ndAbilityImage.color = readyColor;
     }
     void FixedUpdate()
     {
@@ -51,6 +63,7 @@ public class AbilityManager : MonoBehaviour
                 if (activeTime > 0)
                 {
                     activeTime -= Time.deltaTime;
+                    m_1stAbilityImage.color = activeColor;
                 }
 
                 else
@@ -66,11 +79,12 @@ public class AbilityManager : MonoBehaviour
                 if (cooldownTime > 0)
                 {
                     cooldownTime -= Time.deltaTime;
-
+                    m_1stAbilityImage.color = cooldownColor;
                 }
                 else
                 {
                     state = abilityState.ready;
+                    m_1stAbilityImage.color = readyColor; 
                 }
                 break;
         }
@@ -89,6 +103,7 @@ public class AbilityManager : MonoBehaviour
                 if (m_2ndActiveTime > 0)
                 {
                     m_2ndActiveTime -= Time.deltaTime;
+                    m_2ndAbilityImage.color = activeColor;
                 }
 
                 else
@@ -104,11 +119,12 @@ public class AbilityManager : MonoBehaviour
                 if (m_2ndCooldownTime > 0)
                 {
                     m_2ndCooldownTime -= Time.deltaTime;
-
+                    m_2ndAbilityImage.color = cooldownColor;
                 }
                 else
                 {
                     m_2NdState = m_2ndAbilityState.ready;
+                    m_2ndAbilityImage.color = readyColor;
                 }
                 break;
         }
@@ -162,10 +178,15 @@ public class AbilityManager : MonoBehaviour
         if (chosenAbility == AbilityIndex)
         {
             
-            testAbility = storeAbilities[AbilityIndex];
-            chosenAbility %= storeAbilities.Count;
+            testAbility = storeAbilities[chosenAbility];
+            
         }
         
+        
+    }
+
+    private void chosenAbilitya(int abilitychosen)
+    {
         
     }
 }

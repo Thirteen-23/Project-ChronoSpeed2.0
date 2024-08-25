@@ -50,6 +50,7 @@ public class AI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nodes = waypoints.trackNodes;
         carAI = m_AICarBody.GetComponent<AI_Controls>();
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
         bridge = GameObject.Find("Checkpoints");
@@ -61,7 +62,7 @@ public class AI : MonoBehaviour
     {
         //waypoints 
         //waypoints = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<TrackWayPoints>();
-        nodes = waypoints.trackNodes;
+        //nodes = waypoints.trackNodes;
 
     }
     // Update is called once per frame
