@@ -76,7 +76,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Handbrake"",
                     ""type"": ""Value"",
                     ""id"": ""4e149a13-7ba9-432a-a63e-fea2898df491"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true

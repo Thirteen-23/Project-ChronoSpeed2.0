@@ -8,9 +8,8 @@ namespace CarVariables
     public class CarInfo
     {
 
-        public WheelCollider[] wheels4 = new WheelCollider[4];
-        public GameObject[] wheelmeshes = new GameObject[4];
-        public Rigidbody bodyOfCar;
+       
+      
     }
 }
 public class Controller_V1 : MonoBehaviour
@@ -38,6 +37,10 @@ public class Controller_V1 : MonoBehaviour
         Automatic,
         Manual
     }
+    public GameObject[] wheelmeshes = new GameObject[4];
+
+    public WheelCollider[] wheels4 = new WheelCollider[4];
+    public Rigidbody bodyOfCar;
     [SerializeField] CarInfo carInfo;
     [SerializeField] Class carClasses;
     [SerializeField] TransmissionTypes transmission;
@@ -154,7 +157,7 @@ public class Controller_V1 : MonoBehaviour
         // nodes = waypoints.trackNodes;
         originalPos = gameObject.transform.position;
         rotations = gameObject.transform.rotation;
-        carInfo.bodyOfCar.centerOfMass = centerMass.localPosition;
+        bodyOfCar.centerOfMass = centerMass.localPosition;
         exhaust_Shift = GetComponentInChildren<ParticleSystem>();
         leftTrail.emitting = false;
         rightTrail.emitting = false; 
@@ -224,7 +227,7 @@ public class Controller_V1 : MonoBehaviour
     private void HandlingMotor()
     {
         // calculation of kilometers / hour
-        currentSpeed = carInfo.bodyOfCar.velocity.magnitude * 3.6f;
+        currentSpeed = bodyOfCar.velocity.magnitude * 3.6f;
         EngineRPMSystem();
         // code for restricting the car to max speed set. 
         if (currentSpeed < maxSpeed)
@@ -232,25 +235,25 @@ public class Controller_V1 : MonoBehaviour
             #region New Driving system 
             if (drive == DifferentialTypes.AllWheelDrive)
             {
-                for (int i = 0; i < carInfo.wheels4.Length; i++)
+                for (int i = 0; i < wheels4.Length; i++)
                 {
                     // wheels torque equal to engine Rpm * gearbox * final drive ratio and input from player
-                    carInfo.wheels4[i].motorTorque = (totalPowerInCar * 5) / 4;
+                    wheels4[i].motorTorque = (totalPowerInCar * 5) / 4;
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
             {
-                for (int i = 2; i < carInfo.wheels4.Length; i++)
+                for (int i = 2; i < wheels4.Length; i++)
                 {
-                    carInfo.wheels4[i].motorTorque = (totalPowerInCar * 5) / 2;
+                    wheels4[i].motorTorque = (totalPowerInCar * 5) / 2;
                 }
             }
             else if (drive == DifferentialTypes.FrontWheelDrive)
 
             {
-                for (int i = 0; i < carInfo.wheels4.Length - 2; i++)
+                for (int i = 0; i < wheels4.Length - 2; i++)
                 {
-                    carInfo.wheels4[i].motorTorque = totalPowerInCar / 2;
+                    wheels4[i].motorTorque = totalPowerInCar / 2;
                 }
             }
 
@@ -263,25 +266,25 @@ public class Controller_V1 : MonoBehaviour
         {
             if (drive == DifferentialTypes.AllWheelDrive)
             {
-                for (int i = 0; i < carInfo.wheels4.Length; i++)
+                for (int i = 0; i < wheels4.Length; i++)
                 {
-                    carInfo.wheels4[i].motorTorque = acceration_Value * 0;
+                    wheels4[i].motorTorque = acceration_Value * 0;
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
             {
-                for (int i = 2; i < carInfo.wheels4.Length; i++)
+                for (int i = 2; i < wheels4.Length; i++)
                 {
-                    carInfo.wheels4[i].motorTorque = acceration_Value * 0;
+                    wheels4[i].motorTorque = acceration_Value * 0;
 
                 }
             }
             else if (drive == DifferentialTypes.FrontWheelDrive)
 
             {
-                for (int i = 0; i < carInfo.wheels4.Length - 2; i++)
+                for (int i = 0; i < wheels4.Length - 2; i++)
                 {
-                    carInfo.wheels4[i].motorTorque = acceration_Value * 0;
+                    wheels4[i].motorTorque = acceration_Value * 0;
 
                 }
             }
@@ -299,9 +302,9 @@ public class Controller_V1 : MonoBehaviour
     }
     private void ApplyBraking()
     {
-        for (int i = 0; i < carInfo.wheels4.Length; i++)
+        for (int i = 0; i < wheels4.Length; i++)
         {
-            carInfo.wheels4[i].brakeTorque = currentBreakForce;
+            wheels4[i].brakeTorque = currentBreakForce;
         }
 
 
@@ -321,10 +324,10 @@ public class Controller_V1 : MonoBehaviour
 
     private void HandlingSteering()
     {
-        for (int i = 0; i < carInfo.wheels4.Length - 2; i++)
+        for (int i = 0; i < wheels4.Length - 2; i++)
         {
             turnSpeed = steeringDamping * steeringCurve.Evaluate(currentSpeed);
-            carInfo.wheels4[i].steerAngle = turnSpeed;
+            wheels4[i].steerAngle = turnSpeed;
         }
 
     }
@@ -334,11 +337,11 @@ public class Controller_V1 : MonoBehaviour
         Vector3 wheelPosition = Vector3.zero;
         Quaternion wheelRotations = Quaternion.identity;
 
-        for (int i = 0; i < carInfo.wheels4.Length; i++)
+        for (int i = 0; i < wheels4.Length; i++)
         {
-            carInfo.wheels4[i].GetWorldPose(out wheelPosition, out wheelRotations);
-            carInfo.wheelmeshes[i].transform.position = wheelPosition;
-            carInfo.wheelmeshes[i].transform.rotation = wheelRotations;
+            wheels4[i].GetWorldPose(out wheelPosition, out wheelRotations);
+            wheelmeshes[i].transform.position = wheelPosition;
+            wheelmeshes[i].transform.rotation = wheelRotations;
         }
 
     }
@@ -362,7 +365,7 @@ public class Controller_V1 : MonoBehaviour
         int rR = 0;
         for (int i = 0; i < 4; i++)
         {
-            sum += carInfo.wheels4[i].rpm;
+            sum += wheels4[i].rpm;
             rR++;
         }
         m_RPMOfWheels = (rR != 0) ? sum / rR : 0;
@@ -461,8 +464,22 @@ public class Controller_V1 : MonoBehaviour
     }
     public void Handbraking(InputAction.CallbackContext context)
     {
-            ifHandBraking = context.ReadValue<float>() > 0;
-           
+            handbraking = context.ReadValue<float>();
+        if(context.started)
+        {
+            if(handbraking == 1)
+            {
+                ifHandBraking = true;
+            }
+        }
+           if(context.performed)
+        {
+            ifHandBraking = true;
+        }
+           else if(context.canceled)
+        {
+            ifHandBraking = false;
+        }
     }
 
     private void Shifting()
@@ -498,9 +515,9 @@ public class Controller_V1 : MonoBehaviour
             switch (drive)
             {
                 case DifferentialTypes.AllWheelDrive:
-                    for (int i = 0; i < carInfo.wheels4.Length; i++)
+                    for (int i = 0; i < wheels4.Length; i++)
                     {
-                        carInfo.wheels4[i].GetGroundHit(out wheelHit);
+                        wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
 
                         if (slip[i] > amountOfSlipToShift)
@@ -510,7 +527,7 @@ public class Controller_V1 : MonoBehaviour
                         else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                         {
                             gearNum++;
-                            exhaust_Shift.Play();
+                            //exhaust_Shift.Play();
                         }
                         if (engineRPM <= minRPM)
                         {
@@ -526,9 +543,9 @@ public class Controller_V1 : MonoBehaviour
                     }
                     break;
                 case DifferentialTypes.RearWheelDrive:
-                    for (int i = 2; i < carInfo.wheels4.Length; i++)
+                    for (int i = 2; i < wheels4.Length; i++)
                     {
-                        carInfo.wheels4[i].GetGroundHit(out wheelHit);
+                        wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
 
                         if (engineRPM >= maxRPM)
@@ -559,9 +576,9 @@ public class Controller_V1 : MonoBehaviour
                     }
                     break;
                 case DifferentialTypes.FrontWheelDrive:
-                    for (int i = 0; i < carInfo.wheels4.Length - 2; i++)
+                    for (int i = 0; i < wheels4.Length - 2; i++)
                     {
-                        carInfo.wheels4[i].GetGroundHit(out wheelHit);
+                        wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
 
                         if (engineRPM >= maxRPM && slip[i] < amountOfSlipToShift)
@@ -605,34 +622,34 @@ public class Controller_V1 : MonoBehaviour
     private void ApplyingDownForce()
     {
         WheelHit hit;
-        if (carInfo.wheels4[0].GetGroundHit(out hit))
+        if (wheels4[0].GetGroundHit(out hit))
         {
             if (hit.collider == false)
             {
-                for (int i = 0; i < carInfo.wheels4.Length; i++)
+                for (int i = 0; i < wheels4.Length; i++)
                 {
                     downForceValue = 0;
-                    carInfo.bodyOfCar.AddForce(-transform.up * downForceValue * carInfo.bodyOfCar.velocity.magnitude);
+                    bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
                 }
             }
         }
         else
         {
-            carInfo.bodyOfCar.AddForce(-transform.up * downForceValue * carInfo.bodyOfCar.velocity.magnitude);
+            bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
         }
     }
 
     private void Drafting()
     {
-        draftingRay = new Ray(carInfo.bodyOfCar.transform.position, carInfo.bodyOfCar.transform.TransformDirection(direction * m_RayRange));
-        Debug.DrawRay(carInfo.bodyOfCar.transform.position, carInfo.bodyOfCar.transform.TransformDirection(direction * m_RayRange));
+        draftingRay = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
+        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
 
         if (Physics.Raycast(draftingRay, out RaycastHit hit, m_RayRange))
         {
             if (hit.collider.CompareTag("AI") || hit.collider.CompareTag("Player"))
             {
                 Debug.Log("Im behind");
-                carInfo.bodyOfCar.AddForce(carInfo.bodyOfCar.transform.forward * (1000f * draftingMultiplierValue));
+                bodyOfCar.AddForce(bodyOfCar.transform.forward * (1000f * draftingMultiplierValue));
 
             }
 
@@ -773,9 +790,9 @@ public class Controller_V1 : MonoBehaviour
         float driftSmoothFactor = 0.7f * Time.deltaTime;
         if (ifHandBraking)
         {
-            carInfo.bodyOfCar.angularDrag = whenDrifting;
-            sidewaysFriction = carInfo.wheels4[0].sidewaysFriction;
-            forwardFriction = carInfo.wheels4[0].forwardFriction;
+            bodyOfCar.angularDrag = whenDrifting;
+            sidewaysFriction = wheels4[0].sidewaysFriction;
+            forwardFriction = wheels4[0].forwardFriction;
 
             float velocity = 0;
 
@@ -786,36 +803,36 @@ public class Controller_V1 : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
 
-                carInfo.wheels4[i].sidewaysFriction = sidewaysFriction;
-                carInfo.wheels4[i].forwardFriction = forwardFriction;
+                wheels4[i].sidewaysFriction = sidewaysFriction;
+                wheels4[i].forwardFriction = forwardFriction;
             }
             sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue = 1.2f;
 
             // extra grip for front wheels
             for (int i = 0; i < 2; i++)
             {
-                carInfo.wheels4[i].sidewaysFriction = sidewaysFriction;
-                carInfo.wheels4[i].forwardFriction = forwardFriction;
+                wheels4[i].sidewaysFriction = sidewaysFriction;
+                wheels4[i].forwardFriction = forwardFriction;
 
             }
 
-            carInfo.bodyOfCar.AddForce(carInfo.bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
+            bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
         }
         // executed when handbrake is held
         else
         {
-            forwardFriction = carInfo.wheels4[0].forwardFriction;
-            sidewaysFriction = carInfo.wheels4[0].sidewaysFriction;
+            forwardFriction = wheels4[0].forwardFriction;
+            sidewaysFriction = wheels4[0].sidewaysFriction;
 
             forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
             Mathf.Lerp((forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue), (currentSpeed * handBrakefrictionMulitplier / 300) + 1, Time.deltaTime * 2f);
 
             for (int i = 0; i < 4; i++)
             {
-                carInfo.wheels4[i].forwardFriction = forwardFriction;
-                carInfo.wheels4[i].sidewaysFriction = sidewaysFriction;
+                wheels4[i].forwardFriction = forwardFriction;
+                wheels4[i].sidewaysFriction = sidewaysFriction;
             }
-            carInfo.bodyOfCar.angularDrag = whenNotDrifting;
+            bodyOfCar.angularDrag = whenNotDrifting;
         }
     }
 
@@ -823,9 +840,9 @@ public class Controller_V1 : MonoBehaviour
     {
         WheelHit wheelHit;
 
-        for (int i = 0; i < carInfo.wheels4.Length; i++)
+        for (int i = 0; i < wheels4.Length; i++)
         {
-            carInfo.wheels4[i].GetGroundHit(out wheelHit);
+            wheels4[i].GetGroundHit(out wheelHit);
             slip[i] = wheelHit.forwardSlip;
         }
 
@@ -836,27 +853,27 @@ public class Controller_V1 : MonoBehaviour
     {
         if (ifHandBraking || handbraking > 0)
         {
-            carInfo.bodyOfCar.constraints = RigidbodyConstraints.FreezeRotationX;
+            bodyOfCar.constraints = RigidbodyConstraints.FreezeRotationX;
 
-            float newZ = Mathf.SmoothDamp(carInfo.bodyOfCar.velocity.z, 0, ref currentVelocity, 1f);
+            float newZ = Mathf.SmoothDamp(bodyOfCar.velocity.z, 0, ref currentVelocity, 1f);
 
-            carInfo.bodyOfCar.velocity = carInfo.bodyOfCar.transform.forward * newZ;
+            bodyOfCar.velocity = bodyOfCar.transform.forward * newZ;
            
-                for (int i = 2; i < carInfo.wheels4.Length; i++)
+                for (int i = 2; i < wheels4.Length; i++)
                 {
-                    carInfo.wheels4[i].brakeTorque = rearBrakeForce;
-                    ApplyFriction(carInfo.wheels4[i]);
+                    wheels4[i].brakeTorque = rearBrakeForce;
+                    ApplyFriction(wheels4[i]);
                 }
 
 
         }
         else
         {
-            carInfo.bodyOfCar.constraints = RigidbodyConstraints.None;
-            for (int i = 2; i < carInfo.wheels4.Length; i++)
+            bodyOfCar.constraints = RigidbodyConstraints.None;
+            for (int i = 2; i < wheels4.Length; i++)
             {
-                carInfo.wheels4[i].brakeTorque = 0;
-                ResetFriction(carInfo.wheels4[i]);
+                wheels4[i].brakeTorque = 0;
+                ResetFriction(wheels4[i]);
             }
 
         }
@@ -873,10 +890,10 @@ public class Controller_V1 : MonoBehaviour
 
     void ResetFriction(WheelCollider wheels)
     {
-        for (int i = 2; i > carInfo.wheels4.Length; i++)
+        for (int i = 2; i > wheels4.Length; i++)
         {
-            wheels.forwardFriction = carInfo.wheels4[0].forwardFriction;
-            wheels.sidewaysFriction = carInfo.wheels4[0].sidewaysFriction;
+            wheels.forwardFriction = wheels4[0].forwardFriction;
+            wheels.sidewaysFriction = wheels4[0].sidewaysFriction;
         }
     }
 

@@ -14,7 +14,11 @@ public class Tracking_Manager_Script : MonoBehaviour
     public List<GameObject> assigningNodes = new List<GameObject>();
     public float changingSpeedToAccerate;
     public float changingSpeedToSlowDown;
-    
+
+
+    public Color wayPointColour;
+    [Range(0, 1)] public float sphereRadius;
+    public List<Transform> trackCheckpoints = new List<Transform>();
     void Start()
     {
         //children = new Transform[transform.childCount];
