@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Car_Movement : MonoBehaviour
 {
     ///keeping track of how many laps in the race. 
-    public int numberOfLaps;
+
     CarNewInputSystem input;
     enum Class
     {
@@ -665,6 +665,8 @@ public class Car_Movement : MonoBehaviour
         }
     }
     [SerializeField] float tt = 1;
+    [SerializeField] float maxAmountOfGrip;
+    [SerializeField] float minAmountOfGripAtStart;
     float driftEndingGrip;
     private void AdjustTractionForDrifting()
     {
@@ -826,8 +828,8 @@ public class Car_Movement : MonoBehaviour
 
             }
 
-           // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
-           // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
+            // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
+            // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
 
             tt = 0;
         }
@@ -841,8 +843,8 @@ public class Car_Movement : MonoBehaviour
 
             if (tt > 1f)
             {
-                
-               Debug.Log("normal friction");
+
+                Debug.Log("normal friction");
                 for (int i = 0; i < 4; i++)
                 {
                     wheels4[i].forwardFriction = forwardFriction;
@@ -852,7 +854,7 @@ public class Car_Movement : MonoBehaviour
             }
             else
             {
-                tt +=  Time.deltaTime * 2f;
+                tt += Time.deltaTime * 2f;
 
                 forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
                     Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, 0, 3), tt);
@@ -860,7 +862,7 @@ public class Car_Movement : MonoBehaviour
                 //Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 3), tt);
 
 
-                
+
                 for (int i = 0; i < 4; i++)
                 {
                     wheels4[i].forwardFriction = forwardFriction;
@@ -875,12 +877,19 @@ public class Car_Movement : MonoBehaviour
                     slip[i] = wheelHit.sidewaysSlip /*/ wheels4[i].sidewaysFriction.extremumSlip*/;
                     if (slip[i] > 0.4f || slip[i] < -0.4f)
                     {
+                        tt = 1f;
+                        forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
+                   Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt);
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 20000);
+
+                        for (int j = 0; j < 4; j++)
+                        {
+                            wheels4[j].forwardFriction = forwardFriction;
+                            wheels4[j].sidewaysFriction = sidewaysFriction;
+                        }
+
                     }
                 }
-
-                if (tt > 1.0f)
-                    forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = 3f;
 
                 if (forwardFriction.extremumValue >= Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, 0, 3))
                 {
@@ -906,7 +915,7 @@ public class Car_Movement : MonoBehaviour
             slip[i] = wheelHit.sidewaysSlip /*/ wheels4[i].sidewaysFriction.extremumSlip*/;
         }
     }
-    
+
 }
 
 

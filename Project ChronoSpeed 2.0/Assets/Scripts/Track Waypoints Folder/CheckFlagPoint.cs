@@ -6,7 +6,7 @@ public class CheckFlagPoint : MonoBehaviour
 {
     public List<GameObject> listOfCars = new List<GameObject>();
     [HideInInspector] public AI m_AI;
-    [HideInInspector] public Car_Movement m_CarMovementAccess;
+    [HideInInspector] public LapManager m_CarMovementAccess;
     Tracking_Manager_Script valueBeingRead;
     GameObject bridge; 
     // Start is called before the first frame update
@@ -28,9 +28,9 @@ public class CheckFlagPoint : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("has passed");
-            listOfCars.Add(other.gameObject);
-            m_CarMovementAccess = other.gameObject.GetComponentInParent<Car_Movement>();
-            m_CarMovementAccess.numberOfLaps++; 
+            listOfCars.Add(other.gameObject.GetComponentInChildren<GameObject>());
+            m_CarMovementAccess = other.gameObject.GetComponentInParent<LapManager>();
+            m_CarMovementAccess.checkpointCount++; 
         }
         if (other.tag == "AI")
         {
