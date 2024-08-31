@@ -10,11 +10,12 @@ using UnityEngine.UI;
 public class MultiplayerCarSelection : NetworkBehaviour
 {
     [SerializeField] private CarCharacterStorage carDatabase;
-    [SerializeField] private CarSpotlight mainPlayerSpawnPositon;
+    [SerializeField] private Transform mainPlayerSpawnPositon;
     [SerializeField] private CarSpotlight[] carSpawnPositions; //set 0 to be behind main player, then 1 to the left of 0, 2 to the right of 0, 3 to the left of 1 etc...
     [SerializeField] private CharacterSelectButton selectButtonPrefab;
     [SerializeField] private GameObject characterInfoPanel;
     [SerializeField] private TMP_Text characterNameText;
+    [SerializeField] private TMP_Text characterDescText;
     [SerializeField] private Transform carSelectButtonHolder;
 
     private NetworkList<CharacterSelectState> players;
@@ -83,7 +84,9 @@ public class MultiplayerCarSelection : NetworkBehaviour
     public void Select(CarCharacter carc)
     {
         characterNameText.text = carc.CarName;
+        characterDescText.text = carc.CarDesc;
         characterInfoPanel.SetActive(true);
+
         CarSelectServerRpc(carc.Id);
     }
 
@@ -142,15 +145,35 @@ public class MultiplayerCarSelection : NetworkBehaviour
 
     private void HandlePlayersStateChanged(NetworkListEvent<CharacterSelectState> changeEvent)
     {
-        for(int i = 0; i< carSpawnPositions.Length; i++)
+        int curSpawnPoint = 0;
+        for (int i = 0; i < carSpawnPositions.Length + 1; i++)
         {
             if(players.Count > i)
             {
-                carSpawnPositions[i].UpdateDisplay(players[i]);
+                if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
+                {
+                    CarCharacter car = carDatabase.GetCarById(players[i].CharacterID);
+
+                    if (mainPlayerSpawnPositon.childCount == 0)
+                    {
+                        Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
+                    }
+                    else
+                    {
+                        var curCar = mainPlayerSpawnPositon.GetChild(0);
+                        if (car == curCar)
+                            continue;
+                        Destroy(curCar.gameObject); //Later make it portal out
+                        Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
+                    }
+                    curSpawnPoint = 1;
+                }
+                else
+                    carSpawnPositions[i - curSpawnPoint].UpdateDisplay(players[i]);
             }
             else
             {
-                carSpawnPositions[i].DisableDisplay();
+                carSpawnPositions[i - curSpawnPoint].DisableDisplay();
             }
         }
     }

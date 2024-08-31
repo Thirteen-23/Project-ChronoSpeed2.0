@@ -9,11 +9,12 @@ public class CharacterSelectButton : MonoBehaviour
 
     private void Awake()
     {
-        iconImage.GetComponent<Image>();
+        iconImage = GetComponent<Image>();
     }
     public void SetCharacter(MultiplayerCarSelection carselect, CarCharacter carc)
     {
-        iconImage = carc.CarIcon;
+        iconImage.sprite = carc.CarIcon.sprite;
+        iconImage.color = carc.CarIcon.color;
         carSelect = carselect;
         carC = carc;
     }
