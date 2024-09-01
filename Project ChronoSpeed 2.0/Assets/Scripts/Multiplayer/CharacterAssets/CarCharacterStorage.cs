@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CarDatabase", menuName = "CarSelection/CarStorage")]
@@ -17,5 +18,10 @@ public class CarCharacterStorage : ScriptableObject
             }
         }
         return null;
+    }
+
+    public bool IsValidCharacterId(int id)
+    {
+        return cars.Any(x => x.Id == id);
     }
 }

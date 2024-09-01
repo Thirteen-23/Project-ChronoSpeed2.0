@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +15,8 @@ public class MultiplayerCarSelection : NetworkBehaviour
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private TMP_Text characterDescText;
     [SerializeField] private Transform carSelectButtonHolder;
+
+    [SerializeField] private TMP_Text countDownText;
 
     private NetworkList<CharacterSelectState> players;
 
@@ -103,6 +103,21 @@ public class MultiplayerCarSelection : NetworkBehaviour
         }
     }
 
+    public void ReadyUP(Image readyUpBtn)
+    {
+        for(int i =0; i<players.Count; i++)
+        {
+            if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
+            {
+                LockInServerRpc(!players[i].LockedIn);
+                if (players[i].LockedIn)
+                    readyUpBtn.color = Color.green;
+                else
+                    readyUpBtn.color = Color.white;
+                break;
+            }
+        }
+    }
     [ServerRpc(RequireOwnership = false)]
     public void LockInServerRpc(bool lockinState, ServerRpcParams srpcp = default)
     {
@@ -122,29 +137,64 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 //Every player is locked in
                 if(i + 1 == players.Count)
                 {
-                    StartGameCountdown();
+                    StartCoroutine(StartGameCountdown());
+                    CountdownClientRpc(true);
                 }
             }
             else
             {
+                CountdownClientRpc(false);
                 break;
             }
         }
     }
 
+    [ClientRpc]
+    private void CountdownClientRpc(bool StartOrStop)
+    {
+        if (StartOrStop)
+        {
+            countDownText.gameObject.SetActive(true);
+            StartCoroutine(StartGameCountdown());
+        }
+        else
+        {
+            countDownText.gameObject.SetActive(true);
+            StopCoroutine(StartGameCountdown());
+        }
+    }
     private IEnumerator StartGameCountdown()
     {
-        //count three seconds or something
-        yield return new WaitForSeconds(3.0f);
-        StartGame();
+        if (IsServer)
+        {
+            //count three seconds or something
+            yield return new WaitForSeconds(3.0f);
+            StartGame();
+        }
+        if(IsClient)
+        {
+            for (int i = 3; i > 0; i--)
+            {
+                
+                countDownText.text = $"{i}";
+                yield return new WaitForSeconds(1.0f);
+            }
+        }
+        
     }
     private void StartGame()
     {
-
+        CountdownClientRpc(false);
+        NetworkManager.SceneManager.LoadScene("RacingGame", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<CharacterSelectState> changeEvent)
     {
+        if(changeEvent.PreviousValue.LockedIn != changeEvent.Value.LockedIn)
+        {
+            return;
+        }
+        
         int curSpawnPoint = 0;
         for (int i = 0; i < carSpawnPositions.Length + 1; i++)
         {
