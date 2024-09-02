@@ -10,7 +10,7 @@ public class Tracking_Manager_Script : MonoBehaviour
     CheckFlagPoint m_Sensors; 
     public List<Transform> checkpointNodes = new List<Transform>();
     
-    public GameObject[] m_listOfCars = new GameObject[0];
+    public GameObject[] m_listOfCars;
     public List<GameObject> assigningNodes = new List<GameObject>();
     public float changingSpeedToAccerate;
     public float changingSpeedToSlowDown;
@@ -19,6 +19,9 @@ public class Tracking_Manager_Script : MonoBehaviour
     public Color wayPointColour;
     [Range(0, 1)] public float sphereRadius;
     public List<Transform> trackCheckpoints = new List<Transform>();
+
+    public int totalCars;
+    public int totalCheckpoints; 
     void Start()
     {
         //children = new Transform[transform.childCount];
@@ -27,7 +30,8 @@ public class Tracking_Manager_Script : MonoBehaviour
         //    children[i++] = child.transform;
 
         //}
-        
+        totalCars = m_listOfCars.Length;
+       
 
         
         

@@ -228,14 +228,14 @@ public class Car_Movement : MonoBehaviour
                 for (int i = 0; i < wheels4.Length; i++)
                 {
                     // wheels torque equal to engine Rpm * gearbox * final drive ratio and input from player
-                    wheels4[i].motorTorque = (totalPowerInCar * 5) / 4;
+                    wheels4[i].motorTorque = totalPowerInCar  * 4 / 4;
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
             {
                 for (int i = 2; i < wheels4.Length; i++)
                 {
-                    wheels4[i].motorTorque = (totalPowerInCar * 5) / 2;
+                    wheels4[i].motorTorque = totalPowerInCar * 4 /2;
                 }
             }
             else if (drive == DifferentialTypes.FrontWheelDrive)
@@ -513,15 +513,17 @@ public class Car_Movement : MonoBehaviour
                     {
                         wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
-
-                        if (slip[i] > amountOfSlipToShift)
+                        if (engineRPM >= maxRPM)
                         {
-                            return;
-                        }
-                        else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
-                        {
-                            gearNum++;
-                            exhaust_Shift.Play();
+                            if (slip[i] > amountOfSlipToShift)
+                            {
+                                return;
+                            }
+                            else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
+                            {
+                                gearNum++;
+                                exhaust_Shift.Play();
+                            }
                         }
                         if (engineRPM <= minRPM)
                         {
@@ -534,6 +536,7 @@ public class Car_Movement : MonoBehaviour
                                 gearNum = 0;
                             }
                         }
+
                     }
                     break;
                 case DifferentialTypes.RearWheelDrive:
