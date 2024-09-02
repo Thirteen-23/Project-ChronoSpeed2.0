@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ public class Tracking_Manager_Script : MonoBehaviour
     CheckFlagPoint m_Sensors; 
     public List<Transform> checkpointNodes = new List<Transform>();
     
-    public GameObject[] m_listOfCars;
+  
     public List<GameObject> assigningNodes = new List<GameObject>();
     public float changingSpeedToAccerate;
     public float changingSpeedToSlowDown;
@@ -20,20 +21,20 @@ public class Tracking_Manager_Script : MonoBehaviour
     [Range(0, 1)] public float sphereRadius;
     public List<Transform> trackCheckpoints = new List<Transform>();
 
-    public int totalCars;
-    public int totalCheckpoints; 
+    public GameObject[] m_listOfCars;
+    public List<GameObject> presentGameCars;
+
+    private void Awake()
+    {
+        presentGameCars = new List<GameObject>();
+        foreach(GameObject r in m_listOfCars)
+        {
+            presentGameCars.Add(r); 
+        }
+        presentGameCars.Reverse();
+    }
     void Start()
     {
-        //children = new Transform[transform.childCount];
-        //foreach (Transform child in transform)
-        //{
-        //    children[i++] = child.transform;
-
-        //}
-        totalCars = m_listOfCars.Length;
-       
-
-        
         
         Transform[] paths = GetComponentsInChildren<Transform>();
         checkpointNodes = new List<Transform>(); 
@@ -55,7 +56,7 @@ public class Tracking_Manager_Script : MonoBehaviour
     void Update()
     {
         m_listOfCars = m_listOfCars.OrderBy(gameObject => gameObject.GetComponent<AI>().currentWaypointIndex).ToArray();
-       
+        setCarPosition();
 
         // listOfCars = m_Sensors.listOfCars;
 
@@ -79,6 +80,11 @@ public class Tracking_Manager_Script : MonoBehaviour
         }
 
     }
-  
+
+    void setCarPosition()
+    {
+      
+       
+    }
 
 }

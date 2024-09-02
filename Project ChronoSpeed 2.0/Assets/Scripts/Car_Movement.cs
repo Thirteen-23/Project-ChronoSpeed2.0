@@ -29,7 +29,7 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] Class carClasses;
     [SerializeField] TransmissionTypes transmission;
     [SerializeField] DifferentialTypes drive;
-    [SerializeField] Rigidbody bodyOfCar;
+    public Rigidbody bodyOfCar;
     [SerializeField] WheelCollider[] wheels4 = new WheelCollider[4];
     [SerializeField] GameObject[] wheelmeshes = new GameObject[4];
     [SerializeField] Transform centerMass;
@@ -583,7 +583,7 @@ public class Car_Movement : MonoBehaviour
                             if (gearNum < gearSpeedBox.Length - 1)
                             {
                                 gearNum++;
-                                exhaust_Shift.Play();
+                               // exhaust_Shift.Play();
                             }
 
 
