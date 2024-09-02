@@ -29,11 +29,15 @@ public class CarSpotlight : MonoBehaviour
 
         }
         playerNameText.GetComponentInParent<Canvas>().enabled = true;
-        playerNameText.text = state.LockedIn ? $"Player {state.ClientID}" : $"Player {state.ClientID} (Picking...)";
+        playerNameText.text = $"Player {state.ClientID} (Picking...)";
         playerNameText.gameObject.SetActive(true);
         carSpawn.gameObject.SetActive(true);
     }
 
+    public void UpdateName(bool LockedIn, ulong ClientID)
+    {
+        playerNameText.text = LockedIn ? $"Player {ClientID}" : $"Player {ClientID} (Picking...)";
+    }
     public void DisableDisplay()
     {
         playerNameText.GetComponentInParent<Canvas>().enabled = false;

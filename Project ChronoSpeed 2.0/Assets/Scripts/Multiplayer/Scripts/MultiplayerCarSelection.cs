@@ -83,6 +83,15 @@ public class MultiplayerCarSelection : NetworkBehaviour
 
     public void Select(CarCharacter carc)
     {
+        for (int i  = 0; i < players.Count; i++)
+        {
+            if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
+            {
+                if (players[i].LockedIn) { return; }
+
+                if (players[i].CharacterID == carc.Id) { return; }
+            }
+        }
         characterNameText.text = carc.CarName;
         characterDescText.text = carc.CarDesc;
         characterInfoPanel.SetActive(true);
@@ -97,6 +106,8 @@ public class MultiplayerCarSelection : NetworkBehaviour
         {
             if (players[i].ClientID == srpcp.Receive.SenderClientId)
             {
+                if (!carDatabase.IsValidCharacterId(charid)) { return; }
+
                 players[i] = new CharacterSelectState(players[i].ClientID, charid);
                 break;
             }
@@ -109,23 +120,22 @@ public class MultiplayerCarSelection : NetworkBehaviour
         {
             if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
             {
-                LockInServerRpc(!players[i].LockedIn);
-                if (players[i].LockedIn)
-                    readyUpBtn.color = Color.green;
-                else
-                    readyUpBtn.color = Color.white;
+                readyUpBtn.color = Color.green;
+                LockInServerRpc();
                 break;
             }
         }
     }
     [ServerRpc(RequireOwnership = false)]
-    public void LockInServerRpc(bool lockinState, ServerRpcParams srpcp = default)
+    public void LockInServerRpc(ServerRpcParams srpcp = default)
     {
         for(int i = 0; i < players.Count; i++)
         {
             if (players[i].ClientID == srpcp.Receive.SenderClientId)
             {
-                players[i] = new CharacterSelectState(players[i].ClientID, players[i].CharacterID, lockinState);
+                if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) { return; }
+
+                players[i] = new CharacterSelectState(players[i].ClientID, players[i].CharacterID, true);
                 break;
             }
         }
@@ -135,33 +145,22 @@ public class MultiplayerCarSelection : NetworkBehaviour
             if (players[i].LockedIn)
             {
                 //Every player is locked in
-                if(i + 1 == players.Count)
+                if (i + 1 == players.Count)
                 {
                     StartCoroutine(StartGameCountdown());
-                    CountdownClientRpc(true);
+                    CountdownClientRpc();
                 }
             }
             else
-            {
-                CountdownClientRpc(false);
                 break;
-            }
         }
     }
 
     [ClientRpc]
-    private void CountdownClientRpc(bool StartOrStop)
+    private void CountdownClientRpc()
     {
-        if (StartOrStop)
-        {
-            countDownText.gameObject.SetActive(true);
-            StartCoroutine(StartGameCountdown());
-        }
-        else
-        {
-            countDownText.gameObject.SetActive(true);
-            StopCoroutine(StartGameCountdown());
-        }
+        countDownText.gameObject.SetActive(true);
+        StartCoroutine(StartGameCountdown());
     }
     private IEnumerator StartGameCountdown()
     {
@@ -184,18 +183,29 @@ public class MultiplayerCarSelection : NetworkBehaviour
     }
     private void StartGame()
     {
-        CountdownClientRpc(false);
         NetworkManager.SceneManager.LoadScene("RacingGame", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<CharacterSelectState> changeEvent)
     {
-        if(changeEvent.PreviousValue.LockedIn != changeEvent.Value.LockedIn)
+        int curSpawnPoint = 0;
+        if (changeEvent.PreviousValue.LockedIn != changeEvent.Value.LockedIn)
         {
+            for (int i = 0; i < carSpawnPositions.Length + 1; i++)
+            {
+                if (players.Count > i)
+                {
+                    if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
+                    {
+                        curSpawnPoint = 1;
+                    }
+                    else
+                        carSpawnPositions[i - curSpawnPoint].UpdateName(players[i].LockedIn, players[i].ClientID);
+                }
+            }
             return;
         }
-        
-        int curSpawnPoint = 0;
+
         for (int i = 0; i < carSpawnPositions.Length + 1; i++)
         {
             if(players.Count > i)
@@ -206,7 +216,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
 
                     if (mainPlayerSpawnPositon.childCount == 0)
                     {
-                        Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
+                        if (car != null) Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
                     }
                     else
                     {
@@ -214,7 +224,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
                         if (car == curCar)
                             continue;
                         Destroy(curCar.gameObject); //Later make it portal out
-                        Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
+                        if (car != null)  Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
                     }
                     curSpawnPoint = 1;
                 }
@@ -226,6 +236,12 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 carSpawnPositions[i - curSpawnPoint].DisableDisplay();
             }
         }
+    }
+
+    public override void OnDestroy()
+    {
+        StopAllCoroutines();
+        base.OnDestroy();
     }
 }
 

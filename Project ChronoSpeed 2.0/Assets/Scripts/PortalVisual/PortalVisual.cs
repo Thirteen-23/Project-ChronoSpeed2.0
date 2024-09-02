@@ -19,7 +19,7 @@ public class PortalVisual : MonoBehaviour
     {
         playerCam = Camera.main;
         portalCam = GetComponentInChildren<Camera>();
-        portalCam.enabled = true;        
+        portalCam.enabled = true;
     }
 
     void CreatePortalTexture()
@@ -31,7 +31,6 @@ public class PortalVisual : MonoBehaviour
                 portalTexture.Release();
             }
             portalTexture = new RenderTexture(Screen.width, Screen.height, 0);
-
             portalCam.targetTexture = portalTexture;
 
             LinkedPortal.PortalSkin.material.SetTexture("_PortalTexture", portalTexture);

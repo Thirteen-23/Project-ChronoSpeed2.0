@@ -50,6 +50,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void StartServer()
+    {
+        NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.SceneManager.LoadScene("Multiplayer Test", UnityEngine.SceneManagement.LoadSceneMode.Single);
+    }
     public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
