@@ -118,7 +118,8 @@ public class Car_Movement : MonoBehaviour
     public Transform spawnpointer;
     public TrailRenderer leftTrail;
     public TrailRenderer rightTrail;
-
+    // drifting boost value
+    [SerializeField] float forceBoostForDriftingValue = 20000f;
 
     private void Awake()
     {
@@ -883,7 +884,7 @@ public class Car_Movement : MonoBehaviour
                         tt = 1f;
                         forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt);
-                        bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 20000);
+                        bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
 
                         for (int j = 0; j < 4; j++)
                         {
