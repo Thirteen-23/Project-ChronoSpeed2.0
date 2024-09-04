@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CarSpotlight : MonoBehaviour
@@ -29,7 +30,7 @@ public class CarSpotlight : MonoBehaviour
 
         }
         playerNameText.GetComponentInParent<Canvas>().enabled = true;
-        playerNameText.text = $"Player {state.ClientID} (Picking...)";
+        playerNameText.text = state.LockedIn ? $"Player {state.ClientID}" : $"Player {state.ClientID} (Picking...)";
         playerNameText.gameObject.SetActive(true);
         carSpawn.gameObject.SetActive(true);
     }

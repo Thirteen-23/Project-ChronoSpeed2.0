@@ -52,17 +52,14 @@ public class UIManager : MonoBehaviour
 
     public void StartServer()
     {
-        NetworkManager.Singleton.StartServer();
-        NetworkManager.Singleton.SceneManager.LoadScene("Multiplayer Test", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        ServerManager.Instance.StartServer();
     }
     public void StartHost()
     {
-        NetworkManager.Singleton.StartHost();
-        NetworkManager.Singleton.SceneManager.LoadScene("Multiplayer Test", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        ServerManager.Instance.StartServer();
     }
     public void JoinHost()
     {
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(ipInput.text, (ushort)15000);
-        NetworkManager.Singleton.StartClient();
+        ServerManager.Instance.StartClient(ipInput.text);
     }
 }

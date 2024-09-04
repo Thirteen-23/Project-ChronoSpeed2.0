@@ -9,10 +9,13 @@ public class CarCharacter : ScriptableObject
     [SerializeField] private string carDescription = "New Description";
     [SerializeField] private Image carIcon;
     [SerializeField] private GameObject carModel;
+    [SerializeField] private GameObject carPlayable;
 
     public int Id => id;
     public string CarName => carName;
     public string CarDesc => carDescription;
     public Image CarIcon => carIcon;
     public GameObject CarModel => carModel;
+
+    public GameObject CarPlayable => carPlayable;
 }

@@ -120,6 +120,8 @@ public class MultiplayerCarSelection : NetworkBehaviour
         {
             if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
             {
+                if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) return;
+
                 readyUpBtn.color = Color.green;
                 LockInServerRpc();
                 break;
@@ -133,7 +135,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
         {
             if (players[i].ClientID == srpcp.Receive.SenderClientId)
             {
-                if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) { return; }
+                if (players[i].LockedIn == true) return;
 
                 players[i] = new CharacterSelectState(players[i].ClientID, players[i].CharacterID, true);
                 break;
@@ -147,7 +149,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 //Every player is locked in
                 if (i + 1 == players.Count)
                 {
-                    StartCoroutine(StartGameCountdown());
+                    StartCoroutine(ServerSetupGame());
                     CountdownClientRpc();
                 }
             }
@@ -160,30 +162,26 @@ public class MultiplayerCarSelection : NetworkBehaviour
     private void CountdownClientRpc()
     {
         countDownText.gameObject.SetActive(true);
-        StartCoroutine(StartGameCountdown());
+        StartCoroutine(ClientCountDown());
     }
-    private IEnumerator StartGameCountdown()
+    private IEnumerator ServerSetupGame()
     {
-        if (IsServer)
+        foreach (var player in players)
         {
-            //count three seconds or something
-            yield return new WaitForSeconds(3.0f);
-            StartGame();
+            ServerManager.Instance.SetCharacter(player.ClientID, player.CharacterID);
         }
-        if(IsClient)
+        //count three seconds or something
+        yield return new WaitForSeconds(3.0f);
+        ServerManager.Instance.StartGame();
+    }
+    private IEnumerator ClientCountDown()
+    {
+        for (int i = 3; i > 0; i--)
         {
-            for (int i = 3; i > 0; i--)
-            {
-                
-                countDownText.text = $"{i}";
-                yield return new WaitForSeconds(1.0f);
-            }
+            countDownText.text = $"{i}";
+            yield return new WaitForSeconds(1.0f);
         }
         
-    }
-    private void StartGame()
-    {
-        NetworkManager.SceneManager.LoadScene("RacingGame", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<CharacterSelectState> changeEvent)
