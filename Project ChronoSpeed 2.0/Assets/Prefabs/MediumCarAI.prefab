@@ -1551,6 +1551,7 @@ GameObject:
   - component: {fileID: 7561435731143390845}
   - component: {fileID: 7561435731143390847}
   - component: {fileID: 7179948439735577797}
+  - component: {fileID: 907468205}
   m_Layer: 0
   m_Name: MediumCarAI
   m_TagString: Untagged
@@ -1625,7 +1626,8 @@ MonoBehaviour:
   speed_Reader: 0
   speed_Limiter: 300
   waypoints: {fileID: 0}
-  nodes: []
+  nodes:
+  - {fileID: 0}
   distanceOffset: 0
   steeringForce: 0
   currentWaypoint: {fileID: 0}
@@ -1648,7 +1650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7b51cac9389ca498a429f0d063888a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfLaps: 0
   carClasses: 1
   transmission: 0
   drive: 1
@@ -1709,6 +1710,7 @@ MonoBehaviour:
   handBrakefrictionMulitplier: 2
   whenNotDrifting: 6
   whenDrifting: 3
+  driftFactor: 0
   turnOnAllTerrain: 0
   frictionPlusValueForAbility: 0.3
   allBrakeForce: 100000
@@ -1742,9 +1744,15 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_RayRange: 20
   draftingMultiplierValue: 5
+  floorRange: 0
+  spawnpointerBehind: {fileID: 0}
   spawnpointer: {fileID: 6918279205989845542}
   leftTrail: {fileID: 4089118131942140690}
   rightTrail: {fileID: 4089118131798221712}
+  forceBoostForDriftingValue: 20000
+  tt: 1
+  maxAmountOfGrip: 0
+  minAmountOfGripAtStart: 0
 --- !u!114 &7561435731143390847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,7 +1760,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7561435731143390846}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c520043e3c026b74695dffb9d99f3475, type: 3}
   m_Name: 
@@ -1766,6 +1774,11 @@ MonoBehaviour:
   m_2ndActiveTime: 0
   abilityUsed: 0
   m_2ndAbilityUsed: 0
+  m_1stAbilityImage: {fileID: 0}
+  m_2ndAbilityImage: {fileID: 0}
+  readyColor: {r: 0, g: 0, b: 0, a: 0}
+  activeColor: {r: 0, g: 0, b: 0, a: 0}
+  cooldownColor: {r: 0, g: 0, b: 0, a: 0}
   AbilityIndex: 0
   chosenAbility: 0
   testAbility: {fileID: 0}
@@ -1862,3 +1875,27 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_RayRange: 0
+--- !u!114 &907468205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561435731143390846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78df56bc835e9184eb4f34bf08c52fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPointHit: []
+  checkpointCount: 0
+  totalCheckpoints: 0
+  lapCompeted: 0
+  distanceOffset: 0
+  rb: {fileID: 7561435731143390842}
+  waypoints: {fileID: 0}
+  nodes: []
+  currentWaypoint: {fileID: 0}
+  currentWaypointIndex: 0
+  presentCars: []
+  currentNode: 0

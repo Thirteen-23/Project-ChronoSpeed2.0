@@ -120,7 +120,7 @@ public class Car_Movement : MonoBehaviour
     public TrailRenderer rightTrail;
     // drifting boost value
     [SerializeField] float forceBoostForDriftingValue = 20000f;
-
+    public float findme; 
     private void Awake()
     {
 
@@ -172,7 +172,7 @@ public class Car_Movement : MonoBehaviour
         AdjustTractionForDrifting();
         CheckingforSlip();
         //CheckingDistanceOfWaypoints();
-
+        NitroBoostin();
     }
 
     private void GettingInput()
@@ -885,13 +885,19 @@ public class Car_Movement : MonoBehaviour
                         forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt);
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
-
+                        leftTrail.emitting = true;
+                        rightTrail.emitting = true;
                         for (int j = 0; j < 4; j++)
                         {
                             wheels4[j].forwardFriction = forwardFriction;
                             wheels4[j].sidewaysFriction = sidewaysFriction;
                         }
 
+                    }
+                    else
+                    {
+                        leftTrail.emitting = false;
+                        rightTrail.emitting = false;
                     }
                 }
 
@@ -903,12 +909,22 @@ public class Car_Movement : MonoBehaviour
                 }
             }
             bodyOfCar.angularDrag = whenNotDrifting;
+           
             #endregion
 
 
         }
     }
-
+    public bool meBoosting = false;
+    public float boostValue = 3000f; 
+    public void NitroBoostin()
+    { 
+        if(meBoosting == true)
+        {
+            Debug.Log("I am boosting?");
+            bodyOfCar.AddForce(bodyOfCar.transform.forward * boostValue); 
+        }
+    }
     private void CheckingforSlip()
     {
         WheelHit wheelHit;

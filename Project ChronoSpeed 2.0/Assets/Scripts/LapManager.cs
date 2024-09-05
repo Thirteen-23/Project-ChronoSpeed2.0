@@ -25,7 +25,14 @@ public class LapManager : MonoBehaviour
     }
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        if (rb == true)
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+        if(rb == null)
+        {
+            rb = GetComponentInChildren<Rigidbody>();
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -64,7 +71,7 @@ public class LapManager : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (!checkPointHit.Contains(other) && other.CompareTag("checkpoint"))
+        if (!checkPointHit.Contains(other))
         {
             checkpointCount++;
             checkPointHit.Add(other);

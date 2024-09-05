@@ -184,12 +184,13 @@ public class AI : MonoBehaviour
     [SerializeField] Vector3 difference;
     private void CheckForUpdatedWaypoints() //call this every update
     {
+        Vector3 position = rb.transform.position;
         //These should be defined in the class not as local variables
         // int currentWaypointIndex;
         //float waypointApproachThreshold;
         carAI.maxSpeed = speed_Limiter;
-        difference = nodes[currentWaypointIndex].transform.position - rb.transform.position;
-        dists = Vector3.Distance(rb.transform.position, nodes[currentWaypointIndex].transform.position);
+        difference = nodes[currentWaypointIndex].transform.position - position;
+        dists = Vector3.Distance(position, nodes[currentWaypointIndex].transform.position);
         if (difference.magnitude < minimumWayPointApproachThreshold)
         {
             currentWaypointIndex++;
@@ -200,8 +201,24 @@ public class AI : MonoBehaviour
         if (difference.magnitude > maximumWayPointApproachThreshold)
         { 
              //rb.transform.position = Vector3.Lerp(rb.transform.position, nodes[currentWaypointIndex-1].transform.position, Time.deltaTime);
-            rb.transform.position = nodes[currentWaypointIndex - 1].transform.position;
-            rb.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
+           // rb.transform.position = nodes[currentWaypointIndex - 1].transform.position;
+           // rb.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
+
+           
+            float distance = Mathf.Infinity;
+
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                Vector3 difference = nodes[i].transform.position - position;
+                float currentDistance = difference.magnitude;
+                if (currentDistance < distance)
+                {
+                    currentWaypointIndex = i;
+                    distance = currentDistance;
+
+                }
+              
+            }
         }
     }
 

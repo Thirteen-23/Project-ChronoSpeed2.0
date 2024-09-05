@@ -130,7 +130,7 @@ public class AbilityManager : MonoBehaviour
         }
 
 
-        AIUsingAbilities();
+        //AIUsingAbilities();
     }
 
     public void ButtonPressed(InputAction.CallbackContext context)
