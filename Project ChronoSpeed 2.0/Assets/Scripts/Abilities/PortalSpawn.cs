@@ -5,20 +5,24 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PortalSpawn : MonoBehaviour
 {
-    [SerializeField] float timeTillPortalDissapears;
     [SerializeField] float maxHoldTime;
     [SerializeField] float cooldown;
-    [SerializeField] GameObject portalPrefab;
 
-    PortalVisual unlinkedPortal;
+    Coroutine curForceReleaseCor;
     bool useable = true;
+
+    Vector3 startPos;
+    Quaternion startRot;
     public void PortalDrop(CallbackContext callbackContext)
     {
+        if (!useable) { return; }
 
-        if (useable && callbackContext.started)
+        if (callbackContext.started)
         {
-            unlinkedPortal = Instantiate(portalPrefab, transform.position - transform.forward * 3, transform.rotation).GetComponent<PortalVisual>();
-            StartCoroutine(ForceRelease());
+            startPos = transform.position + transform.forward * -2;
+            startRot = transform.rotation;
+            MultiplayerGameManager.Singleton.SpawnPortalStandInRPC(startPos, startRot);
+            curForceReleaseCor = StartCoroutine(ForceRelease());
         }
         else if (callbackContext.canceled)
         {
@@ -29,33 +33,29 @@ public class PortalSpawn : MonoBehaviour
 
     void OnRelease()
     {
-        if (unlinkedPortal == null) return;
+        if(startPos == Vector3.zero && startRot == Quaternion.identity) { return; }
+        MultiplayerGameManager.Singleton.SpawnPortalRPC(startPos, startRot, transform.position + transform.forward * -2, transform.rotation);
 
-        PortalVisual newPort = Instantiate(portalPrefab, transform.position - transform.forward * 3, transform.rotation).GetComponent<PortalVisual>();
-        newPort.LinkedPortal = unlinkedPortal;
-        unlinkedPortal.LinkedPortal = newPort;
+        startPos = Vector3.zero;
+        startRot = Quaternion.identity;
 
-        Destroy(unlinkedPortal.gameObject, timeTillPortalDissapears);
-        Destroy(newPort.gameObject, timeTillPortalDissapears);
-        unlinkedPortal = null;
+        if (curForceReleaseCor != null)
+        {
+            StopCoroutine(ForceRelease());
+            curForceReleaseCor = null;
+        }
 
-        useable = false;
         StartCoroutine(Cooldown());
     }
     IEnumerator ForceRelease()
     {
-        float timeIncrement = maxHoldTime * 0.1f;
-
-        for (int counter = 0; counter <= 10; counter++)
-        {
-            if (unlinkedPortal == null) StopCoroutine("ForceRelease");
-            yield return new WaitForSeconds(timeIncrement);
-        }
-        if (unlinkedPortal != null) OnRelease();
+        yield return new WaitForSeconds(maxHoldTime);
+        OnRelease();
     }
 
     IEnumerator Cooldown()
     {
+        useable = false;
         yield return new WaitForSeconds(cooldown);
         useable = true;
     }

@@ -13,7 +13,7 @@ public class CarPlayerPrefabSpawner : NetworkBehaviour
         if(!IsServer) return;
 
         int i = 11;
-        foreach(var client in ServerManager.Instance.ClientDic)
+        foreach(var client in ServerManager.Singleton.ClientDic)
         {
             var car = carDatabase.GetCarById(client.Value.CharacterId);
             if(car != null )

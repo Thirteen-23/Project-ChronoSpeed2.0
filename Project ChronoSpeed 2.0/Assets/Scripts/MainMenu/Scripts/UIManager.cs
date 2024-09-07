@@ -52,14 +52,14 @@ public class UIManager : MonoBehaviour
 
     public void StartServer()
     {
-        ServerManager.Instance.StartServer();
+        ServerManager.Singleton.StartServer();
     }
     public void StartHost()
     {
-        ServerManager.Instance.StartServer();
+        ServerManager.Singleton.StartServer();
     }
     public void JoinHost()
     {
-        ServerManager.Instance.StartClient(ipInput.text);
+        ServerManager.Singleton.StartClient(ipInput.text);
     }
 }

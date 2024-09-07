@@ -12,18 +12,18 @@ public class ServerManager : MonoBehaviour
     [SerializeField] private string characterSelectionSceneName = "CharacterSelect";
     [SerializeField] private string raceSceneName = "RaceTrack";
     [SerializeField] private int MaxPlayers = 12;
-    public static ServerManager Instance { get; private set; }
+    public static ServerManager Singleton { get; private set; }
 
     private bool gameHasStarted;
     public Dictionary<ulong, ClientData> ClientDic { get; private set; }    
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-            Destroy(Instance);
+        if (Singleton != null && Singleton != this)
+            Destroy(Singleton);
         else
         {
-            Instance = this;
-            DontDestroyOnLoad(Instance);
+            Singleton = this;
+            DontDestroyOnLoad(Singleton);
         }
     }
 

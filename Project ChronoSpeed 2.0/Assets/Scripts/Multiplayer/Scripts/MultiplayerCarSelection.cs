@@ -168,11 +168,11 @@ public class MultiplayerCarSelection : NetworkBehaviour
     {
         foreach (var player in players)
         {
-            ServerManager.Instance.SetCharacter(player.ClientID, player.CharacterID);
+            ServerManager.Singleton.SetCharacter(player.ClientID, player.CharacterID);
         }
         //count three seconds or something
         yield return new WaitForSeconds(3.0f);
-        ServerManager.Instance.StartGame();
+        ServerManager.Singleton.StartGame();
     }
     private IEnumerator ClientCountDown()
     {
