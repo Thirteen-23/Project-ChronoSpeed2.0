@@ -26,7 +26,8 @@ public class MultiplayerCarSelection : NetworkBehaviour
     }
     public override void OnNetworkSpawn()
     {
-        if(IsServer)
+        Debug.Log(IsClient);
+        if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += HandleClientConnected;
             NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnected;
@@ -39,6 +40,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
         {
             CarCharacter[] allCars = carDatabase.GetAllCars();
 
+            
             foreach(var car in allCars)
             {
                 var selectButtonInstance = Instantiate(selectButtonPrefab, carSelectButtonHolder);

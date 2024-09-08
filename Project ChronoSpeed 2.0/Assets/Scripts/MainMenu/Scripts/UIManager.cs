@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
     }
     public void StartHost()
     {
-        ServerManager.Singleton.StartServer();
+        ServerManager.Singleton.StartHost();
     }
     public void JoinHost()
     {

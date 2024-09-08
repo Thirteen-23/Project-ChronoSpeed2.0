@@ -4,7 +4,7 @@ using UnityEngine;
 public class PortalAbility : MonoBehaviour
 {
     [SerializeField] public float timePortLasts { get; private set; } = 60f;
-    PortalAbility linkedPortal;
+    [SerializeField] PortalAbility linkedPortal;
     List<GameObject> incomingPlayers = new List<GameObject>();
 
     public void LinkPortal(PortalAbility portToLink)
@@ -39,7 +39,7 @@ public class PortalAbility : MonoBehaviour
 
 
         Vector3 oldVel = player.GetComponent<Rigidbody>().velocity;
-        Vector3 newVel = relativeMatrix * new Vector4(oldVel.x, oldVel.y, oldVel.z, 1);
+        Vector3 newVel = relativeMatrix * new Vector4(oldVel.x, oldVel.y, oldVel.z, 0);
         player.GetComponent<Rigidbody>().velocity = newVel;
 
     }

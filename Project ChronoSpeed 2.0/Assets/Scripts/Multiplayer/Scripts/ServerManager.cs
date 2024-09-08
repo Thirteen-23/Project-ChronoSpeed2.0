@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.Windows;
+using UnityEngine.SceneManagement;
 
 public class ServerManager : MonoBehaviour
 {
@@ -30,7 +28,7 @@ public class ServerManager : MonoBehaviour
     public void StartClient(string ip)
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(ip, (ushort)15000);
-        NetworkManager.Singleton.StartClient();
+        Debug.Log(NetworkManager.Singleton.StartClient());
     }
     public void StartServer()
     {
@@ -71,7 +69,7 @@ public class ServerManager : MonoBehaviour
 
     private void OnNetworkReady()
     {
-        NetworkManager.Singleton.OnClientConnectedCallback += HandleClientDisconnect;
+        NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
 
         NetworkManager.Singleton.SceneManager.LoadScene(characterSelectionSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }

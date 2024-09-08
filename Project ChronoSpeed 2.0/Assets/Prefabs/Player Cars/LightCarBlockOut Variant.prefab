@@ -18,7 +18,57 @@ PrefabInstance:
     - target: {fileID: 347209865150374548, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
       propertyPath: m_Name
-      value: LightCarBlockOut
+      value: LightCarBlockOut Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: a621a170-dfb8-4456-b11e-c30e4e3df7e5
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: Movement/PortalDumpTemp[/Keyboard/f]
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3239630041114053262}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PortalDrop
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PortalSpawn, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1124309072304994350, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
@@ -28,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 1124309072304994350, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1240.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1124309072304994350, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
@@ -38,7 +88,7 @@ PrefabInstance:
     - target: {fileID: 1124309072304994350, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1436.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1124309072304994350, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
@@ -87,3 +137,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7727788eeba03024c95565da494d278f, type: 3}
+--- !u!1 &1012941748625477880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 347209865150374548, guid: 7727788eeba03024c95565da494d278f,
+    type: 3}
+  m_PrefabInstance: {fileID: 783407185298240108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9016747411513371473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012941748625477880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 467291974
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &3239630041114053262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012941748625477880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706a53f62c410c642af0539468183ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHoldTime: 5
+  cooldown: 20
+--- !u!114 &9022185104551585249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012941748625477880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

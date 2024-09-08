@@ -16,7 +16,6 @@ public class MultiplayerGameManager : MonoBehaviour
         else
         {
             Singleton = this;
-            DontDestroyOnLoad(Singleton);
         }
     }
 
