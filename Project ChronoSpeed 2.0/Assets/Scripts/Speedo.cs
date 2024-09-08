@@ -41,11 +41,11 @@ public class Speedo : MonoBehaviour
     private float currentGear = 0f;
     [SerializeField] int gear;
 
-
+    
+    public AbilityManager ability;
     //public TextMeshProUGUI positionBoard;
     [SerializeField] GameObject[] list;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -59,9 +59,10 @@ public class Speedo : MonoBehaviour
         
         speedo();
         GearChangeFunction();
-        RPMBar();
-        ExactNumOfRPM();
+        //RPMBar();
+       // ExactNumOfRPM();
         ScoreBoard();
+        
 
     }
     private void ScoreBoard()
@@ -85,7 +86,7 @@ public class Speedo : MonoBehaviour
         finalSpeed = Mathf.Lerp(finalSpeed, speed, speedoSnap * Time.deltaTime);
         if (speedLabel != null)
         {
-            speedLabel.text = ((int)finalSpeed/2) + "km/h";
+            speedLabel.text = ((int)finalSpeed) + "km/h";
             
             ///--- code for the needle if used
             //speedoNeedle.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(minSpeedoAngle, maxSpeedoAngle, speed / maxSpeed)); 
@@ -130,4 +131,7 @@ public class Speedo : MonoBehaviour
 
 
     }
+   
+   
+    
 }
