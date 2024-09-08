@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ServerManager : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class ServerManager : MonoBehaviour
     public static ServerManager Singleton { get; private set; }
 
     private bool gameHasStarted;
-    public Dictionary<ulong, ClientData> ClientDic { get; private set; }    
+    public Dictionary<ulong, ClientData> ClientDic { get; private set; }
     private void Awake()
     {
         if (Singleton != null && Singleton != this)
@@ -53,9 +52,9 @@ public class ServerManager : MonoBehaviour
     ///maybe
     private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
     {
-        if(ClientDic.Count > MaxPlayers || gameHasStarted)
+        if (ClientDic.Count > MaxPlayers || gameHasStarted)
         {
-            response.Approved = false; 
+            response.Approved = false;
             return;
         }
 
@@ -76,9 +75,9 @@ public class ServerManager : MonoBehaviour
 
     private void HandleClientDisconnect(ulong clientId)
     {
-        if(ClientDic.ContainsKey(clientId))
+        if (ClientDic.ContainsKey(clientId))
         {
-            if(ClientDic.Remove(clientId))
+            if (ClientDic.Remove(clientId))
             {
                 Debug.Log($"Removed client {clientId}");
             }
@@ -87,7 +86,7 @@ public class ServerManager : MonoBehaviour
 
     public void SetCharacter(ulong clientId, int characterId)
     {
-        if(ClientDic.TryGetValue(clientId, out ClientData data))
+        if (ClientDic.TryGetValue(clientId, out ClientData data))
         {
             data.CharacterId = characterId;
         }
@@ -96,7 +95,38 @@ public class ServerManager : MonoBehaviour
     public void StartGame()
     {
         gameHasStarted = true;
+        NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManager_OnSceneEvent;
         NetworkManager.Singleton.SceneManager.LoadScene(raceSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+    }
+
+    CarPlayerPrefabSpawner cpps;
+    int startPos = 0;
+    private void SceneManager_OnSceneEvent(SceneEvent sceneEvent)
+    {
+        if (sceneEvent.SceneEventType == SceneEventType.LoadComplete)
+        {
+            if (sceneEvent.ClientId == NetworkManager.Singleton.LocalClientId)
+            {
+                cpps = FindAnyObjectByType<CarPlayerPrefabSpawner>();
+
+                //spawn ai cause you know how many players there are
+
+            }
+            if (ClientDic.TryGetValue(sceneEvent.ClientId, out ClientData data))
+            {
+                var car = cpps.carDatabase.GetCarById(data.CharacterId);
+                if (car != null)
+                {
+                    var playerObject = Instantiate(car.CarPlayable, cpps.startingPositions[startPos]);
+                    playerObject.GetComponent<NetworkObject>().SpawnAsPlayerObject(data.ClientId);
+                    startPos++;
+                }
+            }
+        }
+        else if (sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted)
+        {
+            NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManager_OnSceneEvent;
+        }
     }
 }
 

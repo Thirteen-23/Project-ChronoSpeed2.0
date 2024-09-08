@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +10,7 @@ public class OnPlayerSpawn : NetworkBehaviour
     {
         if(IsOwner)
         {
-            Debug.Log(SceneManager.GetActiveScene().name);
+            Debug.Log(SceneManager.GetActiveScene());
             //Camera Work
             MainCamera mCam = FindAnyObjectByType<MainCamera>();
             Rigidbody bodyRB = GetComponentInChildren<Rigidbody>();

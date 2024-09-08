@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.Netcode;
-using Unity.Netcode.Transports.UTP;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
