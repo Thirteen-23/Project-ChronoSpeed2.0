@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class MultiplayerGameManager : MonoBehaviour
+public class MultiplayerGameManager : NetworkBehaviour
 {
     [SerializeField] private PortalManager portalManager;
     

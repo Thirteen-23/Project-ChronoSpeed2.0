@@ -18,7 +18,7 @@ public class PortalSpawn : MonoBehaviour
 
         if (callbackContext.started)
         {
-            startPos = transform.position + transform.forward * -2;
+            startPos = transform.position + transform.forward * -4;
             startRot = transform.rotation;
             MultiplayerGameManager.Singleton.SpawnPortalStandInRPC(startPos, startRot);
             curForceReleaseCor = StartCoroutine(ForceRelease());
@@ -33,7 +33,7 @@ public class PortalSpawn : MonoBehaviour
     void OnRelease()
     {
         if(startPos == Vector3.zero && startRot == Quaternion.identity) { return; }
-        MultiplayerGameManager.Singleton.SpawnPortalRPC(startPos, startRot, transform.position + transform.forward * -2, transform.rotation);
+        MultiplayerGameManager.Singleton.SpawnPortalRPC(startPos, startRot, transform.position + transform.forward * -4, transform.rotation);
 
         startPos = Vector3.zero;
         startRot = Quaternion.identity;
