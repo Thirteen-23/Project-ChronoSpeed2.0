@@ -64,7 +64,8 @@ public class Tracking_Manager_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_listOfCars = m_listOfCars.OrderBy(gameObject => -gameObject.GetComponent<LapManager>().currentNode & -gameObject.GetComponent<LapManager>().lapCompeted).ToArray();
+        m_listOfCars = m_listOfCars.OrderBy(gameObject => -gameObject.GetComponent<LapManager>().currentNode).ToArray();
+        m_listOfCars = m_listOfCars.OrderBy(gameObject => -gameObject.GetComponent<LapManager>().lapCompeted).ToArray();
         presentGameCars = new List<GameObject>();
         foreach (GameObject r in m_listOfCars)
         {
