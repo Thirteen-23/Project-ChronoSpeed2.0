@@ -35,7 +35,7 @@ public class PortalManager : MonoBehaviour
         firstPort.LinkPortal(secondPort);
         secondPort.LinkPortal(firstPort);
 
-        Destroy(firstPort, firstPort.timePortLasts);
-        Destroy(secondPort, secondPort.timePortLasts);
+        Destroy(firstPort.gameObject, firstPort.timePortLasts);
+        Destroy(secondPort.gameObject, secondPort.timePortLasts);
     }
 }
