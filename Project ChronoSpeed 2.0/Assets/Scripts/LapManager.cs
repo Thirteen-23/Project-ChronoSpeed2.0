@@ -69,6 +69,12 @@ public class LapManager : MonoBehaviour
 
         }
     }
+
+    private void FinishRace()
+    {
+        var switchMan = GetComponent<Switch_Manager>();
+        if(switchMan != null) switchMan.driver = Switch_Manager.types.AI;
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (!checkPointHit.Contains(other))

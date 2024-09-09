@@ -21,7 +21,8 @@ public class OnPlayerSpawn : NetworkBehaviour
         else
         {
             GetComponent<PlayerInput>().enabled = false;
-            GetComponent<Car_Movement>().enabled = false;  
+            GetComponent<Car_Movement>().enabled = false;
+            gameObject.tag = "OtherPlayer";
         }
         base.OnNetworkSpawn();
     }

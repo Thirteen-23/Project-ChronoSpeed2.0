@@ -9,13 +9,13 @@ public class Switch_Manager : MonoBehaviour
     AI_Controls m_AIMainControls;
     Car_Movement m_PlayerMovement;
     PlayerInput playerinputs; 
-    enum types
+    public enum types
     {
         AI, 
         Player
     }
 
-    [SerializeField] types driver; 
+    [SerializeField] public types driver; 
     // Start is called before the first frame update
     void Start()
     {

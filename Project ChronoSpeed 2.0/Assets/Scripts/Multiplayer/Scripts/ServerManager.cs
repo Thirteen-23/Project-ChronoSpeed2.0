@@ -9,10 +9,11 @@ public class ServerManager : MonoBehaviour
     [SerializeField] private string characterSelectionSceneName = "CharacterSelect";
     [SerializeField] private string raceSceneName = "RaceTrack";
     [SerializeField] private int MaxPlayers = 12;
-    public static ServerManager Singleton { get; private set; }
 
     private bool gameHasStarted;
     public Dictionary<ulong, ClientData> ClientDic { get; private set; }
+
+    public static ServerManager Singleton { get; private set; }
     private void Awake()
     {
         if (Singleton != null && Singleton != this)
@@ -125,6 +126,8 @@ public class ServerManager : MonoBehaviour
         }
         else if (sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted)
         {
+            //i assume this is why you can call start coroutine on something else, otherwise i dont really know why
+            MultiplayerGameManager.Singleton.StartCoroutine(MultiplayerGameManager.Singleton.StartGame());
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManager_OnSceneEvent;
         }
     }
