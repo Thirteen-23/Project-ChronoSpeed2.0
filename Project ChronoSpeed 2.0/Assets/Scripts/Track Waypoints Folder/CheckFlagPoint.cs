@@ -22,22 +22,5 @@ public class CheckFlagPoint : MonoBehaviour
      
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-       
-        if (other.tag == "Player")
-        {
-            Debug.Log("has passed");
-            listOfCars.Add(other.gameObject.GetComponentInChildren<GameObject>());
-            m_CarMovementAccess = other.gameObject.GetComponentInParent<LapManager>();
-            m_CarMovementAccess.checkpointCount++; 
-        }
-        if (other.tag == "AI")
-        {
-            Debug.Log(" AI has passed");
-            listOfCars.Add(other.gameObject);
-            m_AI = other.gameObject.GetComponentInParent<AI>();
-            m_AI.numberOfLaps++;
-        }
-    }
+    
 }

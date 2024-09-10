@@ -54,7 +54,7 @@ public class Tracking_Manager_Script : MonoBehaviour
             assigningNodes.Add(child.gameObject);
         }
         // CheckpointPass();
-        m_Sensors = GetComponentInChildren<CheckFlagPoint>();
+      //  m_Sensors = GetComponentInChildren<CheckFlagPoint>();
     }
     
    
