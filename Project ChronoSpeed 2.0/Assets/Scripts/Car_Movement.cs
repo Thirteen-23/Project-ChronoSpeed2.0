@@ -521,7 +521,7 @@ public class Car_Movement : MonoBehaviour
                         else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                         {
                             gearNum++;
-                            exhaust_Shift.Play();
+                            //exhaust_Shift.Play();
                         }
                         if (engineRPM <= minRPM)
                         {
@@ -551,7 +551,7 @@ public class Car_Movement : MonoBehaviour
                             else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                             {
                                 gearNum++;
-                                exhaust_Shift.Play();
+                                //exhaust_Shift.Play();
                             }
 
                         }
