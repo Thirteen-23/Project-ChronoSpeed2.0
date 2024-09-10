@@ -1,33 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Threading;
 using TMPro;
 using Unity.Netcode;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
     [SerializeField] private PortalManager portalManager;
-    [SerializeField] private TMP_Text StartCountdownText;
+    [SerializeField] private Tracking_Manager_Script lapManager;
+    [SerializeField] private TMP_Text startCountdownText;
+    [SerializeField] private LeadboardPlayerBar[] playerBars;
 
-    [SerializeField] private
+    class PlayerGameStats
+    {
+        public int RacePosition;
+        public int LapCount;
+        public bool FinishedRacing;
+        public float RaceDuration;
+        public ulong ClientId;
 
-    struct PlayerGameStats
-    { 
-        public bool FinishedRacing { get; private set; }
-        public float RaceDuration { get; private set; }
-        public ulong ClientId { get; private set; }
-
-        public PlayerGameStats(ulong clientId = 0, bool finishedRacing = false, float raceDuraction = 0)
+        public PlayerGameStats(ulong clientId)
         {
             ClientId = clientId;
-            FinishedRacing = finishedRacing;
-            RaceDuration = raceDuraction;
         }
     }
-    List<PlayerGameStats> gameStats = new List<PlayerGameStats>();
+
+    
+    Dictionary<GameObject, PlayerGameStats> gameStats = new Dictionary<GameObject, PlayerGameStats>();
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
     private void Awake()
     {
@@ -38,16 +44,53 @@ public class MultiplayerGameManager : NetworkBehaviour
             Singleton = this;
         }
     }
+    
+    public override void OnNetworkSpawn()
+    {
+        if(IsClient)
+        {
+            
+        }
+    }
 
+    bool _dictionaryChanged = false;
+    private void Update()
+    {
+        if(IsServer)
+        {
+            if(_dictionaryChanged)
+            {
+                _dictionaryChanged = false;
+                SetLeaderBoardRpc();
+            }    
+        }
+    }
     float startTime;
     //Functions
+    public void AddPlayerToDictionary(GameObject playerCar)
+    {
+        for(int i = 0; i < NetworkManager.Singleton.ConnectedClients.Count; i++)
+        {
+            if(NetworkManager.Singleton.ConnectedClients[(ulong)i].PlayerObject.gameObject == playerCar)
+            {
+                gameStats.Add(playerCar, new PlayerGameStats((ulong)i));
+                return;
+            }
+        }
+
+        //Means its an ai car, or somethings gone wrong
+        //TODO: make this pick a random name later - also add names later
+        gameStats.Add(playerCar, new PlayerGameStats(100));
+    }
+    public void AlterDictonaryValue(GameObject playerCar, int racePosition, int lap)
+    {
+        gameStats[playerCar].RacePosition = racePosition;
+        gameStats[playerCar].LapCount = lap;
+        _dictionaryChanged = true;
+    }
     public IEnumerator StartGame()
     {
-       startTime = Time.realtimeSinceStartup;
-       foreach(var pluh in ServerManager.Singleton.ClientDic)
-       {
-            gameStats.Add(new PlayerGameStats(pluh.Value.ClientId));
-       }
+       
        //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
        for(int i = 5; i > -1; i--)
         {
@@ -55,9 +98,8 @@ public class MultiplayerGameManager : NetworkBehaviour
             yield return new WaitForSeconds(1);
         }
         CountDownRpc(0, true);
+        startTime = Time.timeSinceLevelLoad;
     }
-
-
 
 
     //RPCs
@@ -73,37 +115,54 @@ public class MultiplayerGameManager : NetworkBehaviour
         portalManager.SpawnPortal(firstPortPos, secondPortPos, firstPortRot, secondPortRot);
     }
 
+
     [Rpc(SendTo.ClientsAndHost)]
     public void CountDownRpc(int time, bool RaceStart)
     {
-        if (time > 0) StartCountdownText.text = time.ToString();
-        else StartCountdownText.text = "GO!!!!";
+        if (time > 0) startCountdownText.text = time.ToString();
+        else startCountdownText.text = "GO!!!!";
 
         if(RaceStart)
         {
-            StartCountdownText.enabled = false;
+            startCountdownText.enabled = false;
             var player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<PlayerInput>().enabled = true;
         }
-        else StartCountdownText.enabled = true;
+        else startCountdownText.enabled = true;
     }
 
     [Rpc(SendTo.Server, RequireOwnership = false)]
     public void PlayerFinishedRpc(RpcParams srpcp = default)
     {
-        for(int i = 0; i > gameStats.Count; i++) 
+        var player = NetworkManager.Singleton.ConnectedClients[srpcp.Receive.SenderClientId].PlayerObject.gameObject;
+        gameStats[player].FinishedRacing = true;
+        gameStats[player].RaceDuration = Time.timeSinceLevelLoad - startTime; 
+        _dictionaryChanged = true;
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void SetLeaderBoardRpc()
+    {
+        for(int i = 0; i < playerBars.Length; i++)
         {
-            if (gameStats[i].ClientId == srpcp.Receive.SenderClientId)
+            foreach(var player in gameStats)
             {
-                gameStats[i] = new PlayerGameStats(gameStats[i].ClientId, true, Time.realtimeSinceStartup - startTime);
-                return;
+                if(player.Value.RacePosition == i + 1)
+                {
+                    playerBars[i].playerNameText.text = player.Value.ClientId.ToString();
+                    playerBars[i].lapCountText.text = player.Value.LapCount.ToString();
+
+                    playerBars[i].SetFinishedTime(player.Value.FinishedRacing);
+                    //TODO: make this minutes and seconds not a single float
+                    playerBars[i].raceCompletionText.text = player.Value.RaceDuration.ToString();
+                }
             }
         }
     }
 
-    [Rpc(SendTo.SpecifiedInParams)]
-    private void SetLeaderBoardRpc(float plplokokplplokkoplplokokplplokokplplokkolplpokpl, RpcParams rpcParams)
+    [Rpc(SendTo.ClientsAndHost)]
+    private void AddLeaderBoardRpc()
     {
-
+        playerBars = new LeadboardPlayerBar[playerBars.Length];
     }
 }
