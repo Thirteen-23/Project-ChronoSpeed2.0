@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: checkingPosition
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1272381761, guid: 7727788eeba03024c95565da494d278f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 347209865150374548, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
       propertyPath: m_Name
@@ -132,8 +136,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380498207651441323, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
+      propertyPath: distanceOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380498207651441323, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
       propertyPath: currentWaypoint
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380498207651441323, guid: 7727788eeba03024c95565da494d278f,
+        type: 3}
+      propertyPath: totalCheckpoints
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7727788eeba03024c95565da494d278f, type: 3}

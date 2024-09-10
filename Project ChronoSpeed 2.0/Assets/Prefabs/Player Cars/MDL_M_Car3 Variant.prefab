@@ -7,10 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 205169760385420154, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 205169760719191646, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: checkingPosition
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 643231845828563929, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: distanceOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 643231845828563929, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: totalCheckpoints
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -66,6 +81,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MDL_M_Car3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778075, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2020161165549035361, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -165,18 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
---- !u!114 &6110001939605157464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975989593886958020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2821819758476164102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,3 +216,15 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 1
+--- !u!114 &6110001939605157464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975989593886958020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

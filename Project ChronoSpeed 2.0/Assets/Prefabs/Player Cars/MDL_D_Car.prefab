@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 7222207859781900448}
   m_Layer: 5
   m_Name: UIScreen
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3044,12 +3044,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkPointHit: []
   checkpointCount: 0
-  totalCheckpoints: 0
+  totalCheckpoints: 2
   lapCompeted: 0
-  distanceOffset: 0
+  distanceOffset: 5
   rb: {fileID: 0}
   waypoints: {fileID: 0}
-  nodes: []
   currentWaypoint: {fileID: 0}
   currentWaypointIndex: 0
   presentCars: []

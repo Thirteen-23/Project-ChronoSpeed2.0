@@ -119,9 +119,8 @@ public class ServerManager : MonoBehaviour
                 if (car != null)
                 {
                     var playerObject = Instantiate(car.CarPlayable, cpps.startingPositions[startPos]);
-                    MultiplayerGameManager.Singleton.AddPlayerToDictionary(playerObject);
+                    MultiplayerGameManager.Singleton.AddSpawnedPlayer(playerObject, data.ClientId);
                     playerObject.GetComponent<NetworkObject>().SpawnAsPlayerObject(data.ClientId);
-                    startPos++;
                 }
             }
         }

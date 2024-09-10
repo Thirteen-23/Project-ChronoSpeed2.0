@@ -18,22 +18,8 @@ public class MultiplayerGameManager : NetworkBehaviour
     [SerializeField] private TMP_Text startCountdownText;
     [SerializeField] private LeadboardPlayerBar[] playerBars;
 
-    class PlayerGameStats
-    {
-        public int RacePosition;
-        public int LapCount;
-        public bool FinishedRacing;
-        public float RaceDuration;
-        public ulong ClientId;
-
-        public PlayerGameStats(ulong clientId)
-        {
-            ClientId = clientId;
-        }
-    }
-
     
-    Dictionary<GameObject, PlayerGameStats> gameStats = new Dictionary<GameObject, PlayerGameStats>();
+    Dictionary<ulong, GameObject> playerPrefabRef = new Dictionary<ulong, GameObject>();
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
     private void Awake()
     {
@@ -45,60 +31,80 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
     }
     
-    public override void OnNetworkSpawn()
-    {
-        if(IsClient)
-        {
-            
-        }
-    }
 
-    bool _dictionaryChanged = false;
+    
     private void Update()
     {
         if(IsServer)
         {
-            if(_dictionaryChanged)
-            {
-                _dictionaryChanged = false;
-                SetLeaderBoardRpc();
-            }    
+              
         }
     }
-    float startTime;
-    //Functions
-    public void AddPlayerToDictionary(GameObject playerCar)
-    {
-        for(int i = 0; i < NetworkManager.Singleton.ConnectedClients.Count; i++)
-        {
-            if(NetworkManager.Singleton.ConnectedClients[(ulong)i].PlayerObject.gameObject == playerCar)
-            {
-                gameStats.Add(playerCar, new PlayerGameStats((ulong)i));
-                return;
-            }
-        }
 
-        //Means its an ai car, or somethings gone wrong
-        //TODO: make this pick a random name later - also add names later
-        gameStats.Add(playerCar, new PlayerGameStats(100));
-    }
-    public void AlterDictonaryValue(GameObject playerCar, int racePosition, int lap)
+    //Functions
+    public void AddSpawnedPlayer(GameObject spawnedPlayer, ulong clientID)
     {
-        gameStats[playerCar].RacePosition = racePosition;
-        gameStats[playerCar].LapCount = lap;
-        _dictionaryChanged = true;
+        playerPrefabRef.Add(clientID, spawnedPlayer);
+        lapManager.TrackedCars.Add(new Tracking_Manager_Script.TrackedInfo(spawnedPlayer));
     }
+    private IEnumerator ShareTrackedCars()
+    {
+        while(true)
+        {
+            bool foundOne = false;
+            ulong[] playerNames = new ulong[lapManager.TrackedCars.Count + lapManager.FinishedCars.Count];
+            for(int i = 0; i < lapManager.FinishedCars.Count; i++)
+            {
+                foreach(var client in playerPrefabRef)
+                {
+                    if (client.Value.Equals(lapManager.FinishedCars[i].Car))
+                    {
+                        playerNames[i] = client.Key;
+                        foundOne = true;
+                        break;
+                    }
+                }
+                if(!foundOne)
+                {
+                    playerNames[i] = 1000; //All ai will be 1000 untill i make names a thing
+                }
+            }
+            for (int i = 0; i < lapManager.TrackedCars.Count; i++)
+            {
+                foreach (var client in playerPrefabRef)
+                {
+                    if (client.Value.Equals(lapManager.TrackedCars[i].Car))
+                    {
+                        playerNames[i] = client.Key;
+                        foundOne = true;
+                        break;
+                    }
+                }
+                if (!foundOne)
+                {
+                    playerNames[i] = 1000; //All ai will be 1000 untill i make names a thing
+                }
+            }
+
+            SetLeaderBoardRpc(playerNames, lapManager.FinishedCars.ToArray(), lapManager.TrackedCars.ToArray());
+            yield return new WaitForSeconds(1f);
+        }
+        
+
+    }
+
     public IEnumerator StartGame()
     {
-       
-       //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
-       for(int i = 5; i > -1; i--)
+
+        //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
+        for (int i = 5; i > -1; i--)
         {
             CountDownRpc(i, false);
             yield return new WaitForSeconds(1);
         }
         CountDownRpc(0, true);
-        startTime = Time.timeSinceLevelLoad;
+        StartCoroutine(ShareTrackedCars());
+        
     }
 
 
@@ -126,7 +132,8 @@ public class MultiplayerGameManager : NetworkBehaviour
         {
             startCountdownText.enabled = false;
             var player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<PlayerInput>().enabled = true;
+            var input = player.GetComponent<PlayerInput>();
+            input.enabled = true;
         }
         else startCountdownText.enabled = true;
     }
@@ -134,29 +141,35 @@ public class MultiplayerGameManager : NetworkBehaviour
     [Rpc(SendTo.Server, RequireOwnership = false)]
     public void PlayerFinishedRpc(RpcParams srpcp = default)
     {
-        var player = NetworkManager.Singleton.ConnectedClients[srpcp.Receive.SenderClientId].PlayerObject.gameObject;
-        gameStats[player].FinishedRacing = true;
-        gameStats[player].RaceDuration = Time.timeSinceLevelLoad - startTime; 
-        _dictionaryChanged = true;
+        lapManager.FinishTrackedCar(playerPrefabRef[srpcp.Receive.SenderClientId]);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void SetLeaderBoardRpc()
+    private void SetLeaderBoardRpc(ulong[] playerNames, Tracking_Manager_Script.TrackedInfo[] finishedCars, Tracking_Manager_Script.TrackedInfo[] trackingCars)
     {
-        for(int i = 0; i < playerBars.Length; i++)
+        for(int i = 0; i < playerNames.Length; i++)
         {
-            foreach(var player in gameStats)
+            if(i < finishedCars.Length)
             {
-                if(player.Value.RacePosition == i + 1)
-                {
-                    playerBars[i].playerNameText.text = player.Value.ClientId.ToString();
-                    playerBars[i].lapCountText.text = player.Value.LapCount.ToString();
-
-                    playerBars[i].SetFinishedTime(player.Value.FinishedRacing);
-                    //TODO: make this minutes and seconds not a single float
-                    playerBars[i].raceCompletionText.text = player.Value.RaceDuration.ToString();
-                }
+                playerBars[i].lapCountText.text = finishedCars[i].CurLap.ToString();
+                playerBars[i].playerNameText.text = playerNames[i].ToString();
+                playerBars[i].raceCompletionText.text = finishedCars[i].raceCompletedIn.ToString();
+                playerBars[i].SetFinishedTime(true);
             }
+            else if(i < trackingCars.Length)
+            {
+                playerBars[i].lapCountText.text = trackingCars[i].CurLap.ToString();
+                playerBars[i].playerNameText.text = playerNames[i].ToString();
+                playerBars[i].raceCompletionText.text = trackingCars[i].raceCompletedIn.ToString();
+                playerBars[i].SetFinishedTime(false);
+            }
+            else
+                playerBars[i].gameObject.SetActive(false);
+
+            if (playerNames[i] == NetworkManager.Singleton.LocalClientId)
+                playerBars[i].SetYouSign(true);
+            else
+                playerBars[i].SetYouSign(false);
         }
     }
 

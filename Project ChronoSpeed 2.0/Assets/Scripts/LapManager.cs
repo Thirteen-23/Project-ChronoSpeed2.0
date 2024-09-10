@@ -9,11 +9,12 @@ public class LapManager : MonoBehaviour
     public int checkpointCount = 0;
     public int totalCheckpoints;
     public int lapCompeted = 0;
+    public int totalLaps = 0;
 
     [Range(0, 10)] public int distanceOffset;
     public Rigidbody rb;
     public TrackWayPoints waypoints;
-    public List<Transform> nodes = new List<Transform>();
+    public List<Transform> nodes => waypoints.trackNodes;
     public Transform currentWaypoint;
     public int currentWaypointIndex;
 
@@ -21,7 +22,7 @@ public class LapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nodes = waypoints.trackNodes;
+        
     }
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class LapManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        CalculateDistanceOfWaypoints();
+        if (waypoints != null) CalculateDistanceOfWaypoints();
     }
 
     public int currentNode;
@@ -65,30 +66,28 @@ public class LapManager : MonoBehaviour
                 }
                 currentNode = i;
             }
-
-
         }
     }
 
-    private void FinishRace()
+    public void FinishTrackingPlayer(GameObject car)
     {
         var switchMan = GetComponent<Switch_Manager>();
         if(switchMan != null) switchMan.driver = Switch_Manager.types.AI;
     }
+
     public void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("FinishLine") && checkpointCount == totalCheckpoints)
+        {
+            lapCompeted++;
+            checkpointCount = 0;
+            if(lapCompeted == totalLaps)
+                MultiplayerGameManager.Singleton.PlayerFinishedRpc();
+        }
         if (!checkPointHit.Contains(other))
         {
             checkpointCount++;
             checkPointHit.Add(other);
-
-        }
-        if (checkpointCount == totalCheckpoints)
-        {
-            lapCompeted++;
-            checkpointCount = 0;
-            checkPointHit.Clear();
-
         }
     }
 }
