@@ -3411,7 +3411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storeAbilities: []
-  m_1stAbility: {fileID: 11400000, guid: 87faff260a0fb3d4e9bea44757390d02, type: 2}
+  m_1stAbility: {fileID: 11400000, guid: 8bf4119f95db63640b818ee081e697d6, type: 2}
   m_2stAbility: {fileID: 11400000, guid: 8bf4119f95db63640b818ee081e697d6, type: 2}
   cooldownTime: 0
   activeTime: 0
@@ -3424,12 +3424,16 @@ MonoBehaviour:
   readyColor: {r: 0, g: 1, b: 0.2115438, a: 1}
   activeColor: {r: 0, g: 0.34083128, b: 1, a: 1}
   cooldownColor: {r: 1, g: 0, b: 0.008716583, a: 1}
+  m_CarClass: 0
   accessCarValues: {fileID: 0}
   maBar: {fileID: 1402206001}
-  maxResourceValue: 100
-  currentResourceValue: 50
+  currentResourceValue: 0
   minResourceValue: 0
-  checkcheck: 0
+  maxResourceValue: 100
+  m_ResoureceGatherCheck: 0
+  m_ResourceMultiplerForSpeed: 0
+  m_SpeedThreshholdForResource: 0
+  m_ResourceMultiplerForDrifting: 5
   ability1CostValue: 50
 --- !u!114 &7564646704286003999
 MonoBehaviour:
@@ -3445,7 +3449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkPointHit: []
   checkpointCount: 0
-  totalCheckpoints: 0
+  totalCheckpoints: 3
   lapCompeted: 0
   distanceOffset: 0
   rb: {fileID: 7222207860997298039}

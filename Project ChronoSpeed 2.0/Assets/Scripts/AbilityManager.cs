@@ -1,3 +1,4 @@
+using OpenCover.Framework.Model;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,9 +26,9 @@ public class AbilityManager : MonoBehaviour
 
     enum ResourceState
     {
+        charging,
         ready,
-        active,
-        charging
+        active
     }
     [Header("abiliy values for cooldowns")]
     public float cooldownTime;
@@ -46,13 +47,23 @@ public class AbilityManager : MonoBehaviour
     public Color cooldownColor;
 
     [Header("Resource Meter Values")]
+    ResourceState resourceState = ResourceState.charging;
+    public Class m_CarClass;
     public Car_Movement accessCarValues;
     public Slider maBar;
-    public int maxResourceValue;
+
     public float currentResourceValue;
     public int minResourceValue;
-    public bool checkcheck = false;
-    ResourceState resourceState = ResourceState.charging;
+    public int maxResourceValue;
+
+    // checking for heavy car drifting 
+    public bool m_ResoureceGatherCheck = false;
+    public float m_ResourceMultiplerForSpeed;
+
+    //check for Utopia Car speed for resource increase
+    public float m_SpeedThreshholdForResource;
+    public float m_ResourceMultiplerForDrifting = 5; 
+    [Header("Ability Costs Values")]
     public float ability1CostValue; 
     private void Awake()
     {
@@ -68,69 +79,105 @@ public class AbilityManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        checkcheck = accessCarValues.heavyCar;
+        m_CarClass = accessCarValues.carClasses;
         maBar.minValue = minResourceValue;
         maBar.maxValue = maxResourceValue;
         maBar.value = currentResourceValue;
-        if (checkcheck == true)
+        switch (m_CarClass)
         {
-            if (currentResourceValue < maxResourceValue)
+            case Class.Light:
+               
+                if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
+                {
+                    if (currentResourceValue < maxResourceValue)
 
-            {
-                currentResourceValue += Time.deltaTime * 5;
-            }
-            else if(currentResourceValue == maxResourceValue)
-            {
-                currentResourceValue = maxResourceValue; 
-            }
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                    }
+
+                }
+                else if (currentResourceValue == maxResourceValue)
+                {
+                    currentResourceValue = maxResourceValue;
+                }
+                break;
+            case Class.Medium:
+                m_ResoureceGatherCheck = accessCarValues.mediumCar;
+                break;
+            case Class.Heavy:
+                m_ResoureceGatherCheck = accessCarValues.heavyCar;
+                if (m_ResoureceGatherCheck == true)
+                {
+                    if (currentResourceValue < maxResourceValue)
+
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                    }
+                    else if (currentResourceValue == maxResourceValue)
+                    {
+                        currentResourceValue = maxResourceValue;
+                    }
+                }
+                break;
         }
+       
+      
         // abilityCoolDownAbility();
         //AIUsingAbilities();
         switch (resourceState)
         {
             case ResourceState.charging:
-                if (ability1CostValue> currentResourceValue)
+                if (ability1CostValue > currentResourceValue)
                 {
-                    Debug.Log("not ready Buddy"); 
+                    Debug.Log("not ready Buddy");
                 }
                 else
                 {
                     resourceState = ResourceState.ready;
                 }
-                    break;
+                break;
             case ResourceState.ready:
                 {
-                        Debug.Log("Abiity ready");
-                    if (abilityUsed == true && ability1CostValue <= currentResourceValue)
+                    Debug.Log("Abiity ready");
+                    if (abilityUsed == true && ability1CostValue < currentResourceValue)
                     {
-                        resourceState = ResourceState.active; 
+                        currentResourceValue = currentResourceValue - ability1CostValue;
+                        m_1stAbility.Activate(gameObject);
+                        activeTime = m_1stAbility.activeTime;
+                        resourceState = ResourceState.active;
                     }
                 }
-                    break;
+                break;
             case ResourceState.active:
                 {
-                    if (currentResourceValue >= ability1CostValue)
+                    if (activeTime > 0)
                     {
-                       
-                        Debug.Log("ability used!!");
-                      currentResourceValue = currentResourceValue - ability1CostValue; 
+                        activeTime -= Time.deltaTime;
+                    }
 
-                        if(ability1CostValue <=currentResourceValue)
+                    else
+                    {
+                        m_1stAbility.BeginCooldown(gameObject);
+                        cooldownTime = m_1stAbility.cooldownTime;
+                        if (ability1CostValue <= currentResourceValue && cooldownTime == 0)
                         {
                             resourceState = ResourceState.ready;
-                            m_1stAbility.Activate(gameObject);
                         }
                         else
                         {
-                            break;
+                            resourceState = ResourceState.charging;
                         }
                     }
-                    resourceState = ResourceState.charging;
-                    
+                    break;
+
                 }
-                break;
+                
+
         }
+       
     }
+       
+    
     private void abilityCoolDownAbility()
     {
         switch (state)

@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+public enum Class
+{
+    Light,
+    Medium,
+    Heavy
+}
 public class Car_Movement : MonoBehaviour
 {
     ///keeping track of how many laps in the race. 
 
     CarNewInputSystem input;
-    enum Class
-    {
-        Light,
-        Medium,
-        Heavy
-    }
+  
     enum DifferentialTypes
     {
         FrontWheelDrive,
@@ -24,7 +24,7 @@ public class Car_Movement : MonoBehaviour
         Automatic,
         Manual
     }
-    [SerializeField] Class carClasses;
+    public Class carClasses;
     [SerializeField] TransmissionTypes transmission;
     [SerializeField] DifferentialTypes drive;
     public Rigidbody bodyOfCar;
@@ -42,7 +42,7 @@ public class Car_Movement : MonoBehaviour
     public AnimationCurve enginePower;
     public float maxSpeed;
     private float totalPowerInCar;
-    [SerializeField] float currentSpeed;
+    public float currentSpeed;
     /// dampening for smoother acceration input for keyboard 
     public float acceration_Value;
     [SerializeField] float AccerationDamping;
@@ -886,6 +886,7 @@ public class Car_Movement : MonoBehaviour
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
                         leftTrail.emitting = true;
                         rightTrail.emitting = true;
+
                         switch (carClasses)
                         {
                             case Class.Light:
