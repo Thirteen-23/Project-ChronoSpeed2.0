@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PortalAbility : MonoBehaviour
 {
-    [SerializeField] public float timePortLasts { get; private set; } = 60f;
     [SerializeField] PortalAbility linkedPortal;
     List<GameObject> incomingPlayers = new List<GameObject>();
 

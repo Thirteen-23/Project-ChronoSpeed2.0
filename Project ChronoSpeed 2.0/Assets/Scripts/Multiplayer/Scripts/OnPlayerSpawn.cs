@@ -26,11 +26,9 @@ public class OnPlayerSpawn : NetworkBehaviour
             Destroy(GetComponent<Car_Movement>());
             gameObject.tag = "OtherPlayer";
         }
-        
 
-        if(IsServer)
-            lapMan.waypoints = FindAnyObjectByType<TrackWayPoints>();
-        else
+        Debug.Log(IsServer);
+        if(!IsServer)
             Destroy(lapMan);
         
         base.OnNetworkSpawn();

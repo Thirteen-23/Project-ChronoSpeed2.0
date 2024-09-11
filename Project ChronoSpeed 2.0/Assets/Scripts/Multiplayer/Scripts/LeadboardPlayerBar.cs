@@ -14,6 +14,7 @@ public class LeadboardPlayerBar : MonoBehaviour
     public void SetFinishedTime(bool setTo)
     {
         raceCompletionText.gameObject.SetActive(setTo);
+        lapCountText.gameObject.SetActive(!setTo);
     }
 
     public void SetYouSign(bool setTo)

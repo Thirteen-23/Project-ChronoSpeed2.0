@@ -1,15 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Threading;
 using TMPro;
+using Unity.Mathematics;
 using Unity.Netcode;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
@@ -104,7 +100,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
         CountDownRpc(0, true);
         StartCoroutine(ShareTrackedCars());
-        
+        lapManager.startTime = Time.timeSinceLevelLoad;
     }
 
 
@@ -116,9 +112,9 @@ public class MultiplayerGameManager : NetworkBehaviour
     }
 
     [Rpc(SendTo.ClientsAndHost, RequireOwnership = false)]
-    public void SpawnPortalRpc(Vector3 firstPortPos, Quaternion firstPortRot, Vector3 secondPortPos, Quaternion secondPortRot)
+    public void SpawnPortalRpc(Vector3 firstPortPos, Quaternion firstPortRot, Vector3 secondPortPos, Quaternion secondPortRot, float portalLast)
     {
-        portalManager.SpawnPortal(firstPortPos, secondPortPos, firstPortRot, secondPortRot);
+        portalManager.SpawnPortal(firstPortPos, secondPortPos, firstPortRot, secondPortRot, portalLast);
     }
 
 
@@ -138,44 +134,39 @@ public class MultiplayerGameManager : NetworkBehaviour
         else startCountdownText.enabled = true;
     }
 
-    [Rpc(SendTo.Server, RequireOwnership = false)]
-    public void PlayerFinishedRpc(RpcParams srpcp = default)
-    {
-        lapManager.FinishTrackedCar(playerPrefabRef[srpcp.Receive.SenderClientId]);
-    }
-
     [Rpc(SendTo.ClientsAndHost)]
     private void SetLeaderBoardRpc(ulong[] playerNames, Tracking_Manager_Script.TrackedInfo[] finishedCars, Tracking_Manager_Script.TrackedInfo[] trackingCars)
     {
-        for(int i = 0; i < playerNames.Length; i++)
+        for(int i = 0; i < playerBars.Length; i++)
         {
-            if(i < finishedCars.Length)
+            if (i < finishedCars.Length)
             {
-                playerBars[i].lapCountText.text = finishedCars[i].CurLap.ToString();
-                playerBars[i].playerNameText.text = playerNames[i].ToString();
-                playerBars[i].raceCompletionText.text = finishedCars[i].raceCompletedIn.ToString();
+                playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
+                string timeInterval = TimeSpan.FromSeconds(finishedCars[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+
+                playerBars[i].raceCompletionText.text = $"{timeInterval}";
                 playerBars[i].SetFinishedTime(true);
             }
-            else if(i < trackingCars.Length)
+            else if (i < trackingCars.Length)
             {
-                playerBars[i].lapCountText.text = trackingCars[i].CurLap.ToString();
-                playerBars[i].playerNameText.text = playerNames[i].ToString();
-                playerBars[i].raceCompletionText.text = trackingCars[i].raceCompletedIn.ToString();
+                playerBars[i].lapCountText.text = $"{trackingCars[i].CurLap}";
+                playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
+                playerBars[i].raceCompletionText.text = $"{trackingCars[i].raceCompletedIn}";
                 playerBars[i].SetFinishedTime(false);
             }
             else
                 playerBars[i].gameObject.SetActive(false);
 
-            if (playerNames[i] == NetworkManager.Singleton.LocalClientId)
+            if (i < playerNames.Length && playerNames[i] == NetworkManager.Singleton.LocalClientId)
                 playerBars[i].SetYouSign(true);
             else
                 playerBars[i].SetYouSign(false);
         }
     }
 
-    [Rpc(SendTo.ClientsAndHost)]
-    private void AddLeaderBoardRpc()
-    {
-        playerBars = new LeadboardPlayerBar[playerBars.Length];
-    }
+    //[Rpc(SendTo.ClientsAndHost)]
+    //private void AddLeaderBoardRpc()
+    //{
+    //    playerBars = new LeadboardPlayerBar[playerBars.Length];
+    //}
 }

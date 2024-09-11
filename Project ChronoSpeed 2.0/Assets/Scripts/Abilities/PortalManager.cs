@@ -14,7 +14,7 @@ public class PortalManager : MonoBehaviour
         portalStandInList.Add(Instantiate(portalStandIn, position, rotation));
     }
 
-    public void SpawnPortal(Vector3 firstPortalPos, Vector3 secondPortalPos, quaternion firstPortalRotation, quaternion secondPortalRotation)
+    public void SpawnPortal(Vector3 firstPortalPos, Vector3 secondPortalPos, quaternion firstPortalRotation, quaternion secondPortalRotation, float portalLast)
     {
         for(int i = 0; i < portalStandInList.Count; i++)
         {
@@ -35,7 +35,7 @@ public class PortalManager : MonoBehaviour
         firstPort.LinkPortal(secondPort);
         secondPort.LinkPortal(firstPort);
 
-        Destroy(firstPort.gameObject, firstPort.timePortLasts);
-        Destroy(secondPort.gameObject, secondPort.timePortLasts);
+        Destroy(firstPort.gameObject, portalLast);
+        Destroy(secondPort.gameObject, portalLast);
     }
 }

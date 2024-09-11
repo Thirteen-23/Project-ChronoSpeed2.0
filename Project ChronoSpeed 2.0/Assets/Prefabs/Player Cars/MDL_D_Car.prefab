@@ -3042,17 +3042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78df56bc835e9184eb4f34bf08c52fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointHit: []
-  checkpointCount: 0
-  totalCheckpoints: 2
-  lapCompeted: 0
-  distanceOffset: 5
-  rb: {fileID: 0}
-  waypoints: {fileID: 0}
-  currentWaypoint: {fileID: 0}
-  currentWaypointIndex: 0
-  presentCars: []
-  currentNode: 0
 --- !u!114 &5249015413141502480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3067,6 +3056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
+  portalLast: 60
 --- !u!114 &-3220841527253370344
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -39,12 +39,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
+      value: 331f4dc1-9314-4af2-84e6-34de7d649f9a
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_ActionName
       value: Movement/PortalDumpTemp[/Keyboard/f]
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
+      value: Movement/PortalRight[/Keyboard/c]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: Movement/PortalLeft[/Keyboard/z]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
@@ -54,7 +84,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -1227672071928141779}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -1227672071928141779}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: -1227672071928141779}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
@@ -64,8 +114,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PortalDrop
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PortalRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PortalLeft
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -74,7 +144,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PortalSpawn, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PortalSpawn, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778073, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778075, guid: 49c4c402f6376a3489ad26a42413d20f,
@@ -185,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
+  portalLast: 60
 --- !u!114 &2821819758476164102
 MonoBehaviour:
   m_ObjectHideFlags: 0

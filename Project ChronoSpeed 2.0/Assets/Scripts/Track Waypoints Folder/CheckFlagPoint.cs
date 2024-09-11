@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class CheckFlagPoint : MonoBehaviour
 {
-    public List<GameObject> listOfCars = new List<GameObject>();
-    [HideInInspector] public AI m_AI;
-    [HideInInspector] public LapManager m_CarMovementAccess;
+    Tracking_Manager_Script lapMan;
+    public bool isFirstCheckpoint;
 
-
+    private void Awake()
+    {
+        lapMan = GetComponentInParent<Tracking_Manager_Script>();
+        isFirstCheckpoint = gameObject.CompareTag("Finish/StartingLine");
+    }
     private void OnTriggerEnter(Collider other)
     {
-       
-        if (other.tag == "Player")
+        GameObject parentObj = other.transform.root.gameObject;
+        if (parentObj.CompareTag("Player") || parentObj.CompareTag("OtherPlayer") || parentObj.CompareTag("AI"))
         {
-            Debug.Log("has passed");
-            listOfCars.Add(other.gameObject.GetComponentInChildren<GameObject>());
-            m_CarMovementAccess = other.gameObject.GetComponentInParent<LapManager>();
-            m_CarMovementAccess.checkpointCount++; 
-        }
-        if (other.tag == "AI")
-        {
-            Debug.Log(" AI has passed");
-            listOfCars.Add(other.gameObject);
-            m_AI = other.gameObject.GetComponentInParent<AI>();
-            m_AI.numberOfLaps++;
+            if (isFirstCheckpoint)
+                lapMan.CarHitFirstCheckPoint(parentObj, transform);
+            else
+                lapMan.CarHitCheckPoint(parentObj, transform);
         }
     }
 }

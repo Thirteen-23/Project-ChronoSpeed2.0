@@ -85,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PortalRight",
+                    "type": "Button",
+                    "id": "331f4dc1-9314-4af2-84e6-34de7d649f9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PortalLeft",
+                    "type": "Button",
+                    "id": "92cc814b-9b2e-49f3-b852-d1c9ec10ab64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -360,6 +378,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PortalDumpTemp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ddbc551d-4e28-4bf8-a891-ba9fb89c9175",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PortalRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16f0e725-5d2f-48fb-9521-d5207cc7b457",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PortalLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -107,6 +107,24 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PortalRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""331f4dc1-9314-4af2-84e6-34de7d649f9a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PortalLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""92cc814b-9b2e-49f3-b852-d1c9ec10ab64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -384,6 +402,28 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""PortalDumpTemp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddbc551d-4e28-4bf8-a891-ba9fb89c9175"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PortalRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16f0e725-5d2f-48fb-9521-d5207cc7b457"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PortalLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -401,6 +441,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_Movement__1stAbility = m_Movement.FindAction("1st - Ability", throwIfNotFound: true);
         m_Movement__2ndAbility = m_Movement.FindAction("2nd - Ability", throwIfNotFound: true);
         m_Movement_PortalDumpTemp = m_Movement.FindAction("PortalDumpTemp", throwIfNotFound: true);
+        m_Movement_PortalRight = m_Movement.FindAction("PortalRight", throwIfNotFound: true);
+        m_Movement_PortalLeft = m_Movement.FindAction("PortalLeft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -471,6 +513,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement__1stAbility;
     private readonly InputAction m_Movement__2ndAbility;
     private readonly InputAction m_Movement_PortalDumpTemp;
+    private readonly InputAction m_Movement_PortalRight;
+    private readonly InputAction m_Movement_PortalLeft;
     public struct MovementActions
     {
         private @CarNewInputSystem m_Wrapper;
@@ -484,6 +528,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @_1stAbility => m_Wrapper.m_Movement__1stAbility;
         public InputAction @_2ndAbility => m_Wrapper.m_Movement__2ndAbility;
         public InputAction @PortalDumpTemp => m_Wrapper.m_Movement_PortalDumpTemp;
+        public InputAction @PortalRight => m_Wrapper.m_Movement_PortalRight;
+        public InputAction @PortalLeft => m_Wrapper.m_Movement_PortalLeft;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -520,6 +566,12 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @PortalDumpTemp.started += instance.OnPortalDumpTemp;
             @PortalDumpTemp.performed += instance.OnPortalDumpTemp;
             @PortalDumpTemp.canceled += instance.OnPortalDumpTemp;
+            @PortalRight.started += instance.OnPortalRight;
+            @PortalRight.performed += instance.OnPortalRight;
+            @PortalRight.canceled += instance.OnPortalRight;
+            @PortalLeft.started += instance.OnPortalLeft;
+            @PortalLeft.performed += instance.OnPortalLeft;
+            @PortalLeft.canceled += instance.OnPortalLeft;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -551,6 +603,12 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @PortalDumpTemp.started -= instance.OnPortalDumpTemp;
             @PortalDumpTemp.performed -= instance.OnPortalDumpTemp;
             @PortalDumpTemp.canceled -= instance.OnPortalDumpTemp;
+            @PortalRight.started -= instance.OnPortalRight;
+            @PortalRight.performed -= instance.OnPortalRight;
+            @PortalRight.canceled -= instance.OnPortalRight;
+            @PortalLeft.started -= instance.OnPortalLeft;
+            @PortalLeft.performed -= instance.OnPortalLeft;
+            @PortalLeft.canceled -= instance.OnPortalLeft;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -579,5 +637,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void On_1stAbility(InputAction.CallbackContext context);
         void On_2ndAbility(InputAction.CallbackContext context);
         void OnPortalDumpTemp(InputAction.CallbackContext context);
+        void OnPortalRight(InputAction.CallbackContext context);
+        void OnPortalLeft(InputAction.CallbackContext context);
     }
 }
