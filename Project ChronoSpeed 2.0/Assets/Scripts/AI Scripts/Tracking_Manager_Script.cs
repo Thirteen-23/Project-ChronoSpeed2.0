@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
@@ -16,6 +17,8 @@ public class Tracking_Manager_Script : MonoBehaviour
     public float startTime;
     public float changingSpeedToAccerate = 300;
     public float changingSpeedToSlowDown = 200;
+
+    [Serializable]
     public class TrackedInfo : INetworkSerializable
     {
 
@@ -115,10 +118,10 @@ public class Tracking_Manager_Script : MonoBehaviour
             }
         }
 
-        TrackedCars.OrderByDescending(pluh => pluh.ClosestNode);
+        TrackedCars = TrackedCars.OrderByDescending(pluh => pluh.ClosestNode).ToList();
 
         //idk which is better this, 42 comparisons at worst ?(maybe i dont know i think it uses quicksort) and 1 at best? (im assuming c# makers are better then me so this one)
-        TrackedCars.OrderByDescending(pluh => pluh.CurLap);
+        TrackedCars = TrackedCars.OrderByDescending(pluh => pluh.CurLap).ToList();
 
         for (int i = 0; i < TrackedCars.Count; i++)
         {

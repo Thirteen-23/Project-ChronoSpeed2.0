@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LeadboardPlayerBar : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class LeadboardPlayerBar : MonoBehaviour
 
     public void SetYouSign(bool setTo)
     {
-        YouSign.gameObject.SetActive(setTo);
+        foreach (var image in YouSign.GetComponentsInChildren<Image>())
+        {
+            image.enabled = setTo;
+        }
     }
 }

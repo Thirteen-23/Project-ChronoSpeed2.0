@@ -47,7 +47,6 @@ public class MultiplayerGameManager : NetworkBehaviour
     {
         while(true)
         {
-            bool foundOne = false;
             ulong[] playerNames = new ulong[lapManager.TrackedCars.Count + lapManager.FinishedCars.Count];
             for(int i = 0; i < lapManager.FinishedCars.Count; i++)
             {
@@ -56,13 +55,8 @@ public class MultiplayerGameManager : NetworkBehaviour
                     if (client.Value.Equals(lapManager.FinishedCars[i].Car))
                     {
                         playerNames[i] = client.Key;
-                        foundOne = true;
                         break;
                     }
-                }
-                if(!foundOne)
-                {
-                    playerNames[i] = 1000; //All ai will be 1000 untill i make names a thing
                 }
             }
             for (int i = 0; i < lapManager.TrackedCars.Count; i++)
@@ -71,17 +65,11 @@ public class MultiplayerGameManager : NetworkBehaviour
                 {
                     if (client.Value.Equals(lapManager.TrackedCars[i].Car))
                     {
-                        playerNames[i] = client.Key;
-                        foundOne = true;
+                        playerNames[i + lapManager.FinishedCars.Count] = client.Key;
                         break;
                     }
                 }
-                if (!foundOne)
-                {
-                    playerNames[i] = 1000; //All ai will be 1000 untill i make names a thing
-                }
             }
-
             SetLeaderBoardRpc(playerNames, lapManager.FinishedCars.ToArray(), lapManager.TrackedCars.ToArray());
             yield return new WaitForSeconds(1f);
         }
@@ -139,6 +127,12 @@ public class MultiplayerGameManager : NetworkBehaviour
     {
         for(int i = 0; i < playerBars.Length; i++)
         {
+            if (i < playerNames.Length && playerNames[i] == NetworkManager.Singleton.LocalClientId)
+                playerBars[i].SetYouSign(true);
+            else
+                playerBars[i].SetYouSign(false);
+            
+            int trackingCarsI = i - finishedCars.Length;
             if (i < finishedCars.Length)
             {
                 playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
@@ -146,21 +140,19 @@ public class MultiplayerGameManager : NetworkBehaviour
 
                 playerBars[i].raceCompletionText.text = $"{timeInterval}";
                 playerBars[i].SetFinishedTime(true);
+                continue;
             }
-            else if (i < trackingCars.Length)
+            else if (trackingCarsI < trackingCars.Length)
             {
-                playerBars[i].lapCountText.text = $"{trackingCars[i].CurLap}";
+                playerBars[i].lapCountText.text = $"{trackingCars[trackingCarsI].CurLap}";
                 playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
-                playerBars[i].raceCompletionText.text = $"{trackingCars[i].raceCompletedIn}";
+                playerBars[i].raceCompletionText.text = $"{trackingCars[trackingCarsI].raceCompletedIn}";
                 playerBars[i].SetFinishedTime(false);
             }
             else
                 playerBars[i].gameObject.SetActive(false);
 
-            if (i < playerNames.Length && playerNames[i] == NetworkManager.Singleton.LocalClientId)
-                playerBars[i].SetYouSign(true);
-            else
-                playerBars[i].SetYouSign(false);
+            
         }
     }
 

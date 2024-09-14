@@ -112,6 +112,8 @@ public class ServerManager : MonoBehaviour
 
                 //spawn ai cause you know how many players there are
                 //MultiplayerGameManager.Singleton.AddPlayerToDictionary(aiObject);
+                startPos = 11 - ClientDic.Count;
+                //make it start pos++ when you actually spawn ai lol
             }
             if (ClientDic.TryGetValue(sceneEvent.ClientId, out ClientData data))
             {
@@ -121,6 +123,7 @@ public class ServerManager : MonoBehaviour
                     var playerObject = Instantiate(car.CarPlayable, cpps.startingPositions[startPos]);
                     MultiplayerGameManager.Singleton.AddSpawnedPlayer(playerObject, data.ClientId);
                     playerObject.GetComponent<NetworkObject>().SpawnAsPlayerObject(data.ClientId);
+                    startPos++;
                 }
             }
         }
