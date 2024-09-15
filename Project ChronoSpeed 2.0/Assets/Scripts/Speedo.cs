@@ -67,15 +67,15 @@ public class Speedo : MonoBehaviour
     }
     private void ScoreBoard()
     {
-        for (int i = 0; i < checkingPosition.m_listOfCars.Length; i++)
-        {
-            list[i] = checkingPosition.m_listOfCars[i];
-        }
+        //for (int i = 0; i < checkingPosition.m_listOfCars.Length; i++)
+        //{
+        //    list[i] = checkingPosition.m_listOfCars[i];
+        //}
 
-        for (int i = 0; i < list.Length; i++)
-        {
-            //positionBoard.text = list[i] + "";
-        }
+        //for (int i = 0; i < list.Length; i++)
+        //{
+        //    //positionBoard.text = list[i] + "";
+        //}
     }
     private void speedo()
     {

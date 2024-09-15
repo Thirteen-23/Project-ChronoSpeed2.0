@@ -1,79 +1,166 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Tracking_Manager_Script : MonoBehaviour
 {
-    CheckFlagPoint m_Sensors;
-    public List<Transform> checkpointNodes = new List<Transform>();
+    public TrackWayPoints waypoints;
+    public List<Transform> nodes => waypoints.trackNodes;
 
+    public List<TrackedInfo> TrackedCars = new List<TrackedInfo>();
+    public List<TrackedInfo> FinishedCars = new List<TrackedInfo>();
 
-    public List<GameObject> assigningNodes = new List<GameObject>();
-    public float changingSpeedToAccerate;
-    public float changingSpeedToSlowDown;
+    [SerializeField] private int maxLaps = 3;
 
+    public float startTime;
+    public float changingSpeedToAccerate = 300;
+    public float changingSpeedToSlowDown = 200;
 
-    public Color wayPointColour;
-    [Range(0, 1)] public float sphereRadius;
-    public List<Transform> trackCheckpoints = new List<Transform>();
-
-    public GameObject[] m_listOfCars;
-    public List<GameObject> presentGameCars;
-   
-    //public Car_Movement rR;
-    private void Awake()
-    {
-       // rR = GameObject.FindGameObjectWithTag("Player").GetComponent<Car_Movement>();
-        presentGameCars = new List<GameObject>();
-        foreach (GameObject r in m_listOfCars)
-        {
-            presentGameCars.Add(r);
-        }
-        //presentGameCars.Add(rR.gameObject);
-
-    }
-    void Start()
+    [Serializable]
+    public class TrackedInfo : INetworkSerializable
     {
 
-        Transform[] paths = GetComponentsInChildren<Transform>();
-        checkpointNodes = new List<Transform>();
-        for (int i = 1; i < paths.Length; i++)
+        public GameObject Car;
+        public List<Transform> HitCheckpoints;
+
+        public int CurLap;
+        public int Place;
+        public double raceCompletedIn;
+        public int ClosestNode;
+
+        public TrackedInfo(GameObject car)
         {
-            checkpointNodes.Add(paths[i]);
+            Car = car;
+            HitCheckpoints = new List<Transform>();
+
+            CurLap = 0;
+            Place = 0;
+            ClosestNode = 0;
+        }
+        public TrackedInfo()
+        {
+            Car = null;
+            HitCheckpoints = new List<Transform>();
+
+            CurLap = -1;
+            Place = -1;
+            raceCompletedIn = -1;
+            ClosestNode = -1;
 
         }
-
-        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
-            assigningNodes.Add(child.gameObject);
+            serializer.SerializeValue(ref CurLap);
+            serializer.SerializeValue(ref Place);
+            serializer.SerializeValue(ref raceCompletedIn);
+            serializer.SerializeValue(ref ClosestNode);
         }
-        // CheckpointPass();
-        m_Sensors = GetComponentInChildren<CheckFlagPoint>();
     }
-    
+
+
+    public void CarHitCheckPoint(GameObject car, Transform checkPoint)
+    {
+        for(int i = 0; i < TrackedCars.Count; i++)
+        {
+            if (TrackedCars[i].Car != car) continue;
+
+            //Has it already hit this checkpoint this lap
+            if (TrackedCars[i].HitCheckpoints.Contains(checkPoint))
+                break;
+
+            TrackedCars[i].HitCheckpoints.Add(checkPoint);
+        }
+    }
+
+    public void CarHitFirstCheckPoint(GameObject car, Transform checkPoint)
+    {
+        for (int i = 0; i < TrackedCars.Count; i++)
+        {
+            if (TrackedCars[i].Car != car) continue;
+            
+            //all the checkpoints are children of this object, might need to change if the other managers ever need children since all on same object
+            if (TrackedCars[i].HitCheckpoints.Count != transform.childCount)
+            {
+                CarHitCheckPoint(car, checkPoint);
+                return;
+            }
+            else
+            {
+                TrackedCars[i].CurLap++;
+                TrackedCars[i].HitCheckpoints.Clear();
+
+                if (TrackedCars[i].CurLap >= maxLaps)
+                {
+                    FinishTrackedCar(TrackedCars[i]);
+                    return;
+                }
+
+                CarHitCheckPoint(car, checkPoint);
+            }
+        }
+    }
+
+    private void SortTrackedCars()
+    {
+        for(int a = 0; a < TrackedCars.Count; a++)
+        {
+            float closestDistance = Mathf.Infinity;
+            for(int b = 0; b < nodes.Count; b++)
+            {
+                float tempDistance = Vector3.Distance(TrackedCars[a].Car.transform.position, nodes[b].position);
+                if (tempDistance > closestDistance)
+                    continue;
+                
+                closestDistance = tempDistance;
+                TrackedCars[a].ClosestNode = b;
+            }
+        }
+
+        TrackedCars = TrackedCars.OrderByDescending(pluh => pluh.ClosestNode).ToList();
+
+        //idk which is better this, 42 comparisons at worst ?(maybe i dont know i think it uses quicksort) and 1 at best? (im assuming c# makers are better then me so this one)
+        TrackedCars = TrackedCars.OrderByDescending(pluh => pluh.CurLap).ToList();
+
+        for (int i = 0; i < TrackedCars.Count; i++)
+        {
+            TrackedCars[i].Place = i + 1;
+        }    
+
+        //or this, 36 comparisons at worst, 12 at best
+        //int placeToGive = 1;
+        //for(int a = 3; a > 0; a--)
+        //{
+        //    for (int i = 0; i < trackCars.Count; i++)
+        //    {
+        //        if (trackCars[i].CurLap != a)
+        //            continue;
+
+        //        trackCars[i].Place = placeToGive;
+        //        placeToGive++;
+
+        //        if (placeToGive == trackCars.Count + 2)
+        //            return;
+        //    }
+        //}
+        
+    }
+
+    public void AddTrackedCar(GameObject car)
+    {
+        TrackedCars.Add(new TrackedInfo(car));
+    }
+    public void FinishTrackedCar(TrackedInfo finishingCar)
+    {
+        finishingCar.raceCompletedIn = Time.timeSinceLevelLoadAsDouble - startTime;
+        FinishedCars.Add(finishingCar);
+        TrackedCars.Remove(finishingCar);
+    }
    
-    public TextMeshProUGUI textOfItems;
-    GameObject playerT;
-    int positionForPlayer;
     // Update is called once per frame
     void Update()
     {
-        m_listOfCars = m_listOfCars.OrderBy(gameObject => -gameObject.GetComponent<LapManager>().currentNode & -gameObject.GetComponent<LapManager>().lapCompeted).ToArray();
-        presentGameCars = new List<GameObject>();
-        foreach (GameObject r in m_listOfCars)
-        {
-            presentGameCars.Add(r);
-        }
-        playerT = GameObject.FindGameObjectWithTag("Player");
-        positionForPlayer = presentGameCars.IndexOf(playerT);
-        textOfItems.text = (positionForPlayer + 1) + "/" + presentGameCars.Count;
-
-
+        SortTrackedCars();
     }
 }
