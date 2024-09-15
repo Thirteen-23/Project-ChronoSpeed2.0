@@ -26,7 +26,6 @@ public class MultiplayerCarSelection : NetworkBehaviour
     }
     public override void OnNetworkSpawn()
     {
-        Debug.Log(IsClient);
         if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += HandleClientConnected;

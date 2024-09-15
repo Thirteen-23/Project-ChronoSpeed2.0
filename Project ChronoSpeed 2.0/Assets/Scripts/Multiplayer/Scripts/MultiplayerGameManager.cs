@@ -2,16 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
     [SerializeField] private PortalManager portalManager;
     [SerializeField] private Tracking_Manager_Script lapManager;
     [SerializeField] private TMP_Text startCountdownText;
+    [SerializeField] private TMP_Text gameEndedText;
+    [SerializeField] private GameObject leaveGameBtn;
     [SerializeField] private LeadboardPlayerBar[] playerBars;
 
     
@@ -20,7 +22,7 @@ public class MultiplayerGameManager : NetworkBehaviour
     private void Awake()
     {
         if (Singleton != null && Singleton != this)
-            Destroy(Singleton);
+            Destroy(this);
         else
         {
             Singleton = this;
@@ -29,25 +31,20 @@ public class MultiplayerGameManager : NetworkBehaviour
     
 
     
-    private void Update()
-    {
-        if(IsServer)
-        {
-              
-        }
-    }
-
     //Functions
     public void AddSpawnedPlayer(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
         lapManager.TrackedCars.Add(new Tracking_Manager_Script.TrackedInfo(spawnedPlayer));
     }
+
+    bool gameGoing = true;
     private IEnumerator ShareTrackedCars()
     {
-        while(true)
+        while(gameGoing)
         {
             ulong[] playerNames = new ulong[lapManager.TrackedCars.Count + lapManager.FinishedCars.Count];
+            int finishedPlayers = 0;
             for(int i = 0; i < lapManager.FinishedCars.Count; i++)
             {
                 foreach(var client in playerPrefabRef)
@@ -55,6 +52,8 @@ public class MultiplayerGameManager : NetworkBehaviour
                     if (client.Value.Equals(lapManager.FinishedCars[i].Car))
                     {
                         playerNames[i] = client.Key;
+                        if(ServerManager.Singleton.ClientDic.ContainsKey(client.Key))
+                            finishedPlayers++;
                         break;
                     }
                 }
@@ -71,6 +70,11 @@ public class MultiplayerGameManager : NetworkBehaviour
                 }
             }
             SetLeaderBoardRpc(playerNames, lapManager.FinishedCars.ToArray(), lapManager.TrackedCars.ToArray());
+            if (finishedPlayers == ServerManager.Singleton.ClientDic.Count)
+            {
+                gameGoing = false;
+                GameEndedRpc();
+            }
             yield return new WaitForSeconds(1f);
         }
         
@@ -91,7 +95,10 @@ public class MultiplayerGameManager : NetworkBehaviour
         lapManager.startTime = Time.timeSinceLevelLoad;
     }
 
-
+    public void LeaveGame()
+    {
+        ServerManager.Singleton.EndSessionRpc();
+    }
     //RPCs
     [Rpc(SendTo.ClientsAndHost, RequireOwnership = false)]
     public void SpawnPortalStandInRpc(Vector3 position, Quaternion rotation)
@@ -156,9 +163,12 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
     }
 
-    //[Rpc(SendTo.ClientsAndHost)]
-    //private void AddLeaderBoardRpc()
-    //{
-    //    playerBars = new LeadboardPlayerBar[playerBars.Length];
-    //}
+    [Rpc(SendTo.ClientsAndHost)]
+    private void GameEndedRpc()
+    {
+        gameEndedText.enabled = true;
+        playerBars[0].transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector3(-750, -250, 0);
+        leaveGameBtn.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(leaveGameBtn);
+    }
 }

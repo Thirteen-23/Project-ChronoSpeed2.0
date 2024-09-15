@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ServerManager : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ServerManager : MonoBehaviour
     private void Awake()
     {
         if (Singleton != null && Singleton != this)
-            Destroy(Singleton);
+            Destroy(gameObject);
         else
         {
             Singleton = this;
@@ -27,6 +28,7 @@ public class ServerManager : MonoBehaviour
 
     public void StartClient(string ip)
     {
+        ClientDic = null;
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(ip, (ushort)15000);
         Debug.Log(NetworkManager.Singleton.StartClient());
     }
@@ -133,6 +135,21 @@ public class ServerManager : MonoBehaviour
             MultiplayerGameManager.Singleton.StartCoroutine(MultiplayerGameManager.Singleton.StartGame());
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManager_OnSceneEvent;
         }
+    }
+
+    
+    public void EndSessionRpc()
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            NetworkManager.Singleton.ConnectionApprovalCallback -= ApprovalCheck;
+            NetworkManager.Singleton.OnServerStarted -= OnNetworkReady;
+            NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnect;
+            gameHasStarted = false;
+        }
+        if (NetworkManager.Singleton != null) NetworkManager.Singleton.Shutdown();
+        
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }
 
