@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+public enum Class
+{
+    Light,
+    Medium,
+    Heavy
+}
 public class Car_Movement : MonoBehaviour
 {
     ///keeping track of how many laps in the race. 
 
     CarNewInputSystem input;
-    enum Class
-    {
-        Light,
-        Medium,
-        Heavy
-    }
+  
     enum DifferentialTypes
     {
         FrontWheelDrive,
@@ -24,7 +24,7 @@ public class Car_Movement : MonoBehaviour
         Automatic,
         Manual
     }
-    [SerializeField] Class carClasses;
+    public Class carClasses;
     [SerializeField] TransmissionTypes transmission;
     [SerializeField] DifferentialTypes drive;
     public Rigidbody bodyOfCar;
@@ -42,7 +42,7 @@ public class Car_Movement : MonoBehaviour
     public AnimationCurve enginePower;
     public float maxSpeed;
     private float totalPowerInCar;
-    [SerializeField] float currentSpeed;
+    public float currentSpeed;
     /// dampening for smoother acceration input for keyboard 
     public float acceration_Value;
     [SerializeField] float AccerationDamping;
@@ -118,7 +118,8 @@ public class Car_Movement : MonoBehaviour
     public TrailRenderer rightTrail;
     // drifting boost value
     [SerializeField] float forceBoostForDriftingValue = 20000f;
-    public float findme; 
+    public float findme;
+    public bool lightCar, mediumCar, heavyCar = false;
     private void Awake()
     {
 
@@ -642,7 +643,7 @@ public class Car_Movement : MonoBehaviour
         {
             if (hit.collider.CompareTag("ground"))
             {
-                Debug.Log("on the ground");
+              //  Debug.Log("on the ground");
                 bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
 
             }
@@ -807,7 +808,7 @@ public class Car_Movement : MonoBehaviour
             bodyOfCar.angularDrag = whenDrifting;
             sidewaysFriction = wheels4[0].sidewaysFriction;
             forwardFriction = wheels4[0].forwardFriction;
-
+          
             float velocity = 0;
 
             driftEndingGrip = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue =
@@ -829,7 +830,7 @@ public class Car_Movement : MonoBehaviour
                 wheels4[i].forwardFriction = forwardFriction;
 
             }
-
+          
             // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
             // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
 
@@ -859,7 +860,7 @@ public class Car_Movement : MonoBehaviour
                 tt += Time.deltaTime * 2f;
 
                 forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
-                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, 0, 3), tt);
+                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, minAmountOfGripAtStart, maxAmountOfGrip), tt);
                 //Mathf.Lerp((forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue),// (currentSpeed * handBrakefrictionMulitplier / 300) + 2.5f, Time.deltaTime * 2f);
                 //Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 3), tt);
 
@@ -885,6 +886,19 @@ public class Car_Movement : MonoBehaviour
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
                         leftTrail.emitting = true;
                         rightTrail.emitting = true;
+
+                        switch (carClasses)
+                        {
+                            case Class.Light:
+                                lightCar = true;
+                                break;
+                            case Class.Medium:
+                                mediumCar = true;
+                                break;
+                            case Class.Heavy:
+                                heavyCar = true;
+                                break;
+                        }
                         for (int j = 0; j < 4; j++)
                         {
                             wheels4[j].forwardFriction = forwardFriction;
@@ -896,6 +910,9 @@ public class Car_Movement : MonoBehaviour
                     {
                         leftTrail.emitting = false;
                         rightTrail.emitting = false;
+                        lightCar = false;
+                        mediumCar = false;
+                        heavyCar = false; 
                     }
                 }
 
