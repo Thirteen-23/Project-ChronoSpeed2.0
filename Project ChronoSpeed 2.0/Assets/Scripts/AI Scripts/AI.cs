@@ -63,7 +63,7 @@ public class AI : MonoBehaviour
         //waypoints 
         //waypoints = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<TrackWayPoints>();
         //nodes = waypoints.trackNodes;
-        nodes = waypoints.trackNodes;
+
     }
     // Update is called once per frame
     void Update()
