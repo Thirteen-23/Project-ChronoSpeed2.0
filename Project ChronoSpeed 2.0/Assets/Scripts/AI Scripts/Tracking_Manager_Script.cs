@@ -79,21 +79,22 @@ public class Tracking_Manager_Script : MonoBehaviour
         for (int i = 0; i < TrackedCars.Count; i++)
         {
             if (TrackedCars[i].Car != car) continue;
-            
+            var curCar = TrackedCars[i];
             //all the checkpoints are children of this object, might need to change if the other managers ever need children since all on same object
-            if (TrackedCars[i].HitCheckpoints.Count != transform.childCount)
+            if (curCar.HitCheckpoints.Count != transform.childCount)
             {
                 CarHitCheckPoint(car, checkPoint);
                 return;
             }
             else
             {
-                TrackedCars[i].CurLap++;
-                TrackedCars[i].HitCheckpoints.Clear();
+                curCar.CurLap++;
+                curCar.HitCheckpoints.Clear();
 
-                if (TrackedCars[i].CurLap >= maxLaps)
+                if (curCar.CurLap >= maxLaps)
                 {
-                    FinishTrackedCar(TrackedCars[i]);
+                    SortTrackedCars();
+                    FinishTrackedCar(curCar);
                     return;
                 }
 
@@ -125,7 +126,7 @@ public class Tracking_Manager_Script : MonoBehaviour
 
         for (int i = 0; i < TrackedCars.Count; i++)
         {
-            TrackedCars[i].Place = i + 1;
+            TrackedCars[i].Place = i + 1 + FinishedCars.Count;
         }    
 
         //or this, 36 comparisons at worst, 12 at best

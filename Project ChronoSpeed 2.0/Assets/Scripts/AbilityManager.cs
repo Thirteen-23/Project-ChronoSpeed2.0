@@ -48,7 +48,6 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Resource Meter Values")]
     ResourceState resourceState = ResourceState.charging;
-    ResourceState resourceState2 = ResourceState.charging;
     public Class m_CarClass;
     public Car_Movement accessCarValues;
     public Slider maBar;
@@ -63,7 +62,7 @@ public class AbilityManager : MonoBehaviour
 
     //check for Utopia Car speed for resource increase
     public float m_SpeedThreshholdForResource;
-    public float m_ResourceMultiplerForDrifting = 5;
+    public float m_ResourceMultiplerForDrifting = 5; 
     [Header("Ability Costs Values")]
     public float ability1CostValue;
     public float portalDropCostValue;
@@ -91,7 +90,7 @@ public class AbilityManager : MonoBehaviour
         switch (m_CarClass)
         {
             case Class.Light:
-
+               
                 if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
                 {
                     if (currentResourceValue < maxResourceValue)
@@ -177,8 +176,8 @@ public class AbilityManager : MonoBehaviour
                 }
         }
     }
-
-
+       
+    
     private void abilityCoolDownAbility()
     {
         switch (state)
@@ -267,12 +266,12 @@ public class AbilityManager : MonoBehaviour
         if (context.started)
         {
             abilityUsed = true;
-            //  Debug.Log("pressed");
+          //  Debug.Log("pressed");
         }
         if (context.performed)
         {
             abilityUsed = true;
-            // Debug.Log("holding");
+           // Debug.Log("holding");
         }
         if (context.canceled)
         {
@@ -285,7 +284,7 @@ public class AbilityManager : MonoBehaviour
         if (context.canceled)
             tempPortSpawnRef.PortalDrop(context);
 
-        else if (context.performed && currentResourceValue >= portalDropCostValue)
+        else if(context.performed && currentResourceValue >= portalDropCostValue)
         {
             currentResourceValue -= portalDropCostValue;
             tempPortSpawnRef.PortalDrop(context);
