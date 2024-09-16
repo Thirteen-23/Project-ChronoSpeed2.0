@@ -3689,6 +3689,10 @@ MonoBehaviour:
   tt: 1
   maxAmountOfGrip: 3
   minAmountOfGripAtStart: 1
+  leftWheel: {fileID: 0}
+  rightWheel: {fileID: 0}
+  leftWheelSmoke: {fileID: 0}
+  rightWheelSmoke: {fileID: 0}
   meBoosting: 0
   boostValue: 15000
 --- !u!114 &7564646704286003997
@@ -3718,11 +3722,35 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7564646704286003994}
+        m_TargetAssemblyTypeName: Car_Movement, Assembly-CSharp
+        m_MethodName: ApplyingThrottleInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1076a2c9-1f6a-4953-9358-676dde72db6c
     m_ActionName: Movement/Acceleration[/Keyboard/ctrl,/Keyboard/shift,/SwitchProControllerHID/rightShoulder,/SwitchProControllerHID/rightTrigger]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7564646704286003994}
+        m_TargetAssemblyTypeName: Car_Movement, Assembly-CSharp
+        m_MethodName: ApplySteeringInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7f7af0e4-e3b6-4be7-9cf1-431a74dd75f3
     m_ActionName: Movement/Steering[/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/leftStick/right,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -3813,6 +3841,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a621a170-dfb8-4456-b11e-c30e4e3df7e5
     m_ActionName: Movement/PortalDumpTemp[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 331f4dc1-9314-4af2-84e6-34de7d649f9a
+    m_ActionName: Movement/PortalRight[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
+    m_ActionName: Movement/PortalLeft[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -3855,6 +3891,7 @@ MonoBehaviour:
   m_SpeedThreshholdForResource: 0
   m_ResourceMultiplerForDrifting: 5
   ability1CostValue: 50
+  portalDropCostValue: 0
 --- !u!114 &7564646704286003999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3867,18 +3904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78df56bc835e9184eb4f34bf08c52fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointHit: []
-  checkpointCount: 0
-  totalCheckpoints: 3
-  lapCompeted: 0
-  distanceOffset: 0
-  rb: {fileID: 7222207860997298039}
-  waypoints: {fileID: 0}
-  nodes: []
-  currentWaypoint: {fileID: 0}
-  currentWaypointIndex: 0
-  presentCars: []
-  currentNode: 0
 --- !u!114 &5249015413141502480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3893,6 +3918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
+  portalLast: 60
 --- !u!114 &-3220841527253370344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3905,7 +3931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3286064564
+  GlobalObjectIdHash: 391577787
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

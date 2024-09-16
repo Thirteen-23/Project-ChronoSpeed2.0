@@ -129,18 +129,18 @@ public class Car_Movement : MonoBehaviour
 
     private void OnEnable()
     {
-        input.Enable();
-        input.Movement.Acceleration.performed += ApplyingThrottleInput;
-        input.Movement.Acceleration.canceled += ReleaseThrottleInput;
-        input.Movement.Steering.performed += ApplySteeringInput;
-        input.Movement.Steering.canceled += ReleaseSteeringInput;
+       // input.Enable();
+        //input.Movement.Acceleration.performed += ApplyingThrottleInput;
+        //input.Movement.Acceleration.canceled += ReleaseThrottleInput;
+        //input.Movement.Steering.performed += ApplySteeringInput;
+        //input.Movement.Steering.canceled += ReleaseSteeringInput;
         // input.Movement.braking.performed += BrakingInput;
         // input.Movement.braking.canceled += ReleaseBrakingInput;
 
     }
     private void OnDisable()
     {
-        input.Disable();
+       // input.Disable();
 
     }
     void Start()
@@ -362,9 +362,12 @@ public class Car_Movement : MonoBehaviour
 
     public void ApplySteeringInput(InputAction.CallbackContext context)
     {
-
-        steering_Value = context.ReadValue<float>();
-        //print(steering_Value);
+        if (context.started)
+            steering_Value = context.ReadValue<float>();
+        else if (context.canceled)
+        {
+            steering_Value = 0;
+        }
     }
 
     public void ReleaseSteeringInput(InputAction.CallbackContext context)
@@ -376,11 +379,13 @@ public class Car_Movement : MonoBehaviour
 
     public void ApplyingThrottleInput(InputAction.CallbackContext context)
     {
-        acceration_Value = context.ReadValue<float>();
-
-        //print(acceration_Value + "accerating");
+        if (context.started)
+            acceration_Value = context.ReadValue<float>();
+        else if (context.canceled)
+        {
+            acceration_Value = 0;
+        }
     }
-
     public void ReleaseThrottleInput(InputAction.CallbackContext context)
     {
         acceration_Value = 0;
@@ -671,6 +676,10 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] float maxAmountOfGrip;
     [SerializeField] float minAmountOfGripAtStart;
     float driftEndingGrip;
+    public ParticleSystem leftWheel;
+    public ParticleSystem rightWheel;
+    public ParticleSystem leftWheelSmoke;
+    public ParticleSystem rightWheelSmoke;
     private void AdjustTractionForDrifting()
     {
 
@@ -884,9 +893,12 @@ public class Car_Movement : MonoBehaviour
                         forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt);
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
-                        leftTrail.emitting = true;
-                        rightTrail.emitting = true;
-
+                        //leftTrail.emitting = true;
+                        //rightTrail.emitting = true;
+                        rightWheel.Play();
+                        leftWheel.Play();
+                        leftWheelSmoke.Play();
+                        rightWheelSmoke.Play();
                         switch (carClasses)
                         {
                             case Class.Light:
@@ -908,8 +920,12 @@ public class Car_Movement : MonoBehaviour
                     }
                     else
                     {
-                        leftTrail.emitting = false;
-                        rightTrail.emitting = false;
+                       // leftTrail.emitting = false;
+                       // rightTrail.emitting = false;
+                        rightWheel.Stop();
+                        leftWheel.Stop();
+                        leftWheelSmoke.Stop();
+                        rightWheelSmoke.Stop();
                         lightCar = false;
                         mediumCar = false;
                         heavyCar = false; 
@@ -931,13 +947,20 @@ public class Car_Movement : MonoBehaviour
         }
     }
     public bool meBoosting = false;
-    public float boostValue = 3000f; 
+    public float boostValue = 3000f;
+    public ParticleSystem nitroboostColor;
     public void NitroBoostin()
     { 
         if(meBoosting == true)
         {
             Debug.Log("I am boosting?");
-            bodyOfCar.AddForce(bodyOfCar.transform.forward * boostValue); 
+            bodyOfCar.AddForce(bodyOfCar.transform.forward * boostValue);
+            nitroboostColor.Play();
+
+        }
+        else
+        {
+            nitroboostColor.Stop();
         }
     }
     private void CheckingforSlip()
