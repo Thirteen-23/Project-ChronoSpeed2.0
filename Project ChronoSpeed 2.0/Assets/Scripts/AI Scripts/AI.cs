@@ -42,18 +42,18 @@ public class AI : MonoBehaviour
     [SerializeField] float maximumWayPointApproachThreshold;
     public int numberOfLaps;
 
-    Tracking_Manager_Script valueBeingRead;
+    public Tracking_Manager_Script valueBeingRead;
     [SerializeField] GameObject bridge;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        nodes = waypoints.trackNodes;
+        //nodes = waypoints.trackNodes;
         carAI = m_AICarBody.GetComponent<AI_Controls>();
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
-        bridge = GameObject.Find("Checkpoints");
-        valueBeingRead = bridge.GetComponent<Tracking_Manager_Script>();
+        //bridge = GameObject.Find("Checkpoints");
+        //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
     }
 

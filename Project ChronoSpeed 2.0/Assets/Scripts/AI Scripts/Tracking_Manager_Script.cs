@@ -93,6 +93,7 @@ public class Tracking_Manager_Script : MonoBehaviour
 
                 if (TrackedCars[i].CurLap >= maxLaps)
                 {
+                    SortTrackedCars();
                     FinishTrackedCar(TrackedCars[i]);
                     return;
                 }
@@ -125,7 +126,7 @@ public class Tracking_Manager_Script : MonoBehaviour
 
         for (int i = 0; i < TrackedCars.Count; i++)
         {
-            TrackedCars[i].Place = i + 1;
+            TrackedCars[i].Place = i + 1 + FinishedCars.Count;
         }    
 
         //or this, 36 comparisons at worst, 12 at best

@@ -111,11 +111,21 @@ public class ServerManager : MonoBehaviour
             if (sceneEvent.ClientId == NetworkManager.Singleton.LocalClientId)
             {
                 cpps = FindAnyObjectByType<CarPlayerPrefabSpawner>();
+                startPos = 0;
 
-                //spawn ai cause you know how many players there are
-                //MultiplayerGameManager.Singleton.AddPlayerToDictionary(aiObject);
-                startPos = 11 - ClientDic.Count;
-                //make it start pos++ when you actually spawn ai lol
+                for(; startPos < 12 - ClientDic.Count; startPos++)
+                {
+                    GameObject aiObject;
+                    if (startPos % 3 == 1)
+                        aiObject = Instantiate(cpps.DystopiaAiCar, cpps.startingPositions[startPos]);
+                    //else if (startPos % 2 == 1)
+                    //    aiObject = Instantiate(cpps.UtopiaAiCar, cpps.startingPositions[startPos]);
+                    else
+                        aiObject = Instantiate(cpps.PresentAiCar, cpps.startingPositions[startPos]);
+
+                    aiObject.GetComponent<NetworkObject>().Spawn();
+                    MultiplayerGameManager.Singleton.AddSpawnedPlayer(aiObject, (ulong)(1000 + startPos));
+                }
             }
             if (ClientDic.TryGetValue(sceneEvent.ClientId, out ClientData data))
             {

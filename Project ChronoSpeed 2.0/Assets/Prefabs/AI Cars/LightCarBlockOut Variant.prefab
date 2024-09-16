@@ -408,10 +408,6 @@ PrefabInstance:
       propertyPath: checkingPosition
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1272381761, guid: 7727788eeba03024c95565da494d278f, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 347209865150374548, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
       propertyPath: m_Name
@@ -465,7 +461,7 @@ PrefabInstance:
     - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
@@ -474,28 +470,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
-      value: 331f4dc1-9314-4af2-84e6-34de7d649f9a
-      objectReference: {fileID: 0}
-    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
-      value: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
-      objectReference: {fileID: 0}
-    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
-        type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_ActionName
       value: Movement/PortalDumpTemp[/Keyboard/f]
-      objectReference: {fileID: 0}
-    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
-      value: Movement/PortalRight[/Keyboard/c]
-      objectReference: {fileID: 0}
-    - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
-      value: Movement/PortalLeft[/Keyboard/z]
       objectReference: {fileID: 0}
     - target: {fileID: 347209865150374552, guid: 7727788eeba03024c95565da494d278f,
         type: 3}
@@ -628,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3615389982
+  GlobalObjectIdHash: 3650502538
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -682,7 +658,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
-  portalLast: 60
 --- !u!114 &9022185104551585249
 MonoBehaviour:
   m_ObjectHideFlags: 0

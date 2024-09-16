@@ -142,6 +142,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             int trackingCarsI = i - finishedCars.Length;
             if (i < finishedCars.Length)
             {
+                playerBars[i].placementText.text = finishedCars[i].Place.ToString();
                 playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
                 string timeInterval = TimeSpan.FromSeconds(finishedCars[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
 
@@ -151,6 +152,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             }
             else if (trackingCarsI < trackingCars.Length)
             {
+                playerBars[i].placementText.text = trackingCars[trackingCarsI].Place.ToString();
                 playerBars[i].lapCountText.text = $"{trackingCars[trackingCarsI].CurLap}";
                 playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
                 playerBars[i].raceCompletionText.text = $"{trackingCars[trackingCarsI].raceCompletedIn}";

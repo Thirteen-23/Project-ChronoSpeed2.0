@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4357,6 +4357,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carDatabase: {fileID: 11400000, guid: e231d6ca82b95b440a91a78f4752de52, type: 2}
+  UtopiaAiCar: {fileID: 0}
+  PresentAiCar: {fileID: 3975989593886958020, guid: 81fe9538c87aa2b49bef065022ea3be1,
+    type: 3}
+  DystopiaAiCar: {fileID: 7564646704286003995, guid: e073a2ceb3c32674d947a311420c006e,
+    type: 3}
   startingPositions:
   - {fileID: 539366573}
   - {fileID: 114484636}
@@ -40569,11 +40574,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 797035333294610182, guid: b2ba7c5bdd2b12a4ea1e500d6bb18d04,
-        type: 3}
-      propertyPath: m_text
-      value: 'Player: 0'
       objectReference: {fileID: 0}
     - target: {fileID: 797035333873557302, guid: b2ba7c5bdd2b12a4ea1e500d6bb18d04,
         type: 3}
