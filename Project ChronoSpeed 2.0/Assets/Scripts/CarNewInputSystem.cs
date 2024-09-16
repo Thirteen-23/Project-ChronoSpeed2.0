@@ -40,7 +40,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Steering"",
                     ""type"": ""Value"",
                     ""id"": ""7f7af0e4-e3b6-4be7-9cf1-431a74dd75f3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -195,20 +195,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Steering/Keyboard"",
-                    ""id"": ""31a6d4b0-69f7-492b-9805-7507c2c14e38"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Steering"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""Gamepad"",
                     ""id"": ""2ab2bad3-bf19-44b8-8d74-437ea9eaa581"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": ""AxisDeadzone"",
                     ""groups"": """",
@@ -217,29 +206,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""a5cb45e9-c2de-4324-93ed-1b67b3879438"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Steering"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""59a69bc5-13c3-4dea-a7e4-c803e4d31a00"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Steering"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Negative"",
+                    ""name"": ""left"",
                     ""id"": ""7da83726-870d-49e2-b834-74b7ed997df4"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
@@ -250,7 +217,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Positive"",
+                    ""name"": ""right"",
                     ""id"": ""eaa6b72a-ec9e-47b0-9f56-01dd21f3275e"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
@@ -259,6 +226,39 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Steering"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""713dcf21-e476-4700-8ba2-ef08057020f4"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""38593d63-4143-4a0d-af68-c4fee0a6fb99"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a4699a7-4cb4-473c-87a7-cfde56546f61"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",

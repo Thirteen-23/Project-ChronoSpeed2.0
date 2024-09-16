@@ -363,7 +363,13 @@ public class Car_Movement : MonoBehaviour
     public void ApplySteeringInput(InputAction.CallbackContext context)
     {
         if (context.started)
-            steering_Value = context.ReadValue<float>();
+        {
+
+        }
+        else if(context.performed)
+        {
+                    steering_Value = context.ReadValue<Vector2>().x;
+                }
         else if (context.canceled)
         {
             steering_Value = 0;

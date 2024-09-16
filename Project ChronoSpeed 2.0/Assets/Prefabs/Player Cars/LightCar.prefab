@@ -25312,7 +25312,7 @@ MonoBehaviour:
   isBraking: 0
   ifHandBraking: 0
   handBrakefrictionMulitplier: 2
-  whenNotDrifting: 5
+  whenNotDrifting: 1.5
   whenDrifting: 2
   driftFactor: 0.05
   turnOnAllTerrain: 0
@@ -25327,7 +25327,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 35
+      value: 30
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -25335,8 +25335,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 200
-      value: 15
+      time: 250
+      value: 20
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -25593,7 +25593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4035272553
+  GlobalObjectIdHash: 1809414789
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
