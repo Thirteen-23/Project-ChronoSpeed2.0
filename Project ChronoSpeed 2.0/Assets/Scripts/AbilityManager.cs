@@ -48,7 +48,6 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Resource Meter Values")]
     ResourceState resourceState = ResourceState.charging;
-    ResourceState resourceState2 = ResourceState.charging;
     public Class m_CarClass;
     public Car_Movement accessCarValues;
     public Slider maBar;
