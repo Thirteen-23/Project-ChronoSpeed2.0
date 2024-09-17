@@ -15,10 +15,12 @@ public class OnPlayerSpawn : NetworkBehaviour
         {
             MainCamera mCam = FindAnyObjectByType<MainCamera>();
             Rigidbody bodyRB = GetComponentInChildren<Rigidbody>();
-
+            GameObject cameraGameObject = GameObject.FindGameObjectWithTag("CameraFollow"); 
+            
             input.enabled = false;
             mCam.rb = bodyRB;
-            mCam.player = bodyRB.transform;
+            mCam.player = cameraGameObject.transform; 
+           //bodyRB.transform;
         }
         else
         {
