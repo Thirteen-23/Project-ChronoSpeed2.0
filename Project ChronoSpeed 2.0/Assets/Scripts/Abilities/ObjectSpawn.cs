@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class ObjectSpawn : Ability
         Transform spawner = movement.spawnpointer;
        // itemDropped = parent.gameObject; 
         GameObject tempCar = Instantiate(itemDropped, spawner.position, rb.transform.rotation);
+        tempCar.GetComponent<NetworkObject>().Spawn();
        // tempCar.GetComponent<Car_Movement>().maxSpeed = 500;
         tempCar.GetComponent<AbilityManager>().enabled = false; 
         tempCar.GetComponentInChildren<Rigidbody>().velocity = rb.velocity;

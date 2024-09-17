@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class AI : MonoBehaviour
 {
@@ -43,18 +42,18 @@ public class AI : MonoBehaviour
     [SerializeField] float maximumWayPointApproachThreshold;
     public int numberOfLaps;
 
-    Tracking_Manager_Script valueBeingRead;
+    public Tracking_Manager_Script valueBeingRead;
     [SerializeField] GameObject bridge;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        nodes = waypoints.trackNodes;
+        //nodes = waypoints.trackNodes;
         carAI = m_AICarBody.GetComponent<AI_Controls>();
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
-        bridge = GameObject.Find("Checkpoints");
-        valueBeingRead = bridge.GetComponent<Tracking_Manager_Script>();
+        //bridge = GameObject.Find("Checkpoints");
+        //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
     }
 
@@ -185,12 +184,13 @@ public class AI : MonoBehaviour
     [SerializeField] Vector3 difference;
     private void CheckForUpdatedWaypoints() //call this every update
     {
+        Vector3 position = rb.transform.position;
         //These should be defined in the class not as local variables
         // int currentWaypointIndex;
         //float waypointApproachThreshold;
         carAI.maxSpeed = speed_Limiter;
-        difference = nodes[currentWaypointIndex].transform.position - rb.transform.position;
-        dists = Vector3.Distance(rb.transform.position, nodes[currentWaypointIndex].transform.position);
+        difference = nodes[currentWaypointIndex].transform.position - position;
+        dists = Vector3.Distance(position, nodes[currentWaypointIndex].transform.position);
         if (difference.magnitude < minimumWayPointApproachThreshold)
         {
             currentWaypointIndex++;
@@ -201,8 +201,24 @@ public class AI : MonoBehaviour
         if (difference.magnitude > maximumWayPointApproachThreshold)
         { 
              //rb.transform.position = Vector3.Lerp(rb.transform.position, nodes[currentWaypointIndex-1].transform.position, Time.deltaTime);
-            rb.transform.position = nodes[currentWaypointIndex - 1].transform.position;
-            rb.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
+           // rb.transform.position = nodes[currentWaypointIndex - 1].transform.position;
+           // rb.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
+
+           
+            float distance = Mathf.Infinity;
+
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                Vector3 difference = nodes[i].transform.position - position;
+                float currentDistance = difference.magnitude;
+                if (currentDistance < distance)
+                {
+                    currentWaypointIndex = i;
+                    distance = currentDistance;
+
+                }
+              
+            }
         }
     }
 

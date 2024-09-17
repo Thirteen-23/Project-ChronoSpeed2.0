@@ -1,19 +1,17 @@
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+public enum Class
+{
+    Light,
+    Medium,
+    Heavy
+}
 public class Car_Movement : MonoBehaviour
 {
     ///keeping track of how many laps in the race. 
-    public int numberOfLaps;
+
     CarNewInputSystem input;
-    enum Class
-    {
-        Light,
-        Medium,
-        Heavy
-    }
+  
     enum DifferentialTypes
     {
         FrontWheelDrive,
@@ -26,10 +24,10 @@ public class Car_Movement : MonoBehaviour
         Automatic,
         Manual
     }
-    [SerializeField] Class carClasses;
+    public Class carClasses;
     [SerializeField] TransmissionTypes transmission;
     [SerializeField] DifferentialTypes drive;
-    [SerializeField] Rigidbody bodyOfCar;
+    public Rigidbody bodyOfCar;
     [SerializeField] WheelCollider[] wheels4 = new WheelCollider[4];
     [SerializeField] GameObject[] wheelmeshes = new GameObject[4];
     [SerializeField] Transform centerMass;
@@ -44,7 +42,7 @@ public class Car_Movement : MonoBehaviour
     public AnimationCurve enginePower;
     public float maxSpeed;
     private float totalPowerInCar;
-    [SerializeField] float currentSpeed;
+    public float currentSpeed;
     /// dampening for smoother acceration input for keyboard 
     public float acceration_Value;
     [SerializeField] float AccerationDamping;
@@ -118,8 +116,10 @@ public class Car_Movement : MonoBehaviour
     public Transform spawnpointer;
     public TrailRenderer leftTrail;
     public TrailRenderer rightTrail;
-
-
+    // drifting boost value
+    [SerializeField] float forceBoostForDriftingValue = 20000f;
+    public float findme;
+    public bool lightCar, mediumCar, heavyCar = false;
     private void Awake()
     {
 
@@ -129,18 +129,18 @@ public class Car_Movement : MonoBehaviour
 
     private void OnEnable()
     {
-        input.Enable();
-        input.Movement.Acceleration.performed += ApplyingThrottleInput;
-        input.Movement.Acceleration.canceled += ReleaseThrottleInput;
-        input.Movement.Steering.performed += ApplySteeringInput;
-        input.Movement.Steering.canceled += ReleaseSteeringInput;
+       // input.Enable();
+        //input.Movement.Acceleration.performed += ApplyingThrottleInput;
+        //input.Movement.Acceleration.canceled += ReleaseThrottleInput;
+        //input.Movement.Steering.performed += ApplySteeringInput;
+        //input.Movement.Steering.canceled += ReleaseSteeringInput;
         // input.Movement.braking.performed += BrakingInput;
         // input.Movement.braking.canceled += ReleaseBrakingInput;
 
     }
     private void OnDisable()
     {
-        input.Disable();
+       // input.Disable();
 
     }
     void Start()
@@ -171,7 +171,7 @@ public class Car_Movement : MonoBehaviour
         AdjustTractionForDrifting();
         CheckingforSlip();
         //CheckingDistanceOfWaypoints();
-
+        NitroBoostin();
     }
 
     private void GettingInput()
@@ -228,14 +228,14 @@ public class Car_Movement : MonoBehaviour
                 for (int i = 0; i < wheels4.Length; i++)
                 {
                     // wheels torque equal to engine Rpm * gearbox * final drive ratio and input from player
-                    wheels4[i].motorTorque = (totalPowerInCar * 5) / 4;
+                    wheels4[i].motorTorque = totalPowerInCar  * 4 / 4;
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
             {
                 for (int i = 2; i < wheels4.Length; i++)
                 {
-                    wheels4[i].motorTorque = (totalPowerInCar * 5) / 2;
+                    wheels4[i].motorTorque = totalPowerInCar * 4 /2;
                 }
             }
             else if (drive == DifferentialTypes.FrontWheelDrive)
@@ -362,9 +362,18 @@ public class Car_Movement : MonoBehaviour
 
     public void ApplySteeringInput(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
 
-        steering_Value = context.ReadValue<float>();
-        //print(steering_Value);
+        }
+        else if(context.performed)
+        {
+                    steering_Value = context.ReadValue<Vector2>().x;
+                }
+        else if (context.canceled)
+        {
+            steering_Value = 0;
+        }
     }
 
     public void ReleaseSteeringInput(InputAction.CallbackContext context)
@@ -376,11 +385,13 @@ public class Car_Movement : MonoBehaviour
 
     public void ApplyingThrottleInput(InputAction.CallbackContext context)
     {
-        acceration_Value = context.ReadValue<float>();
-
-        //print(acceration_Value + "accerating");
+        if (context.started)
+            acceration_Value = context.ReadValue<float>();
+        else if (context.canceled)
+        {
+            acceration_Value = 0;
+        }
     }
-
     public void ReleaseThrottleInput(InputAction.CallbackContext context)
     {
         acceration_Value = 0;
@@ -513,15 +524,17 @@ public class Car_Movement : MonoBehaviour
                     {
                         wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
-
-                        if (slip[i] > amountOfSlipToShift)
+                        if (engineRPM >= maxRPM)
                         {
-                            return;
-                        }
-                        else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
-                        {
-                            gearNum++;
-                            //exhaust_Shift.Play();
+                            if (slip[i] > amountOfSlipToShift)
+                            {
+                                return;
+                            }
+                            else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
+                            {
+                                gearNum++;
+                                exhaust_Shift.Play();
+                            }
                         }
                         if (engineRPM <= minRPM)
                         {
@@ -534,6 +547,7 @@ public class Car_Movement : MonoBehaviour
                                 gearNum = 0;
                             }
                         }
+
                     }
                     break;
                 case DifferentialTypes.RearWheelDrive:
@@ -551,7 +565,7 @@ public class Car_Movement : MonoBehaviour
                             else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                             {
                                 gearNum++;
-                               // exhaust_Shift.Play();
+                                exhaust_Shift.Play();
                             }
 
                         }
@@ -580,7 +594,7 @@ public class Car_Movement : MonoBehaviour
                             if (gearNum < gearSpeedBox.Length - 1)
                             {
                                 gearNum++;
-                                exhaust_Shift.Play();
+                               // exhaust_Shift.Play();
                             }
 
 
@@ -640,7 +654,7 @@ public class Car_Movement : MonoBehaviour
         {
             if (hit.collider.CompareTag("ground"))
             {
-                Debug.Log("on the ground");
+              //  Debug.Log("on the ground");
                 bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
 
             }
@@ -665,7 +679,13 @@ public class Car_Movement : MonoBehaviour
         }
     }
     [SerializeField] float tt = 1;
+    [SerializeField] float maxAmountOfGrip;
+    [SerializeField] float minAmountOfGripAtStart;
     float driftEndingGrip;
+    public ParticleSystem leftWheel;
+    public ParticleSystem rightWheel;
+    public ParticleSystem leftWheelSmoke;
+    public ParticleSystem rightWheelSmoke;
     private void AdjustTractionForDrifting()
     {
 
@@ -803,7 +823,7 @@ public class Car_Movement : MonoBehaviour
             bodyOfCar.angularDrag = whenDrifting;
             sidewaysFriction = wheels4[0].sidewaysFriction;
             forwardFriction = wheels4[0].forwardFriction;
-
+          
             float velocity = 0;
 
             driftEndingGrip = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue =
@@ -825,9 +845,9 @@ public class Car_Movement : MonoBehaviour
                 wheels4[i].forwardFriction = forwardFriction;
 
             }
-
-           // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
-           // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
+          
+            // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
+            // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
 
             tt = 0;
         }
@@ -841,8 +861,8 @@ public class Car_Movement : MonoBehaviour
 
             if (tt > 1f)
             {
-                
-               Debug.Log("normal friction");
+
+                Debug.Log("normal friction");
                 for (int i = 0; i < 4; i++)
                 {
                     wheels4[i].forwardFriction = forwardFriction;
@@ -852,15 +872,15 @@ public class Car_Movement : MonoBehaviour
             }
             else
             {
-                tt +=  Time.deltaTime * 2f;
+                tt += Time.deltaTime * 2f;
 
                 forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
-                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, 0, 3), tt);
+                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, minAmountOfGripAtStart, maxAmountOfGrip), tt);
                 //Mathf.Lerp((forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue),// (currentSpeed * handBrakefrictionMulitplier / 300) + 2.5f, Time.deltaTime * 2f);
                 //Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 3), tt);
 
 
-                
+
                 for (int i = 0; i < 4; i++)
                 {
                     wheels4[i].forwardFriction = forwardFriction;
@@ -875,12 +895,48 @@ public class Car_Movement : MonoBehaviour
                     slip[i] = wheelHit.sidewaysSlip /*/ wheels4[i].sidewaysFriction.extremumSlip*/;
                     if (slip[i] > 0.4f || slip[i] < -0.4f)
                     {
-                        bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 20000);
+                        tt = 1f;
+                        forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
+                   Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt);
+                        bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
+                        //leftTrail.emitting = true;
+                        //rightTrail.emitting = true;
+                        rightWheel.Play();
+                        leftWheel.Play();
+                        leftWheelSmoke.Play();
+                        rightWheelSmoke.Play();
+                        switch (carClasses)
+                        {
+                            case Class.Light:
+                                lightCar = true;
+                                break;
+                            case Class.Medium:
+                                mediumCar = true;
+                                break;
+                            case Class.Heavy:
+                                heavyCar = true;
+                                break;
+                        }
+                        for (int j = 0; j < 4; j++)
+                        {
+                            wheels4[j].forwardFriction = forwardFriction;
+                            wheels4[j].sidewaysFriction = sidewaysFriction;
+                        }
+
+                    }
+                    else
+                    {
+                       // leftTrail.emitting = false;
+                       // rightTrail.emitting = false;
+                        rightWheel.Stop();
+                        leftWheel.Stop();
+                        leftWheelSmoke.Stop();
+                        rightWheelSmoke.Stop();
+                        lightCar = false;
+                        mediumCar = false;
+                        heavyCar = false; 
                     }
                 }
-
-                if (tt > 1.0f)
-                    forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = 3f;
 
                 if (forwardFriction.extremumValue >= Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, 0, 3))
                 {
@@ -890,12 +946,29 @@ public class Car_Movement : MonoBehaviour
                 }
             }
             bodyOfCar.angularDrag = whenNotDrifting;
+           
             #endregion
 
 
         }
     }
+    public bool meBoosting = false;
+    public float boostValue = 3000f;
+    public ParticleSystem nitroboostColor;
+    public void NitroBoostin()
+    { 
+        if(meBoosting == true)
+        {
+            Debug.Log("I am boosting?");
+            bodyOfCar.AddForce(bodyOfCar.transform.forward * boostValue);
+            nitroboostColor.Play();
 
+        }
+        else
+        {
+            nitroboostColor.Stop();
+        }
+    }
     private void CheckingforSlip()
     {
         WheelHit wheelHit;
@@ -906,7 +979,7 @@ public class Car_Movement : MonoBehaviour
             slip[i] = wheelHit.sidewaysSlip /*/ wheels4[i].sidewaysFriction.extremumSlip*/;
         }
     }
-    
+
 }
 
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 560549465924170461}
   - component: {fileID: 8856148638141681918}
   - component: {fileID: 7158236610966282544}
+  - component: {fileID: 4096822748926863115}
   m_Layer: 0
   m_Name: Controller
   m_TagString: AI
@@ -58,7 +59,8 @@ MonoBehaviour:
   speed_Reader: 0
   speed_Limiter: 250
   waypoints: {fileID: 0}
-  nodes: []
+  nodes:
+  - {fileID: 0}
   distanceOffset: 1
   steeringForce: 1
   currentWaypoint: {fileID: 0}
@@ -162,6 +164,30 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_RayRange: 0
+--- !u!114 &4096822748926863115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612357800943352368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78df56bc835e9184eb4f34bf08c52fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPointHit: []
+  checkpointCount: 0
+  totalCheckpoints: 0
+  lapCompeted: 0
+  distanceOffset: 0
+  rb: {fileID: 7707342901541789780}
+  waypoints: {fileID: 0}
+  nodes: []
+  currentWaypoint: {fileID: 0}
+  currentWaypointIndex: 0
+  presentCars: []
+  currentNode: 0
 --- !u!1001 &2563162987985080505
 PrefabInstance:
   m_ObjectHideFlags: 0

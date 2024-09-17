@@ -1,3 +1,4 @@
+using OpenCover.Framework.Model;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] List<Ability> storeAbilities;
     public Ability m_1stAbility;
     public Ability m_2stAbility;
-   
+
     enum abilityState
     {
         ready,
@@ -22,6 +23,14 @@ public class AbilityManager : MonoBehaviour
         active,
         cooldown
     }
+
+    enum ResourceState
+    {
+        charging,
+        ready,
+        active
+    }
+    [Header("abiliy values for cooldowns")]
     public float cooldownTime;
     public float activeTime;
     public float m_2ndCooldownTime;
@@ -36,18 +45,140 @@ public class AbilityManager : MonoBehaviour
     public Color readyColor;
     public Color activeColor;
     public Color cooldownColor;
+
+    [Header("Resource Meter Values")]
+    ResourceState resourceState = ResourceState.charging;
+    public Class m_CarClass;
+    public Car_Movement accessCarValues;
+    public Slider maBar;
+
+    public float currentResourceValue;
+    public int minResourceValue;
+    public int maxResourceValue;
+
+    // checking for heavy car drifting 
+    public bool m_ResoureceGatherCheck = false;
+    public float m_ResourceMultiplerForSpeed;
+
+    //check for Utopia Car speed for resource increase
+    public float m_SpeedThreshholdForResource;
+    public float m_ResourceMultiplerForDrifting = 5; 
+    [Header("Ability Costs Values")]
+    public float ability1CostValue;
+    public float portalDropCostValue;
+
+    private PortalSpawn tempPortSpawnRef;
     private void Awake()
     {
-        AbilityIndex = storeAbilities.Count;
-      
+        accessCarValues = GetComponent<Car_Movement>();
+        tempPortSpawnRef = GetComponent<PortalSpawn>();
     }
 
     private void Start()
     {
         m_1stAbilityImage.color = readyColor;
         m_2ndAbilityImage.color = readyColor;
+
     }
+
     void FixedUpdate()
+    {
+        m_CarClass = accessCarValues.carClasses;
+        maBar.minValue = minResourceValue;
+        maBar.maxValue = maxResourceValue;
+        maBar.value = currentResourceValue;
+        switch (m_CarClass)
+        {
+            case Class.Light:
+               
+                if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
+                {
+                    if (currentResourceValue < maxResourceValue)
+
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                    }
+
+                }
+                else if (currentResourceValue == maxResourceValue)
+                {
+                    currentResourceValue = maxResourceValue;
+                }
+                break;
+            case Class.Medium:
+                m_ResoureceGatherCheck = accessCarValues.mediumCar;
+                break;
+            case Class.Heavy:
+                m_ResoureceGatherCheck = accessCarValues.heavyCar;
+                if (m_ResoureceGatherCheck == true)
+                {
+                    if (currentResourceValue < maxResourceValue)
+
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                    }
+                    else if (currentResourceValue == maxResourceValue)
+                    {
+                        currentResourceValue = maxResourceValue;
+                    }
+                }
+                break;
+        }
+
+
+        // abilityCoolDownAbility();
+        //AIUsingAbilities();
+        switch (resourceState)
+        {
+            case ResourceState.charging:
+                if (ability1CostValue > currentResourceValue)
+                {
+                    Debug.Log("not ready Buddy");
+                }
+                else
+                {
+                    resourceState = ResourceState.ready;
+                }
+                break;
+            case ResourceState.ready:
+                {
+                    Debug.Log("Abiity ready");
+                    if (abilityUsed == true && ability1CostValue < currentResourceValue)
+                    {
+                        currentResourceValue = currentResourceValue - ability1CostValue;
+                        m_1stAbility.Activate(gameObject);
+                        activeTime = m_1stAbility.activeTime;
+                        resourceState = ResourceState.active;
+                    }
+                }
+                break;
+            case ResourceState.active:
+                {
+                    if (activeTime > 0)
+                    {
+                        activeTime -= Time.deltaTime;
+                    }
+
+                    else
+                    {
+                        m_1stAbility.BeginCooldown(gameObject);
+                        if (ability1CostValue <= currentResourceValue)
+                        {
+                            resourceState = ResourceState.ready;
+                        }
+                        else
+                        {
+                            resourceState = ResourceState.charging;
+                        }
+                    }
+                    break;
+
+                }
+        }
+    }
+       
+    
+    private void abilityCoolDownAbility()
     {
         switch (state)
         {
@@ -84,7 +215,7 @@ public class AbilityManager : MonoBehaviour
                 else
                 {
                     state = abilityState.ready;
-                    m_1stAbilityImage.color = readyColor; 
+                    m_1stAbilityImage.color = readyColor;
                 }
                 break;
         }
@@ -129,21 +260,18 @@ public class AbilityManager : MonoBehaviour
                 break;
         }
 
-
-        AIUsingAbilities();
     }
-
     public void ButtonPressed(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             abilityUsed = true;
-            Debug.Log("pressed");
+          //  Debug.Log("pressed");
         }
         if (context.performed)
         {
             abilityUsed = true;
-            Debug.Log("holding");
+           // Debug.Log("holding");
         }
         if (context.canceled)
         {
@@ -151,42 +279,17 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void AbilityUse2nd(InputAction.CallbackContext context)
+    public void PortalDropAbilityUse(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            m_2ndAbilityUsed = true;
-            Debug.Log("pressed");
-        }
-        if (context.performed)
-        {
-            m_2ndAbilityUsed = true;
-            Debug.Log("holding");
-        }
         if (context.canceled)
+            tempPortSpawnRef.PortalDrop(context);
+
+        else if(context.performed && currentResourceValue >= portalDropCostValue)
         {
-            m_2ndAbilityUsed = false;
+            currentResourceValue -= portalDropCostValue;
+            tempPortSpawnRef.PortalDrop(context);
         }
     }
 
-    public int AbilityIndex;
-    public int chosenAbility;
-    public Ability testAbility;
-    private void AIUsingAbilities()
-    {
-       
-        if (chosenAbility == AbilityIndex)
-        {
-            
-            testAbility = storeAbilities[chosenAbility];
-            
-        }
-        
-        
-    }
 
-    private void chosenAbilitya(int abilitychosen)
-    {
-        
-    }
 }
