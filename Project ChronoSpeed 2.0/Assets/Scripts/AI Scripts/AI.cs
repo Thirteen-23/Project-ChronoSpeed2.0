@@ -6,6 +6,7 @@ public class AI : MonoBehaviour
 {
     public enum aI_Difficulty
     {
+        raceStart,
         easy,
         normal,
         hard
@@ -52,6 +53,7 @@ public class AI : MonoBehaviour
         //nodes = waypoints.trackNodes;
         carAI = m_AICarBody.GetComponent<AI_Controls>();
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
+        difficultness = aI_Difficulty.raceStart;
         //bridge = GameObject.Find("Checkpoints");
         //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
@@ -244,6 +246,9 @@ public class AI : MonoBehaviour
     {
         switch (difficultness)
         {
+            case aI_Difficulty.raceStart:
+                acceration_Value = 0f;
+                    break;
             case aI_Difficulty.easy:
 
                 acceration_Value = 1f;

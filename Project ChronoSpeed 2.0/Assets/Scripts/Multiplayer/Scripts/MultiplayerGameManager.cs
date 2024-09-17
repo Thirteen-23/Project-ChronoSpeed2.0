@@ -83,7 +83,7 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public IEnumerator StartGame()
     {
-
+        StartCoroutine(ShareTrackedCars());
         //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
         for (int i = 5; i > -1; i--)
         {
@@ -91,7 +91,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             yield return new WaitForSeconds(1);
         }
         CountDownRpc(0, true);
-        StartCoroutine(ShareTrackedCars());
+        
         lapManager.startTime = Time.timeSinceLevelLoad;
     }
 
@@ -125,6 +125,15 @@ public class MultiplayerGameManager : NetworkBehaviour
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();
             input.enabled = true;
+
+            if (IsServer)
+            {
+                GameObject[] AIs = GameObject.FindGameObjectsWithTag("AI");
+                foreach (var curAI in AIs)
+                {
+                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.hard;
+                }
+            }
         }
         else startCountdownText.enabled = true;
     }
