@@ -89,7 +89,7 @@ public class AbilityManager : MonoBehaviour
         switch (m_CarClass)
         {
             case Class.Light:
-               
+
                 if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
                 {
                     if (currentResourceValue < maxResourceValue)
@@ -106,6 +106,31 @@ public class AbilityManager : MonoBehaviour
                 break;
             case Class.Medium:
                 m_ResoureceGatherCheck = accessCarValues.mediumCar;
+                if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
+                {
+                    if (currentResourceValue < maxResourceValue)
+
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                    }
+
+                }
+                else if (m_ResoureceGatherCheck == true)
+                {
+                    if (currentResourceValue < maxResourceValue)
+
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                    }
+                    else if (currentResourceValue == maxResourceValue)
+                    {
+                        currentResourceValue = maxResourceValue;
+                    }
+                }
+                else if (currentResourceValue == maxResourceValue)
+                {
+                    currentResourceValue = maxResourceValue;
+                }
                 break;
             case Class.Heavy:
                 m_ResoureceGatherCheck = accessCarValues.heavyCar;

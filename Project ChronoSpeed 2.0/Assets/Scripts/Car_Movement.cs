@@ -386,7 +386,13 @@ public class Car_Movement : MonoBehaviour
     public void ApplyingThrottleInput(InputAction.CallbackContext context)
     {
         if (context.started)
+        { 
+
+        }
+        else if (context.performed)
+        {
             acceration_Value = context.ReadValue<float>();
+        }
         else if (context.canceled)
         {
             acceration_Value = 0;
@@ -954,19 +960,34 @@ public class Car_Movement : MonoBehaviour
     }
     public bool meBoosting = false;
     public float boostValue = 3000f;
-    public ParticleSystem nitroboostColor;
+    public ParticleSystem[] nitroboostColor;
+    public ParticleSystem[] exhaustVFX; 
     public void NitroBoostin()
     { 
         if(meBoosting == true)
         {
             Debug.Log("I am boosting?");
             bodyOfCar.AddForce(bodyOfCar.transform.forward * boostValue);
-            nitroboostColor.Play();
+            for (int i = 0; i < nitroboostColor.Length; i++)
+            {
+                nitroboostColor[i].Play();
+            }
+            for (int i = 0; i < exhaustVFX.Length; i++)
+            {
+                exhaustVFX[i].Pause();
+            }
 
         }
         else
         {
-            nitroboostColor.Stop();
+            for (int i = 0; i < nitroboostColor.Length; i++)
+            {
+                nitroboostColor[i].Stop();
+            }
+            for (int i = 0; i < exhaustVFX.Length; i++)
+            {
+                exhaustVFX[i].Play();
+            }
         }
     }
     private void CheckingforSlip()
