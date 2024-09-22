@@ -44,10 +44,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e9643d8581d235f45a62997cba851988, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0
+  m_Pitch: 0.30931234
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -437,10 +437,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 22cd46996da3b624bb08935264560d8c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0
+  m_Pitch: 0.5155206
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -727,8 +727,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 75fa27e467267c74f91f1f6f4e74ff88, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.05
+  m_Pitch: 0.77328086
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -3686,7 +3686,7 @@ MonoBehaviour:
   maxSpeed: 300
   currentSpeed: 0
   acceration_Value: 0
-  AccerationDamping: 0
+  AccelerationDamping: 0
   idleRPM: 800
   maxRPM: 5000
   minRPM: 2500
@@ -3700,7 +3700,7 @@ MonoBehaviour:
   - 1.1
   - 0.7
   gearNum: 0
-  smoothTime: 0.01
+  smoothTime: 0.08
   keyRPMSet:
   - {x: 0, y: 250}
   - {x: 5500, y: 550}
@@ -3724,6 +3724,7 @@ MonoBehaviour:
   frontBrakeForce: 0
   rearBrakeForce: 0
   smoothTransitionSpeed: 10
+  smoothTransitionSpeedForAcceleration: 5
   turnSpeed: 0
   steeringCurve:
     serializedVersion: 2
@@ -4082,8 +4083,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   engineNotes:
   - source: {fileID: 1882123458}
-    minRPM: 800
-    peakRPM: 2000
+    minRPM: 1000
+    peakRPM: 3000
     maxRPM: 4000
     pitchReferenceRPM: 2000
   - source: {fileID: 1047955197}

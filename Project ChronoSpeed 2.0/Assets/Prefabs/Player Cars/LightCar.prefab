@@ -25283,7 +25283,7 @@ MonoBehaviour:
   maxSpeed: 300
   currentSpeed: 0
   acceration_Value: 0
-  AccerationDamping: 0
+  AccelerationDamping: 0
   idleRPM: 800
   maxRPM: 5500
   minRPM: 3000
@@ -25300,7 +25300,7 @@ MonoBehaviour:
   smoothTime: 0.07
   keyRPMSet:
   - {x: 0, y: 100}
-  - {x: 6000, y: 250}
+  - {x: 7000, y: 300}
   - {x: 8000, y: 0}
   exhaust_Shift: {fileID: 0}
   slip:
@@ -25321,6 +25321,7 @@ MonoBehaviour:
   frontBrakeForce: 0
   rearBrakeForce: 0
   smoothTransitionSpeed: 20
+  smoothTransitionSpeedForAcceleration: 5
   turnSpeed: 0
   steeringCurve:
     serializedVersion: 2

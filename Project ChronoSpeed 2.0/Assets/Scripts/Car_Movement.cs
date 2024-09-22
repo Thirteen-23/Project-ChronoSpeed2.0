@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Rendering.CameraUI;
 public enum Class
 {
     Light,
@@ -45,7 +46,7 @@ public class Car_Movement : MonoBehaviour
     public float currentSpeed;
     /// dampening for smoother acceration input for keyboard 
     public float acceration_Value;
-    [SerializeField] float AccerationDamping;
+    [SerializeField] float AccelerationDamping;
 
     [Header("GearBox System")]
     [SerializeField] public int idleRPM;
@@ -95,6 +96,7 @@ public class Car_Movement : MonoBehaviour
     /// make the steering smoother when useing a  keyboard 
     private float steeringDamping;
     [SerializeField] float smoothTransitionSpeed;
+    [SerializeField] float smoothTransitionSpeedForAcceleration; 
     private float brakes_value;
     private float brakeDampening;
 
@@ -169,7 +171,7 @@ public class Car_Movement : MonoBehaviour
         SetEngineRPMAndTorque();
         Drafting();
         AdjustTractionForDrifting();
-        CheckingforSlip();
+       // CheckingforSlip();
         //CheckingDistanceOfWaypoints();
         NitroBoostin();
     }
@@ -191,10 +193,15 @@ public class Car_Movement : MonoBehaviour
     {
         return Mathf.Lerp(output, input, Time.deltaTime * smoothTransitionSpeed);
     }
+    private float SmoothTransitionForAcceleration(float input, float output)
+    {
+        return Mathf.Lerp(output, input, Time.deltaTime * smoothTransitionSpeedForAcceleration);
+    }
 
     private void DampeningSystem()
     {
-        AccerationDamping = SmoothTransition(acceration_Value, AccerationDamping);
+        AccelerationDamping = SmoothTransitionForAcceleration(acceration_Value, AccelerationDamping);
+        
         steeringDamping = SmoothTransition(steering_Value, steeringDamping);
         brakeDampening = SmoothTransition(brakes_value, brakeDampening);
 
@@ -229,6 +236,7 @@ public class Car_Movement : MonoBehaviour
                 {
                     // wheels torque equal to engine Rpm * gearbox * final drive ratio and input from player
                     wheels4[i].motorTorque = totalPowerInCar  * 4 / 4;
+                    Debug.Log(wheels4[i].motorTorque);
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
@@ -259,6 +267,7 @@ public class Car_Movement : MonoBehaviour
                 for (int i = 0; i < wheels4.Length; i++)
                 {
                     wheels4[i].motorTorque = acceration_Value * 0;
+                   
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
@@ -340,7 +349,7 @@ public class Car_Movement : MonoBehaviour
         EngineRPMSystem();
 
         //totalPowerInCar = enginePower.Evaluate(engineRPM) * gearSpeedBox[gearNum] * m_PlayerAcceration;
-        totalPowerInCar = enginePower.Evaluate(engineRPM) * gearSpeedBox[gearNum] * AccerationDamping;
+        totalPowerInCar = enginePower.Evaluate(engineRPM) * gearSpeedBox[gearNum] * AccelerationDamping;
         float velocity = 0.0f;
         engineRPM = Mathf.SmoothDamp(engineRPM, idleRPM + (Mathf.Abs(m_RPMOfWheels) * finalDriveRatio * (gearSpeedBox[gearNum])), ref velocity, smoothTime);
         //engineRPM = Mathf.Lerp(engineRPM, idleRPM + (Mathf.Abs(m_RPMOfWheels) * finalDriveRatio * (gearSpeedBox[gearNum])), smoothTime * Time.deltaTime);
@@ -406,6 +415,7 @@ public class Car_Movement : MonoBehaviour
 
     public void BrakingInput(InputAction.CallbackContext context)
     {
+       
         if (context.started)
             brakes_value = context.ReadValue<float>();
 
@@ -851,11 +861,21 @@ public class Car_Movement : MonoBehaviour
                 wheels4[i].forwardFriction = forwardFriction;
 
             }
-          
-            // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
-            // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
+             // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
+                // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
+                WheelHit wheelHit;
 
-            tt = 0;
+            for (int i = 2; i < wheels4.Length; i++)
+            {
+                wheels4[i].GetGroundHit(out wheelHit);
+                slip[i] = wheelHit.sidewaysSlip /*/ wheels4[i].sidewaysFriction.extremumSlip*/;
+                if (slip[i] > 0.4f || slip[i] < -0.4f)
+                {
+                    leftWheelSmoke.Play();
+                    rightWheelSmoke.Play();
+                }
+            }
+                    tt = 0;
         }
         // executed when handbrake is not held
         else

@@ -175,7 +175,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""6bc10a86-6e50-4c28-b186-4fd4b21fe357"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -274,7 +274,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""62b350dd-82b1-4046-af8b-41574e561d0d"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": ""Clamp(max=1)"",
                     ""groups"": """",
@@ -329,7 +329,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fe6efbeb-5296-48a0-8ba0-b5b1e4bd63c4"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": ""Clamp(max=1)"",
                     ""groups"": """",
