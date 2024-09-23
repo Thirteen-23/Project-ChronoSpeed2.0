@@ -706,7 +706,7 @@ public class Car_Movement : MonoBehaviour
     {
 
         #region Traction ability (now discarded)
-        /*
+        
         // for each terrain it is on
         WheelHit checkingTerrain;
 
@@ -714,8 +714,9 @@ public class Car_Movement : MonoBehaviour
         {
             forwardFriction = wheels4[0].forwardFriction;
             sidewaysFriction = wheels4[0].sidewaysFriction;
-            if (checkingTerrain.collider.name == "DystopiaGround" || checkingTerrain.collider.name == "UtopiaGround")
-            {
+            //if (checkingTerrain.collider.CompareTag("Road") || checkingTerrain.collider.CompareTag("SideWalk"))
+                if (checkingTerrain.collider.CompareTag("Tarmac")  || checkingTerrain.collider.CompareTag("SideWalk"))
+                {
                 switch (carClasses)
                 {
                     case Class.Light:
@@ -726,20 +727,20 @@ public class Car_Movement : MonoBehaviour
                             wheels4[i].forwardFriction = forwardFriction;
                             wheels4[i].sidewaysFriction = sidewaysFriction;
                         }
-                        if (checkingTerrain.collider.name == "UtopiaGround")
+                        if (checkingTerrain.collider.CompareTag("Tarmac"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
                                 wheels4[i].sidewaysFriction = sidewaysFriction;
                             }
                         }
-                        else if (checkingTerrain.collider.name == "DystopiaGround")
+                        else if (checkingTerrain.collider.CompareTag("SideWalk"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.1f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.1f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -749,21 +750,27 @@ public class Car_Movement : MonoBehaviour
                         break;
                     case Class.Medium:
 
-                        if (turnOnAllTerrain == true)
+                        forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                        sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                        for (int i = 0; i < 4; i++)
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + frictionPlusValueForAbility;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + frictionPlusValueForAbility;
+                            wheels4[i].forwardFriction = forwardFriction;
+                            wheels4[i].sidewaysFriction = sidewaysFriction;
+                        }
+                        if (checkingTerrain.collider.CompareTag("Tarmac"))
+                        {
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
                                 wheels4[i].sidewaysFriction = sidewaysFriction;
                             }
                         }
-                        else
+                        else if (checkingTerrain.collider.CompareTag("SideWalk"))
                         {
-
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -779,20 +786,20 @@ public class Car_Movement : MonoBehaviour
                             wheels4[i].forwardFriction = forwardFriction;
                             wheels4[i].sidewaysFriction = sidewaysFriction;
                         }
-                        if (checkingTerrain.collider.name == "DystopiaGround")
+                        if (checkingTerrain.collider.CompareTag("Tarmac"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
                                 wheels4[i].sidewaysFriction = sidewaysFriction;
                             }
                         }
-                        else if (checkingTerrain.collider.name == "UtopiaGround")
+                        else if (checkingTerrain.collider.CompareTag("SideWalk"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.1f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.1f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -829,7 +836,7 @@ public class Car_Movement : MonoBehaviour
             // sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
 
 
-        }*/
+        }
         #endregion
 
         /// time it takes to go from drive to drift
@@ -894,7 +901,7 @@ public class Car_Movement : MonoBehaviour
                     wheels4[i].forwardFriction = forwardFriction;
                     wheels4[i].sidewaysFriction = sidewaysFriction;
                 }
-                forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, minAmountOfGripAtStart * 1.2f, maxAmountOfGrip);
+                forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, minAmountOfGripAtStart, maxAmountOfGrip);
             }
             else
             {
