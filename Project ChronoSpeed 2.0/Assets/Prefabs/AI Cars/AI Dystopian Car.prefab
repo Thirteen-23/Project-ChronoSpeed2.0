@@ -1199,7 +1199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7222207860272042039
 Transform:
   m_ObjectHideFlags: 0
@@ -1445,7 +1445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7222207860910716001
 Transform:
   m_ObjectHideFlags: 0
@@ -2046,7 +2046,7 @@ MonoBehaviour:
   rb: {fileID: 7222207860997298039}
   range: 5
   m_AICarBody: {fileID: 7564646704286003995}
-  m_AICarBodyDetection: {fileID: 7222207860091053509}
+  m_AICarBodyDetection: {fileID: 7564646704286003995}
   steer_Value: 0
   adjustRayLeft: -0.25
   adjustRayRight: 0.25
@@ -2087,10 +2087,10 @@ MonoBehaviour:
   - {fileID: 7222207861312953990}
   - {fileID: 7222207861482728067}
   wheelmeshes:
-  - {fileID: 7222207859685863727}
+  - {fileID: 7222207859976891053}
   - {fileID: 7222207860976307592}
   - {fileID: 7222207859514821776}
-  - {fileID: 7222207859976891053}
+  - {fileID: 7222207859685863727}
   centerMass: {fileID: 7222207860339581171}
   enginePower:
     serializedVersion: 2
@@ -2120,7 +2120,7 @@ MonoBehaviour:
   smoothTime: 0.07
   keyRPMSet:
   - {x: 0, y: 200}
-  - {x: 5500, y: 300}
+  - {x: 5500, y: 600}
   - {x: 6000, y: 0}
   isBreaking: 0
   ifHandBraking: 0
@@ -2203,7 +2203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1452311093
+  GlobalObjectIdHash: 432304376
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

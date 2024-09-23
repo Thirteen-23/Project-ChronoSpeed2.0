@@ -894,7 +894,7 @@ public class Car_Movement : MonoBehaviour
                     wheels4[i].forwardFriction = forwardFriction;
                     wheels4[i].sidewaysFriction = sidewaysFriction;
                 }
-                forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 3);
+                forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, minAmountOfGripAtStart * 1.2f, maxAmountOfGrip);
             }
             else
             {
@@ -964,7 +964,7 @@ public class Car_Movement : MonoBehaviour
                     }
                 }
 
-                if (forwardFriction.extremumValue >= Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, 0, 3))
+                if (forwardFriction.extremumValue >= Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, minAmountOfGripAtStart, maxAmountOfGrip))
                 {
                     bodyOfCar.angularDrag = whenNotDrifting;
                     tt = 1.0f;

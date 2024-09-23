@@ -54,6 +54,7 @@ public class AI : MonoBehaviour
         carAI = m_AICarBody.GetComponent<AI_Controls>();
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
         difficultness = aI_Difficulty.raceStart;
+        carAI.acceration_Value = 0f;
         //bridge = GameObject.Find("Checkpoints");
         //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
@@ -252,18 +253,18 @@ public class AI : MonoBehaviour
             case aI_Difficulty.easy:
 
                 acceration_Value = 1f;
-
+                carAI.downForceValue = 500f;
 
                 break;
             case aI_Difficulty.normal:
 
                 acceration_Value = 1.2f;
-
+                carAI.downForceValue = 500f;
                 break;
             case aI_Difficulty.hard:
 
                 acceration_Value = 1.5f;
-
+                carAI.downForceValue = 500f;
 
                 break;
 
@@ -306,6 +307,7 @@ public class AI : MonoBehaviour
                 distanceOffset = 2;
                 acceration_Value = 1f;
                 minimumWayPointApproachThreshold = 17f;
+
             }
             if (difficultness == aI_Difficulty.normal)
             {
@@ -346,6 +348,7 @@ public class AI : MonoBehaviour
             distanceOffset = 1;
             steeringForce = 1f;
             minimumWayPointApproachThreshold = 20f;
+            carAI.downForceValue = 500f;
             if (Physics.Raycast(frontRay, out RaycastHit hit, range))
             {
                 minimumWayPointApproachThreshold = 50f;
