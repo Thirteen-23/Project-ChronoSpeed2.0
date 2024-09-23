@@ -15,8 +15,6 @@ public class PortalSpawn : MonoBehaviour
     Quaternion startRot;
     public void PortalDrop(CallbackContext callbackContext)
     {
-        if (!useable) { return; }
-
         if (callbackContext.started)
         {
             startPos = transform.position + transform.forward * -4;
@@ -43,20 +41,11 @@ public class PortalSpawn : MonoBehaviour
             StopCoroutine(ForceRelease());
             curForceReleaseCor = null;
         }
-
-        StartCoroutine(Cooldown());
     }
     IEnumerator ForceRelease()
     {
         yield return new WaitForSeconds(maxHoldTime);
         OnRelease();
-    }
-
-    IEnumerator Cooldown()
-    {
-        useable = false;
-        yield return new WaitForSeconds(cooldown);
-        useable = true;
     }
 
     public void PortalLeft(CallbackContext callbackContext)

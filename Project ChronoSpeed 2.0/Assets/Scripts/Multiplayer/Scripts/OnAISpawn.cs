@@ -9,11 +9,16 @@ public class OnAISpawn : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        if (!IsServer)
+        {
+            base.OnNetworkSpawn();
+            return;
+        }
         aiRef = GetComponent<AI>();
         aiRef.waypoints = FindAnyObjectByType<TrackWayPoints>();
         aiRef.nodes = aiRef.waypoints.trackNodes;
         aiRef.valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
-        base.OnNetworkSpawn();
+        
     }
 
 }

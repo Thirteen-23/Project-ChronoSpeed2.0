@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-public class GetRTT : NetworkBehaviour
+public class GetRTT : MonoBehaviour
 
 {
     
