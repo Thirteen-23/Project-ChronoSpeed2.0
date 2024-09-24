@@ -171,8 +171,9 @@ public class Car_Movement : MonoBehaviour
         SetEngineRPMAndTorque();
         Drafting();
         AdjustTractionForDrifting();
-       // CheckingforSlip();
+        // CheckingforSlip();
         //CheckingDistanceOfWaypoints();
+        
         NitroBoostin();
     }
 
@@ -289,7 +290,7 @@ public class Car_Movement : MonoBehaviour
             }
 
         }
-        if (brakes_value > 0.7f)
+        if (brakes_value > 0.7f && currentSpeed > 10f)
         {
             isBraking = true;
         }
@@ -503,6 +504,33 @@ public class Car_Movement : MonoBehaviour
         }
 
     }
+    
+    public bool ture = false;
+    
+public float lookBackValue;
+    public void LookBehind(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            lookBackValue = context.ReadValue<float>();
+
+        }
+        if (context.performed)
+        {
+            
+            if(lookBackValue == 1)
+            {
+                lookBackValue = context.ReadValue<float>();
+                ture = true; 
+
+            }
+        }
+        if (context.canceled)
+        {
+            lookBackValue = 0f;
+            ture = false;
+        }
+    }
     private void Shifting()
     {
         if (transmission == TransmissionTypes.Manual)
@@ -702,10 +730,13 @@ public class Car_Movement : MonoBehaviour
     public ParticleSystem rightWheel;
     public ParticleSystem leftWheelSmoke;
     public ParticleSystem rightWheelSmoke;
+    public float minDrag = 0;
+    public float maxDrag = 4;
+    public float boostInDrifting = 25000f;
     private void AdjustTractionForDrifting()
     {
 
-        #region Traction ability (now discarded)
+        #region Traction ability 
         
         // for each terrain it is on
         WheelHit checkingTerrain;
@@ -759,8 +790,8 @@ public class Car_Movement : MonoBehaviour
                         }
                         if (checkingTerrain.collider.CompareTag("Tarmac"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -769,8 +800,8 @@ public class Car_Movement : MonoBehaviour
                         }
                         else if (checkingTerrain.collider.CompareTag("SideWalk"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -843,7 +874,8 @@ public class Car_Movement : MonoBehaviour
         float driftSmoothFactor = 0.7f * Time.deltaTime;
         if (ifHandBraking && currentSpeed > 40 || currentSpeed > 40 && handbraking > 0)
         {
-            bodyOfCar.angularDrag = whenDrifting;
+            //bodyOfCar.angularDrag = whenDrifting;
+            bodyOfCar.angularDrag = Mathf.Lerp(minDrag, maxDrag, tt); 
             sidewaysFriction = wheels4[0].sidewaysFriction;
             forwardFriction = wheels4[0].forwardFriction;
           
@@ -868,7 +900,7 @@ public class Car_Movement : MonoBehaviour
                 wheels4[i].forwardFriction = forwardFriction;
 
             }
-             // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * 25000);
+              bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
                 // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
                 WheelHit wheelHit;
 

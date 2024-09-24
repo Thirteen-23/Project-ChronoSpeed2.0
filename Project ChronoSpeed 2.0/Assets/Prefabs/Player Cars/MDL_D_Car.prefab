@@ -3762,6 +3762,8 @@ MonoBehaviour:
   lightCar: 0
   mediumCar: 0
   heavyCar: 0
+  ture: 0
+  lookBackValue: 0
   tt: 1
   maxAmountOfGrip: 3
   minAmountOfGripAtStart: 1
@@ -3769,6 +3771,9 @@ MonoBehaviour:
   rightWheel: {fileID: 5623964022812931296}
   leftWheelSmoke: {fileID: 1885547507397338489}
   rightWheelSmoke: {fileID: 5623964022535615286}
+  minDrag: 0
+  maxDrag: 2
+  boostInDrifting: 55000
   meBoosting: 0
   boostValue: 15000
   nitroboostColor:
@@ -3935,6 +3940,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
     m_ActionName: Movement/PortalLeft[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7564646704286003994}
+        m_TargetAssemblyTypeName: Car_Movement, Assembly-CSharp
+        m_MethodName: LookBehind
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6ce4ddb1-9083-4776-bc87-a3a66b0d76f1
+    m_ActionName: Movement/LookBack[/SwitchProControllerHID/rightStick/down,/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement

@@ -10,7 +10,7 @@ public class OnPlayerSpawn : NetworkBehaviour
     {
         var input = GetComponent<PlayerInput>();
         var lapMan = GetComponent<LapManager>();
-
+        var carvalues = GetComponent<Car_Movement>();
         if (IsOwner)
         {
             MainCamera mCam = FindAnyObjectByType<MainCamera>();
@@ -19,13 +19,14 @@ public class OnPlayerSpawn : NetworkBehaviour
             
             input.enabled = false;
             mCam.rb = bodyRB;
-            mCam.player = cameraGameObject.transform; 
+            mCam.player = cameraGameObject.transform;
+            mCam.carValues = carvalues;
            //bodyRB.transform;
         }
         else
         {
             Destroy(input);
-            Destroy(GetComponent<Car_Movement>());
+            Destroy(carvalues);
             gameObject.tag = "OtherPlayer";
         }
 
