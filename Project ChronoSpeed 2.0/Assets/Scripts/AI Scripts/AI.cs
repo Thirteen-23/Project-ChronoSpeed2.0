@@ -34,7 +34,7 @@ public class AI : MonoBehaviour
     //checking waypoints
     [Header("Waypoints system")]
     public TrackWayPoints waypoints;
-    public List<Transform> nodes = new List<Transform>();
+    public List<Transform> nodes => waypoints.trackNodes;
     [Range(0, 10)] public int distanceOffset;
     [Range(0, 5)] public float steeringForce;
     public Transform currentWaypoint;
