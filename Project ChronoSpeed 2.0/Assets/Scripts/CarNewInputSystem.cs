@@ -100,9 +100,18 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PortalDumpTemp"",
+                    ""name"": ""PortalDump"",
                     ""type"": ""Button"",
                     ""id"": ""a621a170-dfb8-4456-b11e-c30e4e3df7e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Blink"",
+                    ""type"": ""Button"",
+                    ""id"": ""550cf3e5-ba20-4ff1-978a-2b65182111b7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -399,7 +408,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PortalDumpTemp"",
+                    ""action"": ""PortalDump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -410,7 +419,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PortalDumpTemp"",
+                    ""action"": ""PortalDump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -435,6 +444,28 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""PortalLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bb7be11-20fb-4992-85c0-6db6413b2f90"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Blink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eaead825-9846-4c29-b33b-87d612817891"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Blink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -451,7 +482,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_Movement_Handbrake = m_Movement.FindAction("Handbrake", throwIfNotFound: true);
         m_Movement__1stAbility = m_Movement.FindAction("1st - Ability", throwIfNotFound: true);
         m_Movement__2ndAbility = m_Movement.FindAction("2nd - Ability", throwIfNotFound: true);
-        m_Movement_PortalDumpTemp = m_Movement.FindAction("PortalDumpTemp", throwIfNotFound: true);
+        m_Movement_PortalDump = m_Movement.FindAction("PortalDump", throwIfNotFound: true);
+        m_Movement_Blink = m_Movement.FindAction("Blink", throwIfNotFound: true);
         m_Movement_PortalRight = m_Movement.FindAction("PortalRight", throwIfNotFound: true);
         m_Movement_PortalLeft = m_Movement.FindAction("PortalLeft", throwIfNotFound: true);
     }
@@ -523,7 +555,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Handbrake;
     private readonly InputAction m_Movement__1stAbility;
     private readonly InputAction m_Movement__2ndAbility;
-    private readonly InputAction m_Movement_PortalDumpTemp;
+    private readonly InputAction m_Movement_PortalDump;
+    private readonly InputAction m_Movement_Blink;
     private readonly InputAction m_Movement_PortalRight;
     private readonly InputAction m_Movement_PortalLeft;
     public struct MovementActions
@@ -538,7 +571,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Handbrake => m_Wrapper.m_Movement_Handbrake;
         public InputAction @_1stAbility => m_Wrapper.m_Movement__1stAbility;
         public InputAction @_2ndAbility => m_Wrapper.m_Movement__2ndAbility;
-        public InputAction @PortalDumpTemp => m_Wrapper.m_Movement_PortalDumpTemp;
+        public InputAction @PortalDump => m_Wrapper.m_Movement_PortalDump;
+        public InputAction @Blink => m_Wrapper.m_Movement_Blink;
         public InputAction @PortalRight => m_Wrapper.m_Movement_PortalRight;
         public InputAction @PortalLeft => m_Wrapper.m_Movement_PortalLeft;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
@@ -574,9 +608,12 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @_2ndAbility.started += instance.On_2ndAbility;
             @_2ndAbility.performed += instance.On_2ndAbility;
             @_2ndAbility.canceled += instance.On_2ndAbility;
-            @PortalDumpTemp.started += instance.OnPortalDumpTemp;
-            @PortalDumpTemp.performed += instance.OnPortalDumpTemp;
-            @PortalDumpTemp.canceled += instance.OnPortalDumpTemp;
+            @PortalDump.started += instance.OnPortalDump;
+            @PortalDump.performed += instance.OnPortalDump;
+            @PortalDump.canceled += instance.OnPortalDump;
+            @Blink.started += instance.OnBlink;
+            @Blink.performed += instance.OnBlink;
+            @Blink.canceled += instance.OnBlink;
             @PortalRight.started += instance.OnPortalRight;
             @PortalRight.performed += instance.OnPortalRight;
             @PortalRight.canceled += instance.OnPortalRight;
@@ -611,9 +648,12 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @_2ndAbility.started -= instance.On_2ndAbility;
             @_2ndAbility.performed -= instance.On_2ndAbility;
             @_2ndAbility.canceled -= instance.On_2ndAbility;
-            @PortalDumpTemp.started -= instance.OnPortalDumpTemp;
-            @PortalDumpTemp.performed -= instance.OnPortalDumpTemp;
-            @PortalDumpTemp.canceled -= instance.OnPortalDumpTemp;
+            @PortalDump.started -= instance.OnPortalDump;
+            @PortalDump.performed -= instance.OnPortalDump;
+            @PortalDump.canceled -= instance.OnPortalDump;
+            @Blink.started -= instance.OnBlink;
+            @Blink.performed -= instance.OnBlink;
+            @Blink.canceled -= instance.OnBlink;
             @PortalRight.started -= instance.OnPortalRight;
             @PortalRight.performed -= instance.OnPortalRight;
             @PortalRight.canceled -= instance.OnPortalRight;
@@ -647,7 +687,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void OnHandbrake(InputAction.CallbackContext context);
         void On_1stAbility(InputAction.CallbackContext context);
         void On_2ndAbility(InputAction.CallbackContext context);
-        void OnPortalDumpTemp(InputAction.CallbackContext context);
+        void OnPortalDump(InputAction.CallbackContext context);
+        void OnBlink(InputAction.CallbackContext context);
         void OnPortalRight(InputAction.CallbackContext context);
         void OnPortalLeft(InputAction.CallbackContext context);
     }

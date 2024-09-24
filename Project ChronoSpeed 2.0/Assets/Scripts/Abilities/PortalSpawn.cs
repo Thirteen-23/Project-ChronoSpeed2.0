@@ -9,7 +9,6 @@ public class PortalSpawn : MonoBehaviour
     [SerializeField] float portalLast = 60f;
 
     Coroutine curForceReleaseCor;
-    bool useable = true;
 
     Vector3 startPos;
     Quaternion startRot;

@@ -65,12 +65,15 @@ public class AbilityManager : MonoBehaviour
     [Header("Ability Costs Values")]
     public float ability1CostValue;
     public float portalDropCostValue;
+    public float blinkCostValue;
 
     private PortalSpawn tempPortSpawnRef;
+    private Blink tempBlinkRef;
     private void Awake()
     {
         accessCarValues = GetComponent<Car_Movement>();
         tempPortSpawnRef = GetComponent<PortalSpawn>();
+        tempBlinkRef = GetComponent<Blink>();
     }
 
     private void Start()
@@ -315,5 +318,15 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    public void BlinkAbilityUse(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+            tempBlinkRef.BlinkTo();
 
+        else if (context.performed && currentResourceValue >= blinkCostValue)
+        {
+            currentResourceValue -= blinkCostValue;
+            tempBlinkRef.SpawnMirage();
+        }
+    }
 }

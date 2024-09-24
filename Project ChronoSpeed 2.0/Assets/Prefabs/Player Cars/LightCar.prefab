@@ -25528,6 +25528,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
     m_ActionName: Movement/PortalLeft[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 550cf3e5-ba20-4ff1-978a-2b65182111b7
+    m_ActionName: Movement/Blink[/Keyboard/g]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -25575,6 +25579,7 @@ MonoBehaviour:
   m_ResourceMultiplerForDrifting: 5
   ability1CostValue: 50
   portalDropCostValue: 50
+  blinkCostValue: 0
 --- !u!114 &5824188775995575192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25599,7 +25604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1106096736
+  GlobalObjectIdHash: 4086998015
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -27384,7 +27389,7 @@ GameObject:
   - component: {fileID: 8669934048801492835}
   m_Layer: 0
   m_Name: Wing
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27467,7 +27472,7 @@ GameObject:
   - component: {fileID: 8669934048889147088}
   m_Layer: 0
   m_Name: Exhaust Cover
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27551,7 +27556,7 @@ GameObject:
   - component: {fileID: 8669934048908405437}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27648,7 +27653,7 @@ GameObject:
   - component: {fileID: 8669934049049408530}
   m_Layer: 0
   m_Name: 'Rear Upright asembley '
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27731,7 +27736,7 @@ GameObject:
   - component: {fileID: 8669934049122662912}
   m_Layer: 0
   m_Name: 'Uper Wing '
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27814,7 +27819,7 @@ GameObject:
   - component: {fileID: 8669934049185114253}
   m_Layer: 0
   m_Name: Lower wing
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27897,7 +27902,7 @@ GameObject:
   - component: {fileID: 8669934049256822137}
   m_Layer: 0
   m_Name: Cube.002
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27980,7 +27985,7 @@ GameObject:
   - component: {fileID: 8669934049263065820}
   m_Layer: 0
   m_Name: Defuser Planes
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28063,7 +28068,7 @@ GameObject:
   - component: {fileID: 8669934049325772295}
   m_Layer: 0
   m_Name: Groundforce Tunnel
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28146,7 +28151,7 @@ GameObject:
   - component: {fileID: 8669934049403143665}
   m_Layer: 0
   m_Name: Lower Wish bone
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28229,7 +28234,7 @@ GameObject:
   - component: {fileID: 8669934049450058514}
   m_Layer: 0
   m_Name: SuportStrut
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28312,7 +28317,7 @@ GameObject:
   - component: {fileID: 8669934049559547792}
   m_Layer: 0
   m_Name: Cube.001
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28395,7 +28400,7 @@ GameObject:
   - component: {fileID: 8669934049603330340}
   m_Layer: 0
   m_Name: Wing element 1
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28478,7 +28483,7 @@ GameObject:
   - component: {fileID: 8669934049610075758}
   m_Layer: 0
   m_Name: Model.001
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28561,7 +28566,7 @@ GameObject:
   - component: {fileID: 8669934049649763716}
   m_Layer: 0
   m_Name: Wing element 2
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28644,7 +28649,7 @@ GameObject:
   - component: {fileID: 8669934049720211183}
   m_Layer: 0
   m_Name: Exhaust 3
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28727,7 +28732,7 @@ GameObject:
   - component: {fileID: 8669934049735068310}
   m_Layer: 0
   m_Name: Model.030
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28810,7 +28815,7 @@ GameObject:
   - component: {fileID: 8669934049771691072}
   m_Layer: 0
   m_Name: Front Upright asembley
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28958,7 +28963,7 @@ GameObject:
   - component: {fileID: 8669934049919075430}
   m_Layer: 0
   m_Name: Front Floor Planes
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29041,7 +29046,7 @@ GameObject:
   - component: {fileID: 8669934049934489906}
   m_Layer: 0
   m_Name: Exhaust 1
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29124,7 +29129,7 @@ GameObject:
   - component: {fileID: 8669934049937632200}
   m_Layer: 0
   m_Name: Exhaust 2
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29207,7 +29212,7 @@ GameObject:
   - component: {fileID: 8669934049970629876}
   m_Layer: 0
   m_Name: Exhaust 4
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29290,7 +29295,7 @@ GameObject:
   - component: {fileID: 8669934050035411314}
   m_Layer: 0
   m_Name: Push Rod Fl
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29373,7 +29378,7 @@ GameObject:
   - component: {fileID: 8669934050040808781}
   m_Layer: 0
   m_Name: Push Rod Fl.001
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29456,7 +29461,7 @@ GameObject:
   - component: {fileID: 8669934050117693573}
   m_Layer: 0
   m_Name: 'Barge Boards '
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29539,7 +29544,7 @@ GameObject:
   - component: {fileID: 8669934050133192652}
   m_Layer: 0
   m_Name: Body Top Fin
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29622,7 +29627,7 @@ GameObject:
   - component: {fileID: 8669934050222416624}
   m_Layer: 0
   m_Name: DRS Wing
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29705,7 +29710,7 @@ GameObject:
   - component: {fileID: 8669934050229061975}
   m_Layer: 0
   m_Name: Mid Wing
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29788,7 +29793,7 @@ GameObject:
   - component: {fileID: 8669934050342367893}
   m_Layer: 0
   m_Name: Lower Wing Brace
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29871,7 +29876,7 @@ GameObject:
   - component: {fileID: 8669934050629481292}
   m_Layer: 0
   m_Name: SkidBoard
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29954,7 +29959,7 @@ GameObject:
   - component: {fileID: 8669934050668549299}
   m_Layer: 0
   m_Name: Uper Wish bone
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30037,7 +30042,7 @@ GameObject:
   - component: {fileID: 8669934050719027199}
   m_Layer: 0
   m_Name: Front BrakeDucts
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30120,7 +30125,7 @@ GameObject:
   - component: {fileID: 8669934050731772488}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30203,7 +30208,7 @@ GameObject:
   - component: {fileID: 8669934050741674223}
   m_Layer: 0
   m_Name: Push Rod Fl.002
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -16,8 +16,8 @@ public class MultiplayerGameManager : NetworkBehaviour
     [SerializeField] private GameObject leaveGameBtn;
     [SerializeField] private LeadboardPlayerBar[] playerBars;
 
-    
-    Dictionary<ulong, GameObject> playerPrefabRef = new Dictionary<ulong, GameObject>();
+
+    public Dictionary<ulong, GameObject> playerPrefabRef { get; private set;}
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         else
         {
             Singleton = this;
+            playerPrefabRef = new Dictionary<ulong, GameObject>();
         }
     }
     

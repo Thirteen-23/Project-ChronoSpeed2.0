@@ -1928,7 +1928,7 @@ GameObject:
   - component: {fileID: 7222207860091053511}
   m_Layer: 0
   m_Name: MainBody
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3934,6 +3934,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
     m_ActionName: Movement/PortalLeft[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 550cf3e5-ba20-4ff1-978a-2b65182111b7
+    m_ActionName: Movement/Blink[/Keyboard/g]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -3977,6 +3981,7 @@ MonoBehaviour:
   m_ResourceMultiplerForDrifting: 5
   ability1CostValue: 30
   portalDropCostValue: 40
+  blinkCostValue: 0
 --- !u!114 &7564646704286003999
 MonoBehaviour:
   m_ObjectHideFlags: 0

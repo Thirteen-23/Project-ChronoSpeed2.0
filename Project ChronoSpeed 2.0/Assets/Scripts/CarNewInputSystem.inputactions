@@ -78,9 +78,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PortalDumpTemp",
+                    "name": "PortalDump",
                     "type": "Button",
                     "id": "a621a170-dfb8-4456-b11e-c30e4e3df7e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Blink",
+                    "type": "Button",
+                    "id": "550cf3e5-ba20-4ff1-978a-2b65182111b7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -377,7 +386,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PortalDumpTemp",
+                    "action": "PortalDump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -388,7 +397,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PortalDumpTemp",
+                    "action": "PortalDump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -411,6 +420,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PortalLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bb7be11-20fb-4992-85c0-6db6413b2f90",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blink",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eaead825-9846-4c29-b33b-87d612817891",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blink",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

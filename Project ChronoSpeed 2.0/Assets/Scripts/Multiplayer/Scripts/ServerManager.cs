@@ -103,6 +103,7 @@ public class ServerManager : MonoBehaviour
     }
 
     CarPlayerPrefabSpawner cpps;
+    GameObject miragePrefab;
     int startPos = 0;
     private void SceneManager_OnSceneEvent(SceneEvent sceneEvent)
     {
@@ -111,6 +112,7 @@ public class ServerManager : MonoBehaviour
             if (sceneEvent.ClientId == NetworkManager.Singleton.LocalClientId)
             {
                 cpps = FindAnyObjectByType<CarPlayerPrefabSpawner>();
+                
                 startPos = 0;
 
                 for(; startPos < 12 - ClientDic.Count; startPos++)
@@ -142,6 +144,8 @@ public class ServerManager : MonoBehaviour
         else if (sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted)
         {
             //i assume this is why you can call start coroutine on something else, otherwise i dont really know why
+            miragePrefab = FindAnyObjectByType<VFXManager>().FuckingBlinkPrefabCauseUnityNetcodeDoesntLikeMe;
+
             MultiplayerGameManager.Singleton.StartCoroutine(MultiplayerGameManager.Singleton.StartGame());
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManager_OnSceneEvent;
         }
