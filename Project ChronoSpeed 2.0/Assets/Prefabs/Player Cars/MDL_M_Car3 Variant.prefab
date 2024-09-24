@@ -952,7 +952,7 @@ PrefabInstance:
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: drive
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -961,9 +961,19 @@ PrefabInstance:
       objectReference: {fileID: 4619809482695286835}
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: boostValue
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: rightWheel
       value: 
       objectReference: {fileID: 5298306593100357106}
+    - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: downForceValue
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: leftWheelSmoke
@@ -1012,12 +1022,17 @@ PrefabInstance:
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: keyRPMSet.Array.data[0].y
-      value: 100
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: keyRPMSet.Array.data[1].x
+      value: 6000
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: keyRPMSet.Array.data[1].y
-      value: 450
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -1027,7 +1042,7 @@ PrefabInstance:
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: forceBoostForDriftingValue
-      value: 25000
+      value: 55000
       objectReference: {fileID: 0}
     - target: {fileID: 1676145333834778072, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -1340,6 +1355,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 2283301612957351292, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301612957351292, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301612957351292, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2283301612957351294, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: m_TagString
@@ -1360,6 +1390,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: CameraFollow
       objectReference: {fileID: 0}
+    - target: {fileID: 2283301613454059220, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301613454059220, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301613454059220, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2283301613454059222, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: m_TagString
@@ -1375,10 +1420,40 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 2283301613591024047, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301613591024047, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301613591024047, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2283301613991275194, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301614197265845, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301614197265845, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301614197265845, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2283301614197265846, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -1421,7 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 702383818
+  GlobalObjectIdHash: 3009645654
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

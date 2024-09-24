@@ -1352,7 +1352,7 @@ GameObject:
   - component: {fileID: 7222207859781900448}
   m_Layer: 5
   m_Name: UIScreen
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3675,7 +3675,7 @@ MonoBehaviour:
   - {fileID: 7222207859514821776}
   - {fileID: 7222207859685863727}
   centerMass: {fileID: 7222207860339581171}
-  downForceValue: 200
+  downForceValue: 500
   horsePower: 0
   enginePower:
     serializedVersion: 2
@@ -3703,7 +3703,7 @@ MonoBehaviour:
   smoothTime: 0.08
   keyRPMSet:
   - {x: 0, y: 270}
-  - {x: 5500, y: 550}
+  - {x: 5500, y: 800}
   - {x: 6500, y: 0}
   exhaust_Shift: {fileID: 0}
   slip:
@@ -4017,7 +4017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 391577787
+  GlobalObjectIdHash: 3611437128
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

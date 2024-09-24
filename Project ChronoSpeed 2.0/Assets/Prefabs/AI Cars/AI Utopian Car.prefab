@@ -24531,13 +24531,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.02
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &5157027952641657320
 GameObject:
@@ -24593,13 +24593,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &5157027953042436859
 GameObject:
@@ -24690,13 +24690,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.02
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &5157027953494320718
 GameObject:
@@ -24787,13 +24787,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &5157027954289785260
 GameObject:
@@ -25022,8 +25022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transmission: 0
   drive: 1
-  bodyOfCar: {fileID: 7222207860997298039, guid: e073a2ceb3c32674d947a311420c006e,
-    type: 3}
+  bodyOfCar: {fileID: 5727530261080087966}
   wheels4:
   - {fileID: 5157027954147599677}
   - {fileID: 5157027952641657326}
@@ -25062,9 +25061,9 @@ MonoBehaviour:
   gearNum: 0
   smoothTime: 0.07
   keyRPMSet:
-  - {x: 0, y: 200}
-  - {x: 5500, y: 400}
-  - {x: 6000, y: 0}
+  - {x: 0, y: 250}
+  - {x: 7000, y: 1000}
+  - {x: 8000, y: 0}
   isBreaking: 0
   ifHandBraking: 0
   handBrakefrictionMulitplier: 2
@@ -25873,9 +25872,9 @@ MeshCollider:
   m_GameObject: {fileID: 8669934048908405439}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2959467708922500008, guid: 3c1f17abd78c43244bcedf62a95f4e6b, type: 3}
 --- !u!1 &8669934049049408540

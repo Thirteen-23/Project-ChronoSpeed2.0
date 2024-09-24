@@ -759,8 +759,8 @@ public class Car_Movement : MonoBehaviour
                         }
                         if (checkingTerrain.collider.CompareTag("Tarmac"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -769,8 +769,8 @@ public class Car_Movement : MonoBehaviour
                         }
                         else if (checkingTerrain.collider.CompareTag("SideWalk"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -798,8 +798,8 @@ public class Car_Movement : MonoBehaviour
                         }
                         else if (checkingTerrain.collider.CompareTag("SideWalk"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;

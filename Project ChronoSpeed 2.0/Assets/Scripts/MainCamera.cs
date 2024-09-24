@@ -55,7 +55,7 @@ public class MainCamera : MonoBehaviour
     private void CameraUpdate()
     {
         Vector3 playerForward = (rb.velocity + player.transform.forward).normalized;
-        transform.position = Vector3.Lerp(player.position, player.position + player.TransformVector(offset) + playerForward * (-1f), speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(player.position, player.position + player.TransformVector(offset) + playerForward /** (-1f)*/, speed * Time.deltaTime);
         transform.LookAt(player);
 
        
