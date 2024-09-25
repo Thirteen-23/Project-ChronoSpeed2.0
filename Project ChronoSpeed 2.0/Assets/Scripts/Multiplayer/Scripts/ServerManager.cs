@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
@@ -125,6 +126,7 @@ public class ServerManager : MonoBehaviour
                     
                         aiObject = Instantiate(cpps.PresentAiCar, cpps.startingPositions[startPos]);
 
+                    miragePrefab = FindAnyObjectByType<VFXManager>().FuckingBlinkPrefabCauseUnityNetcodeDoesntLikeMe;
                     aiObject.GetComponent<NetworkObject>().Spawn();
                     MultiplayerGameManager.Singleton.AddSpawnedPlayer(aiObject.GetComponentInChildren<Rigidbody>().gameObject, (ulong)(1000 + startPos));
                 }
@@ -138,13 +140,18 @@ public class ServerManager : MonoBehaviour
                     MultiplayerGameManager.Singleton.AddSpawnedPlayer(playerObject, data.ClientId);
                     playerObject.GetComponent<NetworkObject>().SpawnAsPlayerObject(data.ClientId);
                     startPos++;
+
+                    var mirage = Instantiate(miragePrefab);
+                    mirage.GetComponent<NetworkObject>().SpawnWithOwnership(data.ClientId);
+
+                    
                 }
             }
         }
         else if (sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted)
         {
             //i assume this is why you can call start coroutine on something else, otherwise i dont really know why
-            miragePrefab = FindAnyObjectByType<VFXManager>().FuckingBlinkPrefabCauseUnityNetcodeDoesntLikeMe;
+            
 
             MultiplayerGameManager.Singleton.StartCoroutine(MultiplayerGameManager.Singleton.StartGame());
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManager_OnSceneEvent;

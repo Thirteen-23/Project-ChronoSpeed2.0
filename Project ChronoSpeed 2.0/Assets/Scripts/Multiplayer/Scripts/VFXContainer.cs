@@ -6,7 +6,6 @@ using UnityEngine.VFX;
 public class VFXContainer : MonoBehaviour
 {
     [SerializeField] GameObject elecArcPrefab;
-    [SerializeField] Transform elecArcTarget;
 
     [HideInInspector] public VisualEffect electricArc;
 

@@ -99,6 +99,6 @@ public class Blink : MonoBehaviour
     {
         currentMirage = curMir;
 
-        GetComponent<VFXContainer>().electricArc.transform.transform.parent = currentMirage.transform;
+        GetComponent<VFXContainer>().electricArc.transform.GetChild(0).parent = currentMirage.transform;
     }
 }

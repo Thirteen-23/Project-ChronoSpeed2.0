@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Mirage : MonoBehaviour
+public class Mirage : NetworkBehaviour
 {
     public Blink blParent;
 
@@ -17,7 +18,6 @@ public class Mirage : MonoBehaviour
 
         blParent.BreakMirage();
         Disapate();
-        Destroy(gameObject);
     }
 
     public void Disapate()
@@ -28,5 +28,19 @@ public class Mirage : MonoBehaviour
     private void Update()
     {
         transform.position = transform.position + transform.forward * Time.deltaTime;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if(IsOwner)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            transform.parent = player.transform;
+            transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity); 
+            
+            blParent = player.GetComponent<Blink>();
+            player.GetComponent<Blink>().SetMirage(this);
+        }
     }
 }
