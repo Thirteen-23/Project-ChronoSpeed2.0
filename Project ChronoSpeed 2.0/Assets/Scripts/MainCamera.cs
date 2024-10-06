@@ -11,6 +11,10 @@ public class MainCamera : MonoBehaviour
     // value to change the position of the camera
     public Vector3 offset;
 
+    // banking of the camera values
+    public float speedConditionForBanking = 150f;
+  
+
     // used for looking behind the player
     public Vector3 reversOffset;
     public float speed;
@@ -58,10 +62,25 @@ public class MainCamera : MonoBehaviour
         {
             transform.position = Vector3.Lerp(player.position, player.position + player.TransformVector(reversOffset) + playerForward /** (-1f)*/, speed * Time.deltaTime);
             transform.LookAt(player);
+            if(carValues.currentSpeed > speedConditionForBanking)
+            {
+              
+                // car is turning right
+                if (carValues.steeringDamping > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, 30, Time.deltaTime));
+                }
+                if (carValues.steeringDamping < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, -30, Time.deltaTime));
+                }
+
+            }
         }
 
     }
 
+   
    
 
 }

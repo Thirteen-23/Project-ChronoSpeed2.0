@@ -94,7 +94,7 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] float rearBrakeForce;
     private float steering_Value;
     /// make the steering smoother when useing a  keyboard 
-    private float steeringDamping;
+    public float steeringDamping;
     [SerializeField] float smoothTransitionSpeed;
     [SerializeField] float smoothTransitionSpeedForAcceleration; 
     private float brakes_value;
@@ -237,7 +237,7 @@ public class Car_Movement : MonoBehaviour
                 {
                     // wheels torque equal to engine Rpm * gearbox * final drive ratio and input from player
                     wheels4[i].motorTorque = totalPowerInCar  * 4 / 4;
-                    Debug.Log(wheels4[i].motorTorque);
+                    //Debug.Log(wheels4[i].motorTorque);
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)

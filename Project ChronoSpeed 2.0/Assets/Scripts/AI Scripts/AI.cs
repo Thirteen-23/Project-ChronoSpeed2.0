@@ -1,5 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+public enum AIMouth
+{
+    racing,
+    slowing_Down,
+    speeding_Up,
+    reversing
+}
 
 
 public class AI : MonoBehaviour
@@ -11,6 +18,13 @@ public class AI : MonoBehaviour
         normal,
         hard
     }
+    public enum AI_Brain
+    {
+        driving,
+        HitWall,
+
+    }
+    public AIMouth aiSpeaking = AIMouth.racing;
     public aI_Difficulty difficultness;
     [SerializeField] Rigidbody rb;
     [Header("Adjust the sensor for AI distance")]
@@ -77,6 +91,7 @@ public class AI : MonoBehaviour
         changingDistanceOffset();
         CheckForUpdatedWaypoints();
         AISteer();
+        AIState();
 
     }
 
@@ -202,12 +217,12 @@ public class AI : MonoBehaviour
         }
 
         if (difference.magnitude > maximumWayPointApproachThreshold)
-        { 
-             //rb.transform.position = Vector3.Lerp(rb.transform.position, nodes[currentWaypointIndex-1].transform.position, Time.deltaTime);
-           // rb.transform.position = nodes[currentWaypointIndex - 1].transform.position;
-           // rb.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
+        {
+            //rb.transform.position = Vector3.Lerp(rb.transform.position, nodes[currentWaypointIndex-1].transform.position, Time.deltaTime);
+            // rb.transform.position = nodes[currentWaypointIndex - 1].transform.position;
+            // rb.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
 
-           
+
             float distance = Mathf.Infinity;
 
             for (int i = 0; i < nodes.Count; i++)
@@ -220,7 +235,7 @@ public class AI : MonoBehaviour
                     distance = currentDistance;
 
                 }
-              
+
             }
         }
     }
@@ -249,7 +264,7 @@ public class AI : MonoBehaviour
         {
             case aI_Difficulty.raceStart:
                 acceration_Value = 0f;
-                    break;
+                break;
             case aI_Difficulty.easy:
 
                 acceration_Value = 1f;
@@ -388,5 +403,59 @@ public class AI : MonoBehaviour
 
     }
 
+    private void AIState()
+    {
+        switch(aiSpeaking)
+        {
+            case AIMouth.racing:
 
+                carAI.brakeDampening = 0;
+
+                break;
+
+
+            case AIMouth.speeding_Up:
+
+                break;
+            case AIMouth.slowing_Down:
+
+                Debug.Log("i sense in front");
+                carAI.brakeDampening = 0.5f;
+
+                break;
+            case AIMouth.reversing:
+
+                break;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("AI"))
+        {
+            aiSpeaking = AIMouth.slowing_Down;
+        }
+
+
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("AI"))
+        {
+            aiSpeaking = AIMouth.slowing_Down;
+            Debug.Log("i sense in front");
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("AI"))
+        {
+            aiSpeaking = AIMouth.racing; 
+
+        }
+
+
+    }
 }
