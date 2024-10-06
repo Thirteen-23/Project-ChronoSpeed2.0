@@ -1,11 +1,25 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MainCamera : MonoBehaviour
 {
+    // getting values from car
     public Transform player;
     public Rigidbody rb;
+
+    // value to change the position of the camera
     public Vector3 offset;
+
+    // banking of the camera values
+    public float speedConditionForBanking = 150f;
+  
+
+    // used for looking behind the player
+    public Vector3 reversOffset;
     public float speed;
+    public Car_Movement carValues; 
+   
   /// <summary>
   /// Hopefully a camerashake at highspeeds
   /// </summary>
@@ -21,7 +35,6 @@ public class MainCamera : MonoBehaviour
         if(camtransform == null)
         {
             camtransform = GetComponent(typeof(Transform)) as Transform;
-            
         }
         originalPos = camtransform.localPosition;
         originalShakeDuration = shakeDuration;
@@ -34,20 +47,7 @@ public class MainCamera : MonoBehaviour
     void FixedUpdate()
     {
         CameraUpdate();
-        if(itsShaking == true)
-        {
-            if(originalShakeDuration > 0)
-            {
-                camtransform.localPosition = Vector3.Lerp(camtransform.localPosition, originalPos + Random.insideUnitSphere * shakeAmount, Time.deltaTime * 3);
-                shakeDuration -= Time.deltaTime * descreasfactor;
-            }
-            else
-            {
-                shakeDuration = originalShakeDuration;
-                camtransform.localPosition = originalPos;
-                itsShaking = false; 
-            }
-        }
+       
     }
 
 
@@ -55,12 +55,32 @@ public class MainCamera : MonoBehaviour
     private void CameraUpdate()
     {
         Vector3 playerForward = (rb.velocity + player.transform.forward).normalized;
-        transform.position = Vector3.Lerp(player.position, player.position + player.TransformVector(offset) + playerForward * (-1f), speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(player.position, player.position + player.TransformVector(offset) + playerForward /** (-1f)*/, speed * Time.deltaTime);
         transform.LookAt(player);
-
-       
         
+        if(carValues.ture == true)
+        {
+            transform.position = Vector3.Lerp(player.position, player.position + player.TransformVector(reversOffset) + playerForward /** (-1f)*/, speed * Time.deltaTime);
+            transform.LookAt(player);
+            if(carValues.currentSpeed > speedConditionForBanking)
+            {
+              
+                // car is turning right
+                if (carValues.steeringDamping > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, 30, Time.deltaTime));
+                }
+                if (carValues.steeringDamping < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, -30, Time.deltaTime));
+                }
+
+            }
+        }
+
     }
 
+   
+   
 
 }

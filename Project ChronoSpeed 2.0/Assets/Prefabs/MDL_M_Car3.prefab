@@ -1778,7 +1778,7 @@ MonoBehaviour:
   maxSpeed: 300
   currentSpeed: 0
   acceration_Value: 0
-  AccerationDamping: 0
+  AccelerationDamping: 0
   idleRPM: 800
   maxRPM: 5500
   minRPM: 2500
@@ -1816,7 +1816,9 @@ MonoBehaviour:
   allBrakeForce: 100000
   frontBrakeForce: 0
   rearBrakeForce: 0
+  steeringDamping: 0
   smoothTransitionSpeed: 20
+  smoothTransitionSpeedForAcceleration: 0
   turnSpeed: 0
   steeringCurve:
     serializedVersion: 2
@@ -1851,11 +1853,25 @@ MonoBehaviour:
   rightTrail: {fileID: 472545647}
   forceBoostForDriftingValue: 20000
   findme: 0
+  lightCar: 0
+  mediumCar: 0
+  heavyCar: 0
+  ture: 0
+  lookBackValue: 0
   tt: 0
   maxAmountOfGrip: 0
   minAmountOfGripAtStart: 0
+  leftWheel: {fileID: 0}
+  rightWheel: {fileID: 0}
+  leftWheelSmoke: {fileID: 0}
+  rightWheelSmoke: {fileID: 0}
+  minDrag: 0
+  maxDrag: 4
+  boostInDrifting: 25000
   meBoosting: 0
   boostValue: 3000
+  nitroboostColor: []
+  exhaustVFX: []
 --- !u!114 &1676145333834778073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1962,6 +1978,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4d36641f-5065-4722-ab90-c9e8f2f19928
     m_ActionName: Movement/2nd - Ability[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a621a170-dfb8-4456-b11e-c30e4e3df7e5
+    m_ActionName: Movement/PortalDumpTemp[/Keyboard/f,/DualSenseGamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 331f4dc1-9314-4af2-84e6-34de7d649f9a
+    m_ActionName: Movement/PortalRight[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
+    m_ActionName: Movement/PortalLeft[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ce4ddb1-9083-4776-bc87-a3a66b0d76f1
+    m_ActionName: Movement/LookBack[/DualSenseGamepadHID/rightShoulder,/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -1997,9 +2029,18 @@ MonoBehaviour:
   readyColor: {r: 0.44591236, g: 1, b: 0, a: 1}
   activeColor: {r: 0.13384008, g: 0, b: 1, a: 1}
   cooldownColor: {r: 1, g: 0, b: 0, a: 1}
-  AbilityIndex: 0
-  chosenAbility: 0
-  testAbility: {fileID: 0}
+  m_CarClass: 0
+  accessCarValues: {fileID: 0}
+  maBar: {fileID: 0}
+  currentResourceValue: 0
+  minResourceValue: 0
+  maxResourceValue: 0
+  m_ResoureceGatherCheck: 0
+  m_ResourceMultiplerForSpeed: 0
+  m_SpeedThreshholdForResource: 0
+  m_ResourceMultiplerForDrifting: 5
+  ability1CostValue: 0
+  portalDropCostValue: 0
 --- !u!114 &643231845828563929
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -112,7 +112,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         portalManager.SpawnPortal(firstPortPos, secondPortPos, firstPortRot, secondPortRot, portalLast);
     }
 
-
+    
     [Rpc(SendTo.ClientsAndHost)]
     public void CountDownRpc(int time, bool RaceStart)
     {
@@ -129,9 +129,11 @@ public class MultiplayerGameManager : NetworkBehaviour
             if (IsServer)
             {
                 GameObject[] AIs = GameObject.FindGameObjectsWithTag("AI");
+               
                 foreach (var curAI in AIs)
                 {
-                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.hard;
+
+                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.hard; 
                 }
             }
         }
