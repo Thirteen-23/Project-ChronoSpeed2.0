@@ -24984,6 +24984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15261bb194bac64ea7331f4f72b492f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiSpeaking: 0
   difficultness: 0
   rb: {fileID: 5727530261080087966}
   range: 5
@@ -25064,7 +25065,7 @@ MonoBehaviour:
   - {x: 0, y: 250}
   - {x: 7000, y: 1000}
   - {x: 8000, y: 0}
-  isBreaking: 0
+  isBraking: 0
   ifHandBraking: 0
   handBrakefrictionMulitplier: 2
   whenNotDrifting: 5
@@ -25793,7 +25794,7 @@ GameObject:
   - component: {fileID: 8669934048908405437}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: AIBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

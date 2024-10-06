@@ -431,8 +431,9 @@ public class AI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("AI"))
+        if (other.CompareTag("AIBody"))
         {
+            Debug.Log("i sense in front");
             aiSpeaking = AIMouth.slowing_Down;
         }
 
@@ -440,7 +441,7 @@ public class AI : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("AI"))
+        if (other.CompareTag("AIBody"))
         {
             aiSpeaking = AIMouth.slowing_Down;
             Debug.Log("i sense in front");
@@ -450,7 +451,7 @@ public class AI : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("AI"))
+        if (other.CompareTag("AIBody"))
         {
             aiSpeaking = AIMouth.racing; 
 
