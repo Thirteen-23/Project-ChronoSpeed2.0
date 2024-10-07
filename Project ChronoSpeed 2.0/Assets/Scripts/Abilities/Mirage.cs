@@ -27,7 +27,7 @@ public class Mirage : NetworkBehaviour
 
     private void Update()
     {
-        transform.position = transform.position + transform.forward * Time.deltaTime;
+        transform.localPosition += new Vector3(0,0,1) * 10 * Time.deltaTime;
     }
 
     public override void OnNetworkSpawn()

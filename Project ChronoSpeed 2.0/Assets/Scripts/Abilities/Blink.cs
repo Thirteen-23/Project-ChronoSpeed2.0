@@ -24,7 +24,7 @@ public class Blink : MonoBehaviour
 
         //Maybe do a little 0.5 second charge sound
         currentMirage.enabled = true;
-        currentMirage.transform.position = Vector3.zero;
+        currentMirage.transform.localPosition = new Vector3(0,0,5);
         chargeCoroutine = StartCoroutine(ChargeVisual());
         //tell the server
     }
@@ -32,7 +32,7 @@ public class Blink : MonoBehaviour
     public void BreakMirage()
     {
         m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, true);
-
+        Debug.Log("Breaked");
         StopCoroutine(chargeCoroutine);
         dischargeCoroutine = StartCoroutine(DischargeVisual());
         currentMirage.enabled = false;
@@ -99,6 +99,11 @@ public class Blink : MonoBehaviour
     {
         currentMirage = curMir;
 
-        GetComponent<VFXContainer>().electricArc.transform.GetChild(0).parent = currentMirage.transform;
+        Transform electricTarget = GetComponent<VFXContainer>().electricArc.transform.GetChild(0);
+        electricTarget.parent = currentMirage.transform;
+
+        currentMirage.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        electricTarget.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        
     }
 }
