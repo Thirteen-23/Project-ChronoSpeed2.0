@@ -12,7 +12,7 @@ public class Mirage : MonoBehaviour
         if (blParent == null)
             return;
 
-        if (other.CompareTag("RigidBodyObj") || other.CompareTag("CarBody") || other.CompareTag("ground"))
+        if (!other.CompareTag("Wall"))
             return;
 
         blParent.BreakMirage();
