@@ -28,7 +28,7 @@ public class Blink : MonoBehaviour
         currentMirage.enabled = true;
         mirageCol.enabled = true;
 
-        currentMirage.transform.localPosition = new Vector3(0,0.75f, 2.5f);
+        currentMirage.transform.localPosition = new Vector3(0,1, 2.5f);
         chargeCoroutine = StartCoroutine(ChargeVisual());
         //tell the server
     }
@@ -68,8 +68,8 @@ public class Blink : MonoBehaviour
 
         //Do sound
 
-        transform.position = currentMirage.transform.position - new Vector3(0,0.75f,0);
-        currentMirage.transform.localPosition = new Vector3(0, 0.75f, 2.5f);
+        transform.position = currentMirage.transform.position - new Vector3(0,1,0);
+        currentMirage.transform.localPosition = new Vector3(0, 1, 2.5f);
         currentMirage.enabled = false;
         currentMirage.enabled = false;
     }
