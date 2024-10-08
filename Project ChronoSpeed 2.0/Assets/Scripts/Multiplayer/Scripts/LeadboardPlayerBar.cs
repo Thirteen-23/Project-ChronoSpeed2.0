@@ -10,6 +10,8 @@ public class LeadboardPlayerBar : MonoBehaviour
 
     [SerializeField] public TMP_Text raceCompletionText;
 
+    [SerializeField] public TMP_Text placementText;
+
     [SerializeField] public Transform YouSign;
 
     public void SetFinishedTime(bool setTo)
@@ -20,9 +22,7 @@ public class LeadboardPlayerBar : MonoBehaviour
 
     public void SetYouSign(bool setTo)
     {
-        foreach (var image in YouSign.GetComponentsInChildren<Image>())
-        {
-            image.enabled = setTo;
-        }
+        YouSign.GetComponentInChildren<Image>().enabled = setTo;
+        YouSign.GetComponentInChildren<TMP_Text>().enabled = setTo;
     }
 }

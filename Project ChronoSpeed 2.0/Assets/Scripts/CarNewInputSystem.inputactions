@@ -18,7 +18,7 @@
                     "name": "Steering",
                     "type": "Value",
                     "id": "7f7af0e4-e3b6-4be7-9cf1-431a74dd75f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -78,9 +78,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PortalDumpTemp",
+                    "name": "PortalDump",
                     "type": "Button",
                     "id": "a621a170-dfb8-4456-b11e-c30e4e3df7e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Blink",
+                    "type": "Button",
+                    "id": "550cf3e5-ba20-4ff1-978a-2b65182111b7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -173,20 +182,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Steering/Keyboard",
-                    "id": "31a6d4b0-69f7-492b-9805-7507c2c14e38",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Steering",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "Gamepad",
                     "id": "2ab2bad3-bf19-44b8-8d74-437ea9eaa581",
-                    "path": "1DAxis",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "AxisDeadzone",
                     "groups": "",
@@ -195,29 +193,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "a5cb45e9-c2de-4324-93ed-1b67b3879438",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Steering",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "59a69bc5-13c3-4dea-a7e4-c803e4d31a00",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Steering",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Negative",
+                    "name": "left",
                     "id": "7da83726-870d-49e2-b834-74b7ed997df4",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
@@ -228,7 +204,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Positive",
+                    "name": "right",
                     "id": "eaa6b72a-ec9e-47b0-9f56-01dd21f3275e",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
@@ -237,6 +213,39 @@
                     "action": "Steering",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "up",
+                    "id": "713dcf21-e476-4700-8ba2-ef08057020f4",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "38593d63-4143-4a0d-af68-c4fee0a6fb99",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8a4699a7-4cb4-473c-87a7-cfde56546f61",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -377,7 +386,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PortalDumpTemp",
+                    "action": "PortalDump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f53d5a7-660c-4596-b1d8-07103f2d6521",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PortalDump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -400,6 +420,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PortalLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bb7be11-20fb-4992-85c0-6db6413b2f90",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blink",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eaead825-9846-4c29-b33b-87d612817891",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blink",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

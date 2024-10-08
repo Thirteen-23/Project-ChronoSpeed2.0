@@ -4357,6 +4357,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carDatabase: {fileID: 11400000, guid: e231d6ca82b95b440a91a78f4752de52, type: 2}
+  UtopiaAiCar: {fileID: 5727530261080087962, guid: be904ef7d21a8ea49848f41e630a4256,
+    type: 3}
+  PresentAiCar: {fileID: 3975989593886958020, guid: 29735ffcebf067c4d9ab0cf9b8b65022,
+    type: 3}
+  DystopiaAiCar: {fileID: 7564646704286003995, guid: e073a2ceb3c32674d947a311420c006e,
+    type: 3}
   startingPositions:
   - {fileID: 539366573}
   - {fileID: 114484636}
@@ -4385,7 +4391,7 @@ MonoBehaviour:
   waypoints: {fileID: 919226509}
   TrackedCars: []
   FinishedCars: []
-  maxLaps: 3
+  maxLaps: 1
   startTime: 0
   changingSpeedToAccerate: 300
   changingSpeedToSlowDown: 200
@@ -40569,11 +40575,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 797035333294610182, guid: b2ba7c5bdd2b12a4ea1e500d6bb18d04,
-        type: 3}
-      propertyPath: m_text
-      value: 'Player: 0'
       objectReference: {fileID: 0}
     - target: {fileID: 797035333873557302, guid: b2ba7c5bdd2b12a4ea1e500d6bb18d04,
         type: 3}

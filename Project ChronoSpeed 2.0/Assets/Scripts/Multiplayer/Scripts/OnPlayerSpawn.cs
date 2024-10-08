@@ -18,7 +18,7 @@ public class OnPlayerSpawn : NetworkBehaviour
 
             input.enabled = false;
             mCam.rb = bodyRB;
-            mCam.player = bodyRB.transform;
+            mCam.player = transform.Find("CameraFollow");
         }
         else
         {

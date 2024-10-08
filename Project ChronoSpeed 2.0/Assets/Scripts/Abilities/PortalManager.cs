@@ -6,7 +6,6 @@ public class PortalManager : MonoBehaviour
 {
     [SerializeField] private GameObject portalStandIn;
     [SerializeField] private GameObject portal;
-    [SerializeField] private float timePortLasts;
 
     List<GameObject> portalStandInList = new List<GameObject>();
     public void SpawnPortalStandIn(Vector3 position, quaternion rotation)

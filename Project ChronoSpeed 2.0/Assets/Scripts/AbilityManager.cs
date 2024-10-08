@@ -1,4 +1,3 @@
-using OpenCover.Framework.Model;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -48,7 +47,6 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Resource Meter Values")]
     ResourceState resourceState = ResourceState.charging;
-    ResourceState resourceState2 = ResourceState.charging;
     public Class m_CarClass;
     public Car_Movement accessCarValues;
     public Slider maBar;
@@ -63,16 +61,19 @@ public class AbilityManager : MonoBehaviour
 
     //check for Utopia Car speed for resource increase
     public float m_SpeedThreshholdForResource;
-    public float m_ResourceMultiplerForDrifting = 5;
+    public float m_ResourceMultiplerForDrifting = 5; 
     [Header("Ability Costs Values")]
     public float ability1CostValue;
     public float portalDropCostValue;
+    public float blinkCostValue;
 
     private PortalSpawn tempPortSpawnRef;
+    private Blink tempBlinkRef;
     private void Awake()
     {
         accessCarValues = GetComponent<Car_Movement>();
         tempPortSpawnRef = GetComponent<PortalSpawn>();
+        tempBlinkRef = GetComponent<Blink>();
     }
 
     private void Start()
@@ -108,6 +109,31 @@ public class AbilityManager : MonoBehaviour
                 break;
             case Class.Medium:
                 m_ResoureceGatherCheck = accessCarValues.mediumCar;
+                if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
+                {
+                    if (currentResourceValue < maxResourceValue)
+
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                    }
+
+                }
+                else if (m_ResoureceGatherCheck == true)
+                {
+                    if (currentResourceValue < maxResourceValue)
+
+                    {
+                        currentResourceValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                    }
+                    else if (currentResourceValue == maxResourceValue)
+                    {
+                        currentResourceValue = maxResourceValue;
+                    }
+                }
+                else if (currentResourceValue == maxResourceValue)
+                {
+                    currentResourceValue = maxResourceValue;
+                }
                 break;
             case Class.Heavy:
                 m_ResoureceGatherCheck = accessCarValues.heavyCar;
@@ -177,8 +203,8 @@ public class AbilityManager : MonoBehaviour
                 }
         }
     }
-
-
+       
+    
     private void abilityCoolDownAbility()
     {
         switch (state)
@@ -267,12 +293,12 @@ public class AbilityManager : MonoBehaviour
         if (context.started)
         {
             abilityUsed = true;
-            //  Debug.Log("pressed");
+          //  Debug.Log("pressed");
         }
         if (context.performed)
         {
             abilityUsed = true;
-            // Debug.Log("holding");
+           // Debug.Log("holding");
         }
         if (context.canceled)
         {
@@ -285,12 +311,22 @@ public class AbilityManager : MonoBehaviour
         if (context.canceled)
             tempPortSpawnRef.PortalDrop(context);
 
-        else if (context.performed && currentResourceValue >= portalDropCostValue)
+        else if(context.performed && currentResourceValue >= portalDropCostValue)
         {
             currentResourceValue -= portalDropCostValue;
             tempPortSpawnRef.PortalDrop(context);
         }
     }
 
+    public void BlinkAbilityUse(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+            tempBlinkRef.BlinkTo();
 
+        else if (context.performed && currentResourceValue >= blinkCostValue)
+        {
+            currentResourceValue -= blinkCostValue;
+            tempBlinkRef.SpawnMirage();
+        }
+    }
 }

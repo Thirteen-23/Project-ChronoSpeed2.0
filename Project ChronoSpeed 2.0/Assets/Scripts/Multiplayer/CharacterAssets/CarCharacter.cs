@@ -6,6 +6,7 @@ public class CarCharacter : ScriptableObject
 {
     [SerializeField] private int id = -1;
     [SerializeField] private string carName = "New Display Name";
+    [TextArea(15, 20)]
     [SerializeField] private string carDescription = "New Description";
     [SerializeField] private Image carIcon;
     [SerializeField] private GameObject carModel;

@@ -16,8 +16,8 @@ public class MultiplayerGameManager : NetworkBehaviour
     [SerializeField] private GameObject leaveGameBtn;
     [SerializeField] private LeadboardPlayerBar[] playerBars;
 
-    
-    Dictionary<ulong, GameObject> playerPrefabRef = new Dictionary<ulong, GameObject>();
+
+    public Dictionary<ulong, GameObject> playerPrefabRef { get; private set;}
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         else
         {
             Singleton = this;
+            playerPrefabRef = new Dictionary<ulong, GameObject>();
         }
     }
     
@@ -83,7 +84,7 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public IEnumerator StartGame()
     {
-
+        StartCoroutine(ShareTrackedCars());
         //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
         for (int i = 5; i > -1; i--)
         {
@@ -91,7 +92,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             yield return new WaitForSeconds(1);
         }
         CountDownRpc(0, true);
-        StartCoroutine(ShareTrackedCars());
+        
         lapManager.startTime = Time.timeSinceLevelLoad;
     }
 
@@ -125,6 +126,15 @@ public class MultiplayerGameManager : NetworkBehaviour
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();
             input.enabled = true;
+
+            if (IsServer)
+            {
+                GameObject[] AIs = GameObject.FindGameObjectsWithTag("AI");
+                foreach (var curAI in AIs)
+                {
+                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.hard;
+                }
+            }
         }
         else startCountdownText.enabled = true;
     }
@@ -142,6 +152,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             int trackingCarsI = i - finishedCars.Length;
             if (i < finishedCars.Length)
             {
+                playerBars[i].placementText.text = finishedCars[i].Place.ToString();
                 playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
                 string timeInterval = TimeSpan.FromSeconds(finishedCars[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
 
@@ -151,6 +162,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             }
             else if (trackingCarsI < trackingCars.Length)
             {
+                playerBars[i].placementText.text = trackingCars[trackingCarsI].Place.ToString();
                 playerBars[i].lapCountText.text = $"{trackingCars[trackingCarsI].CurLap}";
                 playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
                 playerBars[i].raceCompletionText.text = $"{trackingCars[trackingCarsI].raceCompletedIn}";
