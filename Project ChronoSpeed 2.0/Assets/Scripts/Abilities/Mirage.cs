@@ -1,7 +1,8 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class Mirage : NetworkBehaviour
+public class Mirage : MonoBehaviour
 {
     public Blink blParent;
 
@@ -13,8 +14,9 @@ public class Mirage : NetworkBehaviour
         if (blParent == null)
             return;
 
-        if (!other.CompareTag("Wall"))
-            return;
+        if (!other.CompareTag("walls"))
+            if(!other.CompareTag("ground")) 
+                return;
 
         blParent.BreakMirage();
         Disapate();
@@ -30,17 +32,12 @@ public class Mirage : NetworkBehaviour
         transform.localPosition += new Vector3(0,0,1) * 10 * Time.deltaTime;
     }
 
-    public override void OnNetworkSpawn()
+    private void OnTransformParentChanged()
     {
-        if(IsOwner)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject elecArc = Instantiate(GetComponentInParent<VFXContainer>().elecArcPrefab, Vector3.zero, Quaternion.identity);
+        GetComponentInParent<VFXContainer>().electricArc = elecArc.GetComponent<VisualEffect>();
 
-            transform.parent = player.transform;
-            transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity); 
-            
-            blParent = player.GetComponent<Blink>();
-            player.GetComponent<Blink>().SetMirage(this);
-        }
+        blParent = GetComponentInParent<Blink>();
+        blParent.SetMirage(this);
     }
 }

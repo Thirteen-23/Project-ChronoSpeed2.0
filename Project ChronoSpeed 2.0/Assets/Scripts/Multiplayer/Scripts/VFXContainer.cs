@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 public class VFXContainer : MonoBehaviour
 {
-    [SerializeField] GameObject elecArcPrefab;
+    [SerializeField] public GameObject elecArcPrefab;
 
     [HideInInspector] public VisualEffect electricArc;
 
@@ -17,9 +17,5 @@ public class VFXContainer : MonoBehaviour
                 electricArc.enabled = setTo;
                 break;
         }
-    }
-    private void Awake()
-    {
-        electricArc = Instantiate(elecArcPrefab, Vector3.zero, Quaternion.identity).GetComponent<VisualEffect>();
     }
 }

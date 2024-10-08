@@ -144,14 +144,23 @@ public class ServerManager : MonoBehaviour
                     var mirage = Instantiate(miragePrefab);
                     mirage.GetComponent<NetworkObject>().SpawnWithOwnership(data.ClientId);
 
-                    
+                    mirage.transform.parent = playerObject.transform;
                 }
             }
+        }
+        else if(sceneEvent.SceneEventType == SceneEventType.Synchronize)
+        {
+            if (ClientDic.TryGetValue(sceneEvent.ClientId, out ClientData data))
+            {
+
+                //NetworkManager.Singleton.SpawnManager.SpawnedObjects[data.ClientId].transform;
+            }
+            
         }
         else if (sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted)
         {
             //i assume this is why you can call start coroutine on something else, otherwise i dont really know why
-            
+
 
             MultiplayerGameManager.Singleton.StartCoroutine(MultiplayerGameManager.Singleton.StartGame());
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManager_OnSceneEvent;

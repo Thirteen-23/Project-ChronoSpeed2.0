@@ -11,6 +11,9 @@ public class OnAISpawn : NetworkBehaviour
     {
         if (!IsServer)
         {
+            Destroy(GetComponent<AI>());
+            Destroy(GetComponent<AI_Controls>());
+
             base.OnNetworkSpawn();
             return;
         }
@@ -18,7 +21,7 @@ public class OnAISpawn : NetworkBehaviour
         aiRef.waypoints = FindAnyObjectByType<TrackWayPoints>();
         aiRef.nodes = aiRef.waypoints.trackNodes;
         aiRef.valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
-        
+        base.OnNetworkSpawn();
     }
 
 }

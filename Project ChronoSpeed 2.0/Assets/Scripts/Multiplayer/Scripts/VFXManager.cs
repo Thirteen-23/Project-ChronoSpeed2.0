@@ -13,13 +13,13 @@ public class VFXManager : MonoBehaviour
         electricBall,
     }
 
-    public void AlterVFXState(GameObject playerRef, VFXTypes type, bool setTo)
+    public static void AlterVFXState(GameObject playerRef, VFXTypes type, bool setTo)
     {
         SendInfoToEveryone(playerRef.GetComponent<NetworkObject>().NetworkObjectId, type, setTo);
     }
 
     [Rpc(SendTo.NotMe, RequireOwnership = false)]
-    public void SendInfoToEveryone(ulong objectID, VFXTypes type, bool setTo)
+    public static void SendInfoToEveryone(ulong objectID, VFXTypes type, bool setTo)
     {
         NetworkManager.Singleton.SpawnManager.SpawnedObjects[objectID].GetComponent<VFXContainer>().SetVFX(type, setTo);
 
