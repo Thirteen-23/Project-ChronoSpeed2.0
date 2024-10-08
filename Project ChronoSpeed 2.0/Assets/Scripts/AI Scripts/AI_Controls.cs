@@ -31,7 +31,7 @@ public class AI_Controls : MonoBehaviour
     public float currentSpeed;
     // dampening for smoother acceration input for keyboard 
     public float acceration_Value;
-    [SerializeField] float AccerationDamping;
+    public float AccerationDamping;
     public float downForceValue;
 
     [Header("GearBox System")]
@@ -51,7 +51,7 @@ public class AI_Controls : MonoBehaviour
     private Quaternion rotations;
 
     [Header("Handbraking")]
-    [SerializeField] bool isBreaking;
+    [SerializeField] bool isBraking;
     public bool ifHandBraking;
     WheelFrictionCurve sidewaysFriction, forwardFriction;
     public float handBrakefrictionMulitplier = 2f;
@@ -69,8 +69,8 @@ public class AI_Controls : MonoBehaviour
     // make the steering smoother when useing a  keyboard 
     [SerializeField] float steeringDamping;
     [SerializeField] float smoothTransitionSpeed;
-    [SerializeField] float brakes_value;
-    [SerializeField] float brakeDampening;
+    public float brakes_value;
+    public float brakeDampening;
     private float turnSpeed;
     public AnimationCurve steeringCurve;
 
@@ -186,9 +186,9 @@ public class AI_Controls : MonoBehaviour
         }
         if (brakes_value > 0.7f)
         {
-            isBreaking = true;
+            isBraking = true;
         }
-        currentBreakForce = isBreaking ? (allBrakeForce * brakeDampening) : 0f;
+        currentBreakForce = isBraking ? (allBrakeForce * brakeDampening) : 0f;
         //currentBreakForce =  allBrakeForce * brakeDampening;
         handbraking = ifHandBraking ? rearBrakeForce : 0f;
         ApplyBraking();

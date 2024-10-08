@@ -6,6 +6,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEditor.Playables;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
@@ -113,7 +114,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         portalManager.SpawnPortal(firstPortPos, secondPortPos, firstPortRot, secondPortRot, portalLast);
     }
 
-
+    
     [Rpc(SendTo.ClientsAndHost)]
     public void CountDownRpc(int time, bool RaceStart)
     {
@@ -126,17 +127,21 @@ public class MultiplayerGameManager : NetworkBehaviour
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();
             input.enabled = true;
-
+            
             if (IsServer)
             {
                 GameObject[] AIs = GameObject.FindGameObjectsWithTag("AI");
+               
                 foreach (var curAI in AIs)
                 {
-                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.hard;
+
+                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.normal;
+                   
                 }
             }
         }
         else startCountdownText.enabled = true;
+        
     }
 
     [Rpc(SendTo.ClientsAndHost)]

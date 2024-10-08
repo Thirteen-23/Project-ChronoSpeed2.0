@@ -78,18 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PortalDump",
+                    "name": "PortalDumpTemp",
                     "type": "Button",
                     "id": "a621a170-dfb8-4456-b11e-c30e4e3df7e5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Blink",
-                    "type": "Button",
-                    "id": "550cf3e5-ba20-4ff1-978a-2b65182111b7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -112,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LookBack",
+                    "type": "Value",
+                    "id": "6ce4ddb1-9083-4776-bc87-a3a66b0d76f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -162,7 +162,7 @@
                 {
                     "name": "negative",
                     "id": "6bc10a86-6e50-4c28-b186-4fd4b21fe357",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -261,7 +261,7 @@
                 {
                     "name": "",
                     "id": "62b350dd-82b1-4046-af8b-41574e561d0d",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "Clamp(max=1)",
                     "groups": "",
@@ -316,7 +316,7 @@
                 {
                     "name": "",
                     "id": "fe6efbeb-5296-48a0-8ba0-b5b1e4bd63c4",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "Clamp(max=1)",
                     "groups": "",
@@ -386,7 +386,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PortalDump",
+                    "action": "PortalDumpTemp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -397,7 +397,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PortalDump",
+                    "action": "PortalDumpTemp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -425,23 +425,23 @@
                 },
                 {
                     "name": "",
-                    "id": "5bb7be11-20fb-4992-85c0-6db6413b2f90",
-                    "path": "<Keyboard>/g",
+                    "id": "652c6b86-097f-4d43-a882-01f68add1ef6",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Blink",
+                    "action": "LookBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "eaead825-9846-4c29-b33b-87d612817891",
-                    "path": "<Gamepad>/buttonNorth",
+                    "id": "377f0e14-ba61-494a-b7e0-334989aef15d",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Blink",
+                    "action": "LookBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

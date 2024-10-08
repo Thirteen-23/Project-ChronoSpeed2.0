@@ -84,7 +84,8 @@ public class EngineNote
 public class AudioEngineScript : MonoBehaviour
 {
     public EngineNote[] engineNotes;
-    public Car_Movement carValues; 
+    public Car_Movement carValues;
+    public AI_Controls m_AICarValues;
     public float rpm;
     public float masterVolume;
 
@@ -92,27 +93,57 @@ public class AudioEngineScript : MonoBehaviour
 
     private void Start()
     {
-        carValues = GetComponent<Car_Movement>();
-      
+        if (gameObject.tag == "AI")
+        {
+            m_AICarValues = GetComponent<AI_Controls>();
+        }
+        else
+        {
+            carValues = GetComponent<Car_Movement>();
+        }
     }
     private void Update()
     { float maxVol = 5;
         float progress = Mathf.Sin(Time.deltaTime * 0.02f);
-        rpm = Mathf.Lerp((int)carValues.engineRPM, maxVol, progress) ;
-        // The total volume calculated for all engine notes won't generally sum to 1.
-        // Calculate what they do sum to and then scale the individual volumes to ensure
-        // consistent volume across the RPM range.
-        float totalVolume = 0f;
-        for (int i = 0; i < engineNotes.Length; ++i)
+        if (gameObject.tag == "AI")
         {
-            totalVolume += workingVolumes[i] = engineNotes[i].SetPitchAndGetVolumeForRPM(rpm);
-        }
 
-        if (totalVolume > 0f)
-        {
+            rpm = Mathf.Lerp((int)m_AICarValues.engineRPM, maxVol, progress);
+            // The total volume calculated for all engine notes won't generally sum to 1.
+            // Calculate what they do sum to and then scale the individual volumes to ensure
+            // consistent volume across the RPM range.
+            float totalVolume = 0f;
             for (int i = 0; i < engineNotes.Length; ++i)
             {
-                engineNotes[i].SetVolume(masterVolume * workingVolumes[i] / totalVolume);
+                totalVolume += workingVolumes[i] = engineNotes[i].SetPitchAndGetVolumeForRPM(rpm);
+            }
+
+            if (totalVolume > 0f)
+            {
+                for (int i = 0; i < engineNotes.Length; ++i)
+                {
+                    engineNotes[i].SetVolume(masterVolume * workingVolumes[i] / totalVolume);
+                }
+            }
+        }
+        else
+        {
+            rpm = Mathf.Lerp((int)carValues.engineRPM, maxVol, progress);
+            // The total volume calculated for all engine notes won't generally sum to 1.
+            // Calculate what they do sum to and then scale the individual volumes to ensure
+            // consistent volume across the RPM range.
+            float totalVolume = 0f;
+            for (int i = 0; i < engineNotes.Length; ++i)
+            {
+                totalVolume += workingVolumes[i] = engineNotes[i].SetPitchAndGetVolumeForRPM(rpm);
+            }
+
+            if (totalVolume > 0f)
+            {
+                for (int i = 0; i < engineNotes.Length; ++i)
+                {
+                    engineNotes[i].SetVolume(masterVolume * workingVolumes[i] / totalVolume);
+                }
             }
         }
     }
