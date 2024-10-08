@@ -25450,6 +25450,7 @@ MonoBehaviour:
   allBrakeForce: 100000
   frontBrakeForce: 0
   rearBrakeForce: 0
+  steeringDamping: 0
   smoothTransitionSpeed: 20
   smoothTransitionSpeedForAcceleration: 5
   turnSpeed: 0
@@ -25751,7 +25752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4086998015
+  GlobalObjectIdHash: 1106096736
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -25847,6 +25848,7 @@ MonoBehaviour:
     maxRPM: 8000
     pitchReferenceRPM: 7000
   carValues: {fileID: 0}
+  m_AICarValues: {fileID: 0}
   rpm: 0
   masterVolume: 0.05
 --- !u!1 &6258990924449264332
