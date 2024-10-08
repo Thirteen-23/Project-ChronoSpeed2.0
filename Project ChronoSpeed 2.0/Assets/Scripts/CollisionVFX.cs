@@ -11,19 +11,25 @@ public class CollisionVFX : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("walls") || other.CompareTag("AIBody") || other.CompareTag("CarBody") || other.CompareTag("RigidBodyObj"))
-            return;
+        if (other.CompareTag("walls") || other.CompareTag("AIBody") || other.CompareTag("CarBody") || other.CompareTag("RigidBodyObj"))
+        {
+            if (contactAmount >= sparks.Length)
+                return;
 
-        if (contactAmount >= sparks.Length)
-            return;
+            Vector3 contactPosition = other.ClosestPoint(transform.position);
+            if (!sparks[contactAmount].isPlaying)
+                sparks[contactAmount].Play();
+            sparks[contactAmount].transform.position = contactPosition;
+            sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
+            contactAmount++;
 
-        Vector3 contactPosition = other.ClosestPoint(transform.position);
+        }
 
-        if (!sparks[contactAmount].isPlaying)
-            sparks[contactAmount].Play();
-        sparks[contactAmount].transform.position = contactPosition;
-        sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
-        contactAmount++;
+     
+
+     
+
+       
     }
 
     private void FixedUpdate()

@@ -418,8 +418,13 @@ public class Car_Movement : MonoBehaviour
     {
        
         if (context.started)
-            brakes_value = context.ReadValue<float>();
+        {
 
+        }
+        if (context.performed)
+        {
+            brakes_value = context.ReadValue<float>();
+        }
         else if (context.canceled)
         {
             brakes_value = 0;

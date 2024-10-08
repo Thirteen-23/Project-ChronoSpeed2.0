@@ -414,7 +414,7 @@ public class AI : MonoBehaviour
 
     public float speedTimer = 5;
     public float activeTime = 5;
-
+    public float cooldownTimer = 5;
     private void AIState()
     {
         switch (aiSpeaking)
@@ -492,9 +492,19 @@ public class AI : MonoBehaviour
                 break;
 
             case AIMouth.slowing_Down:
-
+                cooldownTimer = Random.Range(2, 6); 
                 Debug.Log("i sense in front");
-                 rb.AddForce(-rb.transform.forward * forceTurn);
+                 rb.AddForce(-rb.transform.forward + rb.transform.right * forceTurn);
+                if(cooldownTimer >0)
+                cooldownTimer -= Time.deltaTime;
+
+                else
+                {
+
+                    aiSpeaking = AIMouth.racing;
+                    cooldownTimer = Random.Range(2, 6);
+                }
+
                 break;
             case AIMouth.reversing:
 
