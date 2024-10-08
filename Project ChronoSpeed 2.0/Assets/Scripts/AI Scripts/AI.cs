@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 public enum AIMouth
 {
     racing,
@@ -40,7 +42,7 @@ public class AI : MonoBehaviour
     [SerializeField] float steer_Value;
     [SerializeField] float adjustRayLeft;
     [SerializeField] float adjustRayRight;
-    private float forceTurn = 25000f;
+    public float forceTurn = 25000f;
     [HideInInspector] public float acceration_Value;
     public float speed_Reader;
     public float speed_Limiter = 200f;
@@ -113,9 +115,9 @@ public class AI : MonoBehaviour
         Debug.DrawRay(m_AICarBodyDetection.transform.position, m_AICarBodyDetection.transform.TransformDirection(new Vector3(adjustRayLeft, 0, 1) * range));
         Debug.DrawRay(m_AICarBodyDetection.transform.position, m_AICarBodyDetection.transform.TransformDirection(new Vector3(adjustRayRight, 0, 1) * range));
 
-        FrontRaySensor();
-        LeftRaySensor();
-        RightRaySensor();
+        // FrontRaySensor();
+        //LeftRaySensor();
+        //RightRaySensor();
 
 
 
@@ -244,7 +246,15 @@ public class AI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(nodes[currentWaypointIndex].transform.position, 3);
-
+        var collider = GetComponentInChildren<Collider>();
+        if (!collider)
+        {
+            return;
+        }
+        var collisionPoint = collider.ClosestPoint(location);
+        Gizmos.DrawSphere(location, 0.1f);
+        Gizmos.DrawWireSphere(collisionPoint, 0.1f);
+        Debug.Log(location);
     }
 
 
@@ -389,7 +399,6 @@ public class AI : MonoBehaviour
 
     private void ChangeMaxSpeed()
     {
-        carAI.maxSpeed = speed_Limiter;
         if (nodes[currentWaypointIndex].gameObject.CompareTag("AccerateNode"))
         {
             speed_Limiter = valueBeingRead.changingSpeedToAccerate;
@@ -403,60 +412,169 @@ public class AI : MonoBehaviour
 
     }
 
+    public float speedTimer = 5;
+    public float activeTime = 5;
+
     private void AIState()
     {
-        switch(aiSpeaking)
+        switch (aiSpeaking)
         {
             case AIMouth.racing:
 
-                carAI.brakeDampening = 0;
+                carAI.brakes_value = 0;
+                switch (difficultness)
+                {
+                    case aI_Difficulty.raceStart:
+                        acceration_Value = 0f;
+                        break;
+                    case aI_Difficulty.easy:
 
+                        acceration_Value = 1f;
+                        carAI.downForceValue = 500f;
+
+                        break;
+                    case aI_Difficulty.normal:
+
+                        acceration_Value = 1.2f;
+                        carAI.downForceValue = 500f;
+                        break;
+                    case aI_Difficulty.hard:
+
+                        acceration_Value = 1.5f;
+                        carAI.downForceValue = 500f;
+
+                        break;
+
+
+
+                }
                 break;
-
 
             case AIMouth.speeding_Up:
+                var collider = GetComponentInChildren<BoxCollider>();
+                if (speedTimer > 0)
+                {
+                   
+                    collider.enabled = false;
+                    speedTimer -= Time.deltaTime;
+                    switch (difficultness)
+                    {
+                        case aI_Difficulty.easy:
 
+                            acceration_Value = 3f;
+                            carAI.downForceValue = 500f;
+
+                            break;
+                        case aI_Difficulty.normal:
+
+                            acceration_Value = 3.5f;
+                            carAI.downForceValue = 500f;
+                            break;
+                        case aI_Difficulty.hard:
+
+                            acceration_Value = 4f;
+                            carAI.downForceValue = 500f;
+
+                            break;
+
+
+
+                    }
+                }
+
+                else
+                {
+                    
+                    collider.enabled = true;
+                    aiSpeaking = AIMouth.racing;
+                    speedTimer = activeTime; 
+                }
                 break;
+
             case AIMouth.slowing_Down:
 
                 Debug.Log("i sense in front");
-                carAI.brakeDampening = 0.5f;
-
+                 rb.AddForce(-rb.transform.forward * forceTurn);
                 break;
             case AIMouth.reversing:
 
+                //acceration_Value = -3f; 
+                if (carAI.currentSpeed < 30f)
+                {
+                    gameObject.transform.position = nodes[currentWaypointIndex - 2].transform.position;
+                    gameObject.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
+                    rb.velocity = rb.velocity / 2;
+                }
                 break;
         }
     }
-
+    Vector3 location;
     private void OnTriggerEnter(Collider other)
     {
+
+
         if (other.CompareTag("AIBody"))
         {
             Debug.Log("i sense in front");
             aiSpeaking = AIMouth.slowing_Down;
-        }
 
+        }
+        if (other.CompareTag("walls"))
+        {
+            Debug.Log("i sense in front");
+            aiSpeaking = AIMouth.reversing;
+        }
 
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("AIBody"))
         {
+            float otherCarSpeed = GetComponentInParent<AI_Controls>().currentSpeed; 
+            if(otherCarSpeed < carAI.currentSpeed)
+            {
+                carAI.brakes_value = 1;
+                if(carAI.currentSpeed <= otherCarSpeed)
+                {
+                    carAI.brakes_value = 0;
+                    carAI.currentSpeed = otherCarSpeed;
+                }
+               
+            }
             aiSpeaking = AIMouth.slowing_Down;
             Debug.Log("i sense in front");
-        }
 
+        }
+        if (other.CompareTag("walls"))
+        {
+            Debug.Log("i sense in front");
+            aiSpeaking = AIMouth.reversing;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("AIBody"))
         {
-            aiSpeaking = AIMouth.racing; 
+            
+            difficultness = (aI_Difficulty)Random.Range(1, 4);
 
+            if(Random.value >= 0.5f)
+            {
+                aiSpeaking = AIMouth.racing;
+            }
+            if (Random.value >= 0.7)
+            {
+                aiSpeaking = AIMouth.speeding_Up;
+            }
+        }
+        if (other.CompareTag("walls"))
+        {
+            Debug.Log("i left wall");
+            aiSpeaking = AIMouth.racing;
         }
 
-
     }
+
+
 }

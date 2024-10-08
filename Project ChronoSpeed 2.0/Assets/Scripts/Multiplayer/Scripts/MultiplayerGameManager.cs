@@ -6,6 +6,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEditor.Playables;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
@@ -125,7 +126,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();
             input.enabled = true;
-
+            
             if (IsServer)
             {
                 GameObject[] AIs = GameObject.FindGameObjectsWithTag("AI");
@@ -133,11 +134,13 @@ public class MultiplayerGameManager : NetworkBehaviour
                 foreach (var curAI in AIs)
                 {
 
-                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.hard; 
+                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.normal;
+                   
                 }
             }
         }
         else startCountdownText.enabled = true;
+        
     }
 
     [Rpc(SendTo.ClientsAndHost)]

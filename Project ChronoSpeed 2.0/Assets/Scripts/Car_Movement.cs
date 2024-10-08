@@ -12,7 +12,7 @@ public class Car_Movement : MonoBehaviour
     ///keeping track of how many laps in the race. 
 
     CarNewInputSystem input;
-  
+
     enum DifferentialTypes
     {
         FrontWheelDrive,
@@ -92,13 +92,13 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] float allBrakeForce;
     [SerializeField] float frontBrakeForce;
     [SerializeField] float rearBrakeForce;
-    private float steering_Value;
+    public float steering_Value;
     /// make the steering smoother when useing a  keyboard 
     public float steeringDamping;
     [SerializeField] float smoothTransitionSpeed;
-    [SerializeField] float smoothTransitionSpeedForAcceleration; 
-    private float brakes_value;
-    private float brakeDampening;
+    [SerializeField] float smoothTransitionSpeedForAcceleration;
+    [SerializeField] float brakes_value;
+    [SerializeField] float brakeDampening;
 
     public float turnSpeed;
     [SerializeField] AnimationCurve steeringCurve;
@@ -819,8 +819,8 @@ public float lookBackValue;
                         }
                         if (checkingTerrain.collider.CompareTag("Tarmac"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;

@@ -3723,6 +3723,8 @@ MonoBehaviour:
   allBrakeForce: 10000
   frontBrakeForce: 0
   rearBrakeForce: 0
+  steering_Value: 0
+  steeringDamping: 0
   smoothTransitionSpeed: 10
   smoothTransitionSpeedForAcceleration: 5
   turnSpeed: 0
@@ -3773,7 +3775,7 @@ MonoBehaviour:
   rightWheelSmoke: {fileID: 5623964022535615286}
   minDrag: 0
   maxDrag: 2
-  boostInDrifting: 55000
+  boostInDrifting: 10000
   meBoosting: 0
   boostValue: 15000
   nitroboostColor:
@@ -4119,6 +4121,7 @@ MonoBehaviour:
     maxRPM: 8000
     pitchReferenceRPM: 5000
   carValues: {fileID: 0}
+  m_AICarValues: {fileID: 0}
   rpm: 0
   masterVolume: 0.05
 --- !u!1 &8262871642904044204

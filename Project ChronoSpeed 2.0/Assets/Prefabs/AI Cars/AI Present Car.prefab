@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7626010983297831154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.675, z: 1.797}
-  m_LocalScale: {x: 2.5894, y: 0.59564, z: 3.3361835}
+  m_LocalScale: {x: 2.5894, y: 0.59564, z: 5.307868}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4352269258587667326}
@@ -289,6 +289,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2283301612957351292, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301612957351292, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
       value: 2
       objectReference: {fileID: 0}
@@ -306,6 +311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301613454059220, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2283301613454059220, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -334,6 +344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2283301613591024047, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301613591024047, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
       value: 2
       objectReference: {fileID: 0}
@@ -346,6 +361,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283301614197265845, guid: 49c4c402f6376a3489ad26a42413d20f,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2283301614197265845, guid: 49c4c402f6376a3489ad26a42413d20f,
         type: 3}
@@ -441,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3980595046
+  GlobalObjectIdHash: 2460846549
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -514,6 +534,7 @@ MonoBehaviour:
   steer_Value: 0
   adjustRayLeft: -0.25
   adjustRayRight: 0.25
+  forceTurn: 10000
   acceration_Value: 0
   speed_Reader: 0
   speed_Limiter: 200
@@ -530,6 +551,8 @@ MonoBehaviour:
   bridge: {fileID: 0}
   dists: 0
   difference: {x: 0, y: 0, z: 0}
+  speedTimer: 0
+  activeTime: 5
 --- !u!114 &2111018335806438509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,7 +614,7 @@ MonoBehaviour:
   handBrakefrictionMulitplier: 2
   whenNotDrifting: 5
   whenDrifting: 2
-  allBrakeForce: 100000
+  allBrakeForce: 10000
   frontBrakeForce: 0
   rearBrakeForce: 0
   steering_Value: 0
@@ -623,7 +646,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_RayRange: 20
+  m_RayRange: 0
 --- !u!1 &3992663231744865922 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1659464563797840541, guid: 49c4c402f6376a3489ad26a42413d20f,

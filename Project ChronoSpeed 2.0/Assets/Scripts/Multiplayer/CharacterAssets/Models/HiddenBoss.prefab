@@ -104,13 +104,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506449565955140772}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.9
+  m_Radius: 0.5
   m_SuspensionSpring:
     spring: 80000
     damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: -0.5
+  m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 4650659805777103878}
   m_Layer: 0
   m_Name: CameraFollow
-  m_TagString: CameraFollow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,13 +295,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2441994183762628709}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.9
+  m_Radius: 0.5
   m_SuspensionSpring:
     spring: 80000
     damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: -0.5
+  m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -544,7 +544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3309241780497082327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 8.622393, y: 0.1, z: 3.010498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -614,7 +614,7 @@ MonoBehaviour:
   smoothTime: 0.07
   keyRPMSet:
   - {x: 0, y: 400}
-  - {x: 8000, y: 2000}
+  - {x: 8000, y: 5000}
   - {x: 9000, y: 0}
   exhaust_Shift: {fileID: 0}
   slip:
@@ -626,15 +626,14 @@ MonoBehaviour:
   isBraking: 0
   ifHandBraking: 0
   handBrakefrictionMulitplier: 2
-  whenNotDrifting: 6
-  whenDrifting: 4
+  whenNotDrifting: 4
+  whenDrifting: 0
   driftFactor: 0.07
   turnOnAllTerrain: 0
   frictionPlusValueForAbility: 0
-  allBrakeForce: 1000000
+  allBrakeForce: 0
   frontBrakeForce: 0
   rearBrakeForce: 0
-  steering_Value: 0
   steeringDamping: 0
   smoothTransitionSpeed: 20
   smoothTransitionSpeedForAcceleration: 5
@@ -1182,13 +1181,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5492931139199582243}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.9
+  m_Radius: 0.5
   m_SuspensionSpring:
     spring: 80000
     damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: -0.5
+  m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -1311,13 +1310,13 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6544962209288938808}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.9
+  m_Radius: 0.5
   m_SuspensionSpring:
     spring: 80000
     damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: -0.5
+  m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:

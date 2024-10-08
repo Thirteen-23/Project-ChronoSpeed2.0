@@ -31,7 +31,7 @@ public class AI_Controls : MonoBehaviour
     public float currentSpeed;
     // dampening for smoother acceration input for keyboard 
     public float acceration_Value;
-    [SerializeField] float AccerationDamping;
+    public float AccerationDamping;
     public float downForceValue;
 
     [Header("GearBox System")]
