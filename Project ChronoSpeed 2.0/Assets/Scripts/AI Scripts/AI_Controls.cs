@@ -79,6 +79,9 @@ public class AI_Controls : MonoBehaviour
     Vector3 direction = Vector3.forward;
     [SerializeField] float m_RayRange;
 
+    /// ground clearance value
+    Vector3 downwardsDirection = Vector3.down;
+    [SerializeField] float floorRange = 0.5f;
     private void Awake()
     {
 
@@ -298,11 +301,23 @@ public class AI_Controls : MonoBehaviour
         }
 
     }
-
+    Ray ray;
     private void ApplyingDownForce()
     {
 
-        bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
+        ray = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
+        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
+        {
+            if (hit.collider.CompareTag("ground"))
+            {
+                //  Debug.Log("on the ground");
+                bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
+
+            }
+
+        }
 
     }
 

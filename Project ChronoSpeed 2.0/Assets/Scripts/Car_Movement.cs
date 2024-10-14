@@ -118,7 +118,9 @@ public class Car_Movement : MonoBehaviour
     public Transform spawnpointer;
     public TrailRenderer leftTrail;
     public TrailRenderer rightTrail;
+
     // drifting boost value
+    [Header(" boost values when drifting ")]
     [SerializeField] float forceBoostForDriftingValue = 20000f;
     public float findme;
     public bool lightCar, mediumCar, heavyCar = false;
@@ -796,7 +798,7 @@ public float lookBackValue;
                         if (checkingTerrain.collider.CompareTag("Tarmac"))
                         {
                             forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.1f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -806,7 +808,7 @@ public float lookBackValue;
                         else if (checkingTerrain.collider.CompareTag("SideWalk"))
                         {
                             forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.1f;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
@@ -880,7 +882,7 @@ public float lookBackValue;
         if (ifHandBraking && currentSpeed > 40 || currentSpeed > 40 && handbraking > 0)
         {
             //bodyOfCar.angularDrag = whenDrifting;
-            bodyOfCar.angularDrag = Mathf.Lerp(minDrag, maxDrag, tt); 
+            bodyOfCar.angularDrag = Mathf.Lerp(minDrag, maxDrag, tt * 2f); 
             sidewaysFriction = wheels4[0].sidewaysFriction;
             forwardFriction = wheels4[0].forwardFriction;
           
@@ -942,7 +944,7 @@ public float lookBackValue;
             }
             else
             {
-                tt += Time.deltaTime * 2f;
+                tt += Time.deltaTime;
 
                 forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
                     Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, minAmountOfGripAtStart, maxAmountOfGrip), tt);
@@ -967,7 +969,7 @@ public float lookBackValue;
                     {
                         tt = 1f;
                         forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
-                   Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt);
+                   Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt *1.5f);
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
                         //leftTrail.emitting = true;
                         //rightTrail.emitting = true;
