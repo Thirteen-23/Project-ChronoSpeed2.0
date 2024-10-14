@@ -492,12 +492,12 @@ public class AI : MonoBehaviour
                 break;
 
             case AIMouth.slowing_Down:
-                cooldownTimer = Random.Range(2, 6); 
                 Debug.Log("i sense in front");
                  rb.AddForce(-rb.transform.forward + rb.transform.right * forceTurn);
-                if(cooldownTimer >0)
-                cooldownTimer -= Time.deltaTime;
-
+                if (cooldownTimer > 0)
+                {
+                    cooldownTimer -= Time.deltaTime;
+                }
                 else
                 {
 

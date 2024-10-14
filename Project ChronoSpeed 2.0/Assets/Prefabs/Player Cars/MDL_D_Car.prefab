@@ -1132,7 +1132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7222207859633201412}
   m_Layer: 0
-  m_Name: CameraFollowPoint
+  m_Name: CameraFollow
   m_TagString: CameraFollow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3802,9 +3802,9 @@ MonoBehaviour:
   rightWheel: {fileID: 5623964022812931296}
   leftWheelSmoke: {fileID: 1885547507397338489}
   rightWheelSmoke: {fileID: 5623964022535615286}
-  minDrag: 0
-  maxDrag: 2
-  boostInDrifting: 10000
+  minDrag: 1
+  maxDrag: 5
+  boostInDrifting: 15000
   meBoosting: 0
   boostValue: 15000
   nitroboostColor:
@@ -4043,7 +4043,7 @@ MonoBehaviour:
   m_ResoureceGatherCheck: 0
   m_ResourceMultiplerForSpeed: 0
   m_SpeedThreshholdForResource: 0
-  m_ResourceMultiplerForDrifting: 5
+  m_ResourceMultiplerForDrifting: 10
   ability1CostValue: 30
   portalDropCostValue: 40
   blinkCostValue: 0
@@ -4086,7 +4086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3611437128
+  GlobalObjectIdHash: 391577787
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
