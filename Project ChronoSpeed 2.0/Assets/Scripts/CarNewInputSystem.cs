@@ -91,36 +91,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""2nd - Ability"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""4d36641f-5065-4722-ab90-c9e8f2f19928"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""PortalDumpTemp"",
                     ""type"": ""Button"",
                     ""id"": ""a621a170-dfb8-4456-b11e-c30e4e3df7e5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PortalRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""331f4dc1-9314-4af2-84e6-34de7d649f9a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PortalLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""92cc814b-9b2e-49f3-b852-d1c9ec10ab64"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -139,6 +112,15 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Blink"",
                     ""type"": ""Button"",
                     ""id"": ""70805d7b-93b7-4292-bb53-75df513a4a80"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rewind"",
+                    ""type"": ""Button"",
+                    ""id"": ""f963ea18-95bb-4cc0-9ac5-641dde1b78d0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -390,28 +372,6 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ca76726f-208e-40ee-a854-9dc689aa8ee6"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""2nd - Ability"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1ce7bdf5-84ad-4e7c-97b8-3f9371946c5c"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""2nd - Ability"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8c35e077-fb24-41bc-8478-e8198e3f7d2e"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -429,28 +389,6 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PortalDumpTemp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ddbc551d-4e28-4bf8-a891-ba9fb89c9175"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PortalRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""16f0e725-5d2f-48fb-9521-d5207cc7b457"",
-                    ""path"": ""<Keyboard>/z"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PortalLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -479,7 +417,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ad4897b7-874b-43bf-a64e-6ec80d75b201"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -497,6 +435,28 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Blink"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b10d6d1-b3e1-40e3-8658-2cc2459c8882"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rewind"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ecf5211-b556-4d7b-9eeb-a44fa24d35f5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rewind"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -512,12 +472,10 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_Movement_ShiftingDown = m_Movement.FindAction("Shifting Down", throwIfNotFound: true);
         m_Movement_Handbrake = m_Movement.FindAction("Handbrake", throwIfNotFound: true);
         m_Movement__1stAbility = m_Movement.FindAction("1st - Ability", throwIfNotFound: true);
-        m_Movement__2ndAbility = m_Movement.FindAction("2nd - Ability", throwIfNotFound: true);
         m_Movement_PortalDumpTemp = m_Movement.FindAction("PortalDumpTemp", throwIfNotFound: true);
-        m_Movement_PortalRight = m_Movement.FindAction("PortalRight", throwIfNotFound: true);
-        m_Movement_PortalLeft = m_Movement.FindAction("PortalLeft", throwIfNotFound: true);
         m_Movement_LookBack = m_Movement.FindAction("LookBack", throwIfNotFound: true);
         m_Movement_Blink = m_Movement.FindAction("Blink", throwIfNotFound: true);
+        m_Movement_Rewind = m_Movement.FindAction("Rewind", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -586,12 +544,10 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_ShiftingDown;
     private readonly InputAction m_Movement_Handbrake;
     private readonly InputAction m_Movement__1stAbility;
-    private readonly InputAction m_Movement__2ndAbility;
     private readonly InputAction m_Movement_PortalDumpTemp;
-    private readonly InputAction m_Movement_PortalRight;
-    private readonly InputAction m_Movement_PortalLeft;
     private readonly InputAction m_Movement_LookBack;
     private readonly InputAction m_Movement_Blink;
+    private readonly InputAction m_Movement_Rewind;
     public struct MovementActions
     {
         private @CarNewInputSystem m_Wrapper;
@@ -603,12 +559,10 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @ShiftingDown => m_Wrapper.m_Movement_ShiftingDown;
         public InputAction @Handbrake => m_Wrapper.m_Movement_Handbrake;
         public InputAction @_1stAbility => m_Wrapper.m_Movement__1stAbility;
-        public InputAction @_2ndAbility => m_Wrapper.m_Movement__2ndAbility;
         public InputAction @PortalDumpTemp => m_Wrapper.m_Movement_PortalDumpTemp;
-        public InputAction @PortalRight => m_Wrapper.m_Movement_PortalRight;
-        public InputAction @PortalLeft => m_Wrapper.m_Movement_PortalLeft;
         public InputAction @LookBack => m_Wrapper.m_Movement_LookBack;
         public InputAction @Blink => m_Wrapper.m_Movement_Blink;
+        public InputAction @Rewind => m_Wrapper.m_Movement_Rewind;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -639,24 +593,18 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @_1stAbility.started += instance.On_1stAbility;
             @_1stAbility.performed += instance.On_1stAbility;
             @_1stAbility.canceled += instance.On_1stAbility;
-            @_2ndAbility.started += instance.On_2ndAbility;
-            @_2ndAbility.performed += instance.On_2ndAbility;
-            @_2ndAbility.canceled += instance.On_2ndAbility;
             @PortalDumpTemp.started += instance.OnPortalDumpTemp;
             @PortalDumpTemp.performed += instance.OnPortalDumpTemp;
             @PortalDumpTemp.canceled += instance.OnPortalDumpTemp;
-            @PortalRight.started += instance.OnPortalRight;
-            @PortalRight.performed += instance.OnPortalRight;
-            @PortalRight.canceled += instance.OnPortalRight;
-            @PortalLeft.started += instance.OnPortalLeft;
-            @PortalLeft.performed += instance.OnPortalLeft;
-            @PortalLeft.canceled += instance.OnPortalLeft;
             @LookBack.started += instance.OnLookBack;
             @LookBack.performed += instance.OnLookBack;
             @LookBack.canceled += instance.OnLookBack;
             @Blink.started += instance.OnBlink;
             @Blink.performed += instance.OnBlink;
             @Blink.canceled += instance.OnBlink;
+            @Rewind.started += instance.OnRewind;
+            @Rewind.performed += instance.OnRewind;
+            @Rewind.canceled += instance.OnRewind;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -682,24 +630,18 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @_1stAbility.started -= instance.On_1stAbility;
             @_1stAbility.performed -= instance.On_1stAbility;
             @_1stAbility.canceled -= instance.On_1stAbility;
-            @_2ndAbility.started -= instance.On_2ndAbility;
-            @_2ndAbility.performed -= instance.On_2ndAbility;
-            @_2ndAbility.canceled -= instance.On_2ndAbility;
             @PortalDumpTemp.started -= instance.OnPortalDumpTemp;
             @PortalDumpTemp.performed -= instance.OnPortalDumpTemp;
             @PortalDumpTemp.canceled -= instance.OnPortalDumpTemp;
-            @PortalRight.started -= instance.OnPortalRight;
-            @PortalRight.performed -= instance.OnPortalRight;
-            @PortalRight.canceled -= instance.OnPortalRight;
-            @PortalLeft.started -= instance.OnPortalLeft;
-            @PortalLeft.performed -= instance.OnPortalLeft;
-            @PortalLeft.canceled -= instance.OnPortalLeft;
             @LookBack.started -= instance.OnLookBack;
             @LookBack.performed -= instance.OnLookBack;
             @LookBack.canceled -= instance.OnLookBack;
             @Blink.started -= instance.OnBlink;
             @Blink.performed -= instance.OnBlink;
             @Blink.canceled -= instance.OnBlink;
+            @Rewind.started -= instance.OnRewind;
+            @Rewind.performed -= instance.OnRewind;
+            @Rewind.canceled -= instance.OnRewind;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -726,11 +668,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void OnShiftingDown(InputAction.CallbackContext context);
         void OnHandbrake(InputAction.CallbackContext context);
         void On_1stAbility(InputAction.CallbackContext context);
-        void On_2ndAbility(InputAction.CallbackContext context);
         void OnPortalDumpTemp(InputAction.CallbackContext context);
-        void OnPortalRight(InputAction.CallbackContext context);
-        void OnPortalLeft(InputAction.CallbackContext context);
         void OnLookBack(InputAction.CallbackContext context);
         void OnBlink(InputAction.CallbackContext context);
+        void OnRewind(InputAction.CallbackContext context);
     }
 }

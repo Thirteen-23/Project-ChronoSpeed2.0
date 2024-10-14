@@ -25257,6 +25257,68 @@ Transform:
   m_Father: {fileID: 4915563276677072672}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5564511305349981425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417825164084613640}
+  - component: {fileID: 1085134011762243294}
+  - component: {fileID: 1341014232462111455}
+  m_Layer: 0
+  m_Name: CollisionVFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1417825164084613640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564511305349981425}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.027, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4915563276677072672}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &1085134011762243294
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564511305349981425}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6, y: 1, z: 6}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1341014232462111455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564511305349981425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb88ab16fb8e014a92a95ea89c8731c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparks:
+  - {fileID: 3757944682258173448}
+  - {fileID: 1698595231747589448}
+  - {fileID: 4163412773333199770}
 --- !u!1 &5708595219593218780
 GameObject:
   m_ObjectHideFlags: 0
@@ -25393,6 +25455,7 @@ Transform:
   - {fileID: 6550050176423220031}
   - {fileID: 416618810416475386}
   - {fileID: 67694814770816914}
+  - {fileID: 1417825164084613640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25669,23 +25732,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5727530261080087963}
         m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
-        m_MethodName: AbilityUse2nd
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4d36641f-5065-4722-ab90-c9e8f2f19928
-    m_ActionName: Movement/2nd - Ability[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1632455720865404019}
-        m_TargetAssemblyTypeName: PortalSpawn, Assembly-CSharp
-        m_MethodName: PortalDrop
+        m_MethodName: PortalDropAbilityUse
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25697,14 +25744,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a621a170-dfb8-4456-b11e-c30e4e3df7e5
     m_ActionName: Movement/PortalDumpTemp[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 331f4dc1-9314-4af2-84e6-34de7d649f9a
-    m_ActionName: Movement/PortalRight[/Keyboard/c]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 92cc814b-9b2e-49f3-b852-d1c9ec10ab64
-    m_ActionName: Movement/PortalLeft[/Keyboard/z]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5727530261080087961}
@@ -25737,6 +25776,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 70805d7b-93b7-4292-bb53-75df513a4a80
     m_ActionName: Movement/Blink[/DualSenseGamepadHID/buttonNorth,/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f963ea18-95bb-4cc0-9ac5-641dde1b78d0
+    m_ActionName: Movement/Rewind[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -25784,7 +25827,7 @@ MonoBehaviour:
   m_ResourceMultiplerForDrifting: 5
   ability1CostValue: 50
   portalDropCostValue: 50
-  blinkCostValue: 0
+  blinkCostValue: 70
 --- !u!114 &5824188775995575192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25809,7 +25852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1106096736
+  GlobalObjectIdHash: 4086998015
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -25830,9 +25873,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706a53f62c410c642af0539468183ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHoldTime: 5
+  maxHoldTime: 20
   cooldown: 20
-  portalLast: 60
+  portalLast: 300
 --- !u!114 &6879482677545975896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25876,6 +25919,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Trigger: {fileID: 2552199690005412409}
+  NotTrigger: {fileID: 8669934048908405437}
 --- !u!114 &6096309456787560617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29323,7 +29368,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8669934049913978830}
   - component: {fileID: 2552199690005412409}
-  - component: {fileID: 5147583174495200680}
   m_Layer: 0
   m_Name: MainBody
   m_TagString: CarBody
@@ -29393,22 +29437,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.6, y: 1, z: 6}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &5147583174495200680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8669934049913978825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb88ab16fb8e014a92a95ea89c8731c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sparks:
-  - {fileID: 3757944682258173448}
-  - {fileID: 1698595231747589448}
-  - {fileID: 4163412773333199770}
 --- !u!1 &8669934049919075424
 GameObject:
   m_ObjectHideFlags: 0
