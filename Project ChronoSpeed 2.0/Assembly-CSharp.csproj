@@ -57,6 +57,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\UIFade.cs" />
     <Compile Include="Assets\Scripts\Abilities\LimitRemover.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Barmetler\Road System\Runtime\RoadSystemNavigator.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets\Scripts\Multiplayer\Scripts\LeaderBoardInfo.cs" />
     <Compile Include="Assets\Barmetler\Road System\Runtime\Util\DataCache.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\Scripts\OnAISpawn.cs" />
+    <Compile Include="Assets\Scripts\OnFocusResize.cs" />
     <Compile Include="Assets\Scripts\Abilities\Portyo Drops.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\MainCamera.cs" />
     <Compile Include="Assets\Scripts\AI Scripts\Switch_Manager.cs" />
+    <Compile Include="Assets\Scripts\EnableOthersOnDisable.cs" />
     <Compile Include="Assets\Scripts\AbilityManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Track Waypoints Folder\TrackWayPoints.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Assets\Scripts\Abilities\ObjectDump1.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Multiplayer\Scripts\CarPlayerPrefabSpawner.cs" />
+    <Compile Include="Assets\Scripts\DisableObject.cs" />
     <Compile Include="Assets\Scripts\AI Scripts\AI_Controls.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\Scripts\AudioEngineScript.cs" />
@@ -162,11 +166,7 @@
     <Compile Include="Assets\Scripts\followPlayer.cs" />
     <Compile Include="Assets\Scripts\AI Scripts\AI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\UIFade.cs" />
     <Compile Include="Assets\Scripts\DefaultFocus.cs" />
-    <Compile Include="Assets\Scripts\OnFocusResize.cs" />
-    <Compile Include="Assets\Scripts\DisableObject.cs" />
-    <Compile Include="Assets\Scripts\EnableOthersOnDisable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
