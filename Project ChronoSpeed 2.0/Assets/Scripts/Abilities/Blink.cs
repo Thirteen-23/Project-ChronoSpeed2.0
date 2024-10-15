@@ -6,6 +6,7 @@ public class Blink : MonoBehaviour
 {
     [SerializeField] VolumeProfile chargeProfile;
     [SerializeField] VolumeProfile warpProfile;
+    Volume mainCamVol;
 
     VFXContainer m_VFXContainer;
 
@@ -18,10 +19,10 @@ public class Blink : MonoBehaviour
     private void Awake()
     {
         m_VFXContainer = GetComponent<VFXContainer>();
+        mainCamVol = FindAnyObjectByType<MainCamera>().GetComponent<Volume>(); ;
     }
     public void SpawnMirage()
     {
-        Debug.Log("Spawned");
         m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, true);
         VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, true);
         //Maybe do a little 0.5 second charge sound
@@ -35,8 +36,6 @@ public class Blink : MonoBehaviour
 
     public void BreakMirage()
     {
-        Debug.Log("Breaked");
-
         m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, false);
         VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, false);
 
@@ -52,8 +51,6 @@ public class Blink : MonoBehaviour
 
     public void BlinkTo()
     {
-        Debug.Log("Blinked");
-
         //this means it hit something and has been turned off before it can be hit
         if (!currentMirage.enabled)
             return;
@@ -77,46 +74,44 @@ public class Blink : MonoBehaviour
 
     public IEnumerator ChargeVisual()
     {
-        Volume v = FindAnyObjectByType<MainCamera>().GetComponent<Volume>();
-        v.profile = chargeProfile;
-        v.weight = 0;
-        while (v.weight < 1)
+        mainCamVol.profile = chargeProfile;
+        mainCamVol.weight = 0;
+        while (mainCamVol.weight < 1)
         {
             //Maybe increase sound for somethin
-            v.weight += Time.deltaTime / 3f;
+            mainCamVol.weight += Time.deltaTime / 3f;
             yield return null;
         }
-        v.weight = 1;
+        mainCamVol.weight = 1;
 
-        Debug.Log("ChargeFinished");
+        
         chargeCoroutine = null;
 
     }
     public IEnumerator WarpVisual()
     {
-        Volume v = FindAnyObjectByType<MainCamera>().GetComponent<Volume>();
-        v.profile = warpProfile;
-        v.weight = 1;
+        
+        mainCamVol.profile = warpProfile;
+        mainCamVol.weight = 1;
 
-        while(v.weight > 0)
+        while(mainCamVol.weight > 0)
         {
-            v.weight -= Time.deltaTime * 2f;
+            mainCamVol.weight -= Time.deltaTime * 2f;
             yield return null;
         }
-        v.weight = 0;
+        mainCamVol.weight = 0;
         warpCoroutine = null;
     }
 
     public IEnumerator DischargeVisual()
     {
-        Volume v = FindAnyObjectByType<MainCamera>().GetComponent<Volume>();
 
-        while (v.weight > 0)
+        while (mainCamVol.weight > 0)
         {
-            v.weight -= Time.deltaTime * 2f;
+            mainCamVol.weight -= Time.deltaTime * 2f;
             yield return null;
         }
-        v.weight = 0;
+        mainCamVol.weight = 0;
         
     }
 

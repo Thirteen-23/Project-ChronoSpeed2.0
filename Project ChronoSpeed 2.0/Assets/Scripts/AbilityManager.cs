@@ -306,13 +306,19 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    bool abilityWorking1 = false;
     public void PortalDropAbilityUse(InputAction.CallbackContext context)
     {
-        if (context.canceled)
+        if (context.canceled && abilityWorking1)
+        {
+            abilityWorking1 = false;
             tempPortSpawnRef.PortalDrop(context);
+        }
+            
 
         else if(context.performed && currentResourceValue >= portalDropCostValue)
         {
+            abilityWorking1 = true;
             currentResourceValue -= portalDropCostValue;
             tempPortSpawnRef.PortalDrop(context);
         }

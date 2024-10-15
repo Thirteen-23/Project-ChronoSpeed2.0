@@ -15,7 +15,7 @@ public class VFXManager : MonoBehaviour
         SendInfoToEveryone(playerRef.GetComponent<NetworkObject>().NetworkObjectId, type, setTo);
     }
 
-    [Rpc(SendTo.NotMe, RequireOwnership = false)]
+    [Rpc(SendTo.ClientsAndHost, RequireOwnership = false)]
     public static void SendInfoToEveryone(ulong objectID, VFXTypes type, bool setTo)
     {
         NetworkManager.Singleton.SpawnManager.SpawnedObjects[objectID].GetComponent<VFXContainer>().SetVFX(type, setTo);

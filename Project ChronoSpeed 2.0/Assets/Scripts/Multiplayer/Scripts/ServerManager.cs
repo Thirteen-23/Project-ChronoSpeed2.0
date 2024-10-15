@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+//not fake one
 
 public class ServerManager : MonoBehaviour
 {
@@ -103,6 +106,7 @@ public class ServerManager : MonoBehaviour
     }
 
     CarPlayerPrefabSpawner cpps;
+    GameObject miragePrefab;
     int startPos = 0;
     private void SceneManager_OnSceneEvent(SceneEvent sceneEvent)
     {
@@ -111,21 +115,22 @@ public class ServerManager : MonoBehaviour
             if (sceneEvent.ClientId == NetworkManager.Singleton.LocalClientId)
             {
                 cpps = FindAnyObjectByType<CarPlayerPrefabSpawner>();
+                miragePrefab = FindAnyObjectByType<VFXManager>().FuckingBlinkPrefabCauseUnityNetcodeDoesntLikeMe;
+
                 startPos = 0;
 
-                for(; startPos < 12 - ClientDic.Count; startPos++)
+                for (; startPos < 12 - ClientDic.Count; startPos++)
                 {
                     GameObject aiObject;
-                    if (startPos % 3 == 1)
-                      aiObject = Instantiate(cpps.DystopiaAiCar, cpps.startingPositions[startPos]);
-                    else if (startPos % 2 == 1)
-                        aiObject = Instantiate(cpps.UtopiaAiCar, cpps.startingPositions[startPos]);
-
-                    else
-                      aiObject = Instantiate(cpps.PresentAiCar, cpps.startingPositions[startPos]);
+                    //if (startPos % 3 == 1)
                     //aiObject = Instantiate(cpps.DystopiaAiCar, cpps.startingPositions[startPos]);
-                    aiObject.GetComponent<NetworkObject>().Spawn();
+                    //if (startPos % 2 == 1)
+                    //aiObject = Instantiate(cpps.UtopiaAiCar, cpps.startingPositions[startPos]);
 
+                    aiObject = Instantiate(cpps.UtopiaAiCar, cpps.startingPositions[startPos]);
+
+                   
+                    aiObject.GetComponent<NetworkObject>().Spawn();
                     MultiplayerGameManager.Singleton.AddSpawnedPlayer(aiObject.GetComponentInChildren<Rigidbody>().gameObject, (ulong)(1000 + startPos));
                 }
             }
@@ -138,18 +143,25 @@ public class ServerManager : MonoBehaviour
                     MultiplayerGameManager.Singleton.AddSpawnedPlayer(playerObject, data.ClientId);
                     playerObject.GetComponent<NetworkObject>().SpawnAsPlayerObject(data.ClientId);
                     startPos++;
+
+                    var mirage = Instantiate(miragePrefab);
+                    mirage.GetComponent<NetworkObject>().SpawnWithOwnership(data.ClientId);
+
+                    mirage.transform.parent = playerObject.transform;
                 }
             }
         }
         else if (sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted)
         {
             //i assume this is why you can call start coroutine on something else, otherwise i dont really know why
+
+
             MultiplayerGameManager.Singleton.StartCoroutine(MultiplayerGameManager.Singleton.StartGame());
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManager_OnSceneEvent;
         }
     }
 
-    
+
     public void EndSessionRpc()
     {
         if (NetworkManager.Singleton.IsServer)
@@ -160,7 +172,7 @@ public class ServerManager : MonoBehaviour
             gameHasStarted = false;
         }
         if (NetworkManager.Singleton != null) NetworkManager.Singleton.Shutdown();
-        
+
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }
@@ -171,7 +183,7 @@ public class ClientData
     public ulong ClientId;
     public int CharacterId = -1;
 
-    public ClientData(ulong clientId) 
+    public ClientData(ulong clientId)
     {
         ClientId = clientId;
     }

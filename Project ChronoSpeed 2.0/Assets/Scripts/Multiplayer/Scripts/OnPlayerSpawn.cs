@@ -10,6 +10,7 @@ public class OnPlayerSpawn : NetworkBehaviour
     {
         var input = GetComponent<PlayerInput>();
         var lapMan = GetComponent<LapManager>();
+        var carMove = GetComponent<Car_Movement>();
 
         if (IsOwner)
         {
@@ -19,16 +20,18 @@ public class OnPlayerSpawn : NetworkBehaviour
             input.enabled = false;
             mCam.rb = bodyRB;
             mCam.player = transform.Find("CameraFollow");
+            mCam.carValues = carMove;
 
-            Destroy(Trigger);
+            //Destroy(Trigger);
         }
         else
         {
             Destroy(input);
-            Destroy(GetComponent<Car_Movement>());
+            Destroy(carMove);
+            Destroy(GetComponentInChildren<FakeCollision>());
             gameObject.tag = "OtherPlayer";
 
-            Destroy(NotTrigger);
+            //Destroy(NotTrigger);
         }
 
         Debug.Log(IsServer);
