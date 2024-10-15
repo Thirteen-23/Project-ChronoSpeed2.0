@@ -416,10 +416,15 @@ public class Car_Movement : MonoBehaviour
 
     public void BrakingInput(InputAction.CallbackContext context)
     {
-       
-        if (context.started)
-            brakes_value = context.ReadValue<float>();
 
+        if (context.started)
+        {
+
+        }
+        else if (context.performed)
+        {
+                    brakes_value = context.ReadValue<float>();
+                }
         else if (context.canceled)
         {
             brakes_value = 0;
