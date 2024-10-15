@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Rendering.CameraUI;
 public enum Class
 {
     Light,
@@ -11,7 +12,7 @@ public class Car_Movement : MonoBehaviour
     ///keeping track of how many laps in the race. 
 
     CarNewInputSystem input;
-
+  
     enum DifferentialTypes
     {
         FrontWheelDrive,
@@ -91,13 +92,13 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] float allBrakeForce;
     [SerializeField] float frontBrakeForce;
     [SerializeField] float rearBrakeForce;
-    public float steering_Value;
+    private float steering_Value;
     /// make the steering smoother when useing a  keyboard 
     public float steeringDamping;
     [SerializeField] float smoothTransitionSpeed;
-    [SerializeField] float smoothTransitionSpeedForAcceleration;
-    [SerializeField] float brakes_value;
-    [SerializeField] float brakeDampening;
+    [SerializeField] float smoothTransitionSpeedForAcceleration; 
+    private float brakes_value;
+    private float brakeDampening;
 
     public float turnSpeed;
     [SerializeField] AnimationCurve steeringCurve;
@@ -415,15 +416,15 @@ public class Car_Movement : MonoBehaviour
 
     public void BrakingInput(InputAction.CallbackContext context)
     {
-       
+
         if (context.started)
         {
 
         }
-        if (context.performed)
+        else if (context.performed)
         {
-            brakes_value = context.ReadValue<float>();
-        }
+                    brakes_value = context.ReadValue<float>();
+                }
         else if (context.canceled)
         {
             brakes_value = 0;
@@ -823,8 +824,8 @@ public float lookBackValue;
                         }
                         if (checkingTerrain.collider.CompareTag("Tarmac"))
                         {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
                             for (int i = 0; i < 4; i++)
                             {
                                 wheels4[i].forwardFriction = forwardFriction;
