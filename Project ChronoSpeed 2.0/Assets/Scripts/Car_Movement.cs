@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Rendering.CameraUI;
 public enum Class
 {
     Light,
