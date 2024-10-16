@@ -153,7 +153,6 @@ public class Car_Movement : MonoBehaviour
         originalPos = gameObject.transform.position;
         rotations = gameObject.transform.rotation;
         bodyOfCar.centerOfMass = centerMass.localPosition;
-        exhaust_Shift = GetComponentInChildren<ParticleSystem>();
         leftTrail.emitting = false;
         rightTrail.emitting = false;
     }
