@@ -5,7 +5,7 @@ public class VFXContainer : MonoBehaviour
 {
     [SerializeField] public GameObject elecArcPrefab;
 
-    [HideInInspector] public VisualEffect electricArc;
+    /*[HideInInspector]*/ public VisualEffect electricArc;
 
     public void SetVFX(VFXManager.VFXTypes type, bool setTo)
     {
@@ -15,5 +15,6 @@ public class VFXContainer : MonoBehaviour
                 electricArc.enabled = setTo;
                 break;
         }
+        Debug.Log("Switched " + type.ToString() + "to " + setTo);
     }
 }

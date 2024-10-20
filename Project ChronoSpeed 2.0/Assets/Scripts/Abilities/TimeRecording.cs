@@ -54,7 +54,6 @@ public class TimeRecording : MonoBehaviour
         else if(callbackContext.canceled)
         {
             OnRelease();
-            isUsable = false;
         }
     }
 
@@ -65,7 +64,7 @@ public class TimeRecording : MonoBehaviour
         if (currentRewindIteration >= 0)
         {
             carRigidbody.velocity = storedData[currentRewindIteration].Velocity;
-            storedData.RemoveRange(currentRewindIteration + 1, (storedData.Count - 1) - (currentRewindIteration - 1));
+            storedData.RemoveRange(currentRewindIteration, storedData.Count  - currentRewindIteration);
         }
         else
         {
