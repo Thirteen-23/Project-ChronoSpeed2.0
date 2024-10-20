@@ -25452,7 +25452,7 @@ MonoBehaviour:
   acceration_Value: 0
   AccelerationDamping: 0
   idleRPM: 800
-  maxRPM: 5500
+  maxRPM: 7000
   minRPM: 3000
   maxRPMForCar: 8000
   engineRPM: 0
@@ -25466,7 +25466,7 @@ MonoBehaviour:
   gearNum: 0
   smoothTime: 0.07
   keyRPMSet:
-  - {x: 0, y: 200}
+  - {x: 0, y: 100}
   - {x: 7000, y: 350}
   - {x: 8000, y: 0}
   exhaust_Shift: {fileID: 0}
@@ -25490,7 +25490,7 @@ MonoBehaviour:
   steering_Value: 0
   steeringDamping: 0
   smoothTransitionSpeed: 20
-  smoothTransitionSpeedForAcceleration: 5
+  smoothTransitionSpeedForAcceleration: 1.5
   brakes_value: 0
   brakeDampening: 0
   turnSpeed: 0
@@ -25532,6 +25532,8 @@ MonoBehaviour:
   heavyCar: 0
   ture: 0
   lookBackValue: 0
+  maxTimeToShiftGear: 0.05
+  timerToShift: 0.05
   tt: 0
   maxAmountOfGrip: 4
   minAmountOfGripAtStart: 1.5
@@ -25809,7 +25811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1106096736
+  GlobalObjectIdHash: 1913518764
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -25895,12 +25897,12 @@ MonoBehaviour:
     maxRPM: 4000
     pitchReferenceRPM: 3000
   - source: {fileID: 3047148647608493286}
-    minRPM: 2000
-    peakRPM: 6000
-    maxRPM: 7000
-    pitchReferenceRPM: 6000
+    minRPM: 1500
+    peakRPM: 4500
+    maxRPM: 5000
+    pitchReferenceRPM: 5000
   - source: {fileID: 8055565021128290731}
-    minRPM: 4000
+    minRPM: 3000
     peakRPM: 7000
     maxRPM: 8000
     pitchReferenceRPM: 7000

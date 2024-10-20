@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using static UnityEditor.Rendering.CameraUI;
 public enum Class
 {
@@ -541,6 +542,9 @@ public float lookBackValue;
             ture = false;
         }
     }
+
+    public float maxTimeToShiftGear;
+    public float timerToShift; 
     private void Shifting()
     {
         if (transmission == TransmissionTypes.Manual)
@@ -550,14 +554,15 @@ public float lookBackValue;
             {
                 //Debug.Log(gearNum);
                 //Debug.Log(gearSpeedBox[gearNum]);
-
-                gearNum++;
-                currentShift_Value = shift_Value;
-                exhaust_Shift.Play();
-                if (shift_Value == gearSpeedBox.Length - 1)
-                {
-                    shift_Value = gearSpeedBox.Length - 1;
-                }
+                
+                    gearNum++;
+                    currentShift_Value = shift_Value;
+                    exhaust_Shift.Play();
+                    if (shift_Value == gearSpeedBox.Length - 1)
+                    {
+                        shift_Value = gearSpeedBox.Length - 1;
+                    }
+                
             }
             else if ((shiftDown == true && shift_Value < currentShift_Value) && (gearNum > 0))
             {
@@ -568,6 +573,7 @@ public float lookBackValue;
 
             }
         }
+
         if (transmission == TransmissionTypes.Automatic)
         {
             WheelHit wheelHit;
@@ -582,12 +588,21 @@ public float lookBackValue;
                         {
                             if (slip[i] > amountOfSlipToShift)
                             {
-                                return;
+                                return; 
                             }
                             else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                             {
-                                gearNum++;
-                                exhaust_Shift.Play();
+                                // changes to shifting 
+                                if (timerToShift > 0)
+                                {
+                                    timerToShift -= Time.deltaTime;
+                                }
+                                else
+                                {
+                                    gearNum++;
+                                    exhaust_Shift.Play();
+                                    timerToShift = maxTimeToShiftGear;
+                                }
                             }
                         }
                         if (engineRPM <= minRPM)
@@ -618,8 +633,17 @@ public float lookBackValue;
                             }
                             else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                             {
-                                gearNum++;
-                                exhaust_Shift.Play();
+                                if (timerToShift > 0)
+                                {
+                                    timerToShift -= Time.deltaTime;
+                                    engineRPM = Mathf.Clamp(engineRPM, 0, maxRPM - 500);
+                                }
+                                else
+                                {
+                                    gearNum++;
+                                    exhaust_Shift.Play();
+                                    timerToShift = maxTimeToShiftGear;
+                                }
                             }
 
                         }
@@ -921,7 +945,12 @@ public float lookBackValue;
                 if (slip[i] > 0.4f || slip[i] < -0.4f)
                 {
                     leftWheelSmoke.Play();
+                    var leftMain = leftWheelSmoke.emission;
+                    leftMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
+                   
                     rightWheelSmoke.Play();
+                    var rightMain= rightWheelSmoke.emission;
+                    rightMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
                 }
             }
                     tt = 0;

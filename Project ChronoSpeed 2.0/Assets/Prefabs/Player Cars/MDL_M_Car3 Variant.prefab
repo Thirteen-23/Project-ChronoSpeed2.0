@@ -4800,6 +4800,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7682055859643511168}
     m_Modifications:
+    - target: {fileID: 7942712489507444124, guid: 56829a71f8c656d49b239667828510ee,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7942712489667603472, guid: 56829a71f8c656d49b239667828510ee,
         type: 3}
       propertyPath: m_RootOrder
@@ -4859,6 +4864,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_SmokeTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942712489802650186, guid: 56829a71f8c656d49b239667828510ee,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942712489802650186, guid: 56829a71f8c656d49b239667828510ee,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56829a71f8c656d49b239667828510ee, type: 3}
