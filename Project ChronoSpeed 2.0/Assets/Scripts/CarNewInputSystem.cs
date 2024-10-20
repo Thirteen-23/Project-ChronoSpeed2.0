@@ -450,7 +450,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9ecf5211-b556-4d7b-9eeb-a44fa24d35f5"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
