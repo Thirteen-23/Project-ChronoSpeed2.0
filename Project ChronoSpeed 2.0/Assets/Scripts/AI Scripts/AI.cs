@@ -320,7 +320,7 @@ public class AI : MonoBehaviour
                 acceration_Value = 1.5f;
                 steeringForce = 1.2f;
                 minimumWayPointApproachThreshold = 20f;
-                carAI.downForceValue = 600f;
+                carAI.downForceValue = 700;
             }
         }
 
@@ -414,7 +414,7 @@ public class AI : MonoBehaviour
 
     public float speedTimer = 5;
     public float activeTime = 5;
-
+    public float cooldownTimer = 5;
     private void AIState()
     {
         switch (aiSpeaking)
@@ -430,19 +430,18 @@ public class AI : MonoBehaviour
                     case aI_Difficulty.easy:
 
                         acceration_Value = 1f;
-                        carAI.downForceValue = 500f;
+                       
 
                         break;
                     case aI_Difficulty.normal:
 
                         acceration_Value = 1.2f;
-                        carAI.downForceValue = 500f;
+                      
                         break;
                     case aI_Difficulty.hard:
 
                         acceration_Value = 1.5f;
-                        carAI.downForceValue = 500f;
-
+                        
                         break;
 
 
@@ -455,25 +454,25 @@ public class AI : MonoBehaviour
                 if (speedTimer > 0)
                 {
                    
-                    collider.enabled = false;
+                    //collider.enabled = false;
                     speedTimer -= Time.deltaTime;
                     switch (difficultness)
                     {
                         case aI_Difficulty.easy:
 
                             acceration_Value = 3f;
-                            carAI.downForceValue = 500f;
+                          
 
                             break;
                         case aI_Difficulty.normal:
 
                             acceration_Value = 3.5f;
-                            carAI.downForceValue = 500f;
+                          
                             break;
                         case aI_Difficulty.hard:
 
                             acceration_Value = 4f;
-                            carAI.downForceValue = 500f;
+                          
 
                             break;
 
@@ -485,16 +484,26 @@ public class AI : MonoBehaviour
                 else
                 {
                     
-                    collider.enabled = true;
+                   // collider.enabled = true;
                     aiSpeaking = AIMouth.racing;
                     speedTimer = activeTime; 
                 }
                 break;
 
             case AIMouth.slowing_Down:
-
                 Debug.Log("i sense in front");
-                 rb.AddForce(-rb.transform.forward * forceTurn);
+                 rb.AddForce(-rb.transform.forward + rb.transform.right * forceTurn);
+                if (cooldownTimer > 0)
+                {
+                    cooldownTimer -= Time.deltaTime;
+                }
+                else
+                {
+
+                    aiSpeaking = AIMouth.racing;
+                    cooldownTimer = Random.Range(2, 6);
+                }
+
                 break;
             case AIMouth.reversing:
 
@@ -516,7 +525,16 @@ public class AI : MonoBehaviour
         if (other.CompareTag("AIBody"))
         {
             Debug.Log("i sense in front");
-            aiSpeaking = AIMouth.slowing_Down;
+            
+            if(aiSpeaking == AIMouth.speeding_Up)
+            {
+                rb.AddForce(rb.transform.right * forceTurn);
+            }
+
+            else
+            {
+                aiSpeaking = AIMouth.slowing_Down;
+            }
 
         }
         if (other.CompareTag("walls"))
@@ -534,6 +552,7 @@ public class AI : MonoBehaviour
             if(otherCarSpeed < carAI.currentSpeed)
             {
                 carAI.brakes_value = 1;
+                carAI.acceration_Value = 0;
                 if(carAI.currentSpeed <= otherCarSpeed)
                 {
                     carAI.brakes_value = 0;

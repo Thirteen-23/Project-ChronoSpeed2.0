@@ -1,11 +1,14 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup MainMenuCG;
     [SerializeField] private CanvasGroup JoinHostCG;
     [SerializeField] private TMP_InputField ipInput;
+    [SerializeField] GameObject joinServerButton;
+    [SerializeField] GameObject joinButton;
     public enum MainMenuStates
     {
         MainMenu,
@@ -32,6 +35,8 @@ public class UIManager : MonoBehaviour
                 JoinHostCG.alpha = 0f;
                 JoinHostCG.interactable = false;
                 JoinHostCG.blocksRaycasts = false;
+
+                EventSystem.current.SetSelectedGameObject(joinServerButton);
                 break;
             case MainMenuStates.JoinHost:
                 MainMenuCG.alpha = 0f;
@@ -41,6 +46,8 @@ public class UIManager : MonoBehaviour
                 JoinHostCG.alpha = 1.0f;
                 JoinHostCG.interactable = true;
                 JoinHostCG.blocksRaycasts = true;
+
+                EventSystem.current.SetSelectedGameObject(joinButton);
                 break;
         }
     }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class CollisionVFX : MonoBehaviour
 {
@@ -11,19 +8,34 @@ public class CollisionVFX : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("walls") || other.CompareTag("AIBody") || other.CompareTag("CarBody") || other.CompareTag("RigidBodyObj"))
-            return;
+        if (other.CompareTag("walls") || other.CompareTag("AIBody") || other.CompareTag("CarBody") || other.CompareTag("RigidBodyObj"))
+        {
+            if (contactAmount >= sparks.Length)
+                return;
 
-        if (contactAmount >= sparks.Length)
-            return;
+            Vector3 contactPosition = other.ClosestPoint(transform.position);
+            if (!sparks[contactAmount].isPlaying)
+                sparks[contactAmount].Play();
+            sparks[contactAmount].transform.position = contactPosition;
+            sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
+            contactAmount++;
+        }
+    }
 
-        Vector3 contactPosition = other.ClosestPoint(transform.position);
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.CompareTag("walls") || collision.transform.CompareTag("AIBody") || collision.transform.CompareTag("CarBody") || collision.transform.CompareTag("RigidBodyObj"))
+        {
+            if (contactAmount >= sparks.Length)
+                return;
 
-        if (!sparks[contactAmount].isPlaying)
-            sparks[contactAmount].Play();
-        sparks[contactAmount].transform.position = contactPosition;
-        sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
-        contactAmount++;
+            Vector3 contactPosition = collision.contacts[0].point;
+            if (!sparks[contactAmount].isPlaying)
+                sparks[contactAmount].Play();
+            sparks[contactAmount].transform.position = contactPosition;
+            sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
+            contactAmount++;
+        }
     }
 
     private void FixedUpdate()

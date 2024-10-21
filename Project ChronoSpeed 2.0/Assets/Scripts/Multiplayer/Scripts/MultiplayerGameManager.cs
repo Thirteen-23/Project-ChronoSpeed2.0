@@ -6,7 +6,6 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
-using UnityEditor.Playables;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
@@ -16,7 +15,6 @@ public class MultiplayerGameManager : NetworkBehaviour
     [SerializeField] private TMP_Text gameEndedText;
     [SerializeField] private GameObject leaveGameBtn;
     [SerializeField] private LeadboardPlayerBar[] playerBars;
-
 
     public Dictionary<ulong, GameObject> playerPrefabRef { get; private set;}
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
@@ -121,27 +119,34 @@ public class MultiplayerGameManager : NetworkBehaviour
         if (time > 0) startCountdownText.text = time.ToString();
         else startCountdownText.text = "GO!!!!";
 
-        if(RaceStart)
+        if (RaceStart)
         {
             startCountdownText.enabled = false;
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();
+          
             input.enabled = true;
+            input.SwitchCurrentActionMap("Movement");
             
+
             if (IsServer)
             {
                 GameObject[] AIs = GameObject.FindGameObjectsWithTag("AI");
-               
+
                 foreach (var curAI in AIs)
                 {
 
                     curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.normal;
-                   
+
                 }
             }
         }
-        else startCountdownText.enabled = true;
-        
+        else
+        {
+            
+            startCountdownText.enabled = true;
+            
+        }
     }
 
     [Rpc(SendTo.ClientsAndHost)]
