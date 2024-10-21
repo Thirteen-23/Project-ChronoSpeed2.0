@@ -9801,7 +9801,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22cd46996da3b624bb08935264560d8c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d3a8fe143fb408046be078e12423b751, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 0.5155206
@@ -25811,7 +25811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1913518764
+  GlobalObjectIdHash: 4086998015
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -25891,25 +25891,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engineNotes:
-  - source: {fileID: 2090646322628288816}
-    minRPM: 800
-    peakRPM: 3000
-    maxRPM: 4000
-    pitchReferenceRPM: 3000
   - source: {fileID: 3047148647608493286}
-    minRPM: 1500
-    peakRPM: 4500
-    maxRPM: 5000
-    pitchReferenceRPM: 5000
-  - source: {fileID: 8055565021128290731}
-    minRPM: 3000
-    peakRPM: 7000
+    minRPM: 800
+    peakRPM: 5000
     maxRPM: 8000
-    pitchReferenceRPM: 7000
+    pitchReferenceRPM: 5000
   carValues: {fileID: 0}
   m_AICarValues: {fileID: 0}
   rpm: 0
-  masterVolume: 0.05
+  masterVolume: 1
 --- !u!114 &-3833017455954412715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27694,7 +27684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3989876757161460444
 Transform:
   m_ObjectHideFlags: 0
@@ -30831,7 +30821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2448072307705171314
 Transform:
   m_ObjectHideFlags: 0
