@@ -75,7 +75,7 @@ private void Awake()
 
         transform.root.position += dir * dist;
 
-        GetOuttaThereStep(other);
+        //GetOuttaThereStep(other);
     }
 
     void GetOuttaThereStep(Collider other)
