@@ -4347,6 +4347,8 @@ MonoBehaviour:
   heavyCar: 0
   ture: 0
   lookBackValue: 0
+  maxTimeToShiftGear: 0
+  timerToShift: 0
   tt: 1
   maxAmountOfGrip: 3
   minAmountOfGripAtStart: 1
@@ -4555,6 +4557,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 70805d7b-93b7-4292-bb53-75df513a4a80
     m_ActionName: Movement/Blink[/DualSenseGamepadHID/buttonNorth,/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92ff09ed-63d5-4cdb-924f-71b1797ba4db
+    m_ActionName: UI/Navigate[/DualSenseGamepadHID/leftStick,/DualSenseGamepadHID/dpad,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -4638,7 +4644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 391577787
+  GlobalObjectIdHash: 3611437128
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -115,48 +116,52 @@ public class Car_Movement : MonoBehaviour
     Vector3 downwardsDirection = Vector3.down;
     [SerializeField] float floorRange;
 
-    public Transform spawnpointerBehind;
-    public Transform spawnpointer;
-    public TrailRenderer leftTrail;
-    public TrailRenderer rightTrail;
-
     // drifting boost value
     [Header(" boost values when drifting ")]
     [SerializeField] float forceBoostForDriftingValue = 20000f;
     public float findme;
     public bool lightCar, mediumCar, heavyCar = false;
+    public float minDrag = 0;
+    public float maxDrag = 4;
+    public float boostInDrifting = 25000f;
+    [SerializeField] float tt = 1;
+    [SerializeField] float maxAmountOfGrip;
+    [SerializeField] float minAmountOfGripAtStart;
+    float driftEndingGrip;
+    public bool meBoosting = false;
+    public float boostValue = 3000f;
+
+    [Header("VFX")]
+    // GameObjects / particle systems
+    public ParticleSystem leftWheel;
+    public ParticleSystem rightWheel;
+    public ParticleSystem leftWheelSmoke;
+    public ParticleSystem rightWheelSmoke;
+    public ParticleSystem[] nitroboostColor;
+    public ParticleSystem[] exhaustVFX;
+
+
+
+
     private void Awake()
     {
-
         input = new CarNewInputSystem();
-
     }
 
     private void OnEnable()
     {
-       // input.Enable();
-        //input.Movement.Acceleration.performed += ApplyingThrottleInput;
-        //input.Movement.Acceleration.canceled += ReleaseThrottleInput;
-        //input.Movement.Steering.performed += ApplySteeringInput;
-        //input.Movement.Steering.canceled += ReleaseSteeringInput;
-        // input.Movement.braking.performed += BrakingInput;
-        // input.Movement.braking.canceled += ReleaseBrakingInput;
 
     }
     private void OnDisable()
     {
-       // input.Disable();
 
     }
     void Start()
     {
-        // nodes = waypoints.trackNodes;
         originalPos = gameObject.transform.position;
         rotations = gameObject.transform.rotation;
         bodyOfCar.centerOfMass = centerMass.localPosition;
         exhaust_Shift = GetComponentInChildren<ParticleSystem>();
-        leftTrail.emitting = false;
-        rightTrail.emitting = false;
     }
 
     private void FixedUpdate()
@@ -176,7 +181,7 @@ public class Car_Movement : MonoBehaviour
         AdjustTractionForDrifting();
         // CheckingforSlip();
         //CheckingDistanceOfWaypoints();
-        
+
         NitroBoostin();
     }
 
@@ -185,9 +190,9 @@ public class Car_Movement : MonoBehaviour
         isBraking = Input.GetKey(KeyCode.B);
         ifHandBraking = Input.GetKey(KeyCode.Space);
         resetPosition = Input.GetKey(KeyCode.R);
-        if(resetPosition == true)
+        if (resetPosition == true)
         {
-            bodyOfCar.velocity = Vector3.zero; 
+            bodyOfCar.velocity = Vector3.zero;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -208,7 +213,7 @@ public class Car_Movement : MonoBehaviour
     private void DampeningSystem()
     {
         AccelerationDamping = SmoothTransitionForAcceleration(acceration_Value, AccelerationDamping);
-        
+
         steeringDamping = SmoothTransition(steering_Value, steeringDamping);
         brakeDampening = SmoothTransition(brakes_value, brakeDampening);
 
@@ -242,7 +247,7 @@ public class Car_Movement : MonoBehaviour
                 for (int i = 0; i < wheels4.Length; i++)
                 {
                     // wheels torque equal to engine Rpm * gearbox * final drive ratio and input from player
-                    wheels4[i].motorTorque = totalPowerInCar  * 4 / 4;
+                    wheels4[i].motorTorque = totalPowerInCar * 4 / 4;
                     //Debug.Log(wheels4[i].motorTorque);
                 }
             }
@@ -250,7 +255,7 @@ public class Car_Movement : MonoBehaviour
             {
                 for (int i = 2; i < wheels4.Length; i++)
                 {
-                    wheels4[i].motorTorque = totalPowerInCar * 4 /2;
+                    wheels4[i].motorTorque = totalPowerInCar * 4 / 2;
                 }
             }
             else if (drive == DifferentialTypes.FrontWheelDrive)
@@ -274,7 +279,7 @@ public class Car_Movement : MonoBehaviour
                 for (int i = 0; i < wheels4.Length; i++)
                 {
                     wheels4[i].motorTorque = acceration_Value * 0;
-                   
+
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
@@ -382,10 +387,10 @@ public class Car_Movement : MonoBehaviour
         {
 
         }
-        else if(context.performed)
+        else if (context.performed)
         {
-                    steering_Value = context.ReadValue<Vector2>().x;
-                }
+            steering_Value = context.ReadValue<Vector2>().x;
+        }
         else if (context.canceled)
         {
             steering_Value = 0;
@@ -402,7 +407,7 @@ public class Car_Movement : MonoBehaviour
     public void ApplyingThrottleInput(InputAction.CallbackContext context)
     {
         if (context.started)
-        { 
+        {
 
         }
         else if (context.performed)
@@ -422,7 +427,7 @@ public class Car_Movement : MonoBehaviour
 
     public void BrakingInput(InputAction.CallbackContext context)
     {
-       
+
         if (context.started)
         {
 
@@ -515,10 +520,10 @@ public class Car_Movement : MonoBehaviour
         }
 
     }
-    
+
     public bool ture = false;
-    
-public float lookBackValue;
+
+    public float lookBackValue;
     public void LookBehind(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -528,11 +533,11 @@ public float lookBackValue;
         }
         if (context.performed)
         {
-            
-            if(lookBackValue == 1)
+
+            if (lookBackValue == 1)
             {
                 lookBackValue = context.ReadValue<float>();
-                ture = true; 
+                ture = true;
 
             }
         }
@@ -542,9 +547,9 @@ public float lookBackValue;
             ture = false;
         }
     }
-
+    [Header("Shifting Time Values")]
     public float maxTimeToShiftGear;
-    public float timerToShift; 
+    public float timerToShift;
     private void Shifting()
     {
         if (transmission == TransmissionTypes.Manual)
@@ -554,15 +559,15 @@ public float lookBackValue;
             {
                 //Debug.Log(gearNum);
                 //Debug.Log(gearSpeedBox[gearNum]);
-                
-                    gearNum++;
-                    currentShift_Value = shift_Value;
-                    exhaust_Shift.Play();
-                    if (shift_Value == gearSpeedBox.Length - 1)
-                    {
-                        shift_Value = gearSpeedBox.Length - 1;
-                    }
-                
+
+                gearNum++;
+                currentShift_Value = shift_Value;
+                exhaust_Shift.Play();
+                if (shift_Value == gearSpeedBox.Length - 1)
+                {
+                    shift_Value = gearSpeedBox.Length - 1;
+                }
+
             }
             else if ((shiftDown == true && shift_Value < currentShift_Value) && (gearNum > 0))
             {
@@ -588,7 +593,7 @@ public float lookBackValue;
                         {
                             if (slip[i] > amountOfSlipToShift)
                             {
-                                return; 
+                                return;
                             }
                             else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
                             {
@@ -672,7 +677,7 @@ public float lookBackValue;
                             if (gearNum < gearSpeedBox.Length - 1)
                             {
                                 gearNum++;
-                               // exhaust_Shift.Play();
+                                // exhaust_Shift.Play();
                             }
 
 
@@ -732,7 +737,7 @@ public float lookBackValue;
         {
             if (hit.collider.CompareTag("ground"))
             {
-              //  Debug.Log("on the ground");
+                //  Debug.Log("on the ground");
                 bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
 
             }
@@ -756,149 +761,133 @@ public float lookBackValue;
 
         }
     }
-    [SerializeField] float tt = 1;
-    [SerializeField] float maxAmountOfGrip;
-    [SerializeField] float minAmountOfGripAtStart;
-    float driftEndingGrip;
-    public ParticleSystem leftWheel;
-    public ParticleSystem rightWheel;
-    public ParticleSystem leftWheelSmoke;
-    public ParticleSystem rightWheelSmoke;
-    public float minDrag = 0;
-    public float maxDrag = 4;
-    public float boostInDrifting = 25000f;
+
     private void AdjustTractionForDrifting()
     {
 
         #region Traction ability 
-        
+
         // for each terrain it is on
         WheelHit checkingTerrain;
-
-        if (wheels4[0].GetGroundHit(out checkingTerrain))
+        foreach (WheelCollider wheel in wheels4)
         {
-            forwardFriction = wheels4[0].forwardFriction;
-            sidewaysFriction = wheels4[0].sidewaysFriction;
-            //if (checkingTerrain.collider.CompareTag("Road") || checkingTerrain.collider.CompareTag("SideWalk"))
-                if (checkingTerrain.collider.CompareTag("Tarmac")  || checkingTerrain.collider.CompareTag("SideWalk"))
+
+
+
+            if (wheel.GetGroundHit(out checkingTerrain))
+            {
+                forwardFriction = wheel.forwardFriction;
+                sidewaysFriction = wheel.sidewaysFriction;
+                //if (checkingTerrain.collider.CompareTag("Road") || checkingTerrain.collider.CompareTag("SideWalk"))
+                if (checkingTerrain.collider.CompareTag("Tarmac") || checkingTerrain.collider.CompareTag("SideWalk"))
                 {
-                switch (carClasses)
-                {
-                    case Class.Light:
-                        forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                        sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            wheels4[i].forwardFriction = forwardFriction;
-                            wheels4[i].sidewaysFriction = sidewaysFriction;
-                        }
-                        if (checkingTerrain.collider.CompareTag("Tarmac"))
-                        {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
-                            for (int i = 0; i < 4; i++)
-                            {
-                                wheels4[i].forwardFriction = forwardFriction;
-                                wheels4[i].sidewaysFriction = sidewaysFriction;
-                            }
-                        }
-                        else if (checkingTerrain.collider.CompareTag("SideWalk"))
-                        {
+                    switch (carClasses)
+                    {
+                        case Class.Light:
                             forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
                             sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                            for (int i = 0; i < 4; i++)
-                            {
-                                wheels4[i].forwardFriction = forwardFriction;
-                                wheels4[i].sidewaysFriction = sidewaysFriction;
-                            }
-                        }
-                        break;
-                    case Class.Medium:
 
-                        forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                        sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            wheels4[i].forwardFriction = forwardFriction;
-                            wheels4[i].sidewaysFriction = sidewaysFriction;
-                        }
-                        if (checkingTerrain.collider.CompareTag("Tarmac"))
-                        {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
-                            for (int i = 0; i < 4; i++)
-                            {
-                                wheels4[i].forwardFriction = forwardFriction;
-                                wheels4[i].sidewaysFriction = sidewaysFriction;
-                            }
-                        }
-                        else if (checkingTerrain.collider.CompareTag("SideWalk"))
-                        {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
-                            for (int i = 0; i < 4; i++)
-                            {
-                                wheels4[i].forwardFriction = forwardFriction;
-                                wheels4[i].sidewaysFriction = sidewaysFriction;
-                            }
-                        }
-                        break;
-                    case Class.Heavy:
-                        forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                        sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            wheels4[i].forwardFriction = forwardFriction;
-                            wheels4[i].sidewaysFriction = sidewaysFriction;
-                        }
-                        if (checkingTerrain.collider.CompareTag("Tarmac"))
-                        {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            for (int i = 0; i < 4; i++)
-                            {
-                                wheels4[i].forwardFriction = forwardFriction;
-                                wheels4[i].sidewaysFriction = sidewaysFriction;
-                            }
-                        }
-                        else if (checkingTerrain.collider.CompareTag("SideWalk"))
-                        {
-                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                            for (int i = 0; i < 4; i++)
-                            {
-                                wheels4[i].forwardFriction = forwardFriction;
-                                wheels4[i].sidewaysFriction = sidewaysFriction;
-                            }
-                        }
-                        break;
+                            wheel.forwardFriction = forwardFriction;
+                            wheel.sidewaysFriction = sidewaysFriction;
 
+                            if (checkingTerrain.collider.CompareTag("Tarmac"))
+                            {
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 1f;
+
+                                wheel.forwardFriction = forwardFriction;
+                                wheel.sidewaysFriction = sidewaysFriction;
+
+                            }
+                            else if (checkingTerrain.collider.CompareTag("SideWalk"))
+                            {
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+
+                                wheel.forwardFriction = forwardFriction;
+                                wheel.sidewaysFriction = sidewaysFriction;
+
+                            }
+                            break;
+                        case Class.Medium:
+
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+
+                            wheel.forwardFriction = forwardFriction;
+                            wheel.sidewaysFriction = sidewaysFriction;
+
+                            if (checkingTerrain.collider.CompareTag("Tarmac"))
+                            {
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+
+                                wheel.forwardFriction = forwardFriction;
+                                wheel.sidewaysFriction = sidewaysFriction;
+
+                            }
+                            else if (checkingTerrain.collider.CompareTag("SideWalk"))
+                            {
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+
+                                wheel.forwardFriction = forwardFriction;
+                                wheel.sidewaysFriction = sidewaysFriction;
+
+                            }
+                            break;
+                        case Class.Heavy:
+                            forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                            sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+
+                            wheel.forwardFriction = forwardFriction;
+                            wheel.sidewaysFriction = sidewaysFriction;
+
+                            if (checkingTerrain.collider.CompareTag("Tarmac"))
+                            {
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+
+                                wheel.forwardFriction = forwardFriction;
+                                wheel.sidewaysFriction = sidewaysFriction;
+
+                            }
+                            else if (checkingTerrain.collider.CompareTag("SideWalk"))
+                            {
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
+
+                                wheel.forwardFriction = forwardFriction;
+                                wheel.sidewaysFriction = sidewaysFriction;
+
+                            }
+                            break;
+
+                    }
                 }
-            }
-            //if (checkingTerrain.collider.name == "DystopiaGround" && carClasses == Class.Medium)
-            //{
-            //    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-            //    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-            //    for (int i = 0; i < 4; i++)
-            //    {
-            //        wheels4[i].forwardFriction = forwardFriction;
-            //        wheels4[i].sidewaysFriction = sidewaysFriction;
-            //    }
-            //}
-            else
-            {
-                forwardFriction = wheels4[0].forwardFriction;
-                sidewaysFriction = wheels4[0].sidewaysFriction;
-                forwardFriction.stiffness = 1;
-                sidewaysFriction.stiffness = 1;
-                for (int i = 0; i < 4; i++)
+                //if (checkingTerrain.collider.name == "DystopiaGround" && carClasses == Class.Medium)
+                //{
+                //    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                //    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                //    for (int i = 0; i < 4; i++)
+                //    {
+                //        wheels4[i].forwardFriction = forwardFriction;
+                //        wheels4[i].sidewaysFriction = sidewaysFriction;
+                //    }
+                //}
+                else
                 {
-                    wheels4[i].forwardFriction = forwardFriction;
-                    wheels4[i].sidewaysFriction = sidewaysFriction;
+                    forwardFriction = wheel.forwardFriction;
+                    sidewaysFriction = wheel.sidewaysFriction;
+                    forwardFriction.stiffness = 1;
+                    sidewaysFriction.stiffness = 1;
+
+                    wheel.forwardFriction = forwardFriction;
+                    wheel.sidewaysFriction = sidewaysFriction;
                 }
+                // forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                // sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
             }
-            // forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-            // sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
 
 
         }
@@ -909,10 +898,10 @@ public float lookBackValue;
         if (ifHandBraking && currentSpeed > 40 || currentSpeed > 40 && handbraking > 0)
         {
             //bodyOfCar.angularDrag = whenDrifting;
-            bodyOfCar.angularDrag = Mathf.Lerp(minDrag, maxDrag, tt * 2f); 
+            bodyOfCar.angularDrag = Mathf.Lerp(minDrag, maxDrag, tt * 2f);
             sidewaysFriction = wheels4[0].sidewaysFriction;
             forwardFriction = wheels4[0].forwardFriction;
-          
+
             float velocity = 0;
 
             driftEndingGrip = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue =
@@ -934,9 +923,9 @@ public float lookBackValue;
                 wheels4[i].forwardFriction = forwardFriction;
 
             }
-              bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
-                // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
-                WheelHit wheelHit;
+            bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
+            // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
+            WheelHit wheelHit;
 
             for (int i = 2; i < wheels4.Length; i++)
             {
@@ -947,13 +936,13 @@ public float lookBackValue;
                     leftWheelSmoke.Play();
                     var leftMain = leftWheelSmoke.emission;
                     leftMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
-                   
+
                     rightWheelSmoke.Play();
-                    var rightMain= rightWheelSmoke.emission;
+                    var rightMain = rightWheelSmoke.emission;
                     rightMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
                 }
             }
-                    tt = 0;
+            tt = 0;
         }
         // executed when handbrake is not held
         else
@@ -1001,7 +990,7 @@ public float lookBackValue;
                     {
                         tt = 1f;
                         forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
-                   Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt *1f);
+                   Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 5), tt * 1f);
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
                         //leftTrail.emitting = true;
                         //rightTrail.emitting = true;
@@ -1030,15 +1019,15 @@ public float lookBackValue;
                     }
                     else
                     {
-                       // leftTrail.emitting = false;
-                       // rightTrail.emitting = false;
+                        // leftTrail.emitting = false;
+                        // rightTrail.emitting = false;
                         rightWheel.Stop();
                         leftWheel.Stop();
                         leftWheelSmoke.Stop();
                         rightWheelSmoke.Stop();
                         lightCar = false;
                         mediumCar = false;
-                        heavyCar = false; 
+                        heavyCar = false;
                     }
                 }
 
@@ -1050,19 +1039,16 @@ public float lookBackValue;
                 }
             }
             bodyOfCar.angularDrag = whenNotDrifting;
-           
+
             #endregion
 
 
         }
     }
-    public bool meBoosting = false;
-    public float boostValue = 3000f;
-    public ParticleSystem[] nitroboostColor;
-    public ParticleSystem[] exhaustVFX; 
+
     public void NitroBoostin()
-    { 
-        if(meBoosting == true)
+    {
+        if (meBoosting == true)
         {
             Debug.Log("I am boosting?");
             bodyOfCar.AddForce(bodyOfCar.transform.forward * boostValue);
