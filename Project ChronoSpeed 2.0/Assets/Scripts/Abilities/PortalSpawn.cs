@@ -14,7 +14,7 @@ public class PortalSpawn : MonoBehaviour
     Quaternion startRot;
     public void PortalDrop(CallbackContext callbackContext)
     {
-        if (callbackContext.started)
+        if (callbackContext.performed)
         {
             startPos = transform.position + transform.forward * -4;
             startRot = transform.rotation;

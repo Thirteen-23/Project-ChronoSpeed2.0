@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class CollisionVFX : MonoBehaviour
 {
@@ -22,14 +19,23 @@ public class CollisionVFX : MonoBehaviour
             sparks[contactAmount].transform.position = contactPosition;
             sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
             contactAmount++;
-
         }
+    }
 
-     
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.CompareTag("walls") || collision.transform.CompareTag("AIBody") || collision.transform.CompareTag("CarBody") || collision.transform.CompareTag("RigidBodyObj"))
+        {
+            if (contactAmount >= sparks.Length)
+                return;
 
-     
-
-       
+            Vector3 contactPosition = collision.contacts[0].point;
+            if (!sparks[contactAmount].isPlaying)
+                sparks[contactAmount].Play();
+            sparks[contactAmount].transform.position = contactPosition;
+            sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
+            contactAmount++;
+        }
     }
 
     private void FixedUpdate()

@@ -634,12 +634,9 @@ MonoBehaviour:
   allBrakeForce: 1000000
   frontBrakeForce: 0
   rearBrakeForce: 0
-  steering_Value: 0
   steeringDamping: 0
   smoothTransitionSpeed: 20
   smoothTransitionSpeedForAcceleration: 5
-  brakes_value: 0
-  brakeDampening: 0
   turnSpeed: 0
   steeringCurve:
     serializedVersion: 2
@@ -951,6 +948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Trigger: {fileID: 0}
+  NotTrigger: {fileID: 0}
 --- !u!1 &3503951921780748355
 GameObject:
   m_ObjectHideFlags: 0

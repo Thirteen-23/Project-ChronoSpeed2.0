@@ -24,14 +24,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_Portal
-  m_Shader: {fileID: -6465566751694194690, guid: 9cbaa8dafa579304b97f2f63e9dc6306,
+  m_Shader: {fileID: -6465566751694194690, guid: a0bdfb003c04fcf428a2573449f8fbb4,
     type: 3}
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
   - _ENABLE_FOG_ON_TRANSPARENT
   - _SURFACE_TYPE_TRANSPARENT
-  - _TRANSPARENT_WRITES_MOTION_VEC
   m_InvalidKeywords:
   - _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
@@ -250,8 +249,8 @@ Material:
     - _TransparentDepthPostpassEnable: 0
     - _TransparentDepthPrepassEnable: 0
     - _TransparentSortPriority: -1
-    - _TransparentWritingMotionVec: 1
-    - _TransparentZWrite: 1
+    - _TransparentWritingMotionVec: 0
+    - _TransparentZWrite: 0
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
@@ -260,8 +259,8 @@ Material:
     - _ZTestDepthEqualForOpaque: 2
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 2
-    - _ZWrite: 1
-    - _distortion: 1
+    - _ZWrite: 0
+    - _distortion: 0.426
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
