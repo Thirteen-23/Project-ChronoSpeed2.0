@@ -5,7 +5,7 @@ using UnityEngine;
 public class FakeCollision : MonoBehaviour
 {
     Class myClass;
-    float myInvMass = 0;
+    float myMass = 0;
     Rigidbody myRB;
     public struct CollisionRequiredInfo
     {
@@ -24,7 +24,7 @@ private void Awake()
     {
         myClass = GetComponentInParent<Car_Movement>().carClasses;
         myRB = GetComponentInParent<Rigidbody>();
-        myInvMass = GetInverseMass(myClass);
+        myMass = GetMass(myClass);
     }
     Dictionary<Transform, CollisionRequiredInfo> currentCollidingCars;
 
@@ -63,14 +63,19 @@ private void Awake()
             //currentCollidingCars.Remove(other.transform);
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        
-    }
+    
 
-    private void OnCollisionExit(Collision collision)
+    void CollideLol(Collider me, Collider other)
     {
-        
+        Vector3 dir;
+        float dist;
+
+        Physics.ComputePenetration(me, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out dir, out dist);
+        dir.y = 0; dir.Normalize();
+
+        transform.root.position += dir * dist;
+
+        GetOuttaThereStep(other);
     }
 
     void GetOuttaThereStep(Collider other)
@@ -83,92 +88,31 @@ private void Awake()
 
         float otherMass = currentCollidingCars[other.transform].theirMass;
 
-        //Do depen later, need to make game rn : (
-        Vector3 collisionDirection = (transform.root.position - other.ClosestPoint(transform.root.position)).normalized;
+        Vector3 relativeVelocity = myRB.velocity - currentCollidingCars[other.transform].theirRB.velocity;
+        Vector3 normal = transform.position - other.transform.position;
 
-        //Vector3 relativeVelocity = myRB.velocity - currentCollidingCars[other.transform].theirRB.velocity;
-        //Vector3 normal = transform.position - other.transform.position;
+        normal.y = 0;
+        normal.Normalize();
 
-        //normal.y = 0;
-        //normal.Normalize();
+        float dot = Vector3.Dot(relativeVelocity, normal);
+        dot *= myMass + otherMass;
+        normal *= dot;
+        Vector3 velChange = normal / myMass;
 
-        //float dot = Vector3.Dot(relativeVelocity, normal);
-        //dot *= myInvMass + otherMass;
-        //normal *= dot;
-        //Vector3 velChange = normal * myInvMass;
-
-        transform.root.position += collisionDirection * (myInvMass + otherMass) * myInvMass;
-
-        //Debug.Log(velChange);
-
-        //myRB.AddForce(velChange, ForceMode.VelocityChange);
+        myRB.AddForce(velChange, ForceMode.VelocityChange);
     }
 
-    float GetInverseMass(Class c)
+    float GetMass(Class c)
     {
         if (c == Class.Heavy)
-            return 0.1f;
+            return 90f;
         else if (c == Class.Medium)
-            return 0.5f;
+            return 60f;
         else if (c == Class.Light)
-            return 0.9f;
+            return 30f;
         else
             Debug.Log(transform.root.name + " myClass didnt work properly, isnt one of the three types");
 
         return 0;
-    }
-
-    void CollideLol(Collider me, Collider other)
-    {
-        //https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Physics.ComputePenetration.html
-
-        float MinX1 = -me.bounds.extents.x;
-        float MaxX1 = me.bounds.extents.x;
-        float MinY1 = -me.bounds.extents.z;
-        float MaxY1 = me.bounds.extents.z;
-
-        float MinX2 = -other.bounds.extents.x;
-        float MaxX2 = other.bounds.extents.x;
-        float MinY2 = -other.bounds.extents.z;
-        float MaxY2 = other.bounds.extents.z;
-
-        float xOverlap1 = MaxX1 - MinX2;
-        float xOverlap2 = MaxX2 - MinX1;
-        float yOverlap1 = MaxY1 - MinY2;
-        float yOverlap2 = MaxY2 - MinY1;
-
-        float distance = 0;
-        Vector2 direction = new Vector2(0,0);
-        switch (FindSmallestOfFour(xOverlap1, xOverlap2, yOverlap1, yOverlap2))
-        {
-            case 0:
-                distance += xOverlap1;
-                direction = new Vector2(1,0);
-                break;
-            case 1:
-                distance += xOverlap2;
-                direction = new Vector2(-1,0);
-                break;
-            case 2:
-                distance += yOverlap1;
-                direction = new Vector2(0,1);
-                break;
-            case 3:
-                distance += yOverlap2;
-                direction = new Vector2(0,-1);
-                break;
-        }
-        Vector3 offset = new Vector3((distance * direction).x, 0, (distance * direction).y);
-        transform.root.position += offset;
-
-        Debug.Log(offset);
-    }
-
-    int FindSmallestOfFour(float a, float b, float c, float d)
-    {
-        if (a < b && a < c && a < d) return 0;
-        if (b < c && b < d) return 1;
-        if (c < d) return 2;
-        return 3;
     }
 }
