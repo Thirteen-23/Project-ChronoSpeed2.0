@@ -6,6 +6,7 @@ public class OnPlayerSpawn : NetworkBehaviour
 {
     [SerializeField] Collider Trigger;
     [SerializeField] Collider NotTrigger;
+    [SerializeField] GameObject Canvas;
     public override void OnNetworkSpawn()
     {
         var input = GetComponent<PlayerInput>();
@@ -31,7 +32,8 @@ public class OnPlayerSpawn : NetworkBehaviour
             Destroy(GetComponentInChildren<FakeCollision>());
             gameObject.tag = "OtherPlayer";
 
-            //Destroy(NotTrigger);
+            Destroy(NotTrigger);
+            Destroy(Canvas);
         }
 
         Debug.Log(IsServer);

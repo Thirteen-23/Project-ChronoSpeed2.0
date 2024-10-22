@@ -35,11 +35,11 @@ private void Awake()
 
         if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody"))
         {
-            //Class theirClass = other.transform.GetComponentInParent<Car_Movement>().carClasses;
-            //currentCollidingCars.Add(other.transform, new CollisionRequiredInfo(theirClass, GetInverseMass(theirClass), other.transform.GetComponent<Rigidbody>()));
+            Class theirClass = other.transform.GetComponentInParent<Car_Movement>().carClasses;
+            currentCollidingCars.Add(other.transform, new CollisionRequiredInfo(theirClass, GetMass(theirClass), other.transform.GetComponent<Rigidbody>()));
 
-            //GetOuttaThereStep(other);
             CollideLol(GetComponentInChildren<BoxCollider>(), other);
+            GetOuttaThereStep(other);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -49,8 +49,8 @@ private void Awake()
         //GetOuttaThereStep(other);
         if(other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody"))
         {
-            Debug.Log(other.name);
             CollideLol(GetComponentInChildren<BoxCollider>(), other);
+            GetOuttaThereStep(other);
         }
         
     }
@@ -60,7 +60,7 @@ private void Awake()
             return;
 
         if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody")) ;
-            //currentCollidingCars.Remove(other.transform);
+            currentCollidingCars.Remove(other.transform);
     }
 
     
@@ -74,8 +74,6 @@ private void Awake()
         dir.y = 0; dir.Normalize();
 
         transform.root.position += dir * dist;
-
-        //GetOuttaThereStep(other);
     }
 
     void GetOuttaThereStep(Collider other)
