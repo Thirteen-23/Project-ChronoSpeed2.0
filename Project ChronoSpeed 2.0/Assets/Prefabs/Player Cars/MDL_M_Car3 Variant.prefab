@@ -1685,6 +1685,7 @@ GameObject:
   - component: {fileID: 3433970173699090253}
   - component: {fileID: 5990348829975881518}
   - component: {fileID: 6110001939605157464}
+  - component: {fileID: 6506639583858861859}
   m_Layer: 0
   m_Name: MDL_M_Car3 Variant
   m_TagString: Player
@@ -1712,6 +1713,7 @@ Transform:
   - {fileID: 2501671510482251617}
   - {fileID: 6186523757310492663}
   - {fileID: 7682055859643511168}
+  - {fileID: 878204454565974664}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2033,7 +2035,19 @@ MonoBehaviour:
     m_ActionId: 92ff09ed-63d5-4cdb-924f-71b1797ba4db
     m_ActionName: UI/Navigate[/DualSenseGamepadHID/leftStick,/DualSenseGamepadHID/dpad,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6506639583858861859}
+        m_TargetAssemblyTypeName: TimeRecording, Assembly-CSharp
+        m_MethodName: Rewind
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f963ea18-95bb-4cc0-9ac5-641dde1b78d0
     m_ActionName: Movement/Rewind[/DualSenseGamepadHID/buttonNorth,/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
@@ -2239,6 +2253,20 @@ MonoBehaviour:
   Trigger: {fileID: 153042976341175182}
   NotTrigger: {fileID: 7556317512555026004}
   Canvas: {fileID: 2501671510482251621}
+--- !u!114 &6506639583858861859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975989593886958020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00adbbcea4dc3054d8af7aa2b4c2aafb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewindTime: 5
+  cooldown: 5
 --- !u!1 &4245817664527984752
 GameObject:
   m_ObjectHideFlags: 0
@@ -3053,6 +3081,8 @@ MonoBehaviour:
   - {fileID: 1155380586403894825}
   - {fileID: 1871791711350686807}
   - {fileID: 8634274152840045428}
+  impactSound: {fileID: 4837240911512539093}
+  scrappingSound: {fileID: 6959938278045814988}
 --- !u!114 &6074584859043744939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3844,6 +3874,93 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1888913110147599795, guid: 7c9ae0998aa87294eb72fee7a807e561,
     type: 3}
   m_PrefabInstance: {fileID: 1355906589814614576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1678667795752781816
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4352269258587667326}
+    m_Modifications:
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891632682964933426, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundContainer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1228717cf6040f247a6c804aae245e65, type: 3}
+--- !u!4 &878204454565974664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1678667795752781816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &4837240911512539093 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6082823289364449325, guid: 1228717cf6040f247a6c804aae245e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1678667795752781816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6959938278045814988 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8637193295256819508, guid: 1228717cf6040f247a6c804aae245e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1678667795752781816}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2609756645386693041
 PrefabInstance:

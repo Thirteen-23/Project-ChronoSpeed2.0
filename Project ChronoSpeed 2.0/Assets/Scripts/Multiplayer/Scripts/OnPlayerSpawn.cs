@@ -30,6 +30,7 @@ public class OnPlayerSpawn : NetworkBehaviour
             Destroy(input);
             Destroy(carMove);
             Destroy(GetComponentInChildren<FakeCollision>());
+            Destroy(GetComponent<Rigidbody>());
             gameObject.tag = "OtherPlayer";
 
             Destroy(NotTrigger);
