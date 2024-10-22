@@ -412,7 +412,9 @@ public class Car_Movement : MonoBehaviour
         }
         else if (context.performed)
         {
-            acceration_Value = context.ReadValue<float>();
+          
+                acceration_Value = context.ReadValue<float>();
+           
         }
         else if (context.canceled)
         {
@@ -550,8 +552,11 @@ public class Car_Movement : MonoBehaviour
     [Header("Shifting Time Values")]
     public float maxTimeToShiftGear;
     public float timerToShift;
+   
     private void Shifting()
     {
+        float temp = acceration_Value;
+
         if (transmission == TransmissionTypes.Manual)
         {
             Mathf.Clamp(shift_Value, 0, gearSpeedBox.Length - 1);
@@ -601,9 +606,11 @@ public class Car_Movement : MonoBehaviour
                                 if (timerToShift > 0)
                                 {
                                     timerToShift -= Time.deltaTime;
+                                 
                                 }
                                 else
                                 {
+                                   
                                     gearNum++;
                                     exhaust_Shift.Play();
                                     timerToShift = maxTimeToShiftGear;
@@ -801,8 +808,8 @@ public class Car_Movement : MonoBehaviour
                             }
                             else if (checkingTerrain.collider.CompareTag("SideWalk"))
                             {
-                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.3f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction - 0.3f;
 
                                 wheel.forwardFriction = forwardFriction;
                                 wheel.sidewaysFriction = sidewaysFriction;
@@ -820,7 +827,7 @@ public class Car_Movement : MonoBehaviour
                             if (checkingTerrain.collider.CompareTag("Tarmac"))
                             {
                                 forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
-                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
 
                                 wheel.forwardFriction = forwardFriction;
                                 wheel.sidewaysFriction = sidewaysFriction;
@@ -829,7 +836,7 @@ public class Car_Movement : MonoBehaviour
                             else if (checkingTerrain.collider.CompareTag("SideWalk"))
                             {
                                 forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
-                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.3f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
 
                                 wheel.forwardFriction = forwardFriction;
                                 wheel.sidewaysFriction = sidewaysFriction;
@@ -845,8 +852,8 @@ public class Car_Movement : MonoBehaviour
 
                             if (checkingTerrain.collider.CompareTag("Tarmac"))
                             {
-                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
 
                                 wheel.forwardFriction = forwardFriction;
                                 wheel.sidewaysFriction = sidewaysFriction;
@@ -855,7 +862,7 @@ public class Car_Movement : MonoBehaviour
                             else if (checkingTerrain.collider.CompareTag("SideWalk"))
                             {
                                 forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.2f;
+                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
 
                                 wheel.forwardFriction = forwardFriction;
                                 wheel.sidewaysFriction = sidewaysFriction;
@@ -898,7 +905,7 @@ public class Car_Movement : MonoBehaviour
         if (ifHandBraking && currentSpeed > 40 || currentSpeed > 40 && handbraking > 0)
         {
             //bodyOfCar.angularDrag = whenDrifting;
-            bodyOfCar.angularDrag = Mathf.Lerp(minDrag, maxDrag, tt * 2f);
+            bodyOfCar.angularDrag = Mathf.Lerp(minDrag, maxDrag, tt * 2f ); ;
             sidewaysFriction = wheels4[0].sidewaysFriction;
             forwardFriction = wheels4[0].forwardFriction;
 
@@ -923,7 +930,7 @@ public class Car_Movement : MonoBehaviour
                 wheels4[i].forwardFriction = forwardFriction;
 
             }
-            bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
+            bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
             // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
             WheelHit wheelHit;
 
