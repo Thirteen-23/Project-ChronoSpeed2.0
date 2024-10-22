@@ -54,8 +54,8 @@ public class MainCamera : MonoBehaviour
 
         Vector3 playerForward = (rb.velocity + player.transform.forward).normalized;
         transform.position = Vector3.Lerp(player.position, player.position + player.TransformVector(offset) + playerForward /** (-1f)*/, speed * Time.deltaTime);
-        //  transform.LookAt(player);
-        transform.rotation = Quaternion.Lerp(player.rotation,rb.rotation, speed * Time.deltaTime); 
+        transform.LookAt(player);
+      // transform.rotation = Quaternion.Lerp(player.rotation, rb.player, speed * Time.deltaTime); 
 
         
 

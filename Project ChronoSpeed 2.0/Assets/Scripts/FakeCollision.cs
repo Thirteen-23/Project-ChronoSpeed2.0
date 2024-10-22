@@ -59,7 +59,7 @@ private void Awake()
         if (!other.isTrigger)
             return;
 
-        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody")) ;
+        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody"));
             //currentCollidingCars.Remove(other.transform);
     }
 
