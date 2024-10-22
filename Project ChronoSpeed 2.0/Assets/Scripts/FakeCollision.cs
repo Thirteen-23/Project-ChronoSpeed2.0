@@ -33,7 +33,7 @@ private void Awake()
         if (!other.isTrigger)
             return;
 
-        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody"))
+        if (other.transform.CompareTag("CarBody") ||other.transform.CompareTag("OtherPlayer") ||other.transform.CompareTag("AIBody"))
         {
             //Class theirClass = other.transform.GetComponentInParent<Car_Movement>().carClasses;
             //currentCollidingCars.Add(other.transform, new CollisionRequiredInfo(theirClass, GetInverseMass(theirClass), other.transform.GetComponent<Rigidbody>()));
@@ -47,7 +47,7 @@ private void Awake()
         if (!other.isTrigger)
             return;
         //GetOuttaThereStep(other);
-        if(other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody"))
+        if(other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"))
         {
             Debug.Log(other.name);
             CollideLol(GetComponentInChildren<BoxCollider>(), other);
@@ -59,7 +59,7 @@ private void Awake()
         if (!other.isTrigger)
             return;
 
-        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("AIBody"));
+        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"));
             //currentCollidingCars.Remove(other.transform);
     }
 

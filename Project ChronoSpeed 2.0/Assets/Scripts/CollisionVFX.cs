@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CollisionVFX : MonoBehaviour
@@ -5,7 +6,7 @@ public class CollisionVFX : MonoBehaviour
 
     [SerializeField] ParticleSystem[] sparks;
     [SerializeField] AudioSource impactSound;
-    [SerializeField] AudioSource scrappingSound; 
+    [SerializeField] AudioSource scrappingSound;
 
     private int contactAmount = 0;
 
@@ -14,7 +15,7 @@ public class CollisionVFX : MonoBehaviour
         if (other.CompareTag("walls") || other.CompareTag("AIBody") || other.CompareTag("CarBody") || other.CompareTag("RigidBodyObj"))
         {
             impactSound.Play();
-
+            scrappingSound.Play();
         }
     }
 
@@ -23,10 +24,10 @@ public class CollisionVFX : MonoBehaviour
         if (collision.transform.CompareTag("walls") || collision.transform.CompareTag("AIBody") || collision.transform.CompareTag("CarBody") || collision.transform.CompareTag("RigidBodyObj"))
         {
             impactSound.Play();
-
+            scrappingSound.Play();
         }
     }
-        private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("walls") || other.CompareTag("AIBody") || other.CompareTag("CarBody") || other.CompareTag("RigidBodyObj"))
         {
@@ -39,7 +40,7 @@ public class CollisionVFX : MonoBehaviour
             sparks[contactAmount].transform.position = contactPosition;
             sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
             contactAmount++;
-            scrappingSound.Play();
+           
         }
     }
 
@@ -56,10 +57,25 @@ public class CollisionVFX : MonoBehaviour
             sparks[contactAmount].transform.position = contactPosition;
             sparks[contactAmount].transform.localRotation = Quaternion.Euler(0, Mathf.Sign(GetComponentInParent<Rigidbody>().velocity.magnitude) == 1 ? 180 : 0, 0);
             contactAmount++;
-            scrappingSound.Play();
+            
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("walls") || other.CompareTag("AIBody") || other.CompareTag("CarBody") || other.CompareTag("RigidBodyObj"))
+        {
+            scrappingSound.Stop();
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.CompareTag("walls") || collision.transform.CompareTag("AIBody") || collision.transform.CompareTag("CarBody") || collision.transform.CompareTag("RigidBodyObj"))
+        {
+            scrappingSound.Stop();
+        }
+
+    }
     private void FixedUpdate()
     {
         for (int i = sparks.Length; i > contactAmount; i--)

@@ -634,9 +634,12 @@ MonoBehaviour:
   allBrakeForce: 1000000
   frontBrakeForce: 0
   rearBrakeForce: 0
+  steering_Value: 0
   steeringDamping: 0
   smoothTransitionSpeed: 20
   smoothTransitionSpeedForAcceleration: 5
+  brakes_value: 0
+  brakeDampening: 0
   turnSpeed: 0
   steeringCurve:
     serializedVersion: 2
@@ -665,31 +668,29 @@ MonoBehaviour:
   m_RayRange: 0
   draftingMultiplierValue: 0
   floorRange: -0.5
-  spawnpointerBehind: {fileID: 0}
-  spawnpointer: {fileID: 0}
-  leftTrail: {fileID: 0}
-  rightTrail: {fileID: 0}
   forceBoostForDriftingValue: 20000
   findme: 0
   lightCar: 0
   mediumCar: 0
   heavyCar: 0
-  ture: 0
-  lookBackValue: 0
+  minDrag: 2
+  maxDrag: 7
+  boostInDrifting: 25000
   tt: 1
   maxAmountOfGrip: 4
   minAmountOfGripAtStart: 1
+  meBoosting: 0
+  boostValue: 3000
   leftWheel: {fileID: 0}
   rightWheel: {fileID: 0}
   leftWheelSmoke: {fileID: 0}
   rightWheelSmoke: {fileID: 0}
-  minDrag: 2
-  maxDrag: 7
-  boostInDrifting: 25000
-  meBoosting: 0
-  boostValue: 3000
   nitroboostColor: []
   exhaustVFX: []
+  ture: 0
+  lookBackValue: 0
+  maxTimeToShiftGear: 0
+  timerToShift: 0
 --- !u!54 &2492681338999058430
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -950,6 +951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Trigger: {fileID: 0}
   NotTrigger: {fileID: 0}
+  Canvas: {fileID: 0}
 --- !u!1 &3503951921780748355
 GameObject:
   m_ObjectHideFlags: 0
