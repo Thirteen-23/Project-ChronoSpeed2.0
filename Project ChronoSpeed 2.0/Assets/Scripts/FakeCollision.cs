@@ -33,7 +33,7 @@ private void Awake()
         if (!other.isTrigger)
             return;
 
-        if (other.transform.CompareTag("CarBody") ||other.transform.CompareTag("OtherPlayer") ||other.transform.CompareTag("AIBody"))
+        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"))
         {
             //Class theirClass = other.transform.GetComponentInParent<Car_Movement>().carClasses;
             //currentCollidingCars.Add(other.transform, new CollisionRequiredInfo(theirClass, GetInverseMass(theirClass), other.transform.GetComponent<Rigidbody>()));
@@ -74,7 +74,7 @@ private void Awake()
         dir.y = 0; dir.Normalize();
 
         transform.root.position += dir * dist;
-
+        Debug.Log("Direction: " + dir + ", Distance: " + dist + "TotalAmount: " + (dir * dist));
         //GetOuttaThereStep(other);
     }
 
