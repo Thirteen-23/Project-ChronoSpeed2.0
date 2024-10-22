@@ -50,7 +50,6 @@ private void Awake()
         //GetOuttaThereStep(other);
         if(other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"))
         {
-            Debug.Log(other.name);
             CollideLol(trigger, other);
         }
         
@@ -75,8 +74,6 @@ private void Awake()
         dir.y = 0; dir.Normalize();
 
         transform.root.position += dir * dist;
-        Debug.Log("Direction: " + dir + ", Distance: " + dist + "TotalAmount: " + (dir * dist));
-        //GetOuttaThereStep(other);
     }
 
     void GetOuttaThereStep(Collider other)
@@ -117,3 +114,4 @@ private void Awake()
         return 0;
     }
 }
+
