@@ -7,6 +7,7 @@ public class FakeCollision : MonoBehaviour
     Class myClass;
     float myMass = 0;
     Rigidbody myRB;
+    [SerializeField] BoxCollider trigger;
     public struct CollisionRequiredInfo
     {
         public Class theirClass;
@@ -39,7 +40,7 @@ private void Awake()
             //currentCollidingCars.Add(other.transform, new CollisionRequiredInfo(theirClass, GetInverseMass(theirClass), other.transform.GetComponent<Rigidbody>()));
 
             //GetOuttaThereStep(other);
-            CollideLol(GetComponentInChildren<BoxCollider>(), other);
+            CollideLol(trigger, other);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -50,7 +51,7 @@ private void Awake()
         if(other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"))
         {
             Debug.Log(other.name);
-            CollideLol(GetComponentInChildren<BoxCollider>(), other);
+            CollideLol(trigger, other);
         }
         
     }

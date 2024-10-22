@@ -1686,6 +1686,7 @@ GameObject:
   - component: {fileID: 5990348829975881518}
   - component: {fileID: 6110001939605157464}
   - component: {fileID: 6506639583858861859}
+  - component: {fileID: -1593979974587260023}
   m_Layer: 0
   m_Name: MDL_M_Car3 Variant
   m_TagString: Player
@@ -2097,7 +2098,7 @@ MonoBehaviour:
   m_ResourceMultiplerForDrifting: 2.5
   ability1CostValue: 30
   portalDropCostValue: 50
-  blinkCostValue: 0
+  blinkCostValue: 70
 --- !u!114 &2919009583084746694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2122,7 +2123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3009645654
+  GlobalObjectIdHash: 702383818
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2267,6 +2268,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewindTime: 5
   cooldown: 5
+--- !u!114 &-1593979974587260023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975989593886958020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccdaf1fb636c38d49b3786bf3dd56406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &4245817664527984752
 GameObject:
   m_ObjectHideFlags: 0
@@ -3095,6 +3109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35df8e7fb0489846b2daa64f2e7af77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: {fileID: 153042976341175182}
 --- !u!1 &6076512288051247360
 GameObject:
   m_ObjectHideFlags: 0

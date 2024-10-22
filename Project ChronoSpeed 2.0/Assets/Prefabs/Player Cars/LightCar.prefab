@@ -1204,6 +1204,7 @@ GameObject:
   - component: {fileID: -3833017455954412715}
   - component: {fileID: 8879650690442595840}
   - component: {fileID: 1089985598654084226}
+  - component: {fileID: -6097710963303930345}
   m_Layer: 0
   m_Name: LightCar
   m_TagString: Player
@@ -1617,7 +1618,7 @@ MonoBehaviour:
   m_ResourceMultiplerForDrifting: 5
   ability1CostValue: 50
   portalDropCostValue: 50
-  blinkCostValue: 0
+  blinkCostValue: 70
 --- !u!114 &5824188775995575192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,7 +1643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4086998015
+  GlobalObjectIdHash: 1106096736
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1709,9 +1710,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trigger: {fileID: 2552199690005412409}
-  NotTrigger: {fileID: 8669934048908405437}
-  Canvas: {fileID: 0}
+  Trigger: {fileID: 8281716280637053445}
+  NotTrigger: {fileID: 2552199690005412409}
+  Canvas: {fileID: 6550050176423220027}
 --- !u!114 &6096309456787560617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1787,6 +1788,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewindTime: 5
   cooldown: 5
+--- !u!114 &-6097710963303930345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5727530261080087962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccdaf1fb636c38d49b3786bf3dd56406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &6258990924449264332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,7 +3367,6 @@ GameObject:
   - component: {fileID: 8669934048908405436}
   - component: {fileID: 8669934048908405427}
   - component: {fileID: 8669934048908405426}
-  - component: {fileID: 8669934048908405437}
   m_Layer: 0
   m_Name: Body
   m_TagString: CarBody
@@ -3426,20 +3439,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8669934048908405437
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8669934048908405439}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2959467708922500008, guid: 3c1f17abd78c43244bcedf62a95f4e6b, type: 3}
 --- !u!1 &8669934049049408540
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,7 +4694,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8669934049913978830}
   - component: {fileID: 2552199690005412409}
+  - component: {fileID: 8281716280637053445}
   - component: {fileID: 5147583174495200680}
+  - component: {fileID: 6663944832421295078}
   m_Layer: 0
   m_Name: MainBody
   m_TagString: CarBody
@@ -4760,6 +4761,19 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669934049913978825}
   m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6, y: 1, z: 6}
+  m_Center: {x: 0, y: 0.78, z: 0}
+--- !u!65 &8281716280637053445
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669934049913978825}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -4783,6 +4797,19 @@ MonoBehaviour:
   - {fileID: 4163412773333199770}
   impactSound: {fileID: 3168131109384223928}
   scrappingSound: {fileID: 594625176681079713}
+--- !u!114 &6663944832421295078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669934049913978825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35df8e7fb0489846b2daa64f2e7af77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 8281716280637053445}
 --- !u!1 &8669934049919075424
 GameObject:
   m_ObjectHideFlags: 0

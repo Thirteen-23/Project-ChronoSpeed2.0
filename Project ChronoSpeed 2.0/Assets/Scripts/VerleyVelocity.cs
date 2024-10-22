@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VerleyVelocity : MonoBehaviour
 {
-    public Vector3 Velocity;
+    [HideInInspector] public Vector3 Velocity;
 
     private Vector3 previousPos = new Vector3(0,0,0);
 
