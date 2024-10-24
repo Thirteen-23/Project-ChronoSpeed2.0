@@ -1774,7 +1774,7 @@ MonoBehaviour:
   acceration_Value: 0
   AccelerationDamping: 0
   idleRPM: 800
-  maxRPM: 5500
+  maxRPM: 6000
   minRPM: 2500
   maxRPMForCar: 7000
   engineRPM: 0
@@ -1790,7 +1790,7 @@ MonoBehaviour:
   keyRPMSet:
   - {x: 0, y: 250}
   - {x: 6000, y: 500}
-  - {x: 7000, y: 0}
+  - {x: 8000, y: 0}
   exhaust_Shift: {fileID: 2937486862101330548}
   slip:
   - 0
@@ -1812,7 +1812,7 @@ MonoBehaviour:
   steering_Value: 0
   steeringDamping: 0
   smoothTransitionSpeed: 20
-  smoothTransitionSpeedForAcceleration: 2
+  smoothTransitionSpeedForAcceleration: 1.5
   brakes_value: 0
   brakeDampening: 0
   turnSpeed: 0
@@ -1850,7 +1850,7 @@ MonoBehaviour:
   heavyCar: 0
   minDrag: 0
   maxDrag: 4
-  boostInDrifting: 5000
+  boostInDrifting: 10000
   tt: 0
   maxAmountOfGrip: 3
   minAmountOfGripAtStart: 1
@@ -1869,6 +1869,11 @@ MonoBehaviour:
   lookBackValue: 0
   maxTimeToShiftGear: 0.025
   timerToShift: 0.025
+  steeringAngleOfWheels:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &3975989593886958022
 MonoBehaviour:
   m_ObjectHideFlags: 0

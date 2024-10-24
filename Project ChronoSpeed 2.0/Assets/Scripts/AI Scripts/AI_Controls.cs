@@ -107,7 +107,7 @@ public class AI_Controls : MonoBehaviour
         Shifting();
         SetEngineRPMAndTorque();
         ApplyingDownForce();
-        Drafting();
+       //Drafting();
         AdjustTractionForDrifting();
     }
 

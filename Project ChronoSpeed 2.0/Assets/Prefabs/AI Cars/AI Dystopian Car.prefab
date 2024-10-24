@@ -2444,7 +2444,6 @@ GameObject:
   - component: {fileID: -3220841527253370344}
   - component: {fileID: 6939459432954186590}
   - component: {fileID: 8746736502015917660}
-  - component: {fileID: 8342344409414980675}
   m_Layer: 0
   m_Name: AI Dystopian Car
   m_TagString: AI
@@ -2659,7 +2658,7 @@ MonoBehaviour:
   carValues: {fileID: 0}
   m_AICarValues: {fileID: 0}
   rpm: 0
-  masterVolume: 0.05
+  masterVolume: 0.5
 --- !u!114 &-3220841527253370344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2672,7 +2671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 432304376
+  GlobalObjectIdHash: 1452311093
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2724,38 +2723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5e0ef5390d88742886a3b7f3420d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8342344409414980675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7564646704286003995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c73357d121815040b3065e8402b1fb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  engineNotes:
-  - source: {fileID: 5243110472072757758}
-    minRPM: 1000
-    peakRPM: 3000
-    maxRPM: 4000
-    pitchReferenceRPM: 2000
-  - source: {fileID: 9020771627045619235}
-    minRPM: 2000
-    peakRPM: 4000
-    maxRPM: 5000
-    pitchReferenceRPM: 3000
-  - source: {fileID: 7517005119048303435}
-    minRPM: 3000
-    peakRPM: 5000
-    maxRPM: 8000
-    pitchReferenceRPM: 5000
-  carValues: {fileID: 0}
-  m_AICarValues: {fileID: 0}
-  rpm: 0
-  masterVolume: 0.05
 --- !u!1 &7735107467138554670
 GameObject:
   m_ObjectHideFlags: 0
