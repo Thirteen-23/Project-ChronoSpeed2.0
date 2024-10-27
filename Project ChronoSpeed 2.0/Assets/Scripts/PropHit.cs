@@ -13,7 +13,7 @@ public class PropHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("CarBody") || other.CompareTag("AIBody") || other.CompareTag("Player"))
+        if (other.CompareTag("CarBody") || other.CompareTag("AIBody") || other.CompareTag("Player") || other.CompareTag("OtherPlayer"))
         {
             //This is the main player, noone else has a rigidbody client side
             rb.isKinematic = false;

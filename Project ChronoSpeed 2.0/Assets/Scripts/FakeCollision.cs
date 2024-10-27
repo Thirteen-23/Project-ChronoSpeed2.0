@@ -17,9 +17,10 @@ public class FakeCollision : MonoBehaviour
 
     [Header("Assignments")]
     [SerializeField] BoxCollider trigger;
-    Class myClass;
+    public Class myClass;
     float myMass = 0;
     Rigidbody myRB;
+    Transform myTransform;
     
     public struct CollisionRequiredInfo
     {
@@ -34,10 +35,15 @@ public class FakeCollision : MonoBehaviour
         }
     }
 
-private void Awake()
+    private void Awake()
     {
-        myClass = GetComponentInParent<Car_Movement>().carClasses;
-        myRB = GetComponentInParent<Rigidbody>();
+        var carMove = GetComponentInParent<Car_Movement>();
+        if (carMove != null)
+            myClass = carMove.carClasses;
+        myRB = transform.parent.GetComponentInParent<Rigidbody>();
+
+        //Bad but whateves
+        myTransform = transform.parent.parent;
         myMass = GetMass(myClass);
     }
     Dictionary<Transform, CollisionRequiredInfo> currentCollidingCars = new Dictionary<Transform, CollisionRequiredInfo>();
@@ -47,9 +53,9 @@ private void Awake()
         if (!other.isTrigger)
             return;
 
-        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"))
+        if (other.transform.CompareTag("CarBody"))
         {
-            Class theirClass = other.transform.GetComponentInParent<Car_Movement>().carClasses;
+            Class theirClass = other.transform.GetComponent<FakeCollision>().myClass;
             currentCollidingCars.Add(other.transform, new CollisionRequiredInfo(theirClass, GetMass(theirClass), other.transform.GetComponent<VerleyVelocity>()));
 
             ApplyRelVelocity(other);
@@ -61,7 +67,7 @@ private void Awake()
         if (!other.isTrigger)
             return;
         
-        if(other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"))
+        if(other.transform.CompareTag("CarBody"))
         {
             Depenetrate(trigger, other);
         }
@@ -72,7 +78,7 @@ private void Awake()
         if (!other.isTrigger)
             return;
 
-        if (other.transform.CompareTag("CarBody") || other.transform.CompareTag("OtherPlayer") || other.transform.CompareTag("AIBody"))
+        if (other.transform.CompareTag("CarBody"))
             currentCollidingCars.Remove(other.transform);
     }
 
@@ -86,7 +92,7 @@ private void Awake()
         Physics.ComputePenetration(me, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out dir, out dist);
         dir.y = 0; dir.Normalize();
 
-        transform.root.position += dir * dist;
+        myTransform.position += dir * dist;
     }
 
     void ApplyRelVelocity(Collider other)
@@ -103,7 +109,7 @@ private void Awake()
         normal.y = 0;
         normal.Normalize();
 
-        float dot = (1f + bounceFactor) * Vector3.Dot(relativeVelocity, -normal);
+        float dot = (1f + bounceFactor) * Vector3.Dot(relativeVelocity, normal);
 
         //IDK why but if truck is 90, light is 30, total is 120, 
         //90 / 120 is 0.7, but 30 / 120 = 0.3. But i want the truck to have reduced velocity not light car so i use othermass
@@ -111,7 +117,7 @@ private void Awake()
 
         Vector3 velChange = normal * dot;
 
-        myRB.AddForce(velChange, ForceMode.VelocityChange);
+        myRB.AddForce(-velChange, ForceMode.VelocityChange);
     }
 
     float GetMass(Class c)
@@ -122,8 +128,6 @@ private void Awake()
             return PresCarMass;
         else if (c == Class.Light)
             return UtoCarMass;
-        else
-            Debug.Log(transform.root.name + " myClass didnt work properly, isnt one of the three types");
 
         return 0;
     }

@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 1133073570861370499}
   - component: {fileID: 3091207246249064529}
   - component: {fileID: 8336802561250044293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MDL_D_BakeAccessories
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -1238,10 +1238,7 @@ GameObject:
   - component: {fileID: 220585797621963343}
   - component: {fileID: 7910469718826675457}
   - component: {fileID: 3307705148833093976}
-  - component: {fileID: 4378921613639230548}
-  - component: {fileID: 1312958115133398894}
-  - component: {fileID: 1844006545283033242}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainBody
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -1330,54 +1327,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2318412750624624909, guid: f4b2eb078456220469e20e453d4b6b04, type: 3}
---- !u!65 &4378921613639230548
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2160599443579343280}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0839748, y: 1.0942397, z: 4.746626}
-  m_Center: {x: 0.000000059604645, y: 1.04942, z: 0.021169305}
---- !u!114 &1312958115133398894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2160599443579343280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb88ab16fb8e014a92a95ea89c8731c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sparks:
-  - {fileID: 3971506692814762017}
-  - {fileID: 2686676787684760439}
-  - {fileID: 2332011734991613338}
-  impactSound: {fileID: 5058222569389384660}
-  scrappingSound: {fileID: 7315416616549809357}
---- !u!114 &1844006545283033242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2160599443579343280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35df8e7fb0489846b2daa64f2e7af77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DysCarMass: 90
-  PresCarMass: 60
-  UtoCarMass: 30
-  bounceFactor: 0
-  trigger: {fileID: 4378921613639230548}
 --- !u!1 &3286201418850869215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1421,7 @@ GameObject:
   - component: {fileID: 3344095049567895718}
   - component: {fileID: 7804066439625292326}
   - component: {fileID: 6688015980337339576}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MDL_D_Windows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1555,7 +1504,7 @@ GameObject:
   - component: {fileID: 4040750661557634791}
   - component: {fileID: 8721074953556133805}
   - component: {fileID: 2209076415267779496}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MDL_D_Accessories
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -1900,7 +1849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7222207859642360715}
   - component: {fileID: 7222207859642360714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2116,7 +2065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7222207860020205931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WheelColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2228,7 +2177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7222207860069942511}
   - component: {fileID: 7222207860069942510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2673,7 +2622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7222207861312953991}
   - component: {fileID: 7222207861312953990}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'BR '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2735,7 +2684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7222207861482728066}
   - component: {fileID: 7222207861482728067}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2838,6 +2787,7 @@ Transform:
   - {fileID: 8208950266860603457}
   - {fileID: 1292537221}
   - {fileID: 658436036089773705}
+  - {fileID: 8795057942400799547}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3306,7 +3256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trigger: {fileID: 4378921613639230548}
+  Trigger: {fileID: 0}
   NotTrigger: {fileID: 3307705148833093976}
   Canvas: {fileID: 7222207859781900462}
 --- !u!114 &-3580043426521638298
@@ -3762,6 +3712,111 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 1322067268722224121}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2253847852003173436
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7183477481603312033}
+    m_Modifications:
+    - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: myClass
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5834201593714305091, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_Name
+      value: Colliders
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: impactSound
+      value: 
+      objectReference: {fileID: 5058222569389384660}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: scrappingSound
+      value: 
+      objectReference: {fileID: 7315416616549809357}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: sparks.Array.data[0]
+      value: 
+      objectReference: {fileID: 3971506692814762017}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: sparks.Array.data[1]
+      value: 
+      objectReference: {fileID: 2686676787684760439}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: sparks.Array.data[2]
+      value: 
+      objectReference: {fileID: 2332011734991613338}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a3f0e1da7806b74fa75c931c1fb5b42, type: 3}
+--- !u!4 &8795057942400799547 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+    type: 3}
+  m_PrefabInstance: {fileID: 2253847852003173436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2273635867118010914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3871,6 +3926,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4473300313608001902}
     m_Modifications:
+    - target: {fileID: 3935036480736072275, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
         type: 3}
       propertyPath: m_Name
@@ -4417,6 +4477,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4473300313608001902}
     m_Modifications:
+    - target: {fileID: 3935036480736072275, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
         type: 3}
       propertyPath: m_Name

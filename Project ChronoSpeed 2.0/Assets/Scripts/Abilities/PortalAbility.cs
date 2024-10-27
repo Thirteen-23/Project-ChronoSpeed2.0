@@ -16,7 +16,7 @@ public class PortalAbility : MonoBehaviour
     }    
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("CarBody"))
+        if (!other.CompareTag("CarBody") && other.isTrigger)
             return;
         //Parent object in car contains rigidbody, so find it to find top parent in hierachy
         GameObject player = other.GetComponentInParent<Rigidbody>().gameObject;

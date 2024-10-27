@@ -729,7 +729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157027952505749140}
   - component: {fileID: 5157027952505749141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157027952641657321}
   - component: {fileID: 5157027952641657326}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5157027953042436856}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WheelColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,7 +888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157027953104768501}
   - component: {fileID: 5157027953104768500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5157027954147599676}
   - component: {fileID: 5157027954147599677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1233,6 +1233,7 @@ Transform:
   - {fileID: 416618810416475386}
   - {fileID: 67694814770816914}
   - {fileID: 7270534674178826725}
+  - {fileID: 5659539667647654047}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1738,7 +1739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daaa379b4aa0c94193419dcd7f98fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trigger: {fileID: 8281716280637053445}
+  Trigger: {fileID: 0}
   NotTrigger: {fileID: 2552199690005412409}
   Canvas: {fileID: 6550050176423220027}
 --- !u!114 &6096309456787560617
@@ -3229,7 +3230,7 @@ GameObject:
   - component: {fileID: 8669934048801492834}
   - component: {fileID: 8669934048801492832}
   - component: {fileID: 8669934048801492835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3312,7 +3313,7 @@ GameObject:
   - component: {fileID: 8669934048889147091}
   - component: {fileID: 8669934048889147089}
   - component: {fileID: 8669934048889147088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust Cover
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3395,7 +3396,7 @@ GameObject:
   - component: {fileID: 8669934048908405436}
   - component: {fileID: 8669934048908405427}
   - component: {fileID: 8669934048908405426}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3478,7 +3479,7 @@ GameObject:
   - component: {fileID: 8669934049049408541}
   - component: {fileID: 8669934049049408531}
   - component: {fileID: 8669934049049408530}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Rear Upright asembley '
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3561,7 +3562,7 @@ GameObject:
   - component: {fileID: 8669934049122662915}
   - component: {fileID: 8669934049122662913}
   - component: {fileID: 8669934049122662912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Uper Wing '
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3644,7 +3645,7 @@ GameObject:
   - component: {fileID: 8669934049185114252}
   - component: {fileID: 8669934049185114242}
   - component: {fileID: 8669934049185114253}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lower wing
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3727,7 +3728,7 @@ GameObject:
   - component: {fileID: 8669934049256822136}
   - component: {fileID: 8669934049256822142}
   - component: {fileID: 8669934049256822137}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube.002
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3810,7 +3811,7 @@ GameObject:
   - component: {fileID: 8669934049263065823}
   - component: {fileID: 8669934049263065821}
   - component: {fileID: 8669934049263065820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Defuser Planes
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3893,7 +3894,7 @@ GameObject:
   - component: {fileID: 8669934049325772294}
   - component: {fileID: 8669934049325772292}
   - component: {fileID: 8669934049325772295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Groundforce Tunnel
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -3976,7 +3977,7 @@ GameObject:
   - component: {fileID: 8669934049403143664}
   - component: {fileID: 8669934049403143670}
   - component: {fileID: 8669934049403143665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lower Wish bone
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4059,7 +4060,7 @@ GameObject:
   - component: {fileID: 8669934049450058525}
   - component: {fileID: 8669934049450058515}
   - component: {fileID: 8669934049450058514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SuportStrut
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4142,7 +4143,7 @@ GameObject:
   - component: {fileID: 8669934049559547795}
   - component: {fileID: 8669934049559547793}
   - component: {fileID: 8669934049559547792}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube.001
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4225,7 +4226,7 @@ GameObject:
   - component: {fileID: 8669934049603330343}
   - component: {fileID: 8669934049603330341}
   - component: {fileID: 8669934049603330340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing element 1
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4308,7 +4309,7 @@ GameObject:
   - component: {fileID: 8669934049610075753}
   - component: {fileID: 8669934049610075759}
   - component: {fileID: 8669934049610075758}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model.001
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4391,7 +4392,7 @@ GameObject:
   - component: {fileID: 8669934049649763719}
   - component: {fileID: 8669934049649763717}
   - component: {fileID: 8669934049649763716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wing element 2
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4474,7 +4475,7 @@ GameObject:
   - component: {fileID: 8669934049720211182}
   - component: {fileID: 8669934049720211180}
   - component: {fileID: 8669934049720211183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust 3
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4557,7 +4558,7 @@ GameObject:
   - component: {fileID: 8669934049735068305}
   - component: {fileID: 8669934049735068311}
   - component: {fileID: 8669934049735068310}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model.030
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4640,7 +4641,7 @@ GameObject:
   - component: {fileID: 8669934049771691075}
   - component: {fileID: 8669934049771691073}
   - component: {fileID: 8669934049771691072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front Upright asembley
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4722,10 +4723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8669934049913978830}
   - component: {fileID: 2552199690005412409}
-  - component: {fileID: 8281716280637053445}
-  - component: {fileID: 5147583174495200680}
-  - component: {fileID: 6663944832421295078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainBody
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4794,54 +4792,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.6, y: 1, z: 6}
   m_Center: {x: 0, y: 0.78, z: 0}
---- !u!65 &8281716280637053445
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8669934049913978825}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.6, y: 1, z: 6}
-  m_Center: {x: 0, y: 0.78, z: 0}
---- !u!114 &5147583174495200680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8669934049913978825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb88ab16fb8e014a92a95ea89c8731c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sparks:
-  - {fileID: 3757944682258173448}
-  - {fileID: 1698595231747589448}
-  - {fileID: 4163412773333199770}
-  impactSound: {fileID: 3168131109384223928}
-  scrappingSound: {fileID: 594625176681079713}
---- !u!114 &6663944832421295078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8669934049913978825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35df8e7fb0489846b2daa64f2e7af77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DysCarMass: 90
-  PresCarMass: 60
-  UtoCarMass: 30
-  bounceFactor: 1
-  trigger: {fileID: 8281716280637053445}
 --- !u!1 &8669934049919075424
 GameObject:
   m_ObjectHideFlags: 0
@@ -4853,7 +4803,7 @@ GameObject:
   - component: {fileID: 8669934049919075425}
   - component: {fileID: 8669934049919075431}
   - component: {fileID: 8669934049919075430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front Floor Planes
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -4936,7 +4886,7 @@ GameObject:
   - component: {fileID: 8669934049934489917}
   - component: {fileID: 8669934049934489907}
   - component: {fileID: 8669934049934489906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust 1
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5019,7 +4969,7 @@ GameObject:
   - component: {fileID: 8669934049937632203}
   - component: {fileID: 8669934049937632201}
   - component: {fileID: 8669934049937632200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust 2
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5102,7 +5052,7 @@ GameObject:
   - component: {fileID: 8669934049970629879}
   - component: {fileID: 8669934049970629877}
   - component: {fileID: 8669934049970629876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust 4
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5185,7 +5135,7 @@ GameObject:
   - component: {fileID: 8669934050035411325}
   - component: {fileID: 8669934050035411315}
   - component: {fileID: 8669934050035411314}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Push Rod Fl
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5268,7 +5218,7 @@ GameObject:
   - component: {fileID: 8669934050040808780}
   - component: {fileID: 8669934050040808770}
   - component: {fileID: 8669934050040808781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Push Rod Fl.001
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5351,7 +5301,7 @@ GameObject:
   - component: {fileID: 8669934050117693572}
   - component: {fileID: 8669934050117693690}
   - component: {fileID: 8669934050117693573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Barge Boards '
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5434,7 +5384,7 @@ GameObject:
   - component: {fileID: 8669934050133192655}
   - component: {fileID: 8669934050133192653}
   - component: {fileID: 8669934050133192652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body Top Fin
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5517,7 +5467,7 @@ GameObject:
   - component: {fileID: 8669934050222416627}
   - component: {fileID: 8669934050222416625}
   - component: {fileID: 8669934050222416624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DRS Wing
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5600,7 +5550,7 @@ GameObject:
   - component: {fileID: 8669934050229061974}
   - component: {fileID: 8669934050229061972}
   - component: {fileID: 8669934050229061975}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mid Wing
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5683,7 +5633,7 @@ GameObject:
   - component: {fileID: 8669934050342367892}
   - component: {fileID: 8669934050342367882}
   - component: {fileID: 8669934050342367893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lower Wing Brace
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5766,7 +5716,7 @@ GameObject:
   - component: {fileID: 8669934050629481295}
   - component: {fileID: 8669934050629481293}
   - component: {fileID: 8669934050629481292}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SkidBoard
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5849,7 +5799,7 @@ GameObject:
   - component: {fileID: 8669934050668549298}
   - component: {fileID: 8669934050668549296}
   - component: {fileID: 8669934050668549299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Uper Wish bone
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -5932,7 +5882,7 @@ GameObject:
   - component: {fileID: 8669934050719027198}
   - component: {fileID: 8669934050719027196}
   - component: {fileID: 8669934050719027199}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front BrakeDucts
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -6015,7 +5965,7 @@ GameObject:
   - component: {fileID: 8669934050731772491}
   - component: {fileID: 8669934050731772489}
   - component: {fileID: 8669934050731772488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -6098,7 +6048,7 @@ GameObject:
   - component: {fileID: 8669934050741674222}
   - component: {fileID: 8669934050741674220}
   - component: {fileID: 8669934050741674223}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Push Rod Fl.002
   m_TagString: CarBody
   m_Icon: {fileID: 0}
@@ -6859,6 +6809,111 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2175304729826589497, guid: cd769ae166f77fd4a805d8a3ab69e8af,
     type: 3}
   m_PrefabInstance: {fileID: 3032852086029776177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3153554792957403032
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4915563276677072672}
+    m_Modifications:
+    - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: myClass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5834201593714305091, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_Name
+      value: Colliders
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: impactSound
+      value: 
+      objectReference: {fileID: 3168131109384223928}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: scrappingSound
+      value: 
+      objectReference: {fileID: 594625176681079713}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: sparks.Array.data[0]
+      value: 
+      objectReference: {fileID: 3757944682258173448}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: sparks.Array.data[1]
+      value: 
+      objectReference: {fileID: 1698595231747589448}
+    - target: {fileID: 7564352762689100808, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: sparks.Array.data[2]
+      value: 
+      objectReference: {fileID: 4163412773333199770}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a3f0e1da7806b74fa75c931c1fb5b42, type: 3}
+--- !u!4 &5659539667647654047 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+    type: 3}
+  m_PrefabInstance: {fileID: 3153554792957403032}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3179724184324955821
 PrefabInstance:
