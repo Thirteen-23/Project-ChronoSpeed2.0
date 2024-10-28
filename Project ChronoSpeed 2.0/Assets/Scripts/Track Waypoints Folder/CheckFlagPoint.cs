@@ -14,7 +14,7 @@ public class CheckFlagPoint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        GameObject parentObj = other.GetComponentInParent<Rigidbody>().gameObject;
+        GameObject parentObj = other.GetComponentInParent<FakeCollision>().myTransform.gameObject;
         if (parentObj.CompareTag("Player") || parentObj.CompareTag("OtherPlayer") || parentObj.CompareTag("AI") || parentObj.CompareTag("AIBody"))
         {
             if (isFirstCheckpoint)

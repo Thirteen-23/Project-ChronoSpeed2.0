@@ -14,8 +14,9 @@ public class Mirage : MonoBehaviour
             return;
 
         if (!other.CompareTag("walls"))
-            if(!other.CompareTag("ground")) 
-                return;
+            if(!other.CompareTag("Tarmac"))
+                if (!other.CompareTag("SideWalk"))
+                    return;
 
         blParent.BreakMirage();
         Disapate();

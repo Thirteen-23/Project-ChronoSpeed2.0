@@ -253,8 +253,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2439868765854859029}
-  m_LocalRotation: {x: 0.56083906, y: -0, z: -0, w: 0.8279249}
-  m_LocalPosition: {x: 0, y: 0, z: -80}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -41}
   m_LocalScale: {x: 0.99970096, y: 0.9998059, z: 1.0000726}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -263,11 +263,11 @@ RectTransform:
   - {fileID: 3356328375210033596}
   m_Father: {fileID: 6550050176890676764}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 68.228, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147.7, y: -142.7}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 35.08, y: -198.9}
+  m_SizeDelta: {x: 98.75, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2814950695396299934
 MonoBehaviour:
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   maxAmountOfGrip: 4
   minAmountOfGripAtStart: 1.5
   meBoosting: 0
-  boostValue: 3000
+  boostValue: 500000
   leftWheel: {fileID: 3366011869435975287}
   rightWheel: {fileID: 7277959297641729151}
   leftWheelSmoke: {fileID: 1459000375148008202}
@@ -1622,7 +1622,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 06735bdac20f7694cbf5389d882e74dc, type: 2}
   - {fileID: 11400000, guid: 8bf4119f95db63640b818ee081e697d6, type: 2}
   - {fileID: 11400000, guid: 87faff260a0fb3d4e9bea44757390d02, type: 2}
-  m_1stAbility: {fileID: 11400000, guid: 8bf4119f95db63640b818ee081e697d6, type: 2}
+  m_1stAbility: {fileID: 11400000, guid: 06735bdac20f7694cbf5389d882e74dc, type: 2}
   m_2stAbility: {fileID: 11400000, guid: 8bf4119f95db63640b818ee081e697d6, type: 2}
   cooldownTime: 0
   activeTime: 0
@@ -1672,7 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1106096736
+  GlobalObjectIdHash: 4086998015
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -6821,6 +6821,16 @@ PrefabInstance:
         type: 3}
       propertyPath: myClass
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: UtoCarMass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: PresCarMass
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
         type: 3}

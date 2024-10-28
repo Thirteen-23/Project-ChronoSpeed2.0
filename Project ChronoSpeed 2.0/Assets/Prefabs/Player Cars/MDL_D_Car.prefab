@@ -2952,7 +2952,7 @@ MonoBehaviour:
   maxAmountOfGrip: 4
   minAmountOfGripAtStart: 1
   meBoosting: 0
-  boostValue: 15000
+  boostValue: 150000
   leftWheel: {fileID: 271920982170815810}
   rightWheel: {fileID: 6965865591550556549}
   leftWheelSmoke: {fileID: 4129552760484218943}
@@ -3183,7 +3183,7 @@ MonoBehaviour:
   readyColor: {r: 0, g: 1, b: 0.2115438, a: 1}
   activeColor: {r: 0, g: 0.34083128, b: 1, a: 1}
   cooldownColor: {r: 1, g: 0, b: 0.008716583, a: 1}
-  m_CarClass: 0
+  m_CarClass: 2
   accessCarValues: {fileID: 7564646704286003994}
   maBar: {fileID: 1402206001}
   currentResourceValue: 0
@@ -3235,7 +3235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 391577787
+  GlobalObjectIdHash: 3611437128
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3723,6 +3723,21 @@ PrefabInstance:
         type: 3}
       propertyPath: myClass
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: UtoCarMass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: PresCarMass
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: bounceFactor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5834201593714305091, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
         type: 3}
