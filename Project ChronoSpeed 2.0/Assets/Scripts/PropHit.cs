@@ -11,20 +11,16 @@ public class PropHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("CarBody") || other.CompareTag("AIBody") || other.CompareTag("Player") || other.CompareTag("OtherPlayer"))
+        if (other.CompareTag("CarBody"))
         {
             //This is the main player, noone else has a rigidbody client side
-            rb.isKinematic = false;
-            Rigidbody tempRB = other.GetComponentInParent<Rigidbody>();
+            rb.useGravity = true;
+            Vector3 vel = other.GetComponentInParent<VerleyVelocity>().Velocity;
 
-            if (tempRB == null)
-            {
-                Vector3 newVelocity = other.GetComponentInParent<VerleyVelocity>().Velocity;
-                
-                rb.AddForceAtPosition(newVelocity, GetComponent<Collider>().ClosestPoint(other.transform.position), ForceMode.Impulse);
-            }
-            else
-                rb.AddForceAtPosition(tempRB.velocity, GetComponent<Collider>().ClosestPoint(other.transform.position), ForceMode.Impulse);
+            //if more than half speed, double the hit force cause itd be fun (apparently this is to much so i had to remove it : (
+            Vector3 newVelocity = vel;
+            newVelocity.y = 5;
+            rb.AddForceAtPosition(newVelocity, GetComponent<Collider>().ClosestPointOnBounds(other.transform.position), ForceMode.Impulse);
 
             Destroy(gameObject, 5);
         }

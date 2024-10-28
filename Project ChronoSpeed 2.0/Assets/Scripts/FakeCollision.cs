@@ -20,7 +20,7 @@ public class FakeCollision : MonoBehaviour
     public Class myClass;
     float myMass = 0;
     Rigidbody myRB;
-    [HideInInspector] public Transform myTransform;
+    public Transform myTransform;
     
     public struct CollisionRequiredInfo
     {
@@ -40,10 +40,10 @@ public class FakeCollision : MonoBehaviour
         var carMove = GetComponentInParent<Car_Movement>();
         if (carMove != null)
             myClass = carMove.carClasses;
-        myRB = transform.parent.GetComponentInParent<Rigidbody>();
+        myRB = transform.parent.GetComponent<Rigidbody>();
 
         //Bad but whateves
-        myTransform = transform.parent.parent;
+        myTransform = transform.parent;
         myMass = GetMass(myClass);
     }
     Dictionary<Transform, CollisionRequiredInfo> currentCollidingCars = new Dictionary<Transform, CollisionRequiredInfo>();
@@ -111,7 +111,6 @@ public class FakeCollision : MonoBehaviour
         normal.y = 0;
         normal.Normalize();
 
-        Debug.Log(normal);
         float dot = (1f + bounceFactor) * Vector3.Dot(relativeVelocity, normal);
 
         //IDK why but if truck is 90, light is 30, total is 120, 

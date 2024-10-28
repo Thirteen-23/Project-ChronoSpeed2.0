@@ -132,6 +132,7 @@ public class ServerManager : MonoBehaviour
                    
                     aiObject.GetComponent<NetworkObject>().Spawn();
                     MultiplayerGameManager.Singleton.AddSpawnedPlayer(aiObject.GetComponentInChildren<Rigidbody>().gameObject, (ulong)(1000 + startPos));
+                    
                 }
             }
             if (ClientDic.TryGetValue(sceneEvent.ClientId, out ClientData data))

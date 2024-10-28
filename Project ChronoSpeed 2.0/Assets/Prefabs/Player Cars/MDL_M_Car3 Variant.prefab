@@ -2129,7 +2129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3009645654
+  GlobalObjectIdHash: 702383818
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2274,6 +2274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewindTime: 5
   cooldown: 5
+  rewindProfile: {fileID: 11400000, guid: b19fee55a431d2a40a7634e16b824da1, type: 2}
 --- !u!114 &-1593979974587260023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4327,6 +4328,16 @@ PrefabInstance:
         type: 3}
       propertyPath: bounceFactor
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518704057449806122, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518704057449806122, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5834201593714305091, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
         type: 3}

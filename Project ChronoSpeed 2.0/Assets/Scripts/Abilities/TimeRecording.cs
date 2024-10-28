@@ -1,7 +1,9 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -9,6 +11,8 @@ public class TimeRecording : MonoBehaviour
 {
     [SerializeField] float rewindTime = 5;
     [SerializeField] float cooldown = 5;
+    [SerializeField] VolumeProfile rewindProfile;
+
     struct RecordedData
     {
         public Vector3 Position;
@@ -23,10 +27,13 @@ public class TimeRecording : MonoBehaviour
     int currentRewindIteration;
     bool isRecording = true;
     bool isUsable = true;
+    Volume mainCamVol;
+    
 
     private void Awake()
     {
         carRigidbody = GetComponent<Rigidbody>();
+        mainCamVol = Camera.main.GetComponent<Volume>();
     }
     private void FixedUpdate()
     {
@@ -75,14 +82,34 @@ public class TimeRecording : MonoBehaviour
 
         isUsable = false;
         StartCoroutine(Cooldown());
+        StartCoroutine(DischargeVisual());
     }
 
+    bool affectVolume = false;
     IEnumerator Rewind()
     {
         currentRewindIteration = storedData.Count - 1;
 
-        while(currentRewindIteration > 0)
+        
+        affectVolume = !mainCamVol.HasInstantiatedProfile();
+        Debug.Log(affectVolume);
+        if(affectVolume) 
         {
+            mainCamVol.profile = rewindProfile;
+            mainCamVol.weight = 0;
+        }
+        
+
+        while (currentRewindIteration > 0)
+        {
+            if (affectVolume)
+            {
+                float halfRewindTime = rewindTime / 2; //2.5f
+                mainCamVol.weight += 1 / (halfRewindTime * 50);
+                if (mainCamVol.weight > 1) mainCamVol.weight = 1;
+            }
+            
+
             if (isRecording && curRewindCor != null)
             {
                 StopCoroutine(curRewindCor);
@@ -96,6 +123,21 @@ public class TimeRecording : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         OnRelease();
+    }
+
+    public IEnumerator DischargeVisual()
+    {
+        affectVolume = mainCamVol.profile == rewindProfile;
+        if(!affectVolume) { yield break; }
+        while (mainCamVol.weight >  0)
+        {
+            //Maybe increase sound for somethin
+            mainCamVol.weight -= Time.deltaTime * 2;
+            yield return null;
+        }
+        mainCamVol.weight = 0;
+        mainCamVol.profile = null;
+
     }
 
     IEnumerator Cooldown()

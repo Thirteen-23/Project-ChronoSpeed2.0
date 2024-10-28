@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 4888902896234923690}
   - component: {fileID: 7058663080557146668}
   - component: {fileID: 7401854507805897510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pHelix1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4888902896234923690
 Transform:
@@ -94,12 +94,12 @@ GameObject:
   - component: {fileID: 8471716405155859854}
   - component: {fileID: 6682827472141175076}
   - component: {fileID: 8157427385932126518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface105
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8471716405155859854
 Transform:
@@ -177,12 +177,12 @@ GameObject:
   - component: {fileID: 6304786455715412879}
   - component: {fileID: 5055237626826593315}
   - component: {fileID: 2404829583937100300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface103
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6304786455715412879
 Transform:
@@ -258,12 +258,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659871090759992623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1659871090759992623
 Transform:
@@ -294,12 +294,12 @@ GameObject:
   - component: {fileID: 4088414366722291851}
   - component: {fileID: 2007873178674038309}
   - component: {fileID: 7883696595745356805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface103
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4088414366722291851
 Transform:
@@ -375,12 +375,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9145931571443501599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MDL_D_TrafficLight_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &9145931571443501599
 Transform:
@@ -419,12 +419,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227588508071066371}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &227588508071066371
 Transform:
@@ -455,12 +455,12 @@ GameObject:
   - component: {fileID: 5118263692901443830}
   - component: {fileID: 8643270800252276616}
   - component: {fileID: 3506415397902413493}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sweep10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5118263692901443830
 Transform:
@@ -537,12 +537,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2794283731798108508}
   - component: {fileID: 2621152208011324716}
-  m_Layer: 0
+  - component: {fileID: 2270262559135112050}
+  - component: {fileID: 123455781040814242}
+  m_Layer: 8
   m_Name: PRF_D_TrafficLight_01
   m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2794283731798108508
 Transform:
@@ -573,6 +575,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0313444, y: 3.786085, z: 1.0555391}
   m_Center: {x: 0.06788826, y: 1.8918918, z: -0.057145357}
+--- !u!54 &2270262559135112050
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282168185835156454}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &123455781040814242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282168185835156454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27484f98281bf5145991eff75dfc0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3364324515617624119
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,12 +614,12 @@ GameObject:
   - component: {fileID: 4901212317665770750}
   - component: {fileID: 6790789894454401391}
   - component: {fileID: 6351188207471486040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4901212317665770750
 Transform:
@@ -667,12 +697,12 @@ GameObject:
   - component: {fileID: 3796905540352856309}
   - component: {fileID: 6090847891862298665}
   - component: {fileID: 7124984806356544263}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface105
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3796905540352856309
 Transform:
@@ -750,12 +780,12 @@ GameObject:
   - component: {fileID: 843629658213410788}
   - component: {fileID: 5859856919041122016}
   - component: {fileID: 99043025845891817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lights1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &843629658213410788
 Transform:
@@ -833,12 +863,12 @@ GameObject:
   - component: {fileID: 3113983164008469325}
   - component: {fileID: 2699088623574063149}
   - component: {fileID: 7414312085737967501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface105
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3113983164008469325
 Transform:
@@ -916,12 +946,12 @@ GameObject:
   - component: {fileID: 1777836270282204011}
   - component: {fileID: 6083103681691515537}
   - component: {fileID: 8236252522194998767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sweep9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1777836270282204011
 Transform:
@@ -999,12 +1029,12 @@ GameObject:
   - component: {fileID: 5282636318559795804}
   - component: {fileID: 8773889238774661465}
   - component: {fileID: 4212493467006362049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Speaker3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5282636318559795804
 Transform:
@@ -1080,12 +1110,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1057089951171189562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1057089951171189562
 Transform:
@@ -1116,12 +1146,12 @@ GameObject:
   - component: {fileID: 381344716655358434}
   - component: {fileID: 1665294657574083474}
   - component: {fileID: 1992068562595242883}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Speaker1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &381344716655358434
 Transform:
@@ -1199,12 +1229,12 @@ GameObject:
   - component: {fileID: 2198668399656944685}
   - component: {fileID: 8579797930676128217}
   - component: {fileID: 1932145318940935836}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface99
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2198668399656944685
 Transform:
@@ -1282,12 +1312,12 @@ GameObject:
   - component: {fileID: 7180537655193613898}
   - component: {fileID: 1224943156842295307}
   - component: {fileID: 8037002683736480036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface103
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7180537655193613898
 Transform:
@@ -1365,12 +1395,12 @@ GameObject:
   - component: {fileID: 7933741543632536871}
   - component: {fileID: 1030862763871084983}
   - component: {fileID: 7327511106918817649}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sweep12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7933741543632536871
 Transform:
@@ -1448,12 +1478,12 @@ GameObject:
   - component: {fileID: 2122556833267486681}
   - component: {fileID: 5778807080188785780}
   - component: {fileID: 8654600502402210586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lights3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2122556833267486681
 Transform:
@@ -1531,12 +1561,12 @@ GameObject:
   - component: {fileID: 3492210886783963183}
   - component: {fileID: 4931798396929818219}
   - component: {fileID: 4775723189227480694}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3492210886783963183
 Transform:
@@ -1614,12 +1644,12 @@ GameObject:
   - component: {fileID: 351575431853796713}
   - component: {fileID: 1403847647910387512}
   - component: {fileID: 6363661891893411194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface99
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &351575431853796713
 Transform:
@@ -1697,12 +1727,12 @@ GameObject:
   - component: {fileID: 7435998872425894767}
   - component: {fileID: 3068207299620169354}
   - component: {fileID: 2966257196047456650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface99
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7435998872425894767
 Transform:

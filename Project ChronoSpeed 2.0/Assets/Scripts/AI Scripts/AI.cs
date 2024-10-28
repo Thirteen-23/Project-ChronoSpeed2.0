@@ -380,7 +380,6 @@ public class AI : MonoBehaviour
                 if (hit.collider.CompareTag("walls"))
                 {
                     steeringForce = 1.5f;
-                    Debug.Log("Hitting wall");
                     carAI.acceration_Value = -2f;
                     // carAI.steering_Value = -carAI.steering_Value;
                 }
@@ -491,7 +490,6 @@ public class AI : MonoBehaviour
                 break;
 
             case AIMouth.slowing_Down:
-                Debug.Log("i sense in front");
                  rb.AddForce(-rb.transform.forward + rb.transform.right * forceTurn);
                 if (cooldownTimer > 0)
                 {
@@ -524,8 +522,6 @@ public class AI : MonoBehaviour
 
         if (other.CompareTag("AIBody"))
         {
-            Debug.Log("i sense in front");
-            
             if(aiSpeaking == AIMouth.speeding_Up)
             {
                 rb.AddForce(rb.transform.right * forceTurn);
@@ -539,7 +535,6 @@ public class AI : MonoBehaviour
         }
         if (other.CompareTag("walls"))
         {
-            Debug.Log("i sense in front");
             aiSpeaking = AIMouth.reversing;
         }
 
@@ -561,12 +556,10 @@ public class AI : MonoBehaviour
                
             }
             aiSpeaking = AIMouth.slowing_Down;
-            Debug.Log("i sense in front");
 
         }
         if (other.CompareTag("walls"))
         {
-            Debug.Log("i sense in front");
             aiSpeaking = AIMouth.reversing;
         }
     }
@@ -589,7 +582,6 @@ public class AI : MonoBehaviour
         }
         if (other.CompareTag("walls"))
         {
-            Debug.Log("i left wall");
             aiSpeaking = AIMouth.racing;
         }
 

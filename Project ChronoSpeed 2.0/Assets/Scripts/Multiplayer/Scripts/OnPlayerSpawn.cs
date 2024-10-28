@@ -33,8 +33,6 @@ public class OnPlayerSpawn : NetworkBehaviour
             Destroy(NotTrigger);
             Destroy(Canvas);
         }
-
-        Debug.Log(IsServer);
         if(!IsServer)
             Destroy(lapMan);
         

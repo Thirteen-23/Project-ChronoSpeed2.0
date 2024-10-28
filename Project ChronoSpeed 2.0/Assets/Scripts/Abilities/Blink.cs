@@ -19,7 +19,7 @@ public class Blink : MonoBehaviour
     private void Awake()
     {
         m_VFXContainer = GetComponent<VFXContainer>();
-        mainCamVol = FindAnyObjectByType<MainCamera>().GetComponent<Volume>(); ;
+        mainCamVol = Camera.main.GetComponent<Volume>();
     }
     public void SpawnMirage()
     {
@@ -100,6 +100,7 @@ public class Blink : MonoBehaviour
             yield return null;
         }
         mainCamVol.weight = 0;
+        mainCamVol.profile = null;
         warpCoroutine = null;
     }
 
@@ -112,7 +113,7 @@ public class Blink : MonoBehaviour
             yield return null;
         }
         mainCamVol.weight = 0;
-        
+        mainCamVol.profile = null;
     }
 
     public void SetMirage(Mirage curMir)

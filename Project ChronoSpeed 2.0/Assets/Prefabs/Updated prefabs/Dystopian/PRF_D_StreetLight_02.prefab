@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 5596577513170591808}
   - component: {fileID: 4651924260522019846}
   - component: {fileID: 4683224939100399349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface109
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5596577513170591808
 Transform:
@@ -94,12 +94,12 @@ GameObject:
   - component: {fileID: 2900274442758205015}
   - component: {fileID: 3146942905230446160}
   - component: {fileID: 105884436240432227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface46
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2900274442758205015
 Transform:
@@ -177,12 +177,12 @@ GameObject:
   - component: {fileID: 5319165242806985544}
   - component: {fileID: 5807453097383261925}
   - component: {fileID: 6988652932334346429}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface110
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5319165242806985544
 Transform:
@@ -260,12 +260,12 @@ GameObject:
   - component: {fileID: 4190598771561791901}
   - component: {fileID: 1101289970412748605}
   - component: {fileID: 4756993941244643412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface44
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4190598771561791901
 Transform:
@@ -343,12 +343,12 @@ GameObject:
   - component: {fileID: 1571701955543447164}
   - component: {fileID: 7546600676152338435}
   - component: {fileID: 3157209643553508693}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface111
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1571701955543447164
 Transform:
@@ -424,12 +424,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2811807057629427390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MDL_D_StreetLight_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2811807057629427390
 Transform:
@@ -465,12 +465,12 @@ GameObject:
   - component: {fileID: 2836982030217815883}
   - component: {fileID: 6911805719451164633}
   - component: {fileID: 5691228119039202680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface40
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2836982030217815883
 Transform:
@@ -548,12 +548,14 @@ GameObject:
   - component: {fileID: 8811839010117451095}
   - component: {fileID: 967325292735717675}
   - component: {fileID: 443576499662225915}
-  m_Layer: 0
+  - component: {fileID: 7297642043362661650}
+  - component: {fileID: 2951718614379903318}
+  m_Layer: 8
   m_Name: PRF_D_StreetLight_02
   m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8811839010117451095
 Transform:
@@ -597,6 +599,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.20664561, y: 0.12343788, z: 3.5018673}
   m_Center: {x: 0.000100404046, y: 6.080474, z: -0.0027999878}
+--- !u!54 &7297642043362661650
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143106573695887341}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2951718614379903318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143106573695887341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27484f98281bf5145991eff75dfc0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8870182917178568216
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,12 +638,12 @@ GameObject:
   - component: {fileID: 4596003921793409113}
   - component: {fileID: 8693233103434586129}
   - component: {fileID: 2755957946294662814}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4596003921793409113
 Transform:
@@ -691,12 +721,12 @@ GameObject:
   - component: {fileID: 4435777570007480794}
   - component: {fileID: 6538282650315983909}
   - component: {fileID: 8889063734109725788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4435777570007480794
 Transform:

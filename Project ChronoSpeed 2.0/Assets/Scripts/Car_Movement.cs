@@ -508,7 +508,6 @@ public class Car_Movement : MonoBehaviour
         {
             ifHandBraking = false;
             handbraking = 0;
-            Debug.Log("Let go");
         }
 
     }
@@ -751,7 +750,6 @@ public class Car_Movement : MonoBehaviour
         {
             if (hit.collider.CompareTag("AI") || hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Im behind");
                 bodyOfCar.AddForce(bodyOfCar.transform.forward * (1000f * draftingMultiplierValue));
 
             }
@@ -1060,7 +1058,6 @@ public class Car_Movement : MonoBehaviour
     {
         if (meBoosting == true)
         {
-            Debug.Log("I am boosting?");
             bodyOfCar.AddForce(bodyOfCar.transform.forward * boostValue);
             for (int i = 0; i < nitroboostColor.Length; i++)
             {

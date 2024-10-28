@@ -160,7 +160,7 @@ public class AbilityManager : MonoBehaviour
             case ResourceState.charging:
                 if (ability1CostValue > currentResourceValue)
                 {
-                    Debug.Log("not ready Buddy");
+                    
                 }
                 else
                 {
@@ -169,7 +169,7 @@ public class AbilityManager : MonoBehaviour
                 break;
             case ResourceState.ready:
                 {
-                    Debug.Log("Abiity ready");
+                    
                     if (abilityUsed == true && ability1CostValue < currentResourceValue)
                     {
                         currentResourceValue = currentResourceValue - ability1CostValue;
