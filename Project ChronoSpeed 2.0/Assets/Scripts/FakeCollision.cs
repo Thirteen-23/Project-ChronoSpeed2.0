@@ -20,7 +20,7 @@ public class FakeCollision : MonoBehaviour
     public Class myClass;
     float myMass = 0;
     Rigidbody myRB;
-    Transform myTransform;
+    [HideInInspector] public Transform myTransform;
     
     public struct CollisionRequiredInfo
     {
