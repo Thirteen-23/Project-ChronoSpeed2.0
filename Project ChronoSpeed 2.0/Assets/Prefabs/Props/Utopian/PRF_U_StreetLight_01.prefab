@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4513404595566712707}
   m_Layer: 0
   m_Name: PRF_U_StreetLight_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -43,9 +43,11 @@ GameObject:
   - component: {fileID: 7693464398133084485}
   - component: {fileID: 8678658652881139721}
   - component: {fileID: 2987558242107165373}
+  - component: {fileID: 5931993230090209569}
+  - component: {fileID: 8950387819671941662}
   m_Layer: 0
   m_Name: MDL_U_StreetLight_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -115,3 +117,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5931993230090209569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819123077567673379}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.39999998, y: 6.249999, z: 0.4629808}
+  m_Center: {x: 0, y: 3.1249995, z: -0.0036480352}
+--- !u!65 &8950387819671941662
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819123077567673379}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.39999998, y: 0.38555002, z: 3.3999999}
+  m_Center: {x: 0, y: 6.0572243, z: 0.65}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 819923155384270012}
   m_Layer: 0
   m_Name: pCube170
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1894096623624031943}
   m_Layer: 0
   m_Name: pCube158
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 5125246528735677575}
   m_Layer: 0
   m_Name: pCube169
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 3671398889564863447}
   m_Layer: 0
   m_Name: pCube159
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 6161878436811502903}
   m_Layer: 0
   m_Name: pCube168
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 6733117308603854403}
   m_Layer: 0
   m_Name: pCube165
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 7557871981106138041}
   m_Layer: 0
   m_Name: pCube164
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 7269832185270925010}
   m_Layer: 0
   m_Name: pCube166
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 6863368534103356667}
   m_Layer: 0
   m_Name: pCube162
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 1955072401239409625}
   m_Layer: 0
   m_Name: pCube163
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -841,9 +841,10 @@ GameObject:
   - component: {fileID: 4321428876226448920}
   - component: {fileID: 5287793766761760272}
   - component: {fileID: 7412854363793850886}
+  - component: {fileID: 3666762114690513908}
   m_Layer: 0
   m_Name: pCube160
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -913,6 +914,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3666762114690513908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085640189057815113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1650002, y: 0.14906305, z: 1.164721}
+  m_Center: {x: -0.00000011920929, y: 0.07546845, z: 0.00013947487}
 --- !u!1 &7155416335528745924
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +940,7 @@ GameObject:
   - component: {fileID: 4176343351258931547}
   m_Layer: 0
   m_Name: pCube161
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1007,7 +1021,7 @@ GameObject:
   - component: {fileID: 6947069792226656264}
   m_Layer: 0
   m_Name: PRF_D_WoodPalette_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1039,7 +1053,7 @@ GameObject:
   - component: {fileID: 2602890600138705655}
   m_Layer: 0
   m_Name: MDL_D_WoodPalette_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1085,7 +1099,7 @@ GameObject:
   - component: {fileID: 6739847588392084615}
   m_Layer: 0
   m_Name: pCube167
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

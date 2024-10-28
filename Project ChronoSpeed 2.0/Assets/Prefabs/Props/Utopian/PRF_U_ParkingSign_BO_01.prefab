@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4517876227917116759}
   m_Layer: 0
   m_Name: PRF_U_ParkingSign_BO_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 6425026552076876831}
   - component: {fileID: 6733064153154898532}
   - component: {fileID: 8568424405263597341}
+  - component: {fileID: 6803817059167416955}
   m_Layer: 0
   m_Name: MDL_U_ParkingSign_BO_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -115,3 +116,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6803817059167416955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690405207123909067}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.39999998, y: 2.3000002, z: 0.03}
+  m_Center: {x: 0, y: 1.1500001, z: 0.0025000004}

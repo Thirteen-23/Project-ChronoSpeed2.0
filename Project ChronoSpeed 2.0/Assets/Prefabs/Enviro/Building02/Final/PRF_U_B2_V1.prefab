@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3410098405758748723}
   m_Layer: 0
   m_Name: PRF_U_B2_V1
-  m_TagString: Untagged
+  m_TagString: walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -47,6 +47,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MDL_U_B2_V1_Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 498395890951782438, guid: 87138e93bb899ca4baabffac82dd6487,
+        type: 3}
+      propertyPath: m_TagString
+      value: walls
       objectReference: {fileID: 0}
     - target: {fileID: 982198962171828892, guid: 87138e93bb899ca4baabffac82dd6487,
         type: 3}
@@ -123,6 +128,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MDL_U_B2_V1_Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 498395890951782438, guid: 87138e93bb899ca4baabffac82dd6487,
+        type: 3}
+      propertyPath: m_TagString
+      value: walls
+      objectReference: {fileID: 0}
     - target: {fileID: 982198962171828892, guid: 87138e93bb899ca4baabffac82dd6487,
         type: 3}
       propertyPath: m_RootOrder
@@ -198,6 +208,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MDL_U_B2_V1_Roof
       objectReference: {fileID: 0}
+    - target: {fileID: 7397937284028449154, guid: 658b3d6e153937e44a7eaf34f655ef31,
+        type: 3}
+      propertyPath: m_TagString
+      value: walls
+      objectReference: {fileID: 0}
     - target: {fileID: 7917627689216908088, guid: 658b3d6e153937e44a7eaf34f655ef31,
         type: 3}
       propertyPath: m_RootOrder
@@ -272,6 +287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MDL_U_B2_V1_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459243978636024872, guid: 2d0a4049142d72044b8f8f41de2814c0,
+        type: 3}
+      propertyPath: m_TagString
+      value: walls
       objectReference: {fileID: 0}
     - target: {fileID: 9092368768751240850, guid: 2d0a4049142d72044b8f8f41de2814c0,
         type: 3}
@@ -403,8 +423,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: MDL_U_B2_V1_Front
       objectReference: {fileID: 0}
+    - target: {fileID: 5224578923836409609, guid: c4d084b9c674e5b4f8b0512250effb43,
+        type: 3}
+      propertyPath: m_TagString
+      value: walls
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d084b9c674e5b4f8b0512250effb43, type: 3}
+--- !u!1 &2563238402148864883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5224578923836409609, guid: c4d084b9c674e5b4f8b0512250effb43,
+    type: 3}
+  m_PrefabInstance: {fileID: 7715542913408177274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6790290339814196462
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563238402148864883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.4, y: 13.4, z: 16.068483}
+  m_Center: {x: 7.999999, y: 6.7, z: -7.9646254}
 --- !u!4 &2943563136013781449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4884926156411985331, guid: c4d084b9c674e5b4f8b0512250effb43,

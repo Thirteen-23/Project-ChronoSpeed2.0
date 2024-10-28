@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 130939432164984355}
   m_Layer: 0
   m_Name: PRF_D_StreetLight_03
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 8169672224505783288}
   - component: {fileID: 555065076174843397}
   - component: {fileID: 8346678400386234417}
+  - component: {fileID: 4481218710961954230}
   m_Layer: 0
   m_Name: pCube117
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -115,6 +116,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4481218710961954230
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185927296768917493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3685435, y: 0.5702148, z: 0.3685435}
+  m_Center: {x: 0, y: 0.2851074, z: 0}
 --- !u!1 &2931243465217263594
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +142,7 @@ GameObject:
   - component: {fileID: 8845545412432051527}
   m_Layer: 0
   m_Name: pCylinder12
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -211,7 +225,7 @@ GameObject:
   - component: {fileID: 1176237539832898824}
   m_Layer: 0
   m_Name: pSphere1
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -292,9 +306,10 @@ GameObject:
   - component: {fileID: 9037396646081397039}
   - component: {fileID: 6502882017992290886}
   - component: {fileID: 7639588843418857103}
+  - component: {fileID: 7888260832852705519}
   m_Layer: 0
   m_Name: pCube116
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -364,6 +379,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7888260832852705519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931935376883843635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.53773546, y: 0.9, z: 0.5377354}
+  m_Center: {x: 0.000000029802322, y: 0.45, z: 0}
 --- !u!1 &5627630652967075352
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +403,7 @@ GameObject:
   - component: {fileID: 669418415839968797}
   m_Layer: 0
   m_Name: MDL_D_StreetLight_03
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -411,9 +439,10 @@ GameObject:
   - component: {fileID: 8513823273891959122}
   - component: {fileID: 5492372801046334146}
   - component: {fileID: 4305952546391187402}
+  - component: {fileID: 5373971626098435531}
   m_Layer: 0
   m_Name: pCylinder48
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -483,3 +512,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5373971626098435531
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340693958498144429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2115407, y: 1.8999999, z: 0.1683097}
+  m_Center: {x: 0.0025398731, y: 0, z: 0}

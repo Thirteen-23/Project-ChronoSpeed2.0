@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5566058820086883179}
   - component: {fileID: 2629907588245668888}
   - component: {fileID: 971021474183344764}
+  - component: {fileID: 2182221756801507194}
   m_Layer: 0
   m_Name: MDL_D_Dumpster_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2182221756801507194
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2827549300243892514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4565908774658992590, guid: 92569e083103de2449103db33ff60c80, type: 3}
 --- !u!1 &6591083018299407066
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +109,7 @@ GameObject:
   - component: {fileID: 5779221927124541536}
   m_Layer: 0
   m_Name: MDL_D_Dumpster_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

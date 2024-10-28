@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4888902896234923690}
   - component: {fileID: 7058663080557146668}
   - component: {fileID: 7401854507805897510}
+  - component: {fileID: 87247800267280977}
   m_Layer: 0
   m_Name: pHelix1
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &87247800267280977
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65956764563432831}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.72
+  m_Height: 2.34
+  m_Direction: 1
+  m_Center: {x: -0.01132175, y: 2.6483517, z: -0.051704675}
 --- !u!1 &499613756642598379
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +111,7 @@ GameObject:
   - component: {fileID: 8157427385932126518}
   m_Layer: 0
   m_Name: polySurface105
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +194,7 @@ GameObject:
   - component: {fileID: 2404829583937100300}
   m_Layer: 0
   m_Name: polySurface103
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +275,7 @@ GameObject:
   - component: {fileID: 1659871090759992623}
   m_Layer: 0
   m_Name: Camera6
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +311,7 @@ GameObject:
   - component: {fileID: 7883696595745356805}
   m_Layer: 0
   m_Name: polySurface103
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,7 +392,7 @@ GameObject:
   - component: {fileID: 9145931571443501599}
   m_Layer: 0
   m_Name: MDL_D_TrafficLight_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +436,7 @@ GameObject:
   - component: {fileID: 227588508071066371}
   m_Layer: 0
   m_Name: Camera5
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,7 +472,7 @@ GameObject:
   - component: {fileID: 3506415397902413493}
   m_Layer: 0
   m_Name: sweep10
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -538,7 +553,7 @@ GameObject:
   - component: {fileID: 2794283731798108508}
   m_Layer: 0
   m_Name: MDL_D_TrafficLight_01
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +587,7 @@ GameObject:
   - component: {fileID: 6351188207471486040}
   m_Layer: 0
   m_Name: Pole
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -655,7 +670,7 @@ GameObject:
   - component: {fileID: 7124984806356544263}
   m_Layer: 0
   m_Name: polySurface105
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -738,7 +753,7 @@ GameObject:
   - component: {fileID: 99043025845891817}
   m_Layer: 0
   m_Name: Lights1
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -821,7 +836,7 @@ GameObject:
   - component: {fileID: 7414312085737967501}
   m_Layer: 0
   m_Name: polySurface105
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -904,7 +919,7 @@ GameObject:
   - component: {fileID: 8236252522194998767}
   m_Layer: 0
   m_Name: sweep9
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -987,7 +1002,7 @@ GameObject:
   - component: {fileID: 4212493467006362049}
   m_Layer: 0
   m_Name: Speaker3
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1068,7 +1083,7 @@ GameObject:
   - component: {fileID: 1057089951171189562}
   m_Layer: 0
   m_Name: Camera7
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1104,7 +1119,7 @@ GameObject:
   - component: {fileID: 1992068562595242883}
   m_Layer: 0
   m_Name: Speaker1
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1187,7 +1202,7 @@ GameObject:
   - component: {fileID: 1932145318940935836}
   m_Layer: 0
   m_Name: polySurface99
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1270,7 +1285,7 @@ GameObject:
   - component: {fileID: 8037002683736480036}
   m_Layer: 0
   m_Name: polySurface103
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1353,7 +1368,7 @@ GameObject:
   - component: {fileID: 7327511106918817649}
   m_Layer: 0
   m_Name: sweep12
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1436,7 +1451,7 @@ GameObject:
   - component: {fileID: 8654600502402210586}
   m_Layer: 0
   m_Name: Lights3
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1517,9 +1532,10 @@ GameObject:
   - component: {fileID: 3492210886783963183}
   - component: {fileID: 4931798396929818219}
   - component: {fileID: 4775723189227480694}
+  - component: {fileID: 4593980397087977376}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1589,6 +1605,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4593980397087977376
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8963103564336083213}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2851773, y: 3.7805, z: 0.2851773}
+  m_Center: {x: 0, y: 1.89025, z: 0}
 --- !u!1 &9078041942669213854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1631,7 @@ GameObject:
   - component: {fileID: 6363661891893411194}
   m_Layer: 0
   m_Name: polySurface99
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1685,7 +1714,7 @@ GameObject:
   - component: {fileID: 2966257196047456650}
   m_Layer: 0
   m_Name: polySurface99
-  m_TagString: Untagged
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
