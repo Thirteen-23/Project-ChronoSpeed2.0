@@ -22,14 +22,11 @@ public class OnPlayerSpawn : NetworkBehaviour
             mCam.rb = bodyRB;
             mCam.player = transform.Find("CameraFollow");
             mCam.carValues = carMove;
-
-            //Destroy(Trigger);
         }
         else
         {
             Destroy(input);
             Destroy(carMove);
-            Destroy(GetComponentInChildren<FakeCollision>());
             Destroy(GetComponent<Rigidbody>());
             gameObject.tag = "OtherPlayer";
 
