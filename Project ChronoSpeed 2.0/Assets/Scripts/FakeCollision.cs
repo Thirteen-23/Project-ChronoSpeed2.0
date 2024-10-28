@@ -70,6 +70,7 @@ public class FakeCollision : MonoBehaviour
         if(other.transform.CompareTag("CarBody"))
         {
             Depenetrate(trigger, other);
+            ApplyRelVelocity(other);
         }
         
     }
