@@ -11,7 +11,7 @@ public class VerleyVelocity : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Velocity = transform.position - previousPos;
+        Velocity = (transform.position - previousPos) / Time.deltaTime;
         previousPos = transform.position;
     }
 }

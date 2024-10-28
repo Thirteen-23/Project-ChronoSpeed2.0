@@ -115,12 +115,12 @@ public class Car_Movement : MonoBehaviour
 
     // drifting boost value
     [Header(" boost values when drifting ")]
-    [SerializeField] float forceBoostForDriftingValue = 20000f;
+    [SerializeField] float boostWhenExitingDrift = 20000f;
     public float findme;
     public bool lightCar, mediumCar, heavyCar = false;
     public float minDrag = 0;
     public float maxDrag = 4;
-    public float boostInDrifting = 25000f;
+    public float boostWhileDrifting = 25000f;
     [SerializeField] float tt = 1;
     [SerializeField] float maxAmountOfGrip;
     [SerializeField] float minAmountOfGripAtStart;
@@ -924,8 +924,12 @@ public class Car_Movement : MonoBehaviour
                 wheels4[i].forwardFriction = forwardFriction;
 
             }
-           // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
-            bodyOfCar.AddForce(bodyOfCar.transform.forward * boostInDrifting);
+            // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
+
+            if (wheels4[0].steerAngle > 20 || wheels4[0].steerAngle < -20)
+            {
+                bodyOfCar.AddForce(bodyOfCar.transform.forward * boostWhileDrifting);
+            }
             // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
             WheelHit wheelHit;
 
@@ -995,7 +999,7 @@ public class Car_Movement : MonoBehaviour
                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 4), tt * 1f);
                      
                        
-                        //bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * forceBoostForDriftingValue);
+                        bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostWhenExitingDrift);
                         //leftTrail.emitting = true;
                         //rightTrail.emitting = true;
                         rightWheel.Play();

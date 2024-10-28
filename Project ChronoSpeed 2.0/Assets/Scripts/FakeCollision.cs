@@ -104,11 +104,13 @@ public class FakeCollision : MonoBehaviour
         float otherMass = currentCollidingCars[other.transform].theirMass;
 
         Vector3 relativeVelocity = myRB.velocity - currentCollidingCars[other.transform].theirVel.Velocity;
-        Vector3 normal = transform.position - other.transform.position;
+        //TODO: GET FINN TO FIX NORMALS
+        Vector3 normal = other.transform.position - transform.position;
 
         normal.y = 0;
         normal.Normalize();
 
+        Debug.Log(normal);
         float dot = (1f + bounceFactor) * Vector3.Dot(relativeVelocity, normal);
 
         //IDK why but if truck is 90, light is 30, total is 120, 
