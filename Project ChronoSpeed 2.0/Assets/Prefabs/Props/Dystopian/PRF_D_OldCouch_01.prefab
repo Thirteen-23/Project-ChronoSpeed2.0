@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3152488364675327556}
   m_Layer: 0
   m_Name: Couch_Pillow_LB
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7982181691550824505}
   m_Layer: 0
   m_Name: Couch_Pillow_RT
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -177,10 +177,9 @@ GameObject:
   - component: {fileID: 8542378467364067994}
   - component: {fileID: 5341452956245837915}
   - component: {fileID: 7257271590133141580}
-  - component: {fileID: 5666040481520258925}
   m_Layer: 0
   m_Name: Couch_Base
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -250,19 +249,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5666040481520258925
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2578614353780962521}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.8645012, y: 1.0854386, z: 1.0700464}
-  m_Center: {x: 0, y: 0.5427193, z: -0.06536274}
 --- !u!1 &2784289847878185834
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +262,7 @@ GameObject:
   - component: {fileID: 4935725686589233670}
   m_Layer: 0
   m_Name: Couch_Pillow_LT
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -357,7 +343,7 @@ GameObject:
   - component: {fileID: 715722618109005194}
   m_Layer: 0
   m_Name: MDL_D_OldCouch_01
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -391,6 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4608370824806806913}
+  - component: {fileID: 1894833479269935501}
   m_Layer: 0
   m_Name: PRF_D_OldCouch_01
   m_TagString: RigidBodyObj
@@ -414,6 +401,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1894833479269935501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801012203211091771}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8748944, y: 1.3691354, z: 1.2081581}
+  m_Center: {x: -0.0013025999, y: 0.69053817, z: 0.0010513663}
 --- !u!1 &8584531342293167211
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 7060209473839879663}
   m_Layer: 0
   m_Name: Couch_Pillow_RB
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

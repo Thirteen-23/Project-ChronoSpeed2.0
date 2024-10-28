@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 7277964108859871228}
   - component: {fileID: 1474108299215630764}
   - component: {fileID: 6582374747287436809}
-  - component: {fileID: 6009260374568901497}
   m_Layer: 0
   m_Name: polySurface40
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6009260374568901497
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890950697254245031}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.24000008, y: 6.028275, z: 0.24000007}
-  m_Center: {x: 3.713475e-17, y: 2.9858625, z: 0.00000000745058}
 --- !u!1 &3592955294166124105
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +96,7 @@ GameObject:
   - component: {fileID: 7623286683450005677}
   m_Layer: 0
   m_Name: polySurface44
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -189,6 +175,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4058313323679357890}
+  - component: {fileID: 8539843674986364910}
+  - component: {fileID: 8568396972331666283}
   m_Layer: 0
   m_Name: PRF_D_StreetLight_01
   m_TagString: RigidBodyObj
@@ -203,7 +191,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3682210410055123320}
-  m_LocalRotation: {x: -0, y: 0.7273751, z: -0, w: 0.6862402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.546, y: 0, z: -0.582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -211,7 +199,33 @@ Transform:
   - {fileID: 5737772171412742978}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 93.334, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8539843674986364910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682210410055123320}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42726374, y: 6.001622, z: 0.46697965}
+  m_Center: {x: 0.0014493465, y: 3.0000763, z: 0.013224378}
+--- !u!65 &8568396972331666283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682210410055123320}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2006077, y: 0.25669956, z: 1.7799892}
+  m_Center: {x: 0.0007716043, y: 6.0361123, z: 0.85904706}
 --- !u!1 &5212751724908885890
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,10 +237,9 @@ GameObject:
   - component: {fileID: 1005625278491330053}
   - component: {fileID: 5850887230784555428}
   - component: {fileID: 8959306816254323070}
-  - component: {fileID: 8111194529907689027}
   m_Layer: 0
   m_Name: polySurface43
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -296,19 +309,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8111194529907689027
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5212751724908885890}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.060000032, y: 0.12999916, z: 1.758648}
-  m_Center: {x: 0.00000010940787, y: 6.0649996, z: 0.84932405}
 --- !u!1 &6663293621011092215
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 5417297271682402894}
   m_Layer: 0
   m_Name: polySurface42
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 5737772171412742978}
   m_Layer: 0
   m_Name: MDL_D_StreetLight_01
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 3424658439119421579}
   m_Layer: 0
   m_Name: polySurface41
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

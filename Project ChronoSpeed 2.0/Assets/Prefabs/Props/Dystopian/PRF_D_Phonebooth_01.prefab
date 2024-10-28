@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1699971955549966611}
   m_Layer: 0
   m_Name: MDL_D_Phonebooth_01
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 3962266592796236799}
   m_Layer: 0
   m_Name: top
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -135,10 +135,9 @@ GameObject:
   - component: {fileID: 2755078178298734154}
   - component: {fileID: 9192319616993424905}
   - component: {fileID: 7110702135296225286}
-  - component: {fileID: 6614800944979802344}
   m_Layer: 0
   m_Name: frame
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -208,19 +207,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6614800944979802344
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2651319538839697608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.95000005, y: 2.4697456, z: 0.95000005}
-  m_Center: {x: 0, y: 0.21326059, z: -0}
 --- !u!1 &3367691449749417567
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +220,7 @@ GameObject:
   - component: {fileID: 2526933932781745047}
   m_Layer: 0
   m_Name: base
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -317,7 +303,7 @@ GameObject:
   - component: {fileID: 8420205516503782455}
   m_Layer: 0
   m_Name: side_panel
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -400,7 +386,7 @@ GameObject:
   - component: {fileID: 1455287380036786124}
   m_Layer: 0
   m_Name: Door
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -483,7 +469,7 @@ GameObject:
   - component: {fileID: 288678252115668051}
   m_Layer: 0
   m_Name: pPlane25
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -566,7 +552,7 @@ GameObject:
   - component: {fileID: 2166836195258072485}
   m_Layer: 0
   m_Name: back_panel
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -649,7 +635,7 @@ GameObject:
   - component: {fileID: 4289149672944364015}
   m_Layer: 0
   m_Name: pPlane24
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -732,7 +718,7 @@ GameObject:
   - component: {fileID: 4317509767459563607}
   m_Layer: 0
   m_Name: side_panel1
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -815,7 +801,7 @@ GameObject:
   - component: {fileID: 3333010521557756851}
   m_Layer: 0
   m_Name: pPlane23
-  m_TagString: RigidBodyObj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -894,6 +880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9217973043097958058}
+  - component: {fileID: 3065258698016022211}
   m_Layer: 0
   m_Name: PRF_D_Phonebooth_01
   m_TagString: RigidBodyObj
@@ -908,7 +895,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8405688364795866128}
-  m_LocalRotation: {x: -0, y: -0.89476436, z: -0, w: 0.4465386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.92, y: -0.00000333786, z: -5.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -916,4 +903,17 @@ Transform:
   - {fileID: 1699971955549966611}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -126.956, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3065258698016022211
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405688364795866128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0511949, y: 2.6254082, z: 1.052186}
+  m_Center: {x: 0.001511693, y: 1.3086133, z: -0.0020070076}
