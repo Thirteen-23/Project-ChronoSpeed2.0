@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PropHit : MonoBehaviour
@@ -8,7 +6,7 @@ public class PropHit : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)

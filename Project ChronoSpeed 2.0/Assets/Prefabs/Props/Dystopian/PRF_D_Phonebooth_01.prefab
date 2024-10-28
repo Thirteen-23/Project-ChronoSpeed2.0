@@ -881,6 +881,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9217973043097958058}
   - component: {fileID: 3065258698016022211}
+  - component: {fileID: 7012406284262279617}
+  - component: {fileID: 8644332730768490053}
   m_Layer: 0
   m_Name: PRF_D_Phonebooth_01
   m_TagString: RigidBodyObj
@@ -917,3 +919,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0511949, y: 2.6254082, z: 1.052186}
   m_Center: {x: 0.001511693, y: 1.3086133, z: -0.0020070076}
+--- !u!54 &7012406284262279617
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405688364795866128}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8644332730768490053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405688364795866128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27484f98281bf5145991eff75dfc0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
