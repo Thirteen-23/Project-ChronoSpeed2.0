@@ -1883,8 +1883,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 5000
-    targetPosition: 0.8
-  m_SuspensionDistance: 0.5
+    targetPosition: 0.9
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: -1
   m_Mass: 30
   m_WheelDampingRate: 0.25
@@ -2211,8 +2211,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 5000
-    targetPosition: 0.8
-  m_SuspensionDistance: 0.5
+    targetPosition: 0.9
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: -1
   m_Mass: 30
   m_WheelDampingRate: 0.25
@@ -2656,8 +2656,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 5000
-    targetPosition: 0.8
-  m_SuspensionDistance: 0.5
+    targetPosition: 0.9
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: -1
   m_Mass: 30
   m_WheelDampingRate: 0.25
@@ -2718,8 +2718,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 5000
-    targetPosition: 0.8
-  m_SuspensionDistance: 0.5
+    targetPosition: 0.9
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: -1
   m_Mass: 30
   m_WheelDampingRate: 0.25
@@ -2834,7 +2834,7 @@ MonoBehaviour:
   - {fileID: 1507990349335590696}
   - {fileID: 4668535520133587444}
   centerMass: {fileID: 7222207860339581171}
-  downForceValue: 500
+  downForceValue: 700
   horsePower: 0
   enginePower:
     serializedVersion: 2
@@ -2850,13 +2850,13 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 6000
-      value: 500
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
+      value: 1000
+      inSlope: -0.111747734
+      outSlope: -0.111747734
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 1
     - serializedVersion: 3
       time: 8000
       value: 0
@@ -2952,7 +2952,7 @@ MonoBehaviour:
   maxAmountOfGrip: 4
   minAmountOfGripAtStart: 1
   meBoosting: 0
-  boostValue: 150000
+  boostValue: 5500
   leftWheel: {fileID: 271920982170815810}
   rightWheel: {fileID: 6965865591550556549}
   leftWheelSmoke: {fileID: 4129552760484218943}
@@ -3169,8 +3169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c520043e3c026b74695dffb9d99f3475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storeAbilities: []
-  m_1stAbility: {fileID: 11400000, guid: 8bf4119f95db63640b818ee081e697d6, type: 2}
+  storeAbilities:
+  - {fileID: 0}
+  m_1stAbility: {fileID: 11400000, guid: 06735bdac20f7694cbf5389d882e74dc, type: 2}
   m_2stAbility: {fileID: 11400000, guid: 8bf4119f95db63640b818ee081e697d6, type: 2}
   cooldownTime: 0
   activeTime: 0
@@ -3235,7 +3236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 391577787
+  GlobalObjectIdHash: 3611437128
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -4106,22 +4107,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 2.8e-43
+      value: 2.3791112e-32
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 4.33e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6.3e-44
+      value: 5.5752786e+9
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 9.9e-43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -4288,22 +4289,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 7.67e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 4.32e-43
+      value: 9.95e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -4.6835198e-32
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.32e-43
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -4389,22 +4390,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -2.9908392e-29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.02e-43
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -0.12456632
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.32e-43
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
