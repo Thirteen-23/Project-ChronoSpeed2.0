@@ -8,6 +8,7 @@ public class PositionTracker : NetworkBehaviour
 {
     [SerializeField] Transform minimapParent;
     [SerializeField] Image playerIconPrefab;
+    [SerializeField] Vector3 offset;
     Collider boundsToUVCol;
     Vector3 extents;
     class PlayerMapInfo
@@ -39,7 +40,7 @@ public class PositionTracker : NetworkBehaviour
         var fkCol = other.GetComponent<FakeCollision>();
         if(fkCol != null)
         {
-            Vector3 plyrPos = fkCol.myTransform.position;
+            Vector3 plyrPos = fkCol.myTransform.position + offset;
 
             Vector2 newIconPos = new Vector2(plyrPos.x / (extents.x * 2),
                                                 plyrPos.z / (extents.z * 2));
