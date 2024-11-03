@@ -1870,11 +1870,6 @@ MonoBehaviour:
   lookBackValue: 0
   maxTimeToShiftGear: 0.025
   timerToShift: 0.025
-  steeringAngleOfWheels:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!114 &3975989593886958022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2098,6 +2093,18 @@ MonoBehaviour:
   currentResourceValue: 0
   minResourceValue: 0
   maxResourceValue: 100
+  boostBar: {fileID: 0}
+  currentBoostBarValue: 0
+  minBoostBarValue: 0
+  maxBoostBarValue: 0
+  blinkBar: {fileID: 0}
+  currentBlinkValue: 0
+  minBlinkValue: 0
+  maxBlinkValue: 0
+  portalDropBar: {fileID: 0}
+  currentPDValue: 0
+  minPortalDropValue: 0
+  maxPortalDropValue: 0
   m_ResoureceGatherCheck: 0
   m_ResourceMultiplerForSpeed: 3.5
   m_SpeedThreshholdForResource: 150
@@ -2129,7 +2136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 702383818
+  GlobalObjectIdHash: 3009645654
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3916,6 +3923,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SoundContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082823289364449325, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637193295256819508, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1228717cf6040f247a6c804aae245e65, type: 3}

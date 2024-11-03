@@ -781,7 +781,7 @@ public class Car_Movement : MonoBehaviour
 
                             wheel.forwardFriction = forwardFriction;
                             wheel.sidewaysFriction = sidewaysFriction;
-                            if(currentSpeed > 50)
+                            if(currentSpeed < 80)
                             {
                                 if (checkingTerrain.collider.CompareTag("Tarmac"))
                                 {

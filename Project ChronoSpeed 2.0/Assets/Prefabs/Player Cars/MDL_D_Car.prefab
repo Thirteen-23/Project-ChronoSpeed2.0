@@ -2969,7 +2969,6 @@ MonoBehaviour:
   lookBackValue: 0
   maxTimeToShiftGear: 0.03
   timerToShift: 0.03
-  steeringAngleOfWheels: []
 --- !u!114 &7564646704286003997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3190,6 +3189,18 @@ MonoBehaviour:
   currentResourceValue: 0
   minResourceValue: 0
   maxResourceValue: 100
+  boostBar: {fileID: 0}
+  currentBoostBarValue: 0
+  minBoostBarValue: 0
+  maxBoostBarValue: 0
+  blinkBar: {fileID: 0}
+  currentBlinkValue: 0
+  minBlinkValue: 0
+  maxBlinkValue: 0
+  portalDropBar: {fileID: 0}
+  currentPDValue: 0
+  minPortalDropValue: 0
+  maxPortalDropValue: 0
   m_ResoureceGatherCheck: 0
   m_ResourceMultiplerForSpeed: 0
   m_SpeedThreshholdForResource: 0
@@ -3693,6 +3704,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SoundContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082823289364449325, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8637193295256819508, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1228717cf6040f247a6c804aae245e65, type: 3}
