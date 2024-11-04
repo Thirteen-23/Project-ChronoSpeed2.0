@@ -11,6 +11,12 @@ public class PositionTracker : NetworkBehaviour
     [SerializeField] Vector3 offset;
     Collider boundsToUVCol;
     Vector3 extents;
+
+    Vector3 maxes;
+    Vector3 mins;
+    private float xRange;
+    private float zRange;
+
     class PlayerMapInfo
     {
         public Transform PlayerTrans;
@@ -28,6 +34,11 @@ public class PositionTracker : NetworkBehaviour
         boundsToUVCol = GetComponent<Collider>();
         extents = boundsToUVCol.bounds.extents;
         AddPlayer(FindAnyObjectByType<Car_Movement>().transform, Instantiate(playerIconPrefab, minimapParent));
+
+        maxes = transform.position + extents;
+        mins = transform.position - extents;
+        xRange = maxes.x - mins.x;
+        zRange = maxes.z - mins.z;
     }
 
     void AddPlayer(Transform plyr, Image plyrIcon)
@@ -40,18 +51,15 @@ public class PositionTracker : NetworkBehaviour
         var fkCol = other.GetComponent<FakeCollision>();
         if(fkCol != null)
         {
-            Vector3 plyrPos = fkCol.myTransform.position + offset;
-
-            Vector2 newIconPos = new Vector2(plyrPos.x / (extents.x * 2),
-                                                plyrPos.z / (extents.z * 2));
-
+            Vector2 mappedVal;
+            mappedVal.x = (fkCol.myTransform.position.x - offset.x - mins.x) / xRange;
+            mappedVal.y = (fkCol.myTransform.position.z - offset.z - mins.z) / zRange;
             for(int i = 0; i < players.Count; i++)
             {
                 if (players[i].PlayerTrans == fkCol.myTransform)
                 {
                     var rectTrans = players[i].PlayerIcon.transform.GetComponent<RectTransform>();
-                    rectTrans.anchoredPosition = newIconPos * rectTrans.parent.GetComponent<RectTransform>().sizeDelta;
-                    Debug.Log(rectTrans.parent.GetComponent<RectTransform>().sizeDelta);
+                    rectTrans.anchoredPosition = mappedVal * rectTrans.parent.GetComponent<RectTransform>().sizeDelta;
                 }
             }
         }
