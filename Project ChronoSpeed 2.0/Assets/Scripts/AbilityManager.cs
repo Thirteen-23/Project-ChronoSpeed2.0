@@ -366,6 +366,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+
     public void AllMaBars()
     {
         m_CarClass = accessCarValues.carClasses;
@@ -393,38 +394,44 @@ public class AbilityManager : MonoBehaviour
 
                     {
 
-                        //currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        //currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        //currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        currentBoostBarValue = currentBlinkValue = currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        //currentBoostBarValue = currentBlinkValue = currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
                     }
-                    else //if (currentBoostBarValue == maxBoostBarValue) || currentBlinkValue == maxBlinkValue || currentPDValue == maxPortalDropValue)
+                    else if (currentBoostBarValue == maxBoostBarValue)
                     {
-
                         currentBoostBarValue = maxBoostBarValue;
-                         currentBlinkValue = maxBlinkValue;
-                          currentPDValue = maxPortalDropValue;
                     }
+                    else if (currentBlinkValue == maxBlinkValue)
+                    {
+                        currentBlinkValue = maxBlinkValue;
+                    }
+                    else if (currentPDValue == maxPortalDropValue)
+                    {
+                        currentPDValue = maxPortalDropValue;
+                    }
+
                 }
-                
+
+
                 break;
 
             case Class.Medium:
                 m_ResoureceGatherCheck = accessCarValues.mediumCar;
                 if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
                 {
-                    if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
+
+                    if (currentBoostBarValue < maxBoostBarValue || currentBlinkValue < maxBlinkValue || currentPDValue < maxPortalDropValue)
+
                     {
-                        if (currentBoostBarValue < maxBoostBarValue || currentBlinkValue < maxBlinkValue || currentPDValue < maxPortalDropValue)
 
-                        {
-
-                            currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                            currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                            currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        }
-
+                        currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
                     }
+
+
                     else if (currentBoostBarValue == maxBoostBarValue || currentBlinkValue == maxBlinkValue || currentPDValue == maxPortalDropValue)
                     {
 
@@ -432,7 +439,7 @@ public class AbilityManager : MonoBehaviour
                         currentBlinkValue = maxBlinkValue;
                         currentPDValue = maxPortalDropValue;
                     }
-                }
+                } 
                 else if (m_ResoureceGatherCheck == true)
                 {
                     if (currentBoostBarValue < maxBoostBarValue || currentBlinkValue < maxBlinkValue || currentPDValue < maxPortalDropValue)

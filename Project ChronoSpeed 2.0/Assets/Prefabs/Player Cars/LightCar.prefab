@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 6168440535686938723}
   - component: {fileID: 8734388784157767960}
   - component: {fileID: 1809035127953864955}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rear_Tunnel_Cover_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 927673638688038866}
   - component: {fileID: 2112322152458417404}
   - component: {fileID: 1223325454852558892}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Time_Capasitors_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 7918372077243495296}
   - component: {fileID: 2392231686506665906}
   - component: {fileID: 3501804038434603544}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body_Top_Fin_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ GameObject:
   - component: {fileID: 9029845855341754232}
   - component: {fileID: 7842130338786983920}
   - component: {fileID: 2367521998212489074}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Back_Fill_Plane_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 6911871697346142546}
   - component: {fileID: 1317689884902758798}
   - component: {fileID: 1235814852036746966}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 183589492468480957}
   - component: {fileID: 3109366083439683607}
   - component: {fileID: 9167848918856233100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust_Lower_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1525,7 +1525,7 @@ GameObject:
   - component: {fileID: 559452847128135456}
   - component: {fileID: 2170715990678313615}
   - component: {fileID: 1232220480383494009}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Defuser_Planes_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2225,9 +2225,9 @@ GameObject:
   m_Component:
   - component: {fileID: 819938525709381777}
   - component: {fileID: 5220952898507989129}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: CarBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2286,7 +2286,7 @@ GameObject:
   - component: {fileID: 9111423676381084630}
   - component: {fileID: 1534165523970262829}
   - component: {fileID: 6006637811531247681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rear_Tail_Light_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3546,6 +3546,12 @@ MonoBehaviour:
   lookBackValue: 0
   maxTimeToShiftGear: 0.02
   timerToShift: 0.02
+  m_TForwardFrictionValue: 1
+  m_TSidewaysFrictionValue: 1
+  m_SForwardFrictionValue: -0.5
+  m_SSidewaysFrictionValue: -0.5
+  m_AmountOfForceOfTheStart: 0
+  imFlying: 0
 --- !u!114 &5727530261080087960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4265,7 +4271,7 @@ GameObject:
   - component: {fileID: 4204705221895229351}
   - component: {fileID: 5975352060791833796}
   - component: {fileID: 437752963374428271}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Side_Pods_Intakes_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4893,7 +4899,7 @@ GameObject:
   - component: {fileID: 1316270438830737354}
   - component: {fileID: 7306239242918614658}
   - component: {fileID: 8827467500309186158}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rear_Center_Light_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5748,7 +5754,7 @@ GameObject:
   - component: {fileID: 8426092802049871034}
   - component: {fileID: 3084193431336060929}
   - component: {fileID: 5069113261578202113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust_Selve_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5914,7 +5920,7 @@ GameObject:
   - component: {fileID: 483320776060964068}
   - component: {fileID: 1473193637411326582}
   - component: {fileID: 6140785063222597436}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front_Floor_Planes_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6488,7 +6494,7 @@ GameObject:
   - component: {fileID: 9172505204364231936}
   - component: {fileID: 612263487452030172}
   - component: {fileID: 7236091185971233153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exhaust_Uper_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6782,7 +6788,7 @@ GameObject:
   - component: {fileID: 3957085231000753011}
   - component: {fileID: 5712067139736916308}
   - component: {fileID: 1350050531284325104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MDL_l_C_E_V_N_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10008,7 +10014,7 @@ GameObject:
   - component: {fileID: 2103801167319154225}
   - component: {fileID: 6028635772563834764}
   - component: {fileID: 5799778869540553395}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Windshield_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
