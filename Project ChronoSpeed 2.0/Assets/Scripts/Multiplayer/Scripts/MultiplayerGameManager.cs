@@ -32,10 +32,15 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     
     //Functions
+    public void AddSpawnedAI(GameObject spawnedPlayer, ulong clientID)
+    {
+        playerPrefabRef.Add(clientID, spawnedPlayer);
+        lapManager.AddTrackedCar(spawnedPlayer, false);
+    }
     public void AddSpawnedPlayer(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
-        lapManager.TrackedCars.Add(new Tracking_Manager_Script.TrackedInfo(spawnedPlayer));
+        lapManager.AddTrackedCar(spawnedPlayer, true);
     }
 
     bool gameGoing = true;
