@@ -354,7 +354,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Controller;Joystick"",
                     ""action"": ""1st - Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -365,7 +365,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""1st - Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

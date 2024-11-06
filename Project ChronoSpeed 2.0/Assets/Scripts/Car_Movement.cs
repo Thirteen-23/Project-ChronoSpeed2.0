@@ -315,7 +315,7 @@ public class Car_Movement : MonoBehaviour
             isBraking = true;
         }
       
-        currentBreakForce = isBraking ? (allBrakeForce * brakeDampening) : 0f;
+        currentBreakForce = isBraking ? (allBrakeForce * brakeDampening) : Mathf.Lerp(currentSpeed ,0f, 1);
         //handbraking = ifHandBraking ? rearBrakeForce : 0f;
 
         ApplyBraking();
@@ -324,11 +324,14 @@ public class Car_Movement : MonoBehaviour
     }
     private void ApplyBraking()
     {
-        for (int i = 0; i < wheels4.Length; i++)
+        for (int i = 0; i < wheels4.Length-2; i++)
         {
             wheels4[i].brakeTorque = currentBreakForce * brakeDampening;
         }
-
+        for (int i = 2; i < wheels4.Length; i++)
+        {
+            wheels4[i].brakeTorque = currentBreakForce * brakeDampening /2;
+        }
 
 
 
@@ -1130,18 +1133,27 @@ public class Car_Movement : MonoBehaviour
     //        steeringAngleOfWheels[i] = wheels4[i].steerAngle;
     //    }
     //}
-    [SerializeField] float m_AmountOfForceOfTheStart;
+    [SerializeField] float m_AmountOfForceOfTheStart = 10000;
     [SerializeField] bool imFlying = false;
     public void ExtraBoostOnLowSpeed(float currentSpeed, float accelValue)
     {
-        if(currentSpeed< 60)
+        ray = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
+        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
         {
-            imFlying = true; 
-            bodyOfCar.AddForce(bodyOfCar.transform.forward * (m_AmountOfForceOfTheStart * accelValue));
+            if (hit.collider.CompareTag("ground"))
+            {
+                if (currentSpeed < 60)
+                {
+                    imFlying = true;
+                    bodyOfCar.AddForce(bodyOfCar.transform.forward * (m_AmountOfForceOfTheStart * accelValue));
+                }
+            }
         }
         else
         {
-            imFlying = false; 
+            imFlying = false;
         }
     }
 }

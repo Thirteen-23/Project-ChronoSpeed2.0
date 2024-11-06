@@ -123,11 +123,11 @@ public class ServerManager : MonoBehaviour
                 {
                     GameObject aiObject;
                     //if (startPos % 3 == 1)
-                    //aiObject = Instantiate(cpps.DystopiaAiCar, cpps.startingPositions[startPos]);
+                   // aiObject = Instantiate(cpps.DystopiaAiCar, cpps.startingPositions[startPos]);
                     //if (startPos % 2 == 1)
-                    //aiObject = Instantiate(cpps.UtopiaAiCar, cpps.startingPositions[startPos]);
+                    //aiObject = Instantiate(cpps.PresentAiCar, cpps.startingPositions[startPos]);
 
-                    aiObject = Instantiate(cpps.UtopiaAiCar, cpps.startingPositions[startPos]);
+                    aiObject = Instantiate(cpps.PresentAiCar, cpps.startingPositions[startPos]);
 
                    
                     aiObject.GetComponent<NetworkObject>().Spawn();

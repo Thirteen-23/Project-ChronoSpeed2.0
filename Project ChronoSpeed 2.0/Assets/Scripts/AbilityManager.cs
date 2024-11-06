@@ -39,21 +39,21 @@ public class AbilityManager : MonoBehaviour
     abilityState state = abilityState.ready;
     m_2ndAbilityState m_2NdState = m_2ndAbilityState.ready;
     // Update is called once per frame
-    public Image m_1stAbilityImage;
-    public Image m_2ndAbilityImage;
-    public Color readyColor;
-    public Color activeColor;
-    public Color cooldownColor;
+   // public Image m_1stAbilityImage;
+   // public Image m_2ndAbilityImage;
+  //  public Color readyColor;
+   // public Color activeColor;
+   // public Color cooldownColor;
 
     [Header("Resource Meter Values")]
     ResourceState resourceState = ResourceState.charging;
     public Class m_CarClass;
     public Car_Movement accessCarValues;
-    public Slider maBar;
+   // public Slider maBar;
 
-    public float currentResourceValue;
-    public int minResourceValue;
-    public int maxResourceValue;
+   // public float currentResourceValue;
+   // public int minResourceValue;
+   // public int maxResourceValue;
 
     [Header(" Resource Meter For All Abilities")]
     // boost bar Values
@@ -61,19 +61,14 @@ public class AbilityManager : MonoBehaviour
     public float currentBoostBarValue;
     public int minBoostBarValue;
     public int maxBoostBarValue;
+    public Image boostBarBar; 
 
-    // Blink bar Values
-    public Slider blinkBar;
-    public float currentBlinkValue;
-    public int minBlinkValue;
-    public int maxBlinkValue;
-
-    // PortalDrop bar Values
-    public Slider portalDropBar;
-    public float currentPDValue;
-    public int minPortalDropValue;
-    public int maxPortalDropValue;
-
+    // Blink bar and Portal Bar Values
+    public Slider abilityBar;
+    public float currentAbilityValue;
+    public int minAbilityValue;
+    public int maxAbilityValue;
+    public Image abilityBarBar;
 
     // checking for heavy car drifting 
     public bool m_ResoureceGatherCheck = false;
@@ -102,14 +97,65 @@ public class AbilityManager : MonoBehaviour
         //  m_2ndAbilityImage.color = readyColor;
 
         boostBar = GameObject.FindGameObjectWithTag("BoostBar").GetComponent<Slider>();
-        blinkBar = GameObject.FindGameObjectWithTag("BlinkBar").GetComponent<Slider>();
-        portalDropBar = GameObject.FindGameObjectWithTag("PortalDropBar").GetComponent<Slider>();
+        abilityBar = GameObject.FindGameObjectWithTag("AbilityBar").GetComponent<Slider>();
+      
     }
 
     void FixedUpdate()
     {
+        Debug.Log(resourceState); 
         AllMaBars();
 
+        switch (resourceState)
+        {
+            case ResourceState.charging:
+                if (ability1CostValue > currentBoostBarValue)
+                {
+
+                }
+                else
+                {
+                    resourceState = ResourceState.ready;
+                }
+                break;
+            case ResourceState.ready:
+                {
+
+                    if (abilityUsed)
+                    {
+                       if (currentBoostBarValue >= ability1CostValue)
+                        {
+                            currentBoostBarValue = currentBoostBarValue - ability1CostValue;
+                            m_1stAbility.Activate(gameObject);
+                            activeTime = m_1stAbility.activeTime;
+                            resourceState = ResourceState.active;
+                        }
+                    }
+                }
+                break;
+            case ResourceState.active:
+                {
+                    if (activeTime > 0)
+                    {
+                        activeTime -= Time.deltaTime;
+                    }
+
+                    else
+                    {
+                        m_1stAbility.BeginCooldown(gameObject);
+                        if (ability1CostValue <= currentBoostBarValue)
+                        {
+                            resourceState = ResourceState.ready;
+                        }
+                        else
+                        {
+                            resourceState = ResourceState.charging;
+                        }
+                    }
+                    break;
+
+                }
+        }
         #region current ResourceGather
         /*
         m_CarClass = accessCarValues.carClasses;
@@ -237,7 +283,7 @@ public class AbilityManager : MonoBehaviour
 
     private void abilityCoolDownAbility()
     {
-        switch (state)
+     /*   switch (state)
         {
             case abilityState.ready:
                 if (abilityUsed == true)
@@ -316,7 +362,7 @@ public class AbilityManager : MonoBehaviour
                 }
                 break;
         }
-
+     */
     }
     public void ButtonPressed(InputAction.CallbackContext context)
     {
@@ -346,10 +392,10 @@ public class AbilityManager : MonoBehaviour
         }
 
 
-        else if (context.performed && currentPDValue >= portalDropCostValue)
+        else if (context.performed && currentAbilityValue >= portalDropCostValue)
         {
             abilityWorking1 = true;
-            currentPDValue -= portalDropCostValue;
+            currentAbilityValue -= portalDropCostValue;
             tempPortSpawnRef.PortalDrop(context);
         }
     }
@@ -359,9 +405,9 @@ public class AbilityManager : MonoBehaviour
         if (context.canceled)
             tempBlinkRef.BlinkTo();
 
-        else if (context.performed && /* currentResourceValue*/ currentBlinkValue >= blinkCostValue)
+        else if (context.performed && /* currentResourceValue*/ currentAbilityValue >= blinkCostValue)
         {
-            currentBlinkValue -= blinkCostValue;
+            currentAbilityValue -= blinkCostValue;
             tempBlinkRef.SpawnMirage();
         }
     }
@@ -373,47 +419,50 @@ public class AbilityManager : MonoBehaviour
         boostBar.minValue = minBoostBarValue;
         boostBar.maxValue = maxBoostBarValue;
         boostBar.value = currentBoostBarValue;
-
-        blinkBar.minValue = minBlinkValue;
-        blinkBar.maxValue = maxBlinkValue;
-        blinkBar.value = currentBlinkValue;
-
-        portalDropBar.minValue = minPortalDropValue;
-        portalDropBar.maxValue = maxPortalDropValue;
-        portalDropBar.value = currentPDValue;
-        //maBar.minValue = minResourceValue;
-        //maBar.maxValue = maxResourceValue;
-        //maBar.value = currentResourceValue;
+        boostBarBar.fillAmount = currentBoostBarValue / maxBoostBarValue;
+        abilityBarBar.fillAmount = currentAbilityValue / maxAbilityValue; 
+        abilityBar.minValue = minAbilityValue;
+        abilityBar.maxValue = maxAbilityValue;
+        abilityBar.value = currentAbilityValue;
         switch (m_CarClass)
         {
             case Class.Light:
                 // for light car boost value is replaced by limit remover 
+
                 if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
                 {
-                    if (currentBoostBarValue < maxBoostBarValue || currentBlinkValue < maxBlinkValue || currentPDValue < maxPortalDropValue)
+                    if (currentBoostBarValue < maxBoostBarValue)
 
                     {
+                        if (abilityWorking1 == true)
+                        {
 
-                        currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        //currentBoostBarValue = currentBlinkValue = currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+
+                        }
+                        else
+                        {
+                            currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                          //  Boostbarbar.fillAmount = currentBoostBarValue / maxBoostBarValue; 
+                            //currentBoostBarValue = currentBlinkValue = currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        }
                     }
-                    else if (currentBoostBarValue == maxBoostBarValue)
+                    
+                    if (currentAbilityValue < maxAbilityValue)
                     {
-                        currentBoostBarValue = maxBoostBarValue;
+                        currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
                     }
-                    else if (currentBlinkValue == maxBlinkValue)
-                    {
-                        currentBlinkValue = maxBlinkValue;
-                    }
-                    else if (currentPDValue == maxPortalDropValue)
-                    {
-                        currentPDValue = maxPortalDropValue;
-                    }
+
 
                 }
-
+                else if (currentBoostBarValue == maxBoostBarValue)
+                {
+                    currentBoostBarValue = maxBoostBarValue;
+                }
+                else if (currentAbilityValue == maxAbilityValue)
+                {
+                    currentAbilityValue = maxAbilityValue;
+                }
+              
 
                 break;
 
@@ -422,41 +471,45 @@ public class AbilityManager : MonoBehaviour
                 if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
                 {
 
-                    if (currentBoostBarValue < maxBoostBarValue || currentBlinkValue < maxBlinkValue || currentPDValue < maxPortalDropValue)
+                    if (currentBoostBarValue < maxBoostBarValue)
 
                     {
-
                         currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                        currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
+                        //currentBoostBarValue = currentBlinkValue = currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
                     }
 
-
-                    else if (currentBoostBarValue == maxBoostBarValue || currentBlinkValue == maxBlinkValue || currentPDValue == maxPortalDropValue)
+                    if (currentAbilityValue < maxAbilityValue)
                     {
-
-                        currentBoostBarValue = maxBoostBarValue;
-                        currentBlinkValue = maxBlinkValue;
-                        currentPDValue = maxPortalDropValue;
+                        currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
                     }
-                } 
+
+                 
+
+                }
+
                 else if (m_ResoureceGatherCheck == true)
                 {
-                    if (currentBoostBarValue < maxBoostBarValue || currentBlinkValue < maxBlinkValue || currentPDValue < maxPortalDropValue)
+                    if (currentBoostBarValue < maxBoostBarValue)
 
                     {
-
-                        currentBoostBarValue += Mathf.Clamp(currentBoostBarValue, minBoostBarValue, maxBoostBarValue) * Time.deltaTime * m_ResourceMultiplerForDrifting;
-                        currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
-                        currentPDValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                        currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
                     }
-                    else if (currentBoostBarValue == maxBoostBarValue || currentBlinkValue == maxBlinkValue || currentPDValue == maxPortalDropValue)
-                    {
 
+                    if (currentAbilityValue < maxAbilityValue)
+                    {
+                        currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                    }
+                  
+
+                    else if (currentBoostBarValue == maxBoostBarValue)
+                    {
                         currentBoostBarValue = maxBoostBarValue;
-                        currentBlinkValue = maxBlinkValue;
-                        currentPDValue = maxPortalDropValue;
                     }
+                    else if (currentAbilityValue == maxAbilityValue)
+                    {
+                        currentAbilityValue = maxAbilityValue;
+                    }
+                   
                 }
                 break;
 
@@ -464,71 +517,32 @@ public class AbilityManager : MonoBehaviour
                 m_ResoureceGatherCheck = accessCarValues.heavyCar;
                 if (m_ResoureceGatherCheck == true)
                 {
-                    if (currentBoostBarValue < maxBoostBarValue || currentBlinkValue < maxBlinkValue || currentPDValue < maxPortalDropValue)
+                    if (currentBoostBarValue < maxBoostBarValue)
 
                     {
-
-                        currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
-                        currentBlinkValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
-                        currentPDValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                        currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForDrifting; 
                     }
-                    else if (currentBoostBarValue == maxBoostBarValue || currentBlinkValue == maxBlinkValue || currentPDValue == maxPortalDropValue)
-                    {
 
+                    if (currentAbilityValue < maxAbilityValue)
+                    {
+                        currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                    }
+                   
+                    else if (currentBoostBarValue == maxBoostBarValue)
+                    {
                         currentBoostBarValue = maxBoostBarValue;
-                        currentBlinkValue = maxBlinkValue;
-                        currentPDValue = maxPortalDropValue;
                     }
+                    else if (currentAbilityValue == maxAbilityValue)
+                    {
+                        currentAbilityValue = maxAbilityValue;
+                    }
+                  
                 }
                 break;
         }
 
-        switch (resourceState)
-        {
-            case ResourceState.charging:
-                if (ability1CostValue > currentBoostBarValue)
-                {
-
-                }
-                else
-                {
-                    resourceState = ResourceState.ready;
-                }
-                break;
-            case ResourceState.ready:
-                {
-
-                    if (abilityUsed == true && ability1CostValue == currentBoostBarValue)
-                    {
-                        currentBoostBarValue = currentBoostBarValue - ability1CostValue;
-                        m_1stAbility.Activate(gameObject);
-                        activeTime = m_1stAbility.activeTime;
-                        resourceState = ResourceState.active;
-                    }
-                }
-                break;
-            case ResourceState.active:
-                {
-                    if (activeTime > 0)
-                    {
-                        activeTime -= Time.deltaTime;
-                    }
-
-                    else
-                    {
-                        m_1stAbility.BeginCooldown(gameObject);
-                        if (ability1CostValue <= currentBoostBarValue)
-                        {
-                            resourceState = ResourceState.ready;
-                        }
-                        else
-                        {
-                            resourceState = ResourceState.charging;
-                        }
-                    }
-                    break;
-
-                }
-        }
+        
     }
+
+
 }
