@@ -24,16 +24,18 @@ public class Tracking_Manager_Script : MonoBehaviour
 
         public GameObject Car;
         public List<Transform> HitCheckpoints;
+        public bool IsPlayer;
 
         public int CurLap;
         public int Place;
         public double raceCompletedIn;
         public int ClosestNode;
 
-        public TrackedInfo(GameObject car)
+        public TrackedInfo(GameObject car, bool isPlayer)
         {
             Car = car;
             HitCheckpoints = new List<Transform>();
+            isPlayer = false;
 
             CurLap = 0;
             Place = 0;
@@ -43,6 +45,7 @@ public class Tracking_Manager_Script : MonoBehaviour
         {
             Car = null;
             HitCheckpoints = new List<Transform>();
+            IsPlayer = false;
 
             CurLap = -1;
             Place = -1;
@@ -148,9 +151,9 @@ public class Tracking_Manager_Script : MonoBehaviour
         
     }
 
-    public void AddTrackedCar(GameObject car)
+    public void AddTrackedCar(GameObject car, bool isPlayer)
     {
-        TrackedCars.Add(new TrackedInfo(car));
+        TrackedCars.Add(new TrackedInfo(car, isPlayer));
     }
     public void FinishTrackedCar(TrackedInfo finishingCar)
     {

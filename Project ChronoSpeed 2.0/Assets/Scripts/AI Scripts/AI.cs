@@ -71,6 +71,9 @@ public class AI : MonoBehaviour
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
         difficultness = aI_Difficulty.raceStart;
         carAI.acceration_Value = 0f;
+        if (difficultness == aI_Difficulty.raceStart)
+        {
+        }
         //bridge = GameObject.Find("Checkpoints");
         //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
@@ -418,6 +421,7 @@ public class AI : MonoBehaviour
     {
         switch (aiSpeaking)
         {
+            
             case AIMouth.racing:
 
                 carAI.brakes_value = 0;
@@ -457,6 +461,11 @@ public class AI : MonoBehaviour
                     speedTimer -= Time.deltaTime;
                     switch (difficultness)
                     {
+                        case aI_Difficulty.raceStart:
+                            acceration_Value = 0f;
+
+                            break;
+
                         case aI_Difficulty.easy:
 
                             acceration_Value = 3f;
@@ -508,7 +517,7 @@ public class AI : MonoBehaviour
                 //acceration_Value = -3f; 
                 if (carAI.currentSpeed < 30f)
                 {
-                    gameObject.transform.position = nodes[currentWaypointIndex - 2].transform.position;
+                    gameObject.transform.position =Vector3.Lerp(transform.position, nodes[currentWaypointIndex - 2].transform.position, 1);
                     gameObject.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
                     rb.velocity = rb.velocity / 2;
                 }
