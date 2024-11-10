@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -34,11 +35,19 @@ public class PlayerTrackingPerCUP : MonoBehaviour
     }
     private void Start()
     {
-        CloseAllPortals();
+        //Now that close all portals is an rpc can't use it on start cause itll crash when called on a client who hasent loaded this scene yet
+        //could do a on networkstart kinda think but dont wanna
+        for (int i = 0; i < turns.Count; i++)
+        {
+            turns[i].ClosePortalPair();
+        }
+        if (!NetworkManager.Singleton.IsServer)
+            Destroy(GetComponent<BoxCollider>());
     }
     private void Update()
     {
-        UpdatePositions();
+        if(NetworkManager.Singleton.IsServer)
+            UpdatePositions();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -50,7 +59,7 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         if (IsPlayerFirstAndIsNewLap(player))
         {
             lapTillReset++;
-            CloseAllPortals();
+            CloseAllPortalsRpc();
             PassedThisLap.Clear();
         }
 
@@ -65,9 +74,9 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         if(PassedThisLap.Contains(player) && !IsPlayerLast(player))
         {
             if (PassedThisLap.Count == playerPoses.Count - 1)
-                OpenAllPortals();
+                OpenAllPortalsRpc();
             else
-                [PassedThisLap.Count].OpenPortalPair();
+                OpenPortalRpc(PassedThisLap.Count);
             PassedThisLap.Add(player);
         }
     }
@@ -114,15 +123,22 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         }
         return false;
     }
-    void CloseAllPortals()
+    [Rpc(SendTo.ClientsAndHost)]
+    void CloseAllPortalsRpc()
     {
         for(int  i = 0; i < turns.Count; i++)
         {
             turns[i].ClosePortalPair();
         }
     }
-
-    void OpenAllPortals()
+    [Rpc(SendTo.ClientsAndHost)]
+    void OpenPortalRpc(int i)
+    {
+        if(i < turns.Count)
+            turns[i].OpenPortalPair();
+    }
+    [Rpc(SendTo.ClientsAndHost)]
+    void OpenAllPortalsRpc()
     {
         for (int i = 0; i < turns.Count; i++)
         {
