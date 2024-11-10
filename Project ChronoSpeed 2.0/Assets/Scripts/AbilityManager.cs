@@ -96,9 +96,9 @@ public class AbilityManager : MonoBehaviour
         //  m_1stAbilityImage.color = readyColor;
         //  m_2ndAbilityImage.color = readyColor;
 
-        boostBar = GameObject.FindGameObjectWithTag("BoostBar").GetComponent<Slider>();
-        abilityBar = GameObject.FindGameObjectWithTag("AbilityBar").GetComponent<Slider>();
-      
+       boostBar = GameObject.FindGameObjectWithTag("BoostBar").GetComponentInChildren<Slider>();
+       abilityBar = GameObject.FindGameObjectWithTag("AbilityBar").GetComponentInChildren<Slider>();
+
     }
 
     void FixedUpdate()
