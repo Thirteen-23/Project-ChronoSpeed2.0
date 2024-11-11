@@ -4782,12 +4782,11 @@ MonoBehaviour:
   m_2ndAbilityUsed: 0
   m_CarClass: 2
   accessCarValues: {fileID: 7564646704286003994}
-  boostBar: {fileID: 0}
   currentBoostBarValue: 0
   minBoostBarValue: 0
   maxBoostBarValue: 30
   boostBarBar: {fileID: 975664701013051687}
-  abilityBar: {fileID: 0}
+  nitroBoostSound: {fileID: 0}
   currentAbilityValue: 0
   minAbilityValue: 0
   maxAbilityValue: 150
@@ -4838,7 +4837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3611437128
+  GlobalObjectIdHash: 391577787
   InScenePlacedSourceGlobalObjectIdHash: 391577787
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -4995,9 +4994,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 238372555}
-  - {fileID: 1687408302}
   - {fileID: 8130959}
+  - {fileID: 1687408302}
+  - {fileID: 238372555}
 --- !u!1 &8262871642904044204
 GameObject:
   m_ObjectHideFlags: 0

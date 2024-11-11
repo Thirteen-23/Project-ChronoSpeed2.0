@@ -6,6 +6,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using static AI;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
@@ -142,7 +143,7 @@ public class MultiplayerGameManager : NetworkBehaviour
                 {
 
                     curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.normal;
-
+                   
                 }
             }
         }

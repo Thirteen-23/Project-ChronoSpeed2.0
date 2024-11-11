@@ -1685,6 +1685,7 @@ GameObject:
   - component: {fileID: 1643535278416614367}
   - component: {fileID: 1816605223011103478}
   - component: {fileID: 2111018335806438509}
+  - component: {fileID: -7793005743859257277}
   m_Layer: 0
   m_Name: AI Present Car
   m_TagString: AI
@@ -1859,7 +1860,8 @@ MonoBehaviour:
   acceration_Value: 0
   speed_Reader: 0
   speed_Limiter: 200
-  waypoints: {fileID: 0}
+  waypoints:
+  - {fileID: 0}
   distanceOffset: 0
   steeringForce: 0
   currentWaypoint: {fileID: 0}
@@ -1874,6 +1876,7 @@ MonoBehaviour:
   speedTimer: 0
   activeTime: 5
   cooldownTimer: 5
+  rewindback: {fileID: 0}
 --- !u!114 &2111018335806438509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,6 +1972,19 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_RayRange: 0
   floorRange: 0.5
+--- !u!114 &-7793005743859257277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975989593886958020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e72d2c82590a846a325184e10425eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewindTime: 5
 --- !u!1 &3988157569408614375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2482,7 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.8
+    targetPosition: 0.7
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
@@ -2629,7 +2645,7 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.8
+    targetPosition: 0.7
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
@@ -2691,7 +2707,7 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.8
+    targetPosition: 0.7
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
@@ -2784,7 +2800,7 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.8
+    targetPosition: 0.7
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
