@@ -69,6 +69,7 @@ public class AI : MonoBehaviour
         //nodes = waypoints.trackNodes;
         carAI = m_AICarBody.GetComponent<AI_Controls>();
         rb = m_AICarBody.GetComponentInChildren<Rigidbody>();
+        rewindback = GetComponent<AIRewind>();
         difficultness = aI_Difficulty.raceStart;
         carAI.acceration_Value = 0f;
         if (difficultness == aI_Difficulty.raceStart)
@@ -563,10 +564,10 @@ public class AI : MonoBehaviour
                 //acceration_Value = -3f; 
                 if (carAI.currentSpeed < 30f)
                 {
-                  
-                    gameObject.transform.position =Vector3.Lerp(transform.position, nodes[currentWaypointIndex - 2].transform.position, 1);
-                    gameObject.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
-                    rb.velocity = rb.velocity / 2;
+                    rewindback.Rewind();
+                    //gameObject.transform.position =Vector3.Lerp(transform.position, nodes[currentWaypointIndex - 2].transform.position, 1);
+                    //gameObject.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
+                    //rb.velocity = rb.velocity / 2;
                 }
                 break;
         }

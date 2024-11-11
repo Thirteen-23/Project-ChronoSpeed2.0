@@ -22,7 +22,6 @@ public class AIRewind : MonoBehaviour
 
     int currentRewindIteration;
     bool isRecording = true;
-    bool isUsable = true;
     
 
     private void Awake()
@@ -43,42 +42,27 @@ public class AIRewind : MonoBehaviour
             if (storedData.Count > 50 * rewindTime) storedData.RemoveAt(0);
         }
     }
-    public void Rewind(CallbackContext callbackContext)
+    public void Rewind()
     {
-        if (!isUsable) return;
-        if (callbackContext.performed)
-        {
-            isRecording = false;
-            curRewindCor = StartCoroutine(Rewind());
-        }
-        else if (callbackContext.canceled)
-        {
-            OnRelease();
-        }
+        isRecording = false;
+        if(curRewindCor == null) curRewindCor = StartCoroutine(RewindCor());
     }
 
 
     void OnRelease()
     {
         if (isRecording) return;
-        isRecording = true;
-        if (currentRewindIteration >= 0)
-        {
-            carRigidbody.velocity = storedData[currentRewindIteration].Velocity;
-            storedData.RemoveRange(currentRewindIteration, storedData.Count  - currentRewindIteration);
-        }
-        else
-        {
-            carRigidbody.velocity = storedData[0].Velocity;
-            storedData.Clear();
-            currentRewindIteration = 0;
-        }
+        
+        carRigidbody.velocity = storedData[0].Velocity / 2;
+        storedData.Clear();
+        currentRewindIteration = 0;
 
-        isUsable = false;
+        isRecording = true;
+        curRewindCor = null;
     }
 
 
-    IEnumerator Rewind()
+    IEnumerator RewindCor()
     {
         currentRewindIteration = storedData.Count - 1;
 

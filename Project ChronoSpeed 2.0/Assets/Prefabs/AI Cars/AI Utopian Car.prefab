@@ -3074,6 +3074,7 @@ GameObject:
   - component: {fileID: 7002733672449518174}
   - component: {fileID: -3491157136934262778}
   - component: {fileID: 6529384675782620818}
+  - component: {fileID: 8285725012386799397}
   m_Layer: 0
   m_Name: AI Utopian Car
   m_TagString: AI
@@ -3149,7 +3150,8 @@ MonoBehaviour:
   acceration_Value: 0
   speed_Reader: 0
   speed_Limiter: 200
-  waypoints: {fileID: 0}
+  waypoints:
+  - {fileID: 0}
   distanceOffset: 0
   steeringForce: 0
   currentWaypoint: {fileID: 0}
@@ -3164,6 +3166,7 @@ MonoBehaviour:
   speedTimer: 0
   activeTime: 5
   cooldownTimer: 5
+  rewindback: {fileID: 0}
 --- !u!114 &2912930317318060365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3271,7 +3274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2067783659
+  GlobalObjectIdHash: 2371169426
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3355,6 +3358,19 @@ MonoBehaviour:
   m_AICarValues: {fileID: 0}
   rpm: 0
   masterVolume: 0.05
+--- !u!114 &8285725012386799397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5727530261080087962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e72d2c82590a846a325184e10425eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewindTime: 5
 --- !u!1 &5731147183975128354
 GameObject:
   m_ObjectHideFlags: 0
