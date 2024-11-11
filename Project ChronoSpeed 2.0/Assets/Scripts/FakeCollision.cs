@@ -21,6 +21,9 @@ public class FakeCollision : MonoBehaviour
     float myMass = 0;
     Rigidbody myRB;
     public Transform myTransform;
+
+    //if true, cant do collisions
+    public bool Intangible = false;
     
     public struct CollisionRequiredInfo
     {
