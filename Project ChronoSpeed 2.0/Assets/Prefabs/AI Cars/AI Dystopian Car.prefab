@@ -2678,6 +2678,7 @@ GameObject:
   - component: {fileID: -3220841527253370344}
   - component: {fileID: 6939459432954186590}
   - component: {fileID: 8746736502015917660}
+  - component: {fileID: 8744332604698554035}
   m_Layer: 0
   m_Name: AI Dystopian Car
   m_TagString: AI
@@ -2756,7 +2757,8 @@ MonoBehaviour:
   acceration_Value: 0
   speed_Reader: 0
   speed_Limiter: 200
-  waypoints: {fileID: 0}
+  waypoints:
+  - {fileID: 0}
   distanceOffset: 0
   steeringForce: 0
   currentWaypoint: {fileID: 0}
@@ -2962,6 +2964,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5e0ef5390d88742886a3b7f3420d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8744332604698554035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564646704286003995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e72d2c82590a846a325184e10425eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewindTime: 5
 --- !u!1 &7673808563447282355
 GameObject:
   m_ObjectHideFlags: 0

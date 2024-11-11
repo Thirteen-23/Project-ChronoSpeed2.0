@@ -1142,9 +1142,10 @@ public class Car_Movement : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
         {
-            if (hit.collider.CompareTag("Tarmac") || hit.collider.CompareTag("SideWalk"))
-            {
-                if (currentSpeed < 60)
+            if (currentSpeed < 60)
+               
+            {   
+                if (hit.collider.CompareTag("Tarmac") || hit.collider.CompareTag("SideWalk"))
                 {
                     imFlying = true;
                     bodyOfCar.AddForce(bodyOfCar.transform.forward * (m_AmountOfForceOfTheStart * accelValue));

@@ -49,8 +49,8 @@ public class AI : MonoBehaviour
 
     //checking waypoints
     [Header("Waypoints system")]
-    public TrackWayPoints waypoints;
-    public List<Transform> nodes => waypoints.trackNodes;
+    public TrackWayPoints[] waypoints = new TrackWayPoints[0];
+    public List<Transform> nodes => waypoints[0].trackNodes;
     [Range(0, 10)] public int distanceOffset;
     [Range(0, 5)] public float steeringForce;
     public Transform currentWaypoint;
@@ -74,6 +74,8 @@ public class AI : MonoBehaviour
         if (difficultness == aI_Difficulty.raceStart)
         {
         }
+        else
+        difficultness = (aI_Difficulty)Random.Range(1, 4);
         //bridge = GameObject.Find("Checkpoints");
         //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
@@ -89,6 +91,7 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         carAI.acceration_Value = acceration_Value;
         speed_Reader = carAI.currentSpeed;
         Sensor();
@@ -97,9 +100,51 @@ public class AI : MonoBehaviour
         CheckForUpdatedWaypoints();
         AISteer();
         AIState();
-
+        AIChange();
     }
 
+    int change; 
+    private void AIChange()
+    {
+       
+
+        switch (difficultness)
+        {
+            case aI_Difficulty.easy:
+                for (int i = 0; i < waypoints.Length - 6; i++)
+                {
+                    i = Random.Range(0, waypoints.Length - 6);
+                    change = i;
+
+                }
+                waypoints[0] = waypoints[change]; 
+                break;
+
+            case aI_Difficulty.normal:
+                for (int i = 3; i < waypoints.Length - 6; i++)
+                {
+                    i = Random.Range(3, waypoints.Length - 3);
+                    change = i;
+
+                }
+                waypoints[0] = waypoints[change];
+                break;
+
+            case aI_Difficulty.hard:
+                for (int i = 6; i < waypoints.Length - 6; i++)
+                {
+                    i = Random.Range(6, waypoints.Length);
+                    change = i;
+
+                }
+                waypoints[0] = waypoints[change];
+                break;
+
+
+
+        }
+       
+    }
     private void FixedUpdate()
     {
 
@@ -417,6 +462,7 @@ public class AI : MonoBehaviour
     public float speedTimer = 5;
     public float activeTime = 5;
     public float cooldownTimer = 5;
+    public AIRewind rewindback;
     private void AIState()
     {
         switch (aiSpeaking)
@@ -517,6 +563,7 @@ public class AI : MonoBehaviour
                 //acceration_Value = -3f; 
                 if (carAI.currentSpeed < 30f)
                 {
+                  
                     gameObject.transform.position =Vector3.Lerp(transform.position, nodes[currentWaypointIndex - 2].transform.position, 1);
                     gameObject.transform.LookAt(nodes[currentWaypointIndex + 1].transform.position);
                     rb.velocity = rb.velocity / 2;
