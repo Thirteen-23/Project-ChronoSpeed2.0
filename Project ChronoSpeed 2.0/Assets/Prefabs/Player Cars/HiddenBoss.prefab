@@ -771,7 +771,6 @@ MonoBehaviour:
   smoothTransitionSpeedForAcceleration: 5
   brakes_value: 0
   brakeDampening: 0
-  isReversing: 0
   turnSpeed: 0
   steeringCurve:
     serializedVersion: 2
@@ -823,12 +822,7 @@ MonoBehaviour:
   lookBackValue: 0
   maxTimeToShiftGear: 0
   timerToShift: 0
-  m_TForwardFrictionValue: 0
-  m_TSidewaysFrictionValue: 0
-  m_SForwardFrictionValue: 0
-  m_SSidewaysFrictionValue: 0
-  m_AmountOfForceOfTheStart: 10000
-  imFlying: 0
+  steeringAngleOfWheels: []
 --- !u!54 &2492681338999058430
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1005,18 +999,17 @@ MonoBehaviour:
   m_2ndActiveTime: 0
   abilityUsed: 0
   m_2ndAbilityUsed: 0
+  m_1stAbilityImage: {fileID: 0}
+  m_2ndAbilityImage: {fileID: 0}
+  readyColor: {r: 0, g: 0, b: 0, a: 0}
+  activeColor: {r: 0, g: 0, b: 0, a: 0}
+  cooldownColor: {r: 0, g: 0, b: 0, a: 0}
   m_CarClass: 0
   accessCarValues: {fileID: 0}
-  boostBar: {fileID: 0}
-  currentBoostBarValue: 0
-  minBoostBarValue: 0
-  maxBoostBarValue: 0
-  boostBarBar: {fileID: 0}
-  abilityBar: {fileID: 0}
-  currentAbilityValue: 0
-  minAbilityValue: 0
-  maxAbilityValue: 0
-  abilityBarBar: {fileID: 0}
+  maBar: {fileID: 0}
+  currentResourceValue: 0
+  minResourceValue: 0
+  maxResourceValue: 0
   m_ResoureceGatherCheck: 0
   m_ResourceMultiplerForSpeed: 0
   m_SpeedThreshholdForResource: 0

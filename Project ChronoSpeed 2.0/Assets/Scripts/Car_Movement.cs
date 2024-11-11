@@ -1142,7 +1142,7 @@ public class Car_Movement : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
         {
-            if (hit.collider.CompareTag("Tarmac") || hit.collider.CompareTag("SideWalk"))
+            if (hit.collider.CompareTag("ground"))
             {
                 if (currentSpeed < 60)
                 {
