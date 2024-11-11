@@ -57,14 +57,15 @@ public class AbilityManager : MonoBehaviour
 
     [Header(" Resource Meter For All Abilities")]
     // boost bar Values
-    public Slider boostBar;
+   // public Slider boostBar;
     public float currentBoostBarValue;
     public int minBoostBarValue;
     public int maxBoostBarValue;
-    public Image boostBarBar; 
+    public Image boostBarBar;
+    public AudioSource nitroBoostSound;
 
     // Blink bar and Portal Bar Values
-    public Slider abilityBar;
+   // public Slider abilityBar;
     public float currentAbilityValue;
     public int minAbilityValue;
     public int maxAbilityValue;
@@ -89,15 +90,17 @@ public class AbilityManager : MonoBehaviour
         accessCarValues = GetComponent<Car_Movement>();
         tempPortSpawnRef = GetComponent<PortalSpawn>();
         tempBlinkRef = GetComponent<Blink>();
+       //nitroBoostSound = GameObject.Find("NitroBoostSound").GetComponentInChildren<AudioSource>();
     }
 
     private void Start()
     {
+        
         //  m_1stAbilityImage.color = readyColor;
         //  m_2ndAbilityImage.color = readyColor;
 
-       boostBar = GameObject.FindGameObjectWithTag("BoostBar").GetComponentInChildren<Slider>();
-       abilityBar = GameObject.FindGameObjectWithTag("AbilityBar").GetComponentInChildren<Slider>();
+        // boostBar = GameObject.Find("BoostBar").GetComponentInChildren<Slider>();
+        // abilityBar = GameObject.Find("AblityBar").GetComponentInChildren<Slider>();
 
     }
 
@@ -137,6 +140,7 @@ public class AbilityManager : MonoBehaviour
                 {
                     if (activeTime > 0)
                     {
+                        
                         activeTime -= Time.deltaTime;
                     }
 
@@ -416,14 +420,14 @@ public class AbilityManager : MonoBehaviour
     public void AllMaBars()
     {
         m_CarClass = accessCarValues.carClasses;
-        boostBar.minValue = minBoostBarValue;
-        boostBar.maxValue = maxBoostBarValue;
-        boostBar.value = currentBoostBarValue;
+        //boostBar.minValue = minBoostBarValue;
+       // boostBar.maxValue = maxBoostBarValue;
+        //boostBar.value = currentBoostBarValue;
         boostBarBar.fillAmount = currentBoostBarValue / maxBoostBarValue;
         abilityBarBar.fillAmount = currentAbilityValue / maxAbilityValue; 
-        abilityBar.minValue = minAbilityValue;
-        abilityBar.maxValue = maxAbilityValue;
-        abilityBar.value = currentAbilityValue;
+        //abilityBar.minValue = minAbilityValue;
+       // abilityBar.maxValue = maxAbilityValue;
+        //abilityBar.value = currentAbilityValue;
         switch (m_CarClass)
         {
             case Class.Light:
