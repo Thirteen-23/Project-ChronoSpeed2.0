@@ -39,7 +39,7 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         //could do a on networkstart kinda think but dont wanna
         for (int i = 0; i < turns.Count; i++)
         {
-            turns[i].ClosePortalPair();
+            //turns[i].ClosePortalPair();
         }
         if (!NetworkManager.Singleton.IsServer)
             Destroy(GetComponent<BoxCollider>());
