@@ -19,7 +19,9 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public Dictionary<ulong, GameObject> playerPrefabRef { get; private set;}
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
-    private void Awake()
+
+    NetworkList<Tracking_Manager_Script.TrackedInfo.NetworkInfo> huh;
+     private void Awake()
     {
         if (Singleton != null && Singleton != this)
             Destroy(this);
@@ -36,52 +38,22 @@ public class MultiplayerGameManager : NetworkBehaviour
     public void AddSpawnedAI(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
-        lapManager.AddTrackedCar(spawnedPlayer, false);
+        lapManager.AddTrackedCar(spawnedPlayer, false, clientID);
     }
     public void AddSpawnedPlayer(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
-        lapManager.AddTrackedCar(spawnedPlayer, true);
+        lapManager.AddTrackedCar(spawnedPlayer, true, clientID);
     }
 
     bool gameGoing = true;
-    private IEnumerator ShareTrackedCars()
-    {
-        while(gameGoing)
+    private void ShareTrackedCars()
+    {  
+        
+        if (finishedPlayers == ServerManager.Singleton.ClientDic.Count)
         {
-            ulong[] playerNames = new ulong[lapManager.TrackedCars.Count + lapManager.FinishedCars.Count];
-            int finishedPlayers = 0;
-            for(int i = 0; i < lapManager.FinishedCars.Count; i++)
-            {
-                foreach(var client in playerPrefabRef)
-                {
-                    if (client.Value.Equals(lapManager.FinishedCars[i].Car))
-                    {
-                        playerNames[i] = client.Key;
-                        if(ServerManager.Singleton.ClientDic.ContainsKey(client.Key))
-                            finishedPlayers++;
-                        break;
-                    }
-                }
-            }
-            for (int i = 0; i < lapManager.TrackedCars.Count; i++)
-            {
-                foreach (var client in playerPrefabRef)
-                {
-                    if (client.Value.Equals(lapManager.TrackedCars[i].Car))
-                    {
-                        playerNames[i + lapManager.FinishedCars.Count] = client.Key;
-                        break;
-                    }
-                }
-            }
-            SetLeaderBoardRpc(playerNames, lapManager.FinishedCars.ToArray(), lapManager.TrackedCars.ToArray());
-            if (finishedPlayers == ServerManager.Singleton.ClientDic.Count)
-            {
-                gameGoing = false;
-                GameEndedRpc();
-            }
-            yield return new WaitForSeconds(1f);
+            gameGoing = false;
+            GameEndedRpc();
         }
         
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Tracking_Manager_Script : MonoBehaviour
 {
@@ -18,48 +19,64 @@ public class Tracking_Manager_Script : MonoBehaviour
     public float changingSpeedToAccerate = 300;
     public float changingSpeedToSlowDown = 200;
 
-    [Serializable]
-    public class TrackedInfo : INetworkSerializable
+    
+    public struct TrackedInfo 
     {
 
         public GameObject Car;
         public List<Transform> HitCheckpoints;
         public bool IsPlayer;
 
-        public int CurLap;
-        public int Place;
-        public double raceCompletedIn;
-        public int ClosestNode;
+        public NetworkInfo netInfo;
 
-        public TrackedInfo(GameObject car, bool isPlayer)
+        [Serializable]
+        public struct NetworkInfo : INetworkSerializable, IEquatable<NetworkInfo>
+        {
+            public int CurLap;
+            public int Place;
+            public double raceCompletedIn;
+            public int ClosestNode;
+            public ulong ClientID;
+
+            public NetworkInfo(ulong clientID)
+            {
+                CurLap = 0;
+                Place = 0;
+                raceCompletedIn = 0;
+                ClosestNode = 0;
+                ClientID = clientID;
+            }
+            public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+            {
+                serializer.SerializeValue(ref CurLap);
+                serializer.SerializeValue(ref Place);
+                serializer.SerializeValue(ref raceCompletedIn);
+                serializer.SerializeValue(ref ClosestNode);
+                serializer.SerializeValue(ref ClientID);
+            }
+
+            public bool Equals(NetworkInfo other)
+            {
+                return CurLap == other.CurLap &&
+                    Place == other.Place &&
+                    raceCompletedIn == other.raceCompletedIn &&
+                    ClosestNode == other.ClosestNode &&
+                    ClientID == other.ClientID;
+            }
+        }
+
+        
+
+        public TrackedInfo(GameObject car, bool isPlayer, ulong clientID)
         {
             Car = car;
             HitCheckpoints = new List<Transform>();
-            isPlayer = false;
-
-            CurLap = 0;
-            Place = 0;
-            ClosestNode = 0;
-        }
-        public TrackedInfo()
-        {
-            Car = null;
-            HitCheckpoints = new List<Transform>();
             IsPlayer = false;
 
-            CurLap = -1;
-            Place = -1;
-            raceCompletedIn = -1;
-            ClosestNode = -1;
+            netInfo = new NetworkInfo(clientID);
+        }
 
-        }
-        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-        {
-            serializer.SerializeValue(ref CurLap);
-            serializer.SerializeValue(ref Place);
-            serializer.SerializeValue(ref raceCompletedIn);
-            serializer.SerializeValue(ref ClosestNode);
-        }
+        
     }
 
 
@@ -91,10 +108,10 @@ public class Tracking_Manager_Script : MonoBehaviour
             }
             else
             {
-                curCar.CurLap++;
+                curCar.netInfo.CurLap++;
                 curCar.HitCheckpoints.Clear();
 
-                if (curCar.CurLap >= maxLaps)
+                if (curCar.netInfo.CurLap >= maxLaps)
                 {
                     SortTrackedCars();
                     FinishTrackedCar(curCar);
@@ -151,9 +168,9 @@ public class Tracking_Manager_Script : MonoBehaviour
         
     }
 
-    public void AddTrackedCar(GameObject car, bool isPlayer)
+    public void AddTrackedCar(GameObject car, bool isPlayer, ulong clientID)
     {
-        TrackedCars.Add(new TrackedInfo(car, isPlayer));
+        TrackedCars.Add(new TrackedInfo(car, isPlayer, clientID));
     }
     public void FinishTrackedCar(TrackedInfo finishingCar)
     {
