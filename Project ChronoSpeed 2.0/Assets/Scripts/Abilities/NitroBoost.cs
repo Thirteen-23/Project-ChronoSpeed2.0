@@ -6,14 +6,12 @@ using UnityEngine.PlayerLoop;
 [CreateAssetMenu]
 public class NitroBoost : Ability
 {
-    public float boost;
-  
+    public float boost; 
     public override void Activate(GameObject parent)
     {
         Car_Movement movement = parent.GetComponent<Car_Movement>();
         movement.meBoosting = true;
-        
-
+       
     }
 
     

@@ -2744,6 +2744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15261bb194bac64ea7331f4f72b492f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  classforAI: 2
   aiSpeaking: 0
   difficultness: 0
   rb: {fileID: 7222207860997298039}
@@ -2773,6 +2774,7 @@ MonoBehaviour:
   speedTimer: 0
   activeTime: 5
   cooldownTimer: 5
+  rewindback: {fileID: 0}
 --- !u!114 &8123952694118767794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2912,7 +2914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 432304376
+  GlobalObjectIdHash: 1452311093
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

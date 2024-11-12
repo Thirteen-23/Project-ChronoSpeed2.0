@@ -26,6 +26,7 @@ public class AI : MonoBehaviour
         HitWall,
 
     }
+    public Class classforAI;
     public AIMouth aiSpeaking = AIMouth.racing;
     public aI_Difficulty difficultness;
     [SerializeField] Rigidbody rb;
@@ -50,7 +51,7 @@ public class AI : MonoBehaviour
     //checking waypoints
     [Header("Waypoints system")]
     public TrackWayPoints[] waypoints = new TrackWayPoints[0];
-    public List<Transform> nodes => waypoints[0].trackNodes;
+    public List<Transform> nodes => waypoints[currentWaypointchange].trackNodes;
     [Range(0, 10)] public int distanceOffset;
     [Range(0, 5)] public float steeringForce;
     public Transform currentWaypoint;
@@ -80,6 +81,7 @@ public class AI : MonoBehaviour
         //bridge = GameObject.Find("Checkpoints");
         //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
+        AIChange();
     }
 
     void Awake()
@@ -92,7 +94,38 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
        
+      
+    }
+  
+    int change;
+    int currentWaypointchange;
+    int waypointLength;
+    private void AIChange()
+    {
+        waypointLength = waypoints.Length - 1;
+     
+            switch (classforAI)
+            {
+            case Class.Light:
+                    currentWaypointchange = Random.Range(0, (int)Mathf.Ceil(waypointLength / 3f));
+                    break;
+
+                case Class.Medium:
+                    currentWaypointchange = Random.Range((int)Mathf.Ceil(waypointLength / 3f), (int)Mathf.Ceil(waypointLength / 3f) * 2);
+                    break;
+
+                case Class.Heavy:
+                    currentWaypointchange = Random.Range((int)Mathf.Ceil(waypointLength / 3f) * 2, waypointLength);
+
+                    break;
+
+            }
+        
+    }
+    private void FixedUpdate()
+    {
         carAI.acceration_Value = acceration_Value;
         speed_Reader = carAI.currentSpeed;
         Sensor();
@@ -101,54 +134,7 @@ public class AI : MonoBehaviour
         CheckForUpdatedWaypoints();
         AISteer();
         AIState();
-        AIChange();
-    }
-
-    int change; 
-    private void AIChange()
-    {
-       
-
-        switch (difficultness)
-        {
-            case aI_Difficulty.easy:
-                for (int i = 0; i < waypoints.Length - 6; i++)
-                {
-                    i = Random.Range(0, waypoints.Length - 6);
-                    change = i;
-
-                }
-                waypoints[0] = waypoints[change]; 
-                break;
-
-            case aI_Difficulty.normal:
-                for (int i = 3; i < waypoints.Length - 6; i++)
-                {
-                    i = Random.Range(3, waypoints.Length - 3);
-                    change = i;
-
-                }
-                waypoints[0] = waypoints[change];
-                break;
-
-            case aI_Difficulty.hard:
-                for (int i = 6; i < waypoints.Length - 6; i++)
-                {
-                    i = Random.Range(6, waypoints.Length);
-                    change = i;
-
-                }
-                waypoints[0] = waypoints[change];
-                break;
-
-
-
-        }
-       
-    }
-    private void FixedUpdate()
-    {
-
+      
     }
     private void definingRays()
     {

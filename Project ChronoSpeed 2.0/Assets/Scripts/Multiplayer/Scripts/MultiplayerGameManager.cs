@@ -86,7 +86,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         
 
     }
-
+    public AudioSource countdown; 
     public IEnumerator StartGame()
     {
         StartCoroutine(ShareTrackedCars());
@@ -95,6 +95,10 @@ public class MultiplayerGameManager : NetworkBehaviour
         {
             CountDownRpc(i, false);
             yield return new WaitForSeconds(1);
+            if( i == 4)
+            {
+                countdown.Play();
+            }
         }
         CountDownRpc(0, true);
         
