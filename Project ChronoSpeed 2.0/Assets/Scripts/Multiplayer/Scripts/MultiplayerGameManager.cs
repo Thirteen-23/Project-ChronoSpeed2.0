@@ -15,12 +15,13 @@ public class MultiplayerGameManager : NetworkBehaviour
     [SerializeField] private TMP_Text startCountdownText;
     [SerializeField] private TMP_Text gameEndedText;
     [SerializeField] private GameObject leaveGameBtn;
-    [SerializeField] private LeadboardPlayerBar[] playerBars;
+    [SerializeField] private LeadboardPlayerBar mainPlayerLB;
+    [SerializeField] private LeadboardPlayerBar[] othersLB = new LeadboardPlayerBar[3];
 
     public Dictionary<ulong, GameObject> playerPrefabRef { get; private set;}
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
 
-    NetworkList<Tracking_Manager_Script.TrackedInfo.NetworkInfo> huh;
+    NetworkList<Tracking_Manager_Script.TrackedInfo.NetworkInfo> leaderboardInfoToShare;
      private void Awake()
     {
         if (Singleton != null && Singleton != this)
@@ -31,9 +32,15 @@ public class MultiplayerGameManager : NetworkBehaviour
             playerPrefabRef = new Dictionary<ulong, GameObject>();
         }
     }
-    
 
-    
+    private void FixedUpdate()
+    {
+        //FixedUpdateSoNetworkGetsHassledLessIdk, doing network rpc and stuff on update feels scary since connecting two fucking objects together adds like 13ms of lag or whatnot
+        if(IsServer)
+            ShareTrackedCars();
+        SetLeaderBoard();
+    }
+
     //Functions
     public void AddSpawnedAI(GameObject spawnedPlayer, ulong clientID)
     {
@@ -49,8 +56,24 @@ public class MultiplayerGameManager : NetworkBehaviour
     bool gameGoing = true;
     private void ShareTrackedCars()
     {  
-        
-        if (finishedPlayers == ServerManager.Singleton.ClientDic.Count)
+        //Call this in update
+        leaderboardInfoToShare.Clear();
+
+        int realPlayersFinishedCount = 0;
+        bool gameShouldFinish = false;
+        for(int i = 0; i < lapManager.TrackedCars.Count; i++) 
+        {
+            leaderboardInfoToShare.Add(lapManager.TrackedCars[i].netInfo);
+
+            if (lapManager.TrackedCars[i].IsPlayer)
+                realPlayersFinishedCount++;
+            if(realPlayersFinishedCount == 4)
+                gameShouldFinish = true;
+        }
+        for (int i = 0; i < lapManager.FinishedCars.Count; i++)
+            leaderboardInfoToShare.Add(lapManager.FinishedCars[i].netInfo);
+
+        if (gameShouldFinish)
         {
             gameGoing = false;
             GameEndedRpc();
@@ -61,7 +84,7 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public IEnumerator StartGame()
     {
-        StartCoroutine(ShareTrackedCars());
+        
         //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
         for (int i = 5; i > -1; i--)
         {
@@ -127,39 +150,68 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.ClientsAndHost)]
-    private void SetLeaderBoardRpc(ulong[] playerNames, Tracking_Manager_Script.TrackedInfo[] finishedCars, Tracking_Manager_Script.TrackedInfo[] trackingCars)
+    private void SetLeaderBoard()
     {
-        for(int i = 0; i < playerBars.Length; i++)
+        int mainPlayerPos = 0;
+        for (int i = 0; i < leaderboardInfoToShare.Count; i++)
         {
-            if (i < playerNames.Length && playerNames[i] == NetworkManager.Singleton.LocalClientId)
-                playerBars[i].SetYouSign(true);
-            else
-                playerBars[i].SetYouSign(false);
-            
-            int trackingCarsI = i - finishedCars.Length;
-            if (i < finishedCars.Length)
+            if (leaderboardInfoToShare[i].ClientID == NetworkManager.Singleton.LocalClientId)
             {
-                playerBars[i].placementText.text = finishedCars[i].Place.ToString();
-                playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
-                string timeInterval = TimeSpan.FromSeconds(finishedCars[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                mainPlayerLB.placementText.text = leaderboardInfoToShare[i].Place.ToString();
+                mainPlayerLB.lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
+                mainPlayerLB.playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
 
-                playerBars[i].raceCompletionText.text = $"{timeInterval}";
-                playerBars[i].SetFinishedTime(true);
-                continue;
+                string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                mainPlayerLB.raceCompletionText.text = $"{timeInterval}";
+
+                mainPlayerPos = leaderboardInfoToShare[i].Place;
+
+                if (leaderboardInfoToShare[i].raceCompletedIn > 0)
+                {
+                    mainPlayerLB.SetFinishedTime(true);
+                }
             }
-            else if (trackingCarsI < trackingCars.Length)
+        }
+
+        if (mainPlayerPos > 3 && mainPlayerPos != 0)
+        {
+            for (int i = 0; i < 3; i++)
             {
-                playerBars[i].placementText.text = trackingCars[trackingCarsI].Place.ToString();
-                playerBars[i].lapCountText.text = $"{trackingCars[trackingCarsI].CurLap}";
-                playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
-                playerBars[i].raceCompletionText.text = $"{trackingCars[trackingCarsI].raceCompletedIn}";
-                playerBars[i].SetFinishedTime(false);
-            }
-            else
-                playerBars[i].gameObject.SetActive(false);
+                othersLB[i].placementText.text = leaderboardInfoToShare[i].Place.ToString();
+                othersLB[i].lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
+                othersLB[i].playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
 
-            
+                string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                othersLB[i].raceCompletionText.text = $"{timeInterval}";
+
+                if (leaderboardInfoToShare[i].raceCompletedIn > 0)
+                    othersLB[i].SetFinishedTime(true);
+
+
+            }
+        }
+        else
+        {
+            int spot = 0;
+            for(int i = 0; i < 4; i++)
+            {
+                if (i == mainPlayerPos - 1)
+                    continue;
+                else
+                {
+                    othersLB[spot].placementText.text = leaderboardInfoToShare[i].Place.ToString();
+                    othersLB[spot].lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
+                    othersLB[spot].playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
+
+                    string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                    othersLB[spot].raceCompletionText.text = $"{timeInterval}";
+
+                    if (leaderboardInfoToShare[i].raceCompletedIn > 0)
+                        othersLB[spot].SetFinishedTime(true);
+
+                    spot++;
+                }
+            }
         }
     }
 
@@ -167,7 +219,7 @@ public class MultiplayerGameManager : NetworkBehaviour
     private void GameEndedRpc()
     {
         gameEndedText.enabled = true;
-        playerBars[0].transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector3(-750, -250, 0);
+        mainPlayerLB.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector3(-750, -250, 0);
         leaveGameBtn.SetActive(true);
         EventSystem.current.SetSelectedGameObject(leaveGameBtn);
     }

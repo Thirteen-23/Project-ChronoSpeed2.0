@@ -20,12 +20,13 @@ public class Tracking_Manager_Script : MonoBehaviour
     public float changingSpeedToSlowDown = 200;
 
     
-    public struct TrackedInfo 
+    public class TrackedInfo 
     {
 
         public GameObject Car;
         public List<Transform> HitCheckpoints;
         public bool IsPlayer;
+        public int ClosestNode;
 
         public NetworkInfo netInfo;
 
@@ -35,7 +36,7 @@ public class Tracking_Manager_Script : MonoBehaviour
             public int CurLap;
             public int Place;
             public double raceCompletedIn;
-            public int ClosestNode;
+            
             public ulong ClientID;
 
             public NetworkInfo(ulong clientID)
@@ -43,7 +44,6 @@ public class Tracking_Manager_Script : MonoBehaviour
                 CurLap = 0;
                 Place = 0;
                 raceCompletedIn = 0;
-                ClosestNode = 0;
                 ClientID = clientID;
             }
             public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
@@ -51,7 +51,6 @@ public class Tracking_Manager_Script : MonoBehaviour
                 serializer.SerializeValue(ref CurLap);
                 serializer.SerializeValue(ref Place);
                 serializer.SerializeValue(ref raceCompletedIn);
-                serializer.SerializeValue(ref ClosestNode);
                 serializer.SerializeValue(ref ClientID);
             }
 
@@ -60,7 +59,6 @@ public class Tracking_Manager_Script : MonoBehaviour
                 return CurLap == other.CurLap &&
                     Place == other.Place &&
                     raceCompletedIn == other.raceCompletedIn &&
-                    ClosestNode == other.ClosestNode &&
                     ClientID == other.ClientID;
             }
         }
@@ -142,30 +140,12 @@ public class Tracking_Manager_Script : MonoBehaviour
         TrackedCars = TrackedCars.OrderByDescending(pluh => pluh.ClosestNode).ToList();
 
         //idk which is better this, 42 comparisons at worst ?(maybe i dont know i think it uses quicksort) and 1 at best? (im assuming c# makers are better then me so this one)
-        TrackedCars = TrackedCars.OrderByDescending(pluh => pluh.CurLap).ToList();
+        TrackedCars = TrackedCars.OrderByDescending(pluh => pluh.netInfo.CurLap).ToList();
 
         for (int i = 0; i < TrackedCars.Count; i++)
         {
-            TrackedCars[i].Place = i + 1 + FinishedCars.Count;
-        }    
-
-        //or this, 36 comparisons at worst, 12 at best
-        //int placeToGive = 1;
-        //for(int a = 3; a > 0; a--)
-        //{
-        //    for (int i = 0; i < trackCars.Count; i++)
-        //    {
-        //        if (trackCars[i].CurLap != a)
-        //            continue;
-
-        //        trackCars[i].Place = placeToGive;
-        //        placeToGive++;
-
-        //        if (placeToGive == trackCars.Count + 2)
-        //            return;
-        //    }
-        //}
-        
+            TrackedCars[i].netInfo.Place = i + 1 + FinishedCars.Count;
+        }
     }
 
     public void AddTrackedCar(GameObject car, bool isPlayer, ulong clientID)
@@ -174,7 +154,7 @@ public class Tracking_Manager_Script : MonoBehaviour
     }
     public void FinishTrackedCar(TrackedInfo finishingCar)
     {
-        finishingCar.raceCompletedIn = Time.timeSinceLevelLoadAsDouble - startTime;
+        finishingCar.netInfo.raceCompletedIn = Time.timeSinceLevelLoadAsDouble - startTime;
         FinishedCars.Add(finishingCar);
         TrackedCars.Remove(finishingCar);
     }

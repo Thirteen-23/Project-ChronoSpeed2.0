@@ -152,12 +152,12 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         for(int i = 0; i < TMS.FinishedCars.Count;i++)
         {
             if (TMS.FinishedCars[i].IsPlayer)
-                playerPoses.Add(new TrackedInfo(TMS.FinishedCars[i].Car, TMS.FinishedCars[i].CurLap));
+                playerPoses.Add(new TrackedInfo(TMS.FinishedCars[i].Car, TMS.FinishedCars[i].netInfo.CurLap));
         }
         for(int i = 0; i < TMS.TrackedCars.Count;i++)
         {
             if (TMS.TrackedCars[i].IsPlayer)
-                playerPoses.Add(new TrackedInfo(TMS.TrackedCars[i].Car, TMS.TrackedCars[i].CurLap));
+                playerPoses.Add(new TrackedInfo(TMS.TrackedCars[i].Car, TMS.TrackedCars[i].netInfo.CurLap));
         }
     }
 }
