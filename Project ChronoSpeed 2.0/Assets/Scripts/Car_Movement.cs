@@ -1,4 +1,4 @@
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 public enum Class
@@ -563,7 +563,7 @@ public class Car_Movement : MonoBehaviour
     [Header("Shifting Time Values")]
     public float maxTimeToShiftGear;
     public float timerToShift;
-   
+    public float rpmLimiter = 5000; 
     private void Shifting()
     {
         float temp = acceration_Value;
@@ -601,7 +601,7 @@ public class Car_Movement : MonoBehaviour
             switch (drive)
             {
                 case DifferentialTypes.AllWheelDrive:
-                    for (int i = 0; i < wheels4.Length; i++)
+                    for (int i = 2; i < wheels4.Length; i++)
                     {
                         wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
@@ -609,6 +609,10 @@ public class Car_Movement : MonoBehaviour
                         {
                             if (slip[i] > amountOfSlipToShift)
                             {
+                                /*if(engineRPM > rpmLimiter)
+                                {
+                                    engineRPM = Mathf.Clamp(engineRPM, 0, rpmLimiter); 
+                                }*/
                                 return;
                             }
                             else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)

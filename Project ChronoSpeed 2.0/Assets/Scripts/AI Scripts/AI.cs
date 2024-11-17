@@ -26,6 +26,7 @@ public class AI : MonoBehaviour
         HitWall,
 
     }
+    public Class classforAI;
     public AIMouth aiSpeaking = AIMouth.racing;
     public aI_Difficulty difficultness;
     [SerializeField] Rigidbody rb;
@@ -50,7 +51,7 @@ public class AI : MonoBehaviour
     //checking waypoints
     [Header("Waypoints system")]
     public TrackWayPoints[] waypoints = new TrackWayPoints[0];
-    public List<Transform> nodes => waypoints[0].trackNodes;
+    public List<Transform> nodes => waypoints[currentWaypointchange].trackNodes;
     [Range(0, 10)] public int distanceOffset;
     [Range(0, 5)] public float steeringForce;
     public Transform currentWaypoint;
@@ -74,12 +75,17 @@ public class AI : MonoBehaviour
         carAI.acceration_Value = 0f;
         if (difficultness == aI_Difficulty.raceStart)
         {
+
         }
         else
-        difficultness = (aI_Difficulty)Random.Range(1, 4);
+        {
+            difficultness = (aI_Difficulty)Random.Range(1, 4);
+            AIChange();
+        }
         //bridge = GameObject.Find("Checkpoints");
         //valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         //nodes = waypoints.trackNodes;
+       
     }
 
     void Awake()
@@ -92,63 +98,82 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
        
+      
+    }
+  
+    int change;
+   public int currentWaypointchange;
+    int waypointLength;
+    private void AIChange()
+    {
+        waypointLength = waypoints.Length - 1;
+     
+            switch (classforAI)
+            {
+            case Class.Light:
+                    currentWaypointchange = Random.Range(0, (int)Mathf.Ceil(waypointLength / 3f));
+                if(currentWaypointchange == 0)
+                {
+                    difficultness = aI_Difficulty.easy;
+                }
+                else if (currentWaypointchange == 1)
+                {
+                    difficultness = aI_Difficulty.normal;
+                }
+                else if (currentWaypointchange == 2)
+                {
+                    difficultness = aI_Difficulty.hard;
+                }
+                break;
+
+                case Class.Medium:
+                    currentWaypointchange = Random.Range((int)Mathf.Ceil(waypointLength / 3f), (int)Mathf.Ceil(waypointLength / 3f) * 2);
+                if (currentWaypointchange == 3)
+                {
+                    difficultness = aI_Difficulty.easy;
+                }
+                else if (currentWaypointchange == 4)
+                {
+                    difficultness = aI_Difficulty.normal;
+                }
+                else if (currentWaypointchange == 5)
+                {
+                    difficultness = aI_Difficulty.hard;
+                }
+                break;
+
+                case Class.Heavy:
+                    currentWaypointchange = Random.Range((int)Mathf.Ceil(waypointLength / 3f) * 2, waypointLength);
+                if (currentWaypointchange == 6)
+                {
+                    difficultness = aI_Difficulty.easy;
+                }
+                else if (currentWaypointchange == 7)
+                {
+                    difficultness = aI_Difficulty.normal;
+                }
+                else if (currentWaypointchange == 8)
+                {
+                    difficultness = aI_Difficulty.hard;
+                }
+                break;
+
+            }
+        
+    }
+    private void FixedUpdate()
+    {
         carAI.acceration_Value = acceration_Value;
         speed_Reader = carAI.currentSpeed;
-        Sensor();
+        //Sensor();
         //CalculateDistanceOfWaypoints();
         changingDistanceOffset();
         CheckForUpdatedWaypoints();
         AISteer();
         AIState();
-        AIChange();
-    }
-
-    int change; 
-    private void AIChange()
-    {
-       
-
-        switch (difficultness)
-        {
-            case aI_Difficulty.easy:
-                for (int i = 0; i < waypoints.Length - 6; i++)
-                {
-                    i = Random.Range(0, waypoints.Length - 6);
-                    change = i;
-
-                }
-                waypoints[0] = waypoints[change]; 
-                break;
-
-            case aI_Difficulty.normal:
-                for (int i = 3; i < waypoints.Length - 6; i++)
-                {
-                    i = Random.Range(3, waypoints.Length - 3);
-                    change = i;
-
-                }
-                waypoints[0] = waypoints[change];
-                break;
-
-            case aI_Difficulty.hard:
-                for (int i = 6; i < waypoints.Length - 6; i++)
-                {
-                    i = Random.Range(6, waypoints.Length);
-                    change = i;
-
-                }
-                waypoints[0] = waypoints[change];
-                break;
-
-
-
-        }
-       
-    }
-    private void FixedUpdate()
-    {
-
+      
     }
     private void definingRays()
     {
@@ -576,51 +601,57 @@ public class AI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-
-        if (other.CompareTag("AIBody"))
+        if (difficultness == aI_Difficulty.raceStart)
         {
-            if(aiSpeaking == AIMouth.speeding_Up)
-            {
-                rb.AddForce(rb.transform.right * forceTurn);
-            }
-
-            else
-            {
-                aiSpeaking = AIMouth.slowing_Down;
-            }
 
         }
-        if (other.CompareTag("walls"))
+        else
         {
-            aiSpeaking = AIMouth.reversing;
-        }
+            if (other.CompareTag("AIBody"))
+            {
+                if (aiSpeaking == AIMouth.speeding_Up)
+                {
+                    rb.AddForce(rb.transform.right * forceTurn);
+                }
 
+                else
+                {
+                    aiSpeaking = AIMouth.slowing_Down;
+                }
+
+            }
+            if (other.CompareTag("walls"))
+            {
+                aiSpeaking = AIMouth.reversing;
+            }
+        }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("AIBody"))
-        {
-            float otherCarSpeed = GetComponentInParent<AI_Controls>().currentSpeed; 
-            if(otherCarSpeed < carAI.currentSpeed)
+       
+            if (other.CompareTag("AIBody"))
             {
-                carAI.brakes_value = 1;
-                carAI.acceration_Value = 0;
-                if(carAI.currentSpeed <= otherCarSpeed)
+                float otherCarSpeed = GetComponentInParent<AI_Controls>().currentSpeed;
+                if (otherCarSpeed < carAI.currentSpeed)
                 {
-                    carAI.brakes_value = 0;
-                    carAI.currentSpeed = otherCarSpeed;
+                    carAI.brakes_value = 1;
+                    carAI.acceration_Value = 0;
+                    if (carAI.currentSpeed <= otherCarSpeed)
+                    {
+                        carAI.brakes_value = 0;
+                        carAI.currentSpeed = otherCarSpeed;
+                    }
+
                 }
-               
+                aiSpeaking = AIMouth.slowing_Down;
+
             }
-            aiSpeaking = AIMouth.slowing_Down;
-
-        }
-        if (other.CompareTag("walls"))
-        {
-            aiSpeaking = AIMouth.reversing;
-        }
+            if (other.CompareTag("walls"))
+            {
+                aiSpeaking = AIMouth.reversing;
+            }
+        
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("AIBody"))
