@@ -27,7 +27,5 @@ public class VFXManager : NetworkBehaviour
     public void SendInfoToEveryoneRpc(ulong objectID, VFXTypes type, bool setTo)
     {
         NetworkManager.Singleton.SpawnManager.SpawnedObjects[objectID].GetComponent<VFXContainer>().SetVFX(type, setTo);
-        Debug.Log(NetworkManager.Singleton.SpawnManager.SpawnedObjects[objectID]);
-
     }
 }

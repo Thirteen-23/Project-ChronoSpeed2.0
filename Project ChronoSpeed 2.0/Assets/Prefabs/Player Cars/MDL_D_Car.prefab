@@ -4349,6 +4349,7 @@ GameObject:
   - component: {fileID: 1387420509638381194}
   - component: {fileID: 832651492297267958}
   - component: {fileID: 1030777677}
+  - component: {fileID: -5923482915379910636}
   m_Layer: 0
   m_Name: MDL_D_Car
   m_TagString: Player
@@ -4837,7 +4838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 391577787
+  GlobalObjectIdHash: 3611437128
   InScenePlacedSourceGlobalObjectIdHash: 391577787
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -4968,6 +4969,7 @@ MonoBehaviour:
   rewindTime: 5
   cooldown: 5
   rewindProfile: {fileID: 11400000, guid: b19fee55a431d2a40a7634e16b824da1, type: 2}
+  m_PlayerStateMachine: {fileID: 0}
 --- !u!114 &832651492297267958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4997,6 +4999,22 @@ MonoBehaviour:
   - {fileID: 8130959}
   - {fileID: 1687408302}
   - {fileID: 238372555}
+--- !u!114 &-5923482915379910636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564646704286003995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb530fdb49ae8bb4a94d3f1f247e0e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentDrivingState: 0
+  CurrentPowerState: 0
+  colForFakeCollision: {fileID: 1462211182400812653}
+  HologramShader: {fileID: 0}
 --- !u!1 &8262871642904044204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5503,6 +5521,12 @@ PrefabInstance:
       objectReference: {fileID: 2332011734991613338}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a3f0e1da7806b74fa75c931c1fb5b42, type: 3}
+--- !u!65 &1462211182400812653 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 796459821291770449, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+    type: 3}
+  m_PrefabInstance: {fileID: 2253847852003173436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8795057942400799547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,

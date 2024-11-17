@@ -91,7 +91,7 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         }
         else
         {
-            player = GetComponentInParent<Rigidbody>().gameObject;
+            return null;
         }
 
         if (IsCarAPlayer(player))

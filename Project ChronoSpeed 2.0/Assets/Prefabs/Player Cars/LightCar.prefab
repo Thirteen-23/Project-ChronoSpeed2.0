@@ -2489,6 +2489,7 @@ GameObject:
   - component: {fileID: 1089985598654084226}
   - component: {fileID: -6097710963303930345}
   - component: {fileID: 369546771}
+  - component: {fileID: 3222927327560705700}
   m_Layer: 0
   m_Name: LightCar
   m_TagString: Player
@@ -3111,6 +3112,7 @@ MonoBehaviour:
   rewindTime: 5
   cooldown: 5
   rewindProfile: {fileID: 11400000, guid: b19fee55a431d2a40a7634e16b824da1, type: 2}
+  m_PlayerStateMachine: {fileID: 0}
 --- !u!114 &-6097710963303930345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,6 +3142,22 @@ MonoBehaviour:
   - {fileID: 1649948439}
   - {fileID: 1208852200}
   - {fileID: 773124939}
+--- !u!114 &3222927327560705700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5727530261080087962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb530fdb49ae8bb4a94d3f1f247e0e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentDrivingState: 0
+  CurrentPowerState: 0
+  colForFakeCollision: {fileID: 2363891299997928905}
+  HologramShader: {fileID: 0}
 --- !u!1 &6241498031530955137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5059,6 +5077,12 @@ PrefabInstance:
       objectReference: {fileID: 4163412773333199770}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a3f0e1da7806b74fa75c931c1fb5b42, type: 3}
+--- !u!65 &2363891299997928905 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 796459821291770449, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+    type: 3}
+  m_PrefabInstance: {fileID: 3153554792957403032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5659539667647654047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,

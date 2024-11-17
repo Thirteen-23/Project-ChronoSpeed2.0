@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 5122332743273905984}
   - component: {fileID: 7082331018583853970}
   - component: {fileID: 4259587035658066502}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MDL_D_BakeAccessories
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 5449636510081149324}
   - component: {fileID: 2695668643408633538}
   - component: {fileID: 2659280265537284021}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainBody
   m_TagString: AIBody
   m_Icon: {fileID: 0}
@@ -2679,6 +2679,7 @@ GameObject:
   - component: {fileID: 6939459432954186590}
   - component: {fileID: 8746736502015917660}
   - component: {fileID: 8744332604698554035}
+  - component: {fileID: -8773563381825694453}
   m_Layer: 0
   m_Name: AI Dystopian Car
   m_TagString: AI
@@ -2773,6 +2774,7 @@ MonoBehaviour:
   speedTimer: 0
   activeTime: 5
   cooldownTimer: 5
+  rewindback: {fileID: 0}
 --- !u!114 &8123952694118767794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2977,6 +2979,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rewindTime: 5
+--- !u!114 &-8773563381825694453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564646704286003995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb530fdb49ae8bb4a94d3f1f247e0e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentDrivingState: 0
+  CurrentPowerState: 0
+  colForFakeCollision: {fileID: 6036112331843046875}
+  HologramShader: {fileID: 0}
 --- !u!1 &7673808563447282355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,7 +3378,7 @@ GameObject:
   - component: {fileID: 7406115366386086757}
   - component: {fileID: 2657914334089021925}
   - component: {fileID: 1477120256572305275}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MDL_D_Windows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3443,7 +3461,7 @@ GameObject:
   - component: {fileID: 8123635301516277028}
   - component: {fileID: 3578155411907753070}
   - component: {fileID: 6199034869890711659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MDL_D_Accessories
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3597,6 +3615,7 @@ MonoBehaviour:
   trigger: {fileID: 6036112331843046875}
   myClass: 2
   myTransform: {fileID: 0}
+  Intangible: 0
 --- !u!114 &4504473288345026872
 MonoBehaviour:
   m_ObjectHideFlags: 0

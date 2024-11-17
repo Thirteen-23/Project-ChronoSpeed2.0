@@ -22,7 +22,7 @@ public class MultiplayerGameManager : NetworkBehaviour
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
 
     NetworkList<Tracking_Manager_Script.TrackedInfo.NetworkInfo> leaderboardInfoToShare;
-     private void Awake()
+    private void Awake()
     {
         if (Singleton != null && Singleton != this)
             Destroy(this);
@@ -31,6 +31,8 @@ public class MultiplayerGameManager : NetworkBehaviour
             Singleton = this;
             playerPrefabRef = new Dictionary<ulong, GameObject>();
         }
+
+        leaderboardInfoToShare = new NetworkList<Tracking_Manager_Script.TrackedInfo.NetworkInfo>();
     }
 
     private void FixedUpdate()
@@ -47,10 +49,13 @@ public class MultiplayerGameManager : NetworkBehaviour
         playerPrefabRef.Add(clientID, spawnedPlayer);
         lapManager.AddTrackedCar(spawnedPlayer, false, clientID);
     }
+
+    int MaxPlayers = 0;
     public void AddSpawnedPlayer(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
         lapManager.AddTrackedCar(spawnedPlayer, true, clientID);
+        MaxPlayers++;
     }
 
     bool gameGoing = true;
@@ -61,17 +66,23 @@ public class MultiplayerGameManager : NetworkBehaviour
 
         int realPlayersFinishedCount = 0;
         bool gameShouldFinish = false;
-        for(int i = 0; i < lapManager.TrackedCars.Count; i++) 
+
+        for (int i = 0; i < lapManager.FinishedCars.Count; i++)
+        {
+            leaderboardInfoToShare.Add(lapManager.FinishedCars[i].netInfo);
+
+            if (lapManager.FinishedCars[i].IsPlayer)
+                realPlayersFinishedCount++;
+            if (realPlayersFinishedCount == MaxPlayers)
+                gameShouldFinish = true;
+            realPlayersFinishedCount = 0;
+        }
+
+        for (int i = 0; i < lapManager.TrackedCars.Count; i++) 
         {
             leaderboardInfoToShare.Add(lapManager.TrackedCars[i].netInfo);
-
-            if (lapManager.TrackedCars[i].IsPlayer)
-                realPlayersFinishedCount++;
-            if(realPlayersFinishedCount == 4)
-                gameShouldFinish = true;
         }
-        for (int i = 0; i < lapManager.FinishedCars.Count; i++)
-            leaderboardInfoToShare.Add(lapManager.FinishedCars[i].netInfo);
+        
 
         if (gameShouldFinish)
         {
@@ -199,6 +210,7 @@ public class MultiplayerGameManager : NetworkBehaviour
                     continue;
                 else
                 {
+                    if(spot > 2) { continue; }
                     othersLB[spot].placementText.text = leaderboardInfoToShare[i].Place.ToString();
                     othersLB[spot].lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
                     othersLB[spot].playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";

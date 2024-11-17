@@ -69,7 +69,7 @@ public class Tracking_Manager_Script : MonoBehaviour
         {
             Car = car;
             HitCheckpoints = new List<Transform>();
-            IsPlayer = false;
+            IsPlayer = isPlayer;
 
             netInfo = new NetworkInfo(clientID);
         }

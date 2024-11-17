@@ -3132,6 +3132,7 @@ GameObject:
   - component: {fileID: 6506639583858861859}
   - component: {fileID: -1593979974587260023}
   - component: {fileID: 373795989}
+  - component: {fileID: 7114129123964733764}
   m_Layer: 0
   m_Name: MDL_M_Car3 Variant
   m_TagString: Player
@@ -3726,6 +3727,7 @@ MonoBehaviour:
   rewindTime: 5
   cooldown: 5
   rewindProfile: {fileID: 11400000, guid: b19fee55a431d2a40a7634e16b824da1, type: 2}
+  m_PlayerStateMachine: {fileID: 0}
 --- !u!114 &-1593979974587260023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,6 +3757,22 @@ MonoBehaviour:
   - {fileID: 1206210320}
   - {fileID: 142980489}
   - {fileID: 916084676}
+--- !u!114 &7114129123964733764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975989593886958020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb530fdb49ae8bb4a94d3f1f247e0e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentDrivingState: 0
+  CurrentPowerState: 0
+  colForFakeCollision: {fileID: 7693975700496786260}
+  HologramShader: {fileID: 0}
 --- !u!1 &3999351401643927890
 GameObject:
   m_ObjectHideFlags: 0
@@ -6559,6 +6577,12 @@ PrefabInstance:
 --- !u!4 &325101304198497794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+    type: 3}
+  m_PrefabInstance: {fileID: 7046983182975938821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7693975700496786260 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 796459821291770449, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
     type: 3}
   m_PrefabInstance: {fileID: 7046983182975938821}
   m_PrefabAsset: {fileID: 0}
