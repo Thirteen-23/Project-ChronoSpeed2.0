@@ -15,7 +15,7 @@ public class OnPlayerSpawn : NetworkBehaviour
 
         if (IsOwner)
         {
-            MainCamera mCam = FindAnyObjectByType<MainCamera>();
+            MainCamera mCam = GetComponentInChildren<MainCamera>();
             Rigidbody bodyRB = GetComponentInChildren<Rigidbody>();
 
             input.enabled = false;
