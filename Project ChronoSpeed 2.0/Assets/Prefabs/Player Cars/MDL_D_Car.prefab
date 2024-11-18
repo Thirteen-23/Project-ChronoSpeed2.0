@@ -2514,6 +2514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1564028041597172687}
   - component: {fileID: 8347083846403895711}
+  - component: {fileID: 4651605680952452904}
   m_Layer: 7
   m_Name: MainBody
   m_TagString: CarBody
@@ -2549,11 +2550,24 @@ MeshCollider:
   m_GameObject: {fileID: 2784563271477589445}
   m_Material: {fileID: 13400000, guid: 7fb82a58e147ae44db581ec75cfde9be, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2318412750624624909, guid: 169701cad9fd7cf41ac0cf48632bfef1, type: 3}
+--- !u!65 &4651605680952452904
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784563271477589445}
+  m_Material: {fileID: 13400000, guid: 7fb82a58e147ae44db581ec75cfde9be, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 1.0616939, z: 4.868828}
+  m_Center: {x: 0, y: 1.0308471, z: 0.18441391}
 --- !u!1 &3076221282765960543
 GameObject:
   m_ObjectHideFlags: 0
@@ -4494,8 +4508,8 @@ MonoBehaviour:
   isBraking: 0
   ifHandBraking: 0
   handBrakefrictionMulitplier: 1.5
-  whenNotDrifting: 2
-  whenDrifting: 2
+  whenNotDrifting: 1.5
+  whenDrifting: 1.5
   driftFactor: 0.05
   turnOnAllTerrain: 0
   frictionPlusValueForAbility: 0
@@ -4536,8 +4550,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_RayRange: 20
   draftingMultiplierValue: 5
-  floorRange: 0.5
-  boostWhenExitingDrift: 20000
+  floorRange: 1
+  boostWhenExitingDrift: 23000
   findme: 0
   lightCar: 0
   mediumCar: 0
@@ -4571,7 +4585,9 @@ MonoBehaviour:
   m_TSidewaysFrictionValue: 0.3
   m_SForwardFrictionValue: 1
   m_SSidewaysFrictionValue: 0.5
-  m_AmountOfForceOfTheStart: 10000
+  m_ExtraGripOnHigherSpeed: 0
+  m_ValueToChangeSpeedForGrip: 180
+  m_AmountOfForceOfTheStart: 15000
   imFlying: 0
 --- !u!114 &7564646704286003997
 MonoBehaviour:
@@ -4972,7 +4988,6 @@ MonoBehaviour:
   rewindTime: 5
   cooldown: 5
   rewindProfile: {fileID: 11400000, guid: b19fee55a431d2a40a7634e16b824da1, type: 2}
-  m_PlayerStateMachine: {fileID: 0}
 --- !u!114 &832651492297267958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5857,17 +5872,17 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 33384688
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 6.84e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.39e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
@@ -6059,7 +6074,7 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 1.02e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
@@ -6165,22 +6180,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 4.4156958e-26
+      value: 6.9273424e+21
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 6.33e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -1.158554e+14
+      value: 7.1e-44
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 6.88e-43
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}

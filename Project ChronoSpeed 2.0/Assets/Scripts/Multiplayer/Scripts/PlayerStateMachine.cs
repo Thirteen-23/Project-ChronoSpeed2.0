@@ -15,7 +15,7 @@ public class PlayerStateMachine : NetworkBehaviour
     public enum PlayerStates
     {
         IdleDriving, Driving, Reversing,
-        Breaking, Drifiting, 
+        Breaking, Drifting, Boosting, LimitRemover, 
         IdlePower, DroppingPortal, Blinking, Rewinding, TempInvonrability
 
 
@@ -24,7 +24,7 @@ public class PlayerStateMachine : NetworkBehaviour
 
     public void ChangeCurrentState(PlayerStates newState, bool switchTo)
     {
-        if((int)newState > 4)
+        if((int)newState > 6)
         {
             if (newState == CurrentPowerState)
                 return;
@@ -56,7 +56,7 @@ public class PlayerStateMachine : NetworkBehaviour
     private void ChangeCurrentStateRpc(PlayerStates newState, bool switchTo)
     {
 
-        if ((int)newState > 4)
+        if ((int)newState > 6)
         {
             ActivateRelativeFunc(CurrentPowerState, false);
             CurrentPowerState = newState;
@@ -82,7 +82,7 @@ public class PlayerStateMachine : NetworkBehaviour
                 Reversing(SwitchTo); break;
             case PlayerStates.Breaking:
                 Breaking(SwitchTo); break;
-            case PlayerStates.Drifiting:
+            case PlayerStates.Drifting:
                 Drifiting(SwitchTo); break;
             case PlayerStates.DroppingPortal:
                 DroppingPortal(SwitchTo); break;
@@ -102,8 +102,13 @@ public class PlayerStateMachine : NetworkBehaviour
         //Idle noise = switchTo,
     }
 
+    [SerializeField] TrailRenderer[] trails = new TrailRenderer[2];
     private void Driving(bool switchTo)
     {
+        for (int i = 0; i < trails.Length; i++)
+        {
+            trails[i].emitting = switchTo; 
+        }
         //Driving noise = switchTo,
         //those tire particles = switchTo,
         //if(on) maybe make the sound and velocity of the particles based of verleyPhysics
@@ -125,6 +130,7 @@ public class PlayerStateMachine : NetworkBehaviour
         //make screech noise and make tire smoke greyer?
     }
 
+    [SerializeField] AudioSource m_DriftingSound; 
     private void Drifiting(bool switchTo)
     {
         //tireParticles = switchTo;

@@ -3460,7 +3460,7 @@ GameObject:
   - component: {fileID: 611758166}
   - component: {fileID: 611758165}
   m_Layer: 0
-  m_Name: IsolateCrystals
+  m_Name: MainMenuMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3476,7 +3476,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5460cd987a6290f47875ebb9c4a1807a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 32ad71bc52076c74e91baa564115cb8f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.55
   m_Pitch: 1
@@ -16023,6 +16023,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 4891632682964933426, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1228717cf6040f247a6c804aae245e65, type: 3}
 --- !u!4 &1322067268573835176 stripped
@@ -16311,6 +16316,11 @@ PrefabInstance:
     - target: {fileID: 4891632682964933426, guid: 1228717cf6040f247a6c804aae245e65,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891632682964933426, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4994325696573019539, guid: 1228717cf6040f247a6c804aae245e65,
@@ -17091,6 +17101,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5834201593714305091, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
         type: 3}
       propertyPath: m_RootOrder
@@ -17809,6 +17824,9 @@ MonoBehaviour:
   m_TSidewaysFrictionValue: 0.2
   m_SForwardFrictionValue: 0
   m_SSidewaysFrictionValue: 0
+  m_ExtraGripOnHigherSpeed: 0
+  m_ValueToChangeSpeedForGrip: 180
+  m_DriftingSound: {fileID: 0}
   m_AmountOfForceOfTheStart: 50000
   imFlying: 0
 --- !u!114 &3975989594013967447
@@ -20029,6 +20047,9 @@ MonoBehaviour:
   m_TSidewaysFrictionValue: 1
   m_SForwardFrictionValue: -0.5
   m_SSidewaysFrictionValue: -0.5
+  m_ExtraGripOnHigherSpeed: 0
+  m_ValueToChangeSpeedForGrip: 180
+  m_DriftingSound: {fileID: 0}
   m_AmountOfForceOfTheStart: 10000
   imFlying: 0
 --- !u!1 &5727530260666398970
@@ -20676,6 +20697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5834201593714305091, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7298386900399306503, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
         type: 3}
@@ -22059,6 +22085,9 @@ MonoBehaviour:
   m_TSidewaysFrictionValue: 0.3
   m_SForwardFrictionValue: 1
   m_SSidewaysFrictionValue: 0.5
+  m_ExtraGripOnHigherSpeed: 0
+  m_ValueToChangeSpeedForGrip: 180
+  m_DriftingSound: {fileID: 0}
   m_AmountOfForceOfTheStart: 10000
   imFlying: 0
 --- !u!1 &7564646703904831303
@@ -23097,6 +23126,11 @@ PrefabInstance:
     - target: {fileID: 4891632682964933426, guid: 1228717cf6040f247a6c804aae245e65,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891632682964933426, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4994325696573019539, guid: 1228717cf6040f247a6c804aae245e65,

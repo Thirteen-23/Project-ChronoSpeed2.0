@@ -116,7 +116,7 @@ public class AbilityManager : MonoBehaviour
             case ResourceState.charging:
                 if (ability1CostValue > currentBoostBarValue)
                 {
-                    nitroBoostSound.Stop();
+                   // nitroBoostSound.Stop();
                 }
                 else
                 {

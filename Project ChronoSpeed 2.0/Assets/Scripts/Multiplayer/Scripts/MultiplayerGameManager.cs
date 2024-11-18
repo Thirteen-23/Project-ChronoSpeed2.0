@@ -165,6 +165,10 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
     }
 
+    bool reachedLastLap = false;
+    [SerializeField] AudioSource m_BattleMusic;
+    [SerializeField] AudioSource m_ItsTheFinalCountdown;
+    [SerializeField] float m_AudioSpeed = 1;
     private void SetLeaderBoard()
     {
         int mainPlayerPos = 0;
@@ -184,6 +188,22 @@ public class MultiplayerGameManager : NetworkBehaviour
                 if (leaderboardInfoToShare[i].raceCompletedIn > 0)
                 {
                     mainPlayerLB.SetFinishedTime(true);
+
+                   
+                }
+
+                if (leaderboardInfoToShare[i].CurLap == 2 && reachedLastLap == false)
+                {
+                    reachedLastLap = true;
+                    m_BattleMusic.volume -= m_AudioSpeed * 1;
+                    m_ItsTheFinalCountdown.volume = 0;
+                    m_ItsTheFinalCountdown.Play();
+                    while(m_ItsTheFinalCountdown.volume < 0.5f)
+                    {
+                        m_ItsTheFinalCountdown.volume += m_AudioSpeed * 1;
+                        
+                    }
+
                 }
             }
         }
