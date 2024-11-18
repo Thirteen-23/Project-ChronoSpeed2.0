@@ -45,6 +45,7 @@ public class CatchUpPortalAbility : MonoBehaviour
         player.transform.position += player.transform.forward * offset;
 
         Rigidbody carRB = other.GetComponentInParent<Rigidbody>();
+        carRB.angularVelocity = Vector3.zero;
         Vector3 newDirection = linkedPortal.transform.forward;
         if (speedIncreasePortal)
             carRB.velocity = newDirection * (Mathf.Abs(carRB.velocity.magnitude) + IncreaseSpeedBy);

@@ -18,7 +18,8 @@ public class OnAISpawn : NetworkBehaviour
             return;
         }
         aiRef = GetComponent<AI>();
-        aiRef.waypoints = FindAnyObjectByType<TrackWayPoints>();
+        aiRef.waypoints = FindObjectOfType<AIWayPointManager>().m_Waypoint_difficulties;
+
         //aiRef.nodes = aiRef.waypoints.trackNodes;
         aiRef.valueBeingRead = FindObjectOfType<Tracking_Manager_Script>();
         base.OnNetworkSpawn();
