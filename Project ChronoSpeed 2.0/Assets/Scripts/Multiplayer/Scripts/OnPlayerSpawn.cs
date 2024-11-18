@@ -4,9 +4,8 @@ using UnityEngine.InputSystem;
 
 public class OnPlayerSpawn : NetworkBehaviour
 {
-    [SerializeField] Collider Trigger;
-    [SerializeField] Collider NotTrigger;
     [SerializeField] GameObject Canvas;
+    [SerializeField] GameObject CameraJunk;
     public override void OnNetworkSpawn()
     {
         var input = GetComponent<PlayerInput>();
@@ -15,13 +14,9 @@ public class OnPlayerSpawn : NetworkBehaviour
 
         if (IsOwner)
         {
-            MainCamera mCam = FindAnyObjectByType<MainCamera>();
             Rigidbody bodyRB = GetComponentInChildren<Rigidbody>();
 
             input.enabled = false;
-            mCam.rb = bodyRB;
-            mCam.player = transform.Find("CameraFollow");
-            mCam.carValues = carMove;
         }
         else
         {
@@ -30,7 +25,7 @@ public class OnPlayerSpawn : NetworkBehaviour
             Destroy(GetComponent<Rigidbody>());
             gameObject.tag = "OtherPlayer";
 
-            Destroy(NotTrigger);
+            Destroy(CameraJunk);
             Destroy(Canvas);
         }
         if(!IsServer)

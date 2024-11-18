@@ -15,10 +15,13 @@ public class MultiplayerGameManager : NetworkBehaviour
     [SerializeField] private TMP_Text startCountdownText;
     [SerializeField] private TMP_Text gameEndedText;
     [SerializeField] private GameObject leaveGameBtn;
-    [SerializeField] private LeadboardPlayerBar[] playerBars;
+    [SerializeField] private LeadboardPlayerBar mainPlayerLB;
+    [SerializeField] private LeadboardPlayerBar[] othersLB = new LeadboardPlayerBar[3];
 
     public Dictionary<ulong, GameObject> playerPrefabRef { get; private set;}
     [HideInInspector] public static MultiplayerGameManager Singleton { get; private set; }
+
+    NetworkList<Tracking_Manager_Script.TrackedInfo.NetworkInfo> leaderboardInfoToShare;
     private void Awake()
     {
         if (Singleton != null && Singleton != this)
@@ -28,73 +31,79 @@ public class MultiplayerGameManager : NetworkBehaviour
             Singleton = this;
             playerPrefabRef = new Dictionary<ulong, GameObject>();
         }
-    }
-    
 
-    
+        leaderboardInfoToShare = new NetworkList<Tracking_Manager_Script.TrackedInfo.NetworkInfo>();
+    }
+
+    private void FixedUpdate()
+    {
+        //FixedUpdateSoNetworkGetsHassledLessIdk, doing network rpc and stuff on update feels scary since connecting two fucking objects together adds like 13ms of lag or whatnot
+        if(IsServer)
+            ShareTrackedCars();
+        SetLeaderBoard();
+    }
+
     //Functions
     public void AddSpawnedAI(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
-        lapManager.AddTrackedCar(spawnedPlayer, false);
+        lapManager.AddTrackedCar(spawnedPlayer, false, clientID);
     }
+
+    int MaxPlayers = 0;
     public void AddSpawnedPlayer(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
-        lapManager.AddTrackedCar(spawnedPlayer, true);
+        lapManager.AddTrackedCar(spawnedPlayer, true, clientID);
+        MaxPlayers++;
     }
 
     bool gameGoing = true;
-    private IEnumerator ShareTrackedCars()
-    {
-        while(gameGoing)
+    private void ShareTrackedCars()
+    {  
+        //Call this in update
+        leaderboardInfoToShare.Clear();
+
+        int realPlayersFinishedCount = 0;
+        bool gameShouldFinish = false;
+
+        for (int i = 0; i < lapManager.FinishedCars.Count; i++)
         {
-            ulong[] playerNames = new ulong[lapManager.TrackedCars.Count + lapManager.FinishedCars.Count];
-            int finishedPlayers = 0;
-            for(int i = 0; i < lapManager.FinishedCars.Count; i++)
-            {
-                foreach(var client in playerPrefabRef)
-                {
-                    if (client.Value.Equals(lapManager.FinishedCars[i].Car))
-                    {
-                        playerNames[i] = client.Key;
-                        if(ServerManager.Singleton.ClientDic.ContainsKey(client.Key))
-                            finishedPlayers++;
-                        break;
-                    }
-                }
-            }
-            for (int i = 0; i < lapManager.TrackedCars.Count; i++)
-            {
-                foreach (var client in playerPrefabRef)
-                {
-                    if (client.Value.Equals(lapManager.TrackedCars[i].Car))
-                    {
-                        playerNames[i + lapManager.FinishedCars.Count] = client.Key;
-                        break;
-                    }
-                }
-            }
-            SetLeaderBoardRpc(playerNames, lapManager.FinishedCars.ToArray(), lapManager.TrackedCars.ToArray());
-            if (finishedPlayers == ServerManager.Singleton.ClientDic.Count)
-            {
-                gameGoing = false;
-                GameEndedRpc();
-            }
-            yield return new WaitForSeconds(1f);
+            leaderboardInfoToShare.Add(lapManager.FinishedCars[i].netInfo);
+
+            if (lapManager.FinishedCars[i].IsPlayer)
+                realPlayersFinishedCount++;
+            if (realPlayersFinishedCount == MaxPlayers)
+                gameShouldFinish = true;
+        }
+
+        for (int i = 0; i < lapManager.TrackedCars.Count; i++) 
+        {
+            leaderboardInfoToShare.Add(lapManager.TrackedCars[i].netInfo);
+        }
+        
+
+        if (gameShouldFinish)
+        {
+            gameGoing = false;
+            GameEndedRpc();
         }
         
 
     }
-
+    public AudioSource countdown; 
     public IEnumerator StartGame()
     {
-        StartCoroutine(ShareTrackedCars());
+        
         //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
         for (int i = 5; i > -1; i--)
         {
             CountDownRpc(i, false);
             yield return new WaitForSeconds(1);
+            if( i == 4)
+            {
+                countdown.Play();
+            }
         }
         CountDownRpc(0, true);
         
@@ -155,39 +164,80 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.ClientsAndHost)]
-    private void SetLeaderBoardRpc(ulong[] playerNames, Tracking_Manager_Script.TrackedInfo[] finishedCars, Tracking_Manager_Script.TrackedInfo[] trackingCars)
+    bool reachedLastLap = false;
+    [SerializeField] AudioSource m_BattleMusic;
+    [SerializeField] AudioSource m_ItsTheFinalCountdown;
+    [SerializeField] float m_AudioSpeed = 1;
+    private void SetLeaderBoard()
     {
-        for(int i = 0; i < playerBars.Length; i++)
+        int mainPlayerPos = 0;
+        for (int i = 0; i < leaderboardInfoToShare.Count; i++)
         {
-            if (i < playerNames.Length && playerNames[i] == NetworkManager.Singleton.LocalClientId)
-                playerBars[i].SetYouSign(true);
-            else
-                playerBars[i].SetYouSign(false);
-            
-            int trackingCarsI = i - finishedCars.Length;
-            if (i < finishedCars.Length)
+            if (leaderboardInfoToShare[i].ClientID == NetworkManager.Singleton.LocalClientId)
             {
-                playerBars[i].placementText.text = finishedCars[i].Place.ToString();
-                playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
-                string timeInterval = TimeSpan.FromSeconds(finishedCars[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                mainPlayerLB.placementText.text = leaderboardInfoToShare[i].Place.ToString();
+                mainPlayerLB.lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
+                mainPlayerLB.playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
 
-                playerBars[i].raceCompletionText.text = $"{timeInterval}";
-                playerBars[i].SetFinishedTime(true);
-                continue;
+                string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                mainPlayerLB.raceCompletionText.text = $"{timeInterval}";
+
+                mainPlayerPos = leaderboardInfoToShare[i].Place;
+
+                if (leaderboardInfoToShare[i].raceCompletedIn > 0)
+                {
+                    mainPlayerLB.SetFinishedTime(true);
+
+                   
+                }
+
+                if (leaderboardInfoToShare[i].CurLap == 2 && reachedLastLap == false)
+                {
+                    reachedLastLap = true;
+                    m_BattleMusic.volume -= m_AudioSpeed * 1;
+                    m_ItsTheFinalCountdown.volume = 0;
+                    m_ItsTheFinalCountdown.Play();
+                    while(m_ItsTheFinalCountdown.volume < 0.5f)
+                    {
+                        m_ItsTheFinalCountdown.volume += m_AudioSpeed * 1;
+                        
+                    }
+
+                }
             }
-            else if (trackingCarsI < trackingCars.Length)
+        }
+
+        if (mainPlayerPos > 3 && mainPlayerPos != 0)
+        {
+            for (int i = 0; i < 3; i++)
             {
-                playerBars[i].placementText.text = trackingCars[trackingCarsI].Place.ToString();
-                playerBars[i].lapCountText.text = $"{trackingCars[trackingCarsI].CurLap}";
-                playerBars[i].playerNameText.text = $"Player: {playerNames[i]}";
-                playerBars[i].raceCompletionText.text = $"{trackingCars[trackingCarsI].raceCompletedIn}";
-                playerBars[i].SetFinishedTime(false);
-            }
-            else
-                playerBars[i].gameObject.SetActive(false);
+                othersLB[i].placementText.text = leaderboardInfoToShare[i].Place.ToString();
+                othersLB[i].lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
+                othersLB[i].playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
 
-            
+                string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                othersLB[i].raceCompletionText.text = $"{timeInterval}";
+
+                if (leaderboardInfoToShare[i].raceCompletedIn > 0)
+                    othersLB[i].SetFinishedTime(true);
+
+
+            }
+        }
+        else
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                othersLB[i].placementText.text = leaderboardInfoToShare[i].Place.ToString();
+                othersLB[i].lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
+                othersLB[i].playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
+
+                string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                othersLB[i].raceCompletionText.text = $"{timeInterval}";
+
+                if (leaderboardInfoToShare[i].raceCompletedIn > 0)
+                    othersLB[i].SetFinishedTime(true);
+            }
         }
     }
 
@@ -195,7 +245,7 @@ public class MultiplayerGameManager : NetworkBehaviour
     private void GameEndedRpc()
     {
         gameEndedText.enabled = true;
-        playerBars[0].transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector3(-750, -250, 0);
+        mainPlayerLB.transform.parent.GetComponent<RectTransform>().anchoredPosition = new Vector3(-750, -250, 0);
         leaveGameBtn.SetActive(true);
         EventSystem.current.SetSelectedGameObject(leaveGameBtn);
     }

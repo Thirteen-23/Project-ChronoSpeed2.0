@@ -1,4 +1,4 @@
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 public enum Class
@@ -563,7 +563,7 @@ public class Car_Movement : MonoBehaviour
     [Header("Shifting Time Values")]
     public float maxTimeToShiftGear;
     public float timerToShift;
-   
+    public float rpmLimiter = 5000; 
     private void Shifting()
     {
         float temp = acceration_Value;
@@ -601,7 +601,7 @@ public class Car_Movement : MonoBehaviour
             switch (drive)
             {
                 case DifferentialTypes.AllWheelDrive:
-                    for (int i = 0; i < wheels4.Length; i++)
+                    for (int i = 2; i < wheels4.Length; i++)
                     {
                         wheels4[i].GetGroundHit(out wheelHit);
                         slip[i] = wheelHit.forwardSlip;
@@ -609,6 +609,10 @@ public class Car_Movement : MonoBehaviour
                         {
                             if (slip[i] > amountOfSlipToShift)
                             {
+                                /*if(engineRPM > rpmLimiter)
+                                {
+                                    engineRPM = Mathf.Clamp(engineRPM, 0, rpmLimiter); 
+                                }*/
                                 return;
                             }
                             else if (gearNum < gearSpeedBox.Length - 1 && slip[i] < amountOfSlipToShift)
@@ -785,6 +789,8 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] float m_TSidewaysFrictionValue;
     [SerializeField] float m_SForwardFrictionValue;
     [SerializeField] float m_SSidewaysFrictionValue;
+    [SerializeField] float m_ExtraGripOnHigherSpeed;
+    [SerializeField] float m_ValueToChangeSpeedForGrip = 180f; 
     private void AdjustTractionForRoad()
     {
         #region Traction 
@@ -855,9 +861,11 @@ public class Car_Movement : MonoBehaviour
 
                             if (checkingTerrain.collider.CompareTag("Tarmac"))
                             {
+                               
                                 forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TForwardFrictionValue;
                                 sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TSidewaysFrictionValue;
 
+                                
                                 wheel.forwardFriction = forwardFriction;
                                 wheel.sidewaysFriction = sidewaysFriction;
 
@@ -881,21 +889,42 @@ public class Car_Movement : MonoBehaviour
 
                             if (checkingTerrain.collider.CompareTag("Tarmac"))
                             {
-                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TForwardFrictionValue;
-                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TSidewaysFrictionValue;
+                                if (currentSpeed < m_ValueToChangeSpeedForGrip)
+                                {
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TForwardFrictionValue;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TSidewaysFrictionValue;
 
-                                wheel.forwardFriction = forwardFriction;
-                                wheel.sidewaysFriction = sidewaysFriction;
+                                    wheel.forwardFriction = forwardFriction;
+                                    wheel.sidewaysFriction = sidewaysFriction;
+                                }
 
+                                else if (currentSpeed > m_ValueToChangeSpeedForGrip)
+                                {
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TForwardFrictionValue;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TSidewaysFrictionValue + m_ExtraGripOnHigherSpeed;
+
+                                    wheel.forwardFriction = forwardFriction;
+                                    wheel.sidewaysFriction = sidewaysFriction;
+                                }
                             }
                             else if (checkingTerrain.collider.CompareTag("SideWalk"))
                             {
-                                forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_SForwardFrictionValue;
-                                sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_SSidewaysFrictionValue;
+                                if (currentSpeed < m_ValueToChangeSpeedForGrip)
+                                {
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_SForwardFrictionValue;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_SSidewaysFrictionValue;
 
-                                wheel.forwardFriction = forwardFriction;
-                                wheel.sidewaysFriction = sidewaysFriction;
+                                    wheel.forwardFriction = forwardFriction;
+                                    wheel.sidewaysFriction = sidewaysFriction;
+                                }
+                                else if (currentSpeed > m_ValueToChangeSpeedForGrip)
+                                {
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TForwardFrictionValue;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + m_TSidewaysFrictionValue + m_ExtraGripOnHigherSpeed;
 
+                                    wheel.forwardFriction = forwardFriction;
+                                    wheel.sidewaysFriction = sidewaysFriction;
+                                }
                             }
                             break;
 
@@ -929,6 +958,7 @@ public class Car_Movement : MonoBehaviour
         }
         #endregion
     }
+    [SerializeField] AudioSource m_DriftingSound; 
     private void AdjustTractionForDrifting()
     {
 
@@ -948,7 +978,7 @@ public class Car_Movement : MonoBehaviour
 
             driftEndingGrip = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue =
             Mathf.SmoothDamp(forwardFriction.asymptoteValue, driftFactor * handBrakefrictionMulitplier, ref velocity, driftSmoothFactor);
-
+            m_DriftingSound.volume = 1f;
 
             for (int i = 0; i < 4; i++)
             {
@@ -970,6 +1000,7 @@ public class Car_Movement : MonoBehaviour
             if (wheels4[0].steerAngle > 20 || wheels4[0].steerAngle < -20)
             {
                 bodyOfCar.AddForce(bodyOfCar.transform.forward * boostWhileDrifting);
+                m_DriftingSound.volume = 1f;
             }
             // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
             WheelHit wheelHit;
@@ -1001,7 +1032,7 @@ public class Car_Movement : MonoBehaviour
 
             if (tt > 1f)
             {
-
+                m_DriftingSound.volume = 0f;
                 Debug.Log("normal friction");
                 for (int i = 0; i < 4; i++)
                 {
@@ -1009,6 +1040,7 @@ public class Car_Movement : MonoBehaviour
                     wheels4[i].sidewaysFriction = sidewaysFriction;
                 }
                 forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 1f, minAmountOfGripAtStart, maxAmountOfGrip);
+                
             }
             else
             {
@@ -1038,15 +1070,19 @@ public class Car_Movement : MonoBehaviour
                         tt = 1f;
                         forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 4), tt * 1f);
-                     
                        
+
                         bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostWhenExitingDrift);
                         //leftTrail.emitting = true;
                         //rightTrail.emitting = true;
+
                         rightWheel.Play();
                         leftWheel.Play();
                         leftWheelSmoke.Play();
                         rightWheelSmoke.Play();
+
+                        m_DriftingSound.volume = 1f;
+
                         switch (carClasses)
                         {
                             case Class.Light:
@@ -1077,6 +1113,7 @@ public class Car_Movement : MonoBehaviour
                         lightCar = false;
                         mediumCar = false;
                         heavyCar = false;
+                        m_DriftingSound.volume = 0f;
                     }
                 }
 
@@ -1090,7 +1127,7 @@ public class Car_Movement : MonoBehaviour
                 }
             }
             bodyOfCar.angularDrag = whenNotDrifting;
-
+           
             #endregion
 
 

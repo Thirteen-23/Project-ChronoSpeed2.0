@@ -9,7 +9,7 @@ public class AIRewind : MonoBehaviour
 {
     [SerializeField] float rewindTime = 5;
 
-    struct RecordedData
+    class RecordedData
     {
         public Vector3 Position;
         public Quaternion Rotation;
@@ -22,11 +22,13 @@ public class AIRewind : MonoBehaviour
 
     int currentRewindIteration;
     bool isRecording = true;
-    
+
+    PlayerStateMachine m_PlayerStateMachine;
 
     private void Awake()
     {
         carRigidbody = GetComponent<Rigidbody>();
+        m_PlayerStateMachine = GetComponent<PlayerStateMachine>();
     }
     private void FixedUpdate()
     {
@@ -44,16 +46,28 @@ public class AIRewind : MonoBehaviour
     }
     public void Rewind()
     {
-        isRecording = false;
-        if(curRewindCor == null) curRewindCor = StartCoroutine(RewindCor());
+        
+        if (curRewindCor == null)
+        {
+            m_PlayerStateMachine.ChangeCurrentState(PlayerStateMachine.PlayerStates.Rewinding, true);
+            isRecording = false;
+            curRewindCor = StartCoroutine(RewindCor());
+        }
+        
     }
 
 
     void OnRelease()
     {
         if (isRecording) return;
+
+        m_PlayerStateMachine.ChangeCurrentState(PlayerStateMachine.PlayerStates.TempInvonrability, true);
+
+        if (storedData.Count > 0 && storedData[0] != null)
+        {
+            carRigidbody.velocity = storedData[0].Velocity / 2;
+        }
         
-        carRigidbody.velocity = storedData[0].Velocity / 2;
         storedData.Clear();
         currentRewindIteration = 0;
 
@@ -64,6 +78,8 @@ public class AIRewind : MonoBehaviour
 
     IEnumerator RewindCor()
     {
+        if(storedData.Count == 0) { OnRelease(); yield break; }
+
         currentRewindIteration = storedData.Count - 1;
 
         while (currentRewindIteration > 0)
@@ -71,16 +87,21 @@ public class AIRewind : MonoBehaviour
             if (isRecording && curRewindCor != null)
             {
                 StopCoroutine(curRewindCor);
+                curRewindCor = null;
             }
 
             RecordedData _tempRD = storedData[currentRewindIteration];
-            transform.position = _tempRD.Position;
-            transform.rotation = _tempRD.Rotation;
+            if(_tempRD != null)
+            {
+                transform.position = _tempRD.Position;
+                transform.rotation = _tempRD.Rotation;
+            }
 
             currentRewindIteration -= 2;
             yield return new WaitForFixedUpdate();
         }
         OnRelease();
+        curRewindCor = null;
     }
 
 }

@@ -39,7 +39,7 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         //could do a on networkstart kinda think but dont wanna
         for (int i = 0; i < turns.Count; i++)
         {
-            turns[i].ClosePortalPair();
+            //turns[i].ClosePortalPair();
         }
         if (!NetworkManager.Singleton.IsServer)
             Destroy(GetComponent<BoxCollider>());
@@ -91,7 +91,7 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         }
         else
         {
-            player = GetComponentInParent<Rigidbody>().gameObject;
+            return null;
         }
 
         if (IsCarAPlayer(player))
@@ -152,12 +152,12 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         for(int i = 0; i < TMS.FinishedCars.Count;i++)
         {
             if (TMS.FinishedCars[i].IsPlayer)
-                playerPoses.Add(new TrackedInfo(TMS.FinishedCars[i].Car, TMS.FinishedCars[i].CurLap));
+                playerPoses.Add(new TrackedInfo(TMS.FinishedCars[i].Car, TMS.FinishedCars[i].netInfo.CurLap));
         }
         for(int i = 0; i < TMS.TrackedCars.Count;i++)
         {
             if (TMS.TrackedCars[i].IsPlayer)
-                playerPoses.Add(new TrackedInfo(TMS.TrackedCars[i].Car, TMS.TrackedCars[i].CurLap));
+                playerPoses.Add(new TrackedInfo(TMS.TrackedCars[i].Car, TMS.TrackedCars[i].netInfo.CurLap));
         }
     }
 }

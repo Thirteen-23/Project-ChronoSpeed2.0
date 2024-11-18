@@ -14,13 +14,13 @@ public class CheckFlagPoint : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        GameObject parentObj = other.GetComponentInParent<FakeCollision>().myTransform.gameObject;
-        if (parentObj.CompareTag("Player") || parentObj.CompareTag("OtherPlayer") || parentObj.CompareTag("AI") || parentObj.CompareTag("AIBody"))
+        FakeCollision parentObj = other.GetComponent<FakeCollision>();
+        if (parentObj != null)
         {
             if (isFirstCheckpoint)
-                lapMan.CarHitFirstCheckPoint(parentObj, transform);
+                lapMan.CarHitFirstCheckPoint(parentObj.myTransform.gameObject, transform);
             else
-                lapMan.CarHitCheckPoint(parentObj, transform);
+                lapMan.CarHitCheckPoint(parentObj.myTransform.gameObject, transform);
         }
     }
 }

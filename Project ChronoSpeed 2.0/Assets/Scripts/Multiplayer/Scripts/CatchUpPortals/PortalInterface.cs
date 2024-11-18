@@ -11,7 +11,6 @@ public class PortalInterface : MonoBehaviour
     private void Awake()
     {
         BC = GetComponent<BoxCollider>();
-        
     }
     public void TurnOff()
     {

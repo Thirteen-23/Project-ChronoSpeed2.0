@@ -13,6 +13,8 @@ public class TimeRecording : MonoBehaviour
     [SerializeField] float cooldown = 5;
     [SerializeField] VolumeProfile rewindProfile;
 
+    PlayerStateMachine m_PlayerStateMachine;
+
     struct RecordedData
     {
         public Vector3 Position;
@@ -33,6 +35,7 @@ public class TimeRecording : MonoBehaviour
     private void Awake()
     {
         carRigidbody = GetComponent<Rigidbody>();
+        m_PlayerStateMachine = GetComponent<PlayerStateMachine>();
         mainCamVol = Camera.main.GetComponent<Volume>();
     }
     private void FixedUpdate()
@@ -67,6 +70,9 @@ public class TimeRecording : MonoBehaviour
     void OnRelease()
     {
         if (isRecording) return;
+
+        m_PlayerStateMachine.ChangeCurrentState(PlayerStateMachine.PlayerStates.TempInvonrability, true);
+
         isRecording = true;
         if (currentRewindIteration >= 0)
         {
@@ -88,6 +94,8 @@ public class TimeRecording : MonoBehaviour
     bool affectVolume = false;
     IEnumerator Rewind()
     {
+        m_PlayerStateMachine.ChangeCurrentState(PlayerStateMachine.PlayerStates.Rewinding, true);
+
         currentRewindIteration = storedData.Count - 1;
 
         

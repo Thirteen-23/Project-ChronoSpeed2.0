@@ -39,25 +39,25 @@ public class AbilityManager : MonoBehaviour
     abilityState state = abilityState.ready;
     m_2ndAbilityState m_2NdState = m_2ndAbilityState.ready;
     // Update is called once per frame
-   // public Image m_1stAbilityImage;
-   // public Image m_2ndAbilityImage;
-  //  public Color readyColor;
-   // public Color activeColor;
-   // public Color cooldownColor;
+    // public Image m_1stAbilityImage;
+    // public Image m_2ndAbilityImage;
+    //  public Color readyColor;
+    // public Color activeColor;
+    // public Color cooldownColor;
 
     [Header("Resource Meter Values")]
     ResourceState resourceState = ResourceState.charging;
     public Class m_CarClass;
     public Car_Movement accessCarValues;
-   // public Slider maBar;
+    // public Slider maBar;
 
-   // public float currentResourceValue;
-   // public int minResourceValue;
-   // public int maxResourceValue;
+    // public float currentResourceValue;
+    // public int minResourceValue;
+    // public int maxResourceValue;
 
     [Header(" Resource Meter For All Abilities")]
     // boost bar Values
-   // public Slider boostBar;
+    // public Slider boostBar;
     public float currentBoostBarValue;
     public int minBoostBarValue;
     public int maxBoostBarValue;
@@ -65,7 +65,7 @@ public class AbilityManager : MonoBehaviour
     public AudioSource nitroBoostSound;
 
     // Blink bar and Portal Bar Values
-   // public Slider abilityBar;
+    // public Slider abilityBar;
     public float currentAbilityValue;
     public int minAbilityValue;
     public int maxAbilityValue;
@@ -85,17 +85,19 @@ public class AbilityManager : MonoBehaviour
 
     private PortalSpawn tempPortSpawnRef;
     private Blink tempBlinkRef;
+    public AudioSource blinkSound;
+    public AudioSource chargingSound; 
     private void Awake()
     {
         accessCarValues = GetComponent<Car_Movement>();
         tempPortSpawnRef = GetComponent<PortalSpawn>();
         tempBlinkRef = GetComponent<Blink>();
-       //nitroBoostSound = GameObject.Find("NitroBoostSound").GetComponentInChildren<AudioSource>();
+        //nitroBoostSound = GameObject.Find("NitroBoostSound").GetComponentInChildren<AudioSource>();
     }
 
     private void Start()
     {
-        
+
         //  m_1stAbilityImage.color = readyColor;
         //  m_2ndAbilityImage.color = readyColor;
 
@@ -106,7 +108,7 @@ public class AbilityManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(resourceState); 
+        Debug.Log(resourceState);
         AllMaBars();
 
         switch (resourceState)
@@ -114,7 +116,7 @@ public class AbilityManager : MonoBehaviour
             case ResourceState.charging:
                 if (ability1CostValue > currentBoostBarValue)
                 {
-
+                   // nitroBoostSound.Stop();
                 }
                 else
                 {
@@ -126,8 +128,9 @@ public class AbilityManager : MonoBehaviour
 
                     if (abilityUsed)
                     {
-                       if (currentBoostBarValue >= ability1CostValue)
+                        if (currentBoostBarValue >= ability1CostValue)
                         {
+                            nitroBoostSound.Play();
                             currentBoostBarValue = currentBoostBarValue - ability1CostValue;
                             m_1stAbility.Activate(gameObject);
                             activeTime = m_1stAbility.activeTime;
@@ -140,7 +143,7 @@ public class AbilityManager : MonoBehaviour
                 {
                     if (activeTime > 0)
                     {
-                        
+
                         activeTime -= Time.deltaTime;
                     }
 
@@ -287,92 +290,93 @@ public class AbilityManager : MonoBehaviour
 
     private void abilityCoolDownAbility()
     {
-     /*   switch (state)
-        {
-            case abilityState.ready:
-                if (abilityUsed == true)
-                {
-                    m_1stAbility.Activate(gameObject);
-                    state = abilityState.active;
-                    activeTime = m_1stAbility.activeTime;
-                }
-                break;
-            case abilityState.active:
-                if (activeTime > 0)
-                {
-                    activeTime -= Time.deltaTime;
-                    m_1stAbilityImage.color = activeColor;
-                }
+        /*   switch (state)
+           {
+               case abilityState.ready:
+                   if (abilityUsed == true)
+                   {
+                       m_1stAbility.Activate(gameObject);
+                       state = abilityState.active;
+                       activeTime = m_1stAbility.activeTime;
+                   }
+                   break;
+               case abilityState.active:
+                   if (activeTime > 0)
+                   {
+                       activeTime -= Time.deltaTime;
+                       m_1stAbilityImage.color = activeColor;
+                   }
 
-                else
-                {
-                    m_1stAbility.BeginCooldown(gameObject);
+                   else
+                   {
+                       m_1stAbility.BeginCooldown(gameObject);
 
-                    state = abilityState.cooldown;
-                    cooldownTime = m_1stAbility.cooldownTime;
-                }
+                       state = abilityState.cooldown;
+                       cooldownTime = m_1stAbility.cooldownTime;
+                   }
 
-                break;
-            case abilityState.cooldown:
-                if (cooldownTime > 0)
-                {
-                    cooldownTime -= Time.deltaTime;
-                    m_1stAbilityImage.color = cooldownColor;
-                }
-                else
-                {
-                    state = abilityState.ready;
-                    m_1stAbilityImage.color = readyColor;
-                }
-                break;
-        }
+                   break;
+               case abilityState.cooldown:
+                   if (cooldownTime > 0)
+                   {
+                       cooldownTime -= Time.deltaTime;
+                       m_1stAbilityImage.color = cooldownColor;
+                   }
+                   else
+                   {
+                       state = abilityState.ready;
+                       m_1stAbilityImage.color = readyColor;
+                   }
+                   break;
+           }
 
-        switch (m_2NdState)
-        {
-            case m_2ndAbilityState.ready:
-                if (m_2ndAbilityUsed == true)
-                {
-                    m_2stAbility.Activate(gameObject);
-                    m_2NdState = m_2ndAbilityState.active;
-                    m_2ndActiveTime = m_2stAbility.activeTime;
-                }
-                break;
-            case m_2ndAbilityState.active:
-                if (m_2ndActiveTime > 0)
-                {
-                    m_2ndActiveTime -= Time.deltaTime;
-                    m_2ndAbilityImage.color = activeColor;
-                }
+           switch (m_2NdState)
+           {
+               case m_2ndAbilityState.ready:
+                   if (m_2ndAbilityUsed == true)
+                   {
+                       m_2stAbility.Activate(gameObject);
+                       m_2NdState = m_2ndAbilityState.active;
+                       m_2ndActiveTime = m_2stAbility.activeTime;
+                   }
+                   break;
+               case m_2ndAbilityState.active:
+                   if (m_2ndActiveTime > 0)
+                   {
+                       m_2ndActiveTime -= Time.deltaTime;
+                       m_2ndAbilityImage.color = activeColor;
+                   }
 
-                else
-                {
-                    m_2stAbility.BeginCooldown(gameObject);
+                   else
+                   {
+                       m_2stAbility.BeginCooldown(gameObject);
 
-                    m_2NdState = m_2ndAbilityState.cooldown;
-                    m_2ndCooldownTime = m_2stAbility.cooldownTime;
-                }
+                       m_2NdState = m_2ndAbilityState.cooldown;
+                       m_2ndCooldownTime = m_2stAbility.cooldownTime;
+                   }
 
-                break;
-            case m_2ndAbilityState.cooldown:
-                if (m_2ndCooldownTime > 0)
-                {
-                    m_2ndCooldownTime -= Time.deltaTime;
-                    m_2ndAbilityImage.color = cooldownColor;
-                }
-                else
-                {
-                    m_2NdState = m_2ndAbilityState.ready;
-                    m_2ndAbilityImage.color = readyColor;
-                }
-                break;
-        }
-     */
+                   break;
+               case m_2ndAbilityState.cooldown:
+                   if (m_2ndCooldownTime > 0)
+                   {
+                       m_2ndCooldownTime -= Time.deltaTime;
+                       m_2ndAbilityImage.color = cooldownColor;
+                   }
+                   else
+                   {
+                       m_2NdState = m_2ndAbilityState.ready;
+                       m_2ndAbilityImage.color = readyColor;
+                   }
+                   break;
+           }
+        */
     }
     public void ButtonPressed(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             abilityUsed = true;
+
             //  Debug.Log("pressed");
         }
         if (context.performed)
@@ -407,8 +411,18 @@ public class AbilityManager : MonoBehaviour
     public void BlinkAbilityUse(InputAction.CallbackContext context)
     {
         if (context.canceled)
+        {
             tempBlinkRef.BlinkTo();
-
+                chargingSound.Stop();
+                blinkSound.Play();
+        }
+        else if(context.started)
+        {
+            if (currentAbilityValue >= blinkCostValue)
+            {
+                chargingSound.Play(); 
+            }
+        }
         else if (context.performed && /* currentResourceValue*/ currentAbilityValue >= blinkCostValue)
         {
             currentAbilityValue -= blinkCostValue;
@@ -421,12 +435,12 @@ public class AbilityManager : MonoBehaviour
     {
         m_CarClass = accessCarValues.carClasses;
         //boostBar.minValue = minBoostBarValue;
-       // boostBar.maxValue = maxBoostBarValue;
+        // boostBar.maxValue = maxBoostBarValue;
         //boostBar.value = currentBoostBarValue;
         boostBarBar.fillAmount = currentBoostBarValue / maxBoostBarValue;
-        abilityBarBar.fillAmount = currentAbilityValue / maxAbilityValue; 
+        abilityBarBar.fillAmount = currentAbilityValue / maxAbilityValue;
         //abilityBar.minValue = minAbilityValue;
-       // abilityBar.maxValue = maxAbilityValue;
+        // abilityBar.maxValue = maxAbilityValue;
         //abilityBar.value = currentAbilityValue;
         switch (m_CarClass)
         {
@@ -443,14 +457,15 @@ public class AbilityManager : MonoBehaviour
 
 
                         }
+                      
                         else
                         {
                             currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
-                          //  Boostbarbar.fillAmount = currentBoostBarValue / maxBoostBarValue; 
+                            //  Boostbarbar.fillAmount = currentBoostBarValue / maxBoostBarValue; 
                             //currentBoostBarValue = currentBlinkValue = currentPDValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
                         }
                     }
-                    
+
                     if (currentAbilityValue < maxAbilityValue)
                     {
                         currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
@@ -466,7 +481,7 @@ public class AbilityManager : MonoBehaviour
                 {
                     currentAbilityValue = maxAbilityValue;
                 }
-              
+
 
                 break;
 
@@ -474,7 +489,7 @@ public class AbilityManager : MonoBehaviour
                 m_ResoureceGatherCheck = accessCarValues.mediumCar;
                 if (accessCarValues.currentSpeed > m_SpeedThreshholdForResource)
                 {
-
+                   
                     if (currentBoostBarValue < maxBoostBarValue)
 
                     {
@@ -487,8 +502,6 @@ public class AbilityManager : MonoBehaviour
                         currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForSpeed;
                     }
 
-                 
-
                 }
 
                 else if (m_ResoureceGatherCheck == true)
@@ -499,12 +512,13 @@ public class AbilityManager : MonoBehaviour
                         currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
                     }
 
+                    
                     if (currentAbilityValue < maxAbilityValue)
                     {
                         currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
                     }
-                  
 
+                    
                     else if (currentBoostBarValue == maxBoostBarValue)
                     {
                         currentBoostBarValue = maxBoostBarValue;
@@ -513,7 +527,7 @@ public class AbilityManager : MonoBehaviour
                     {
                         currentAbilityValue = maxAbilityValue;
                     }
-                   
+
                 }
                 break;
 
@@ -521,17 +535,19 @@ public class AbilityManager : MonoBehaviour
                 m_ResoureceGatherCheck = accessCarValues.heavyCar;
                 if (m_ResoureceGatherCheck == true)
                 {
-                    if (currentBoostBarValue < maxBoostBarValue)
-
-                    {
-                        currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForDrifting; 
-                    }
-
-                    if (currentAbilityValue < maxAbilityValue)
-                    {
-                        currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
-                    }
                    
+                        if (currentBoostBarValue < maxBoostBarValue)
+
+                        {
+                            currentBoostBarValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                        }
+
+                        if (currentAbilityValue < maxAbilityValue)
+                        {
+                            currentAbilityValue += Time.deltaTime * m_ResourceMultiplerForDrifting;
+                        }
+                    
+                  
                     else if (currentBoostBarValue == maxBoostBarValue)
                     {
                         currentBoostBarValue = maxBoostBarValue;
@@ -540,12 +556,12 @@ public class AbilityManager : MonoBehaviour
                     {
                         currentAbilityValue = maxAbilityValue;
                     }
-                  
+
                 }
                 break;
         }
 
-        
+
     }
 
 
