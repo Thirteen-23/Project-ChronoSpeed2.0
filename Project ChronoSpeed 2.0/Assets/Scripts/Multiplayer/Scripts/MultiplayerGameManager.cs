@@ -75,7 +75,6 @@ public class MultiplayerGameManager : NetworkBehaviour
                 realPlayersFinishedCount++;
             if (realPlayersFinishedCount == MaxPlayers)
                 gameShouldFinish = true;
-            realPlayersFinishedCount = 0;
         }
 
         for (int i = 0; i < lapManager.TrackedCars.Count; i++) 
@@ -227,26 +226,17 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
         else
         {
-            int spot = 0;
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < 3; i++)
             {
-                if (i == mainPlayerPos - 1)
-                    continue;
-                else
-                {
-                    if(spot > 2) { continue; }
-                    othersLB[spot].placementText.text = leaderboardInfoToShare[i].Place.ToString();
-                    othersLB[spot].lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
-                    othersLB[spot].playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
+                othersLB[i].placementText.text = leaderboardInfoToShare[i].Place.ToString();
+                othersLB[i].lapCountText.text = $"{leaderboardInfoToShare[i].CurLap}";
+                othersLB[i].playerNameText.text = $"Player: {leaderboardInfoToShare[i].ClientID}";
 
-                    string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
-                    othersLB[spot].raceCompletionText.text = $"{timeInterval}";
+                string timeInterval = TimeSpan.FromSeconds(leaderboardInfoToShare[i].raceCompletedIn).ToString("mm\\:ss\\.ff");
+                othersLB[i].raceCompletionText.text = $"{timeInterval}";
 
-                    if (leaderboardInfoToShare[i].raceCompletedIn > 0)
-                        othersLB[spot].SetFinishedTime(true);
-
-                    spot++;
-                }
+                if (leaderboardInfoToShare[i].raceCompletedIn > 0)
+                    othersLB[i].SetFinishedTime(true);
             }
         }
     }
