@@ -978,7 +978,7 @@ public class Car_Movement : MonoBehaviour
 
             driftEndingGrip = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = forwardFriction.extremumValue = forwardFriction.asymptoteValue =
             Mathf.SmoothDamp(forwardFriction.asymptoteValue, driftFactor * handBrakefrictionMulitplier, ref velocity, driftSmoothFactor);
-
+            m_DriftingSound.volume = 1f;
 
             for (int i = 0; i < 4; i++)
             {

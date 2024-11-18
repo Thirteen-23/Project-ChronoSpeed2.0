@@ -3326,6 +3326,9 @@ MonoBehaviour:
   m_TSidewaysFrictionValue: 0.1
   m_SForwardFrictionValue: 0
   m_SSidewaysFrictionValue: 0
+  m_ExtraGripOnHigherSpeed: 0
+  m_ValueToChangeSpeedForGrip: 180
+  m_DriftingSound: {fileID: 6440882967023571150}
   m_AmountOfForceOfTheStart: 50000
   imFlying: 0
 --- !u!114 &3975989593886958022
@@ -3584,7 +3587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 702383818
+  GlobalObjectIdHash: 3009645654
   InScenePlacedSourceGlobalObjectIdHash: 702383818
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3775,6 +3778,10 @@ MonoBehaviour:
   CurrentPowerState: 0
   colForFakeCollision: {fileID: 7693975700496786260}
   HologramShader: {fileID: 0}
+  trails:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_DriftingSound: {fileID: 0}
 --- !u!1 &3999351401643927890
 GameObject:
   m_ObjectHideFlags: 0
@@ -6012,11 +6019,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5632120330588149558, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6082823289364449325, guid: 1228717cf6040f247a6c804aae245e65,
         type: 3}
       propertyPath: MaxDistance
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7944751332299774316, guid: 1228717cf6040f247a6c804aae245e65,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fc74900833fc0db4096dc9a263b53f7e, type: 3}
     - target: {fileID: 8303858828901852765, guid: 1228717cf6040f247a6c804aae245e65,
         type: 3}
       propertyPath: m_Layer
@@ -6044,6 +6061,12 @@ AudioSource:
 --- !u!82 &5626173214558997852 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 6440145051340294820, guid: 1228717cf6040f247a6c804aae245e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1678667795752781816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6440882967023571150 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5632120330588149558, guid: 1228717cf6040f247a6c804aae245e65,
     type: 3}
   m_PrefabInstance: {fileID: 1678667795752781816}
   m_PrefabAsset: {fileID: 0}

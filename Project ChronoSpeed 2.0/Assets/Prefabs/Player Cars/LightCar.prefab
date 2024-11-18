@@ -3426,6 +3426,9 @@ MonoBehaviour:
   CurrentPowerState: 0
   colForFakeCollision: {fileID: 2363891299997928905}
   HologramShader: {fileID: 0}
+  trails:
+  - {fileID: 0}
+  - {fileID: 0}
   m_DriftingSound: {fileID: 0}
 --- !u!1 &6241498031530955137
 GameObject:
@@ -6024,61 +6027,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SoundContainer
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891632682964933426, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4994325696573019539, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5632120330588149558, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5632120330588149558, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5632120330588149558, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6082823289364449325, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6082823289364449325, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: d5bd398e80db0684a9571dff88591728, type: 3}
-    - target: {fileID: 7944751332299774316, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: Priority
-      value: 94
-      objectReference: {fileID: 0}
-    - target: {fileID: 7944751332299774316, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2342e489a091fa648acf9fee36a60c1d, type: 3}
-    - target: {fileID: 8303858828901852765, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8637193295256819508, guid: 1228717cf6040f247a6c804aae245e65,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1228717cf6040f247a6c804aae245e65, type: 3}
