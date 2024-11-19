@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerTrackingPerCUP : MonoBehaviour
+public class PlayerTrackingPerCUP : NetworkBehaviour
 {
     private List<StoreCatchUpPortals> turns = new List<StoreCatchUpPortals>();
     private Tracking_Manager_Script TMS;
@@ -39,7 +37,7 @@ public class PlayerTrackingPerCUP : MonoBehaviour
         //could do a on networkstart kinda think but dont wanna
         for (int i = 0; i < turns.Count; i++)
         {
-            //turns[i].ClosePortalPair();
+            turns[i].ClosePortalPair();
         }
         if (!NetworkManager.Singleton.IsServer)
             Destroy(GetComponent<BoxCollider>());

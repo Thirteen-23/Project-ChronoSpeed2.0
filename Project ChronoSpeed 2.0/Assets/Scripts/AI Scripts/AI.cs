@@ -185,9 +185,6 @@ public class AI : MonoBehaviour
     private void Sensor()
     {
         definingRays();
-        Debug.DrawRay(m_AICarBodyDetection.transform.position, m_AICarBodyDetection.transform.TransformDirection(direction * range));
-        Debug.DrawRay(m_AICarBodyDetection.transform.position, m_AICarBodyDetection.transform.TransformDirection(new Vector3(adjustRayLeft, 0, 1) * range));
-        Debug.DrawRay(m_AICarBodyDetection.transform.position, m_AICarBodyDetection.transform.TransformDirection(new Vector3(adjustRayRight, 0, 1) * range));
 
         // FrontRaySensor();
         //LeftRaySensor();
@@ -204,8 +201,6 @@ public class AI : MonoBehaviour
         {
             if (hit.collider.CompareTag("AI"))
             {
-                // Debug.Log("Hit the enivroment in left");
-                //carAI.acceration_Value = -2f;
                 rb.AddForce(rb.transform.right * forceTurn);
             }
             else if (hit.collider.CompareTag("walls"))
@@ -225,8 +220,6 @@ public class AI : MonoBehaviour
         {
             if (hit.collider.CompareTag("AI"))
             {
-                //   Debug.Log("Hit the enivroment in Right");
-                // carAI.acceration_Value = -2f;
                 rb.AddForce(-rb.transform.right * forceTurn);
             }
             else if (hit.collider.CompareTag("walls"))
@@ -242,9 +235,6 @@ public class AI : MonoBehaviour
         {
             if (hit.collider.CompareTag("AI"))
             {
-
-                //Debug.Log("Hit the enivroment in front");
-                //carAI.acceration_Value = -2f;
                 rb.AddForce(-rb.transform.forward * forceTurn);
             }
             else if (hit.collider.CompareTag("walls"))
@@ -328,7 +318,6 @@ public class AI : MonoBehaviour
         var collisionPoint = collider.ClosestPoint(location);
         Gizmos.DrawSphere(location, 0.1f);
         Gizmos.DrawWireSphere(collisionPoint, 0.1f);
-        Debug.Log(location);
     }
 
 
@@ -459,8 +448,6 @@ public class AI : MonoBehaviour
                 }
                 else if (!hit.collider.CompareTag("walls"))
                 {
-
-                    //  Debug.Log("left the enivroment front");
                     carAI.acceration_Value = 1.0f;
                     minimumWayPointApproachThreshold = 20f;
                     steeringForce = 1f;

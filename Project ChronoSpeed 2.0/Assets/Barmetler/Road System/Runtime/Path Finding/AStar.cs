@@ -76,7 +76,6 @@ namespace Barmetler
 				openSet.RemoveAt(0);
 				if (current == goal)
 				{
-					// Debug.Log("Steps taken: " + steps);
 					return ReconstructPath(cameFrom, current);
 				}
 

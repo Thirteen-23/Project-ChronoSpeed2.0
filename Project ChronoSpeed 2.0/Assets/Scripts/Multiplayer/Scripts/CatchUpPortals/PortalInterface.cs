@@ -15,7 +15,6 @@ public class PortalInterface : MonoBehaviour
     public void TurnOff()
     {
         BC.enabled = false;
-        portal.Play();
         if (portal != null) portal.Play("DP_Close");
         if (vfx != null) vfx.Play("DP_Close_VFX");
     }

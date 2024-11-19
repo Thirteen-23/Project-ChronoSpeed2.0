@@ -61,6 +61,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HologramAlpha:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _HologramImage:
         m_Texture: {fileID: 2800000, guid: 7ef0e693169f5e44598ef5a83f2f6c46, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -146,6 +150,7 @@ Material:
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
     - _AlphaDstBlend: 0
+    - _AlphaInvert: 0
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
@@ -178,6 +183,7 @@ Material:
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _Float: 1
+    - _FresnelIntensity: 1
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -211,6 +217,7 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _ScrollSpeed: 1
+    - _SignDistance: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -263,6 +270,8 @@ Material:
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColour: {r: 0, g: 49.573997, b: 32.184174, a: 0}
     - _HologramColours: {r: 0.38932618, g: 4.131186, b: 0, a: 0}
+    - _HologramColours_01: {r: 0, g: 1.278431, b: 1.498039, a: 1}
+    - _HologramColours_02: {r: 2, g: 0.03877157, b: 0, a: 1}
     - _HologramTiling: {r: 1, g: 7.46, b: 0, a: 0}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}

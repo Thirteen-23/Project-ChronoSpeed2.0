@@ -306,13 +306,11 @@ public class AI_Controls : MonoBehaviour
     {
 
         ray = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
-        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
 
         if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
         {
             if (hit.collider.CompareTag("ground"))
             {
-                //  Debug.Log("on the ground");
                 bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
 
             }
@@ -325,13 +323,11 @@ public class AI_Controls : MonoBehaviour
     {
 
         draftingRay = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
-        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
 
         if (Physics.Raycast(draftingRay, out RaycastHit hit, m_RayRange))
         {
             if (hit.collider.CompareTag("AI") || hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Im behind");
                 bodyOfCar.AddForce(bodyOfCar.transform.forward * (1000f * draftingMultiplierValue));
 
             }

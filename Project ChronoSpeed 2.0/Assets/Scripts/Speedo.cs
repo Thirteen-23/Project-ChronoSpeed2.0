@@ -25,7 +25,6 @@ public class Speedo : MonoBehaviour
 
     [Header("Speedo UI")]
     public TextMeshProUGUI speedLabel;
-    public Slider m_Speedo;
     //  public TextMeshProUGUI speedoFinalSpeed;
     //  public TextMeshProUGUI speedoMiddleSpeed;
     // [SerializeField] Image speedoNeedle;
@@ -93,9 +92,6 @@ public class Speedo : MonoBehaviour
             //speedoNeedle.transform.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(minSpeedAngle, maxSpeedAngle, speed / maxSpeed));
 
         }
-        m_Speedo.maxValue = maxSpeed;
-        m_Speedo.minValue = 0;
-        m_Speedo.value = finalSpeed;
     }
 
     private void GearChangeFunction()
