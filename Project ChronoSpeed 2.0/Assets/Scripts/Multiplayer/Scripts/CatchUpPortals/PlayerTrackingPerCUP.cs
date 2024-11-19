@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerTrackingPerCUP : NetworkBehaviour
@@ -39,7 +37,7 @@ public class PlayerTrackingPerCUP : NetworkBehaviour
         //could do a on networkstart kinda think but dont wanna
         for (int i = 0; i < turns.Count; i++)
         {
-            //turns[i].ClosePortalPair();
+            turns[i].ClosePortalPair();
         }
         if (!NetworkManager.Singleton.IsServer)
             Destroy(GetComponent<BoxCollider>());

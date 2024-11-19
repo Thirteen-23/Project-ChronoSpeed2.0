@@ -25,6 +25,14 @@ public class OnPlayerSpawn : NetworkBehaviour
             Destroy(GetComponent<Rigidbody>());
             gameObject.tag = "OtherPlayer";
 
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("lights"))
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
             Destroy(CameraJunk);
             Destroy(Canvas);
         }

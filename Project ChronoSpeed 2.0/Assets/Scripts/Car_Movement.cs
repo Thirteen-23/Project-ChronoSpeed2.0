@@ -249,7 +249,6 @@ public class Car_Movement : MonoBehaviour
                 {
                     // wheels torque equal to engine Rpm * gearbox * final drive ratio and input from player
                     wheels4[i].motorTorque = totalPowerInCar * 4 / 4;
-                    //Debug.Log(wheels4[i].motorTorque);
                 }
             }
             else if (drive == DifferentialTypes.RearWheelDrive)
@@ -466,7 +465,7 @@ public class Car_Movement : MonoBehaviour
         if (context.started)
         {
             if (shift_Value <= gearSpeedBox.Length - 1 && shift_Value < gearSpeedBox.Length - 1)
-            {    //Debug.Log("started");
+            {    
                 shiftUp = true;
                 shift_Value++;
             }
@@ -477,12 +476,10 @@ public class Car_Movement : MonoBehaviour
         }
         else if (context.performed)
         {
-            // Debug.Log("performed");
             shiftUp = false;
         }
         else if (context.canceled)
         {
-            // Debug.Log("cancelled");
         }
     }
 
@@ -502,12 +499,10 @@ public class Car_Movement : MonoBehaviour
         }
         else if (context.performed)
         {
-            // Debug.Log("performed");
             shiftDown = false;
         }
         else if (context.canceled)
         {
-            // Debug.Log("cancelled");
         }
     }
 
@@ -573,8 +568,6 @@ public class Car_Movement : MonoBehaviour
             Mathf.Clamp(shift_Value, 0, gearSpeedBox.Length - 1);
             if ((shiftUp == true && shift_Value > currentShift_Value) && (gearNum < gearSpeedBox.Length - 1))
             {
-                //Debug.Log(gearNum);
-                //Debug.Log(gearSpeedBox[gearNum]);
 
                 gearNum++;
                 currentShift_Value = shift_Value;
@@ -743,7 +736,6 @@ public class Car_Movement : MonoBehaviour
         //     if (wheels4[i].GetGroundHit(out hit))
         //     {
         //         currentDownforceValue = downForceValue; 
-        //         Debug.Log("touching Ground");
         //            bodyOfCar.AddForce(-transform.up * currentDownforceValue * bodyOfCar.velocity.magnitude);
 
         //     }
@@ -753,13 +745,11 @@ public class Car_Movement : MonoBehaviour
         //         bodyOfCar.AddForce(-transform.up * currentDownforceValue * bodyOfCar.velocity.magnitude);
         //     }
         ray = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
-        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
 
         if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
         {
             if (hit.collider.CompareTag("ground"))
             {
-                //  Debug.Log("on the ground");
                 bodyOfCar.AddForce(-transform.up * downForceValue * bodyOfCar.velocity.magnitude);
 
             }
@@ -770,7 +760,6 @@ public class Car_Movement : MonoBehaviour
     private void Drafting()
     {
         draftingRay = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
-        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
 
         if (Physics.Raycast(draftingRay, out RaycastHit hit, m_RayRange))
         {
@@ -1033,7 +1022,6 @@ public class Car_Movement : MonoBehaviour
             if (tt > 1f)
             {
                 m_DriftingSound.volume = 0f;
-                Debug.Log("normal friction");
                 for (int i = 0; i < 4; i++)
                 {
                     wheels4[i].forwardFriction = forwardFriction;
@@ -1175,7 +1163,6 @@ public class Car_Movement : MonoBehaviour
     public void ExtraBoostOnLowSpeed(float currentSpeed, float accelValue)
     {
         ray = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
-        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
 
         if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
         {

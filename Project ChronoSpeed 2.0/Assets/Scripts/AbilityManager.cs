@@ -108,7 +108,6 @@ public class AbilityManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(resourceState);
         AllMaBars();
 
         switch (resourceState)
@@ -376,13 +375,10 @@ public class AbilityManager : MonoBehaviour
         if (context.started)
         {
             abilityUsed = true;
-
-            //  Debug.Log("pressed");
         }
         if (context.performed)
         {
             abilityUsed = true;
-            // Debug.Log("holding");
         }
         if (context.canceled)
         {

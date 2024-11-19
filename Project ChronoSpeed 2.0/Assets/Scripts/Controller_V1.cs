@@ -418,7 +418,7 @@ public class Controller_V1 : MonoBehaviour
         if (context.started)
         {
             if (shift_Value <= gearSpeedBox.Length - 1 && shift_Value < gearSpeedBox.Length - 1)
-            {    //Debug.Log("started");
+            {  
                 shiftUp = true;
                 shift_Value++;
             }
@@ -429,12 +429,10 @@ public class Controller_V1 : MonoBehaviour
         }
         else if (context.performed)
         {
-            // Debug.Log("performed");
             shiftUp = false;
         }
         else if (context.canceled)
         {
-            // Debug.Log("cancelled");
         }
     }
 
@@ -454,12 +452,10 @@ public class Controller_V1 : MonoBehaviour
         }
         else if (context.performed)
         {
-            // Debug.Log("performed");
             shiftDown = false;
         }
         else if (context.canceled)
         {
-            // Debug.Log("cancelled");
         }
     }
     public void Handbraking(InputAction.CallbackContext context)
@@ -489,8 +485,6 @@ public class Controller_V1 : MonoBehaviour
             Mathf.Clamp(shift_Value, 0, gearSpeedBox.Length - 1);
             if ((shiftUp == true && shift_Value > currentShift_Value) && (gearNum < gearSpeedBox.Length - 1))
             {
-                //Debug.Log(gearNum);
-                //Debug.Log(gearSpeedBox[gearNum]);
 
                 gearNum++;
                 currentShift_Value = shift_Value;
@@ -642,13 +636,11 @@ public class Controller_V1 : MonoBehaviour
     private void Drafting()
     {
         draftingRay = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
-        Debug.DrawRay(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(direction * m_RayRange));
 
         if (Physics.Raycast(draftingRay, out RaycastHit hit, m_RayRange))
         {
             if (hit.collider.CompareTag("AI") || hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Im behind");
                 bodyOfCar.AddForce(bodyOfCar.transform.forward * (1000f * draftingMultiplierValue));
 
             }
