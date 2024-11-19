@@ -4,7 +4,7 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerTrackingPerCUP : MonoBehaviour
+public class PlayerTrackingPerCUP : NetworkBehaviour
 {
     private List<StoreCatchUpPortals> turns = new List<StoreCatchUpPortals>();
     private Tracking_Manager_Script TMS;
