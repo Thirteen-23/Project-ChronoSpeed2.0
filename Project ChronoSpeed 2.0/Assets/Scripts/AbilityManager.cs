@@ -108,7 +108,7 @@ public class AbilityManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(resourceState);
+       
         AllMaBars();
 
         switch (resourceState)

@@ -602,7 +602,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555645150005943345}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1142,7 +1142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff04726fc03beb445b7f37499cb08864, type: 2}
+  - {fileID: 2100000, guid: 34ddd5410cbf94e4fb18b94dddd2c3c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1300,7 +1300,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 25
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1335,7 +1335,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1436,7 +1436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff04726fc03beb445b7f37499cb08864, type: 2}
+  - {fileID: 2100000, guid: 34ddd5410cbf94e4fb18b94dddd2c3c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2151,7 +2151,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58b47eb6dfeb6ae41a4b9dd1848a8c5a, type: 2}
+  - {fileID: 2100000, guid: ed73f769020d2b0418637fcea3116171, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2234,7 +2234,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff04726fc03beb445b7f37499cb08864, type: 2}
+  - {fileID: 2100000, guid: 34ddd5410cbf94e4fb18b94dddd2c3c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3242,7 +3242,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 25
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3277,7 +3277,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3649,6 +3649,9 @@ MonoBehaviour:
   CurrentPowerState: 0
   colForFakeCollision: {fileID: 2718118863407439792}
   HologramShader: {fileID: 0}
+  trails:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5731147183975128354
 GameObject:
   m_ObjectHideFlags: 0
@@ -4665,7 +4668,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 25
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4700,7 +4703,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5592,7 +5595,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -945923895002686047, guid: 8f4baabd633f2e948bafbcb448742a78, type: 3}
+  - {fileID: 2100000, guid: ed73f769020d2b0418637fcea3116171, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5759,7 +5762,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1e0014b989b6a434d9dee038cd0a7dc8, type: 2}
+  - {fileID: 2100000, guid: 91078266650444a47903dc34e72cfdbb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9309,7 +9312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff04726fc03beb445b7f37499cb08864, type: 2}
+  - {fileID: 2100000, guid: 34ddd5410cbf94e4fb18b94dddd2c3c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9486,12 +9489,12 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 1.05e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
@@ -9687,22 +9690,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 40
+      value: -2.0572406e-19
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0.0703125
+      value: -411
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 383
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -9868,22 +9871,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: -0.00000002096867
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 0.101960786
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}

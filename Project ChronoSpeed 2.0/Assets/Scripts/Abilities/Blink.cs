@@ -9,7 +9,7 @@ public class Blink : MonoBehaviour
     Volume mainCamVol;
 
     VFXContainer m_VFXContainer;
-
+    PlayerStateMachine stateMach; 
     Mirage currentMirage;
     SphereCollider mirageCol;
     Coroutine chargeCoroutine;
@@ -20,11 +20,13 @@ public class Blink : MonoBehaviour
     {
         m_VFXContainer = GetComponent<VFXContainer>();
         mainCamVol = Camera.main.GetComponent<Volume>();
+        stateMach = GetComponent<PlayerStateMachine>();
     }
     public void SpawnMirage()
     {
-        m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, true);
-        VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, true);
+      //  m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, true);
+        stateMach.ChangeCurrentState(PlayerStateMachine.PlayerStates.Blinking, true);
+        //VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, true);
         //Maybe do a little 0.5 second charge sound
         currentMirage.enabled = true;
         mirageCol.enabled = true;
@@ -36,8 +38,9 @@ public class Blink : MonoBehaviour
 
     public void BreakMirage()
     {
-        m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, false);
-        VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, false);
+       // m_VFXContainer.SetVFX(VFXContainer.VFXTypes.electricBall, false);
+        //VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, false);
+        stateMach.ChangeCurrentState(PlayerStateMachine.PlayerStates.Blinking, false);
 
         if (chargeCoroutine != null) StopCoroutine(chargeCoroutine);
         chargeCoroutine = null;
@@ -55,8 +58,10 @@ public class Blink : MonoBehaviour
         if (!currentMirage.enabled)
             return;
 
-        m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, false);
-        VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, false);
+       // m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, false);
+        //VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, false);
+
+        stateMach.ChangeCurrentState(PlayerStateMachine.PlayerStates.Blinking, false);
 
         if (chargeCoroutine != null) StopCoroutine(chargeCoroutine);
         chargeCoroutine = null;

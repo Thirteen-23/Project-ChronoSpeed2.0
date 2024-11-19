@@ -34,8 +34,8 @@ public class Mirage : MonoBehaviour
 
     private void OnTransformParentChanged()
     {
-        GameObject elecArc = Instantiate(GetComponentInParent<VFXContainer>().elecArcPrefab, Vector3.zero, Quaternion.identity);
-        GetComponentInParent<VFXContainer>().electricArc = elecArc.GetComponent<VisualEffect>();
+        GameObject elecArc = Instantiate(transform.parent.GetComponentInChildren<VFXContainer>().elecArcPrefab, Vector3.zero, Quaternion.identity);
+        transform.parent.GetComponentInChildren<VFXContainer>().electricArc = elecArc.GetComponent<VisualEffect>();
 
         blParent = GetComponentInParent<Blink>();
         blParent.SetMirage(this);

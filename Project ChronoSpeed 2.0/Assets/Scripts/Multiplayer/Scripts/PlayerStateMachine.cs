@@ -1,21 +1,31 @@
+using System;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerStateMachine : NetworkBehaviour
 {
     public PlayerStates CurrentDrivingState;
     public PlayerStates CurrentPowerState;
+    private VFXContainer vfxCon;
 
     [Header("Refrences")]
     [SerializeField] private BoxCollider colForFakeCollision;
 
     [Header("VFX Refrences")]
     [SerializeField] private Material HologramShader;
+
+    private void Awake()
+    {
+        vfxCon = GetComponentInChildren<VFXContainer>();
+    }
     public enum PlayerStates
     {
         IdleDriving, Driving, Reversing,
-        Breaking, Drifting, Boosting, LimitRemover, 
+        Breaking, StartDrifting, Drifting, Boosting, LimitRemover, 
+
+
         IdlePower, DroppingPortal, Blinking, Rewinding, TempInvonrability
 
 
@@ -83,7 +93,7 @@ public class PlayerStateMachine : NetworkBehaviour
             case PlayerStates.Breaking:
                 Breaking(SwitchTo); break;
             case PlayerStates.Drifting:
-                Drifiting(SwitchTo); break;
+                Drifting(SwitchTo); break;
             case PlayerStates.DroppingPortal:
                 DroppingPortal(SwitchTo); break;
             case PlayerStates.Rewinding:
@@ -97,18 +107,19 @@ public class PlayerStateMachine : NetworkBehaviour
 
 
     //this would also reduce the need of a vfx manager, at least remove the rpcs from that scripts so that its only called locally, and we dont need to rpc everytime we call a particle :)
+
+    
+    
     private void IdleDriving(bool switchTo)
     {
+      //vfxCon.SetVFX()
         //Idle noise = switchTo,
     }
 
     [SerializeField] TrailRenderer[] trails = new TrailRenderer[2];
     private void Driving(bool switchTo)
     {
-        for (int i = 0; i < trails.Length; i++)
-        {
-            trails[i].emitting = switchTo; 
-        }
+      
         //Driving noise = switchTo,
         //those tire particles = switchTo,
         //if(on) maybe make the sound and velocity of the particles based of verleyPhysics
@@ -130,9 +141,12 @@ public class PlayerStateMachine : NetworkBehaviour
         //make screech noise and make tire smoke greyer?
     }
 
-    [SerializeField] AudioSource m_DriftingSound; 
-    private void Drifiting(bool switchTo)
+    [SerializeField] AudioSource m_DriftSound;
+    private void Drifting(bool switchTo)
     {
+        vfxCon.SetVFX(VFXContainer.VFXTypes.spinSmoke, switchTo);
+        m_DriftSound.volume = Convert.ToInt32(switchTo);
+
         //tireParticles = switchTo;
         //drifiting noise = switchTo;
     }

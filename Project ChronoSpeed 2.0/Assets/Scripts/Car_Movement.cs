@@ -1,6 +1,8 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static PlayerStateMachine;
+using UnityEngine.InputSystem.LowLevel;
 public enum Class
 {
     Light,
@@ -161,6 +163,7 @@ public class Car_Movement : MonoBehaviour
         rotations = gameObject.transform.rotation;
         bodyOfCar.centerOfMass = centerMass.localPosition;
         exhaust_Shift = GetComponentInChildren<ParticleSystem>();
+        m_StateMach = GetComponentInChildren<PlayerStateMachine>();
     }
 
     private void FixedUpdate()
@@ -958,7 +961,8 @@ public class Car_Movement : MonoBehaviour
         }
         #endregion
     }
-    [SerializeField] AudioSource m_DriftingSound; 
+    [SerializeField] AudioSource m_DriftingSound;
+    [SerializeField] PlayerStateMachine m_StateMach;  
     private void AdjustTractionForDrifting()
     {
 
@@ -1011,14 +1015,18 @@ public class Car_Movement : MonoBehaviour
                 slip[i] = wheelHit.sidewaysSlip /*/ wheels4[i].sidewaysFriction.extremumSlip*/;
                 if (slip[i] > 0.4f || slip[i] < -0.4f)
                 {
+                    m_StateMach.ChangeCurrentState(PlayerStates.Driving, false);
+                    m_StateMach.ChangeCurrentState(PlayerStates.StartDrifting, true);
+
                     leftWheelSmoke.Play();
                     var leftMain = leftWheelSmoke.emission;
                     leftMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
-
+                    
                     rightWheelSmoke.Play();
                     var rightMain = rightWheelSmoke.emission;
                     rightMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
                 }
+
             }
             tt = 0;
         }
@@ -1067,6 +1075,9 @@ public class Car_Movement : MonoBehaviour
                     slip[i] = wheelHit.sidewaysSlip /*/ wheels4[i].sidewaysFriction.extremumSlip*/;
                     if (slip[i] > 0.4f || slip[i] < -0.4f)
                     {
+                        m_StateMach.ChangeCurrentState(PlayerStates.StartDrifting, true);
+                        m_StateMach.ChangeCurrentState(PlayerStates.Drifting, true);
+
                         tt = 1f;
                         forwardFriction.extremumValue = forwardFriction.asymptoteValue = sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
                    Mathf.Lerp(driftEndingGrip, Mathf.Clamp((currentSpeed * handBrakefrictionMulitplier / 300) + 2f, 0, 4), tt * 1f);
@@ -1106,6 +1117,8 @@ public class Car_Movement : MonoBehaviour
                     {
                         // leftTrail.emitting = false;
                         // rightTrail.emitting = false;
+                        m_StateMach.ChangeCurrentState(PlayerStates.StartDrifting, false);
+                        m_StateMach.ChangeCurrentState(PlayerStates.Drifting, false);
                         rightWheel.Stop();
                         leftWheel.Stop();
                         leftWheelSmoke.Stop();
@@ -1127,7 +1140,7 @@ public class Car_Movement : MonoBehaviour
                 }
             }
             bodyOfCar.angularDrag = whenNotDrifting;
-           
+            m_StateMach.ChangeCurrentState(PlayerStates.Driving, true);
             #endregion
 
 
@@ -1194,6 +1207,8 @@ public class Car_Movement : MonoBehaviour
             imFlying = false;
         }
     }
+
+
 }
 
 

@@ -13,12 +13,10 @@ public class VFXManager : NetworkBehaviour
         else Destroy(this);
         base.OnNetworkSpawn();
     }
-    public enum VFXTypes
-    {
-        electricBall,
-    }
+    
+    // fix for later maybe for use idk
 
-    public static void AlterVFXState(GameObject playerRef, VFXTypes type, bool setTo)
+    /*public static void AlterVFXState(GameObject playerRef, VFXTypes type, bool setTo)
     {
         instance.SendInfoToEveryoneRpc(playerRef.GetComponent<NetworkObject>().NetworkObjectId, type, setTo);
     }
@@ -28,4 +26,5 @@ public class VFXManager : NetworkBehaviour
     {
         NetworkManager.Singleton.SpawnManager.SpawnedObjects[objectID].GetComponent<VFXContainer>().SetVFX(type, setTo);
     }
+    */
 }
