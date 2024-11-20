@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static PlayerStateMachine;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class AbilityManager : MonoBehaviour
         ready,
         active
     }
-    [Header("abiliy values for cooldowns")]
+   [Header("abiliy values for cooldowns")]
     public float cooldownTime;
     public float activeTime;
     public float m_2ndCooldownTime;
@@ -92,6 +93,7 @@ public class AbilityManager : MonoBehaviour
         accessCarValues = GetComponent<Car_Movement>();
         tempPortSpawnRef = GetComponent<PortalSpawn>();
         tempBlinkRef = GetComponent<Blink>();
+       
         //nitroBoostSound = GameObject.Find("NitroBoostSound").GetComponentInChildren<AudioSource>();
     }
 
@@ -105,7 +107,7 @@ public class AbilityManager : MonoBehaviour
         // abilityBar = GameObject.Find("AblityBar").GetComponentInChildren<Slider>();
 
     }
-
+   
     void FixedUpdate()
     {
        

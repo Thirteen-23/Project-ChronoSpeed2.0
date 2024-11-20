@@ -810,10 +810,19 @@ public class Car_Movement : MonoBehaviour
                             wheel.sidewaysFriction = sidewaysFriction;
                             if(currentSpeed < 80)
                             {
-                                if (checkingTerrain.collider.CompareTag("SideWalk"))
+                                if (checkingTerrain.collider.CompareTag("Tarmac"))
                                 {
-                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
-                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+
+                                    wheel.forwardFriction = forwardFriction;
+                                    wheel.sidewaysFriction = sidewaysFriction;
+
+                                }
+                                else if (checkingTerrain.collider.CompareTag("SideWalk"))
+                                {
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
 
                                     wheel.forwardFriction = forwardFriction;
                                     wheel.sidewaysFriction = sidewaysFriction;
@@ -1175,24 +1184,29 @@ public class Car_Movement : MonoBehaviour
     [SerializeField] bool imFlying = false;
     public void ExtraBoostOnLowSpeed(float currentSpeed, float accelValue)
     {
-        ray = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
-
-        if (Physics.Raycast(ray, out RaycastHit hit, floorRange))
+        //ray = new Ray(bodyOfCar.transform.position, bodyOfCar.transform.TransformDirection(downwardsDirection * floorRange));
+        WheelHit wheelHit;
+        for (int i = 2; i < wheels4.Length; i++)
         {
-            if (currentSpeed < 60)
-               
-            {   
-                if (hit.collider.CompareTag("Tarmac") || hit.collider.CompareTag("SideWalk"))
+            wheels4[i].GetGroundHit(out wheelHit);
+            if (wheels4[i].isGrounded == true )
+            {
+                if (currentSpeed < 60)
+
                 {
-                    imFlying = true;
-                    bodyOfCar.AddForce(bodyOfCar.transform.forward * (m_AmountOfForceOfTheStart * accelValue));
+                    if (wheelHit.collider.CompareTag("Tarmac") || wheelHit.collider.CompareTag("SideWalk"))
+                    {
+                        imFlying = true;
+                        bodyOfCar.AddForce(bodyOfCar.transform.forward * (m_AmountOfForceOfTheStart * accelValue));
+                    }
+                }
+                else
+                {
+                    imFlying = false;
                 }
             }
         }
-        else
-        {
-            imFlying = false;
-        }
+       
     }
 
 

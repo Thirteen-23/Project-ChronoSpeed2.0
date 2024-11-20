@@ -100,6 +100,10 @@ public class PlayerStateMachine : NetworkBehaviour
                 Rewinding(SwitchTo); break;
             case PlayerStates.Blinking:
                 Blinking(SwitchTo); break;
+            case PlayerStates.Boosting:
+                Boosting(SwitchTo); break;
+            case PlayerStates.LimitRemover:
+                LimitRemover(SwitchTo); break;
             case PlayerStates.TempInvonrability:
                 StartCoroutine(TempInvonrability(SwitchTo)); break;
         }
@@ -169,7 +173,19 @@ public class PlayerStateMachine : NetworkBehaviour
 
         //rewindHologramVFX = switchTo;
     }
-
+    public Class carClasses;
+    private void Boosting(bool switchTo)
+    {
+            vfxCon.SetVFX(VFXContainer.VFXTypes.Boosting, switchTo);
+    }
+    private void LimitRemover(bool switchTo)
+    {
+        vfxCon.SetVFX(VFXContainer.VFXTypes.SpeedLimitRemover, switchTo);
+        if (CurrentPowerState == PlayerStates.LimitRemover && switchTo == false)
+        {
+            ChangeCurrentState(PlayerStates.IdlePower, true);
+        }
+    }
     private IEnumerator TempInvonrability(bool switchTo)
     {
         if(switchTo == false) { yield break; }
@@ -178,11 +194,12 @@ public class PlayerStateMachine : NetworkBehaviour
         yield return new WaitForSeconds(2f);
         //start blink graphic = false
         colForFakeCollision.enabled = true;
-        if(CurrentPowerState == PlayerStates.TempInvonrability) { ChangeCurrentState(PlayerStates.IdlePower, true); }
+        if(CurrentPowerState == PlayerStates.TempInvonrability) 
+        {
+            ChangeCurrentState(PlayerStates.IdlePower, true); 
+        }
         //this one might fuck everything up, cause they should have temp invincibilty once getting outta rewind
         //but its a state machine so i cant have two going at once, maybe i will make this a coroutine that lasts 2 seconds
         //that is called when rewinding = false;
     }
-
-
 }
