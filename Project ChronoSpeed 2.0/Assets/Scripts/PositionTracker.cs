@@ -33,7 +33,6 @@ public class PositionTracker : NetworkBehaviour
     {
         boundsToUVCol = GetComponent<Collider>();
         extents = boundsToUVCol.bounds.extents;
-        AddPlayer(FindAnyObjectByType<Car_Movement>().transform, Instantiate(playerIconPrefab, minimapParent));
 
         maxes = transform.position + extents;
         mins = transform.position - extents;
@@ -46,6 +45,14 @@ public class PositionTracker : NetworkBehaviour
         players.Add(new PlayerMapInfo(plyr, plyrIcon));
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        var fkCol = other.GetComponent<FakeCollision>();
+        if(fkCol != null)
+        {
+            AddPlayer(fkCol.myTransform, Instantiate(playerIconPrefab, minimapParent));
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         var fkCol = other.GetComponent<FakeCollision>();
