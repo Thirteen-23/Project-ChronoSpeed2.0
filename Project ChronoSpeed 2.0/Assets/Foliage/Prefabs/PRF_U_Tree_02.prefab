@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8054466954200640498}
   m_Layer: 0
   m_Name: PRF_U_Tree_02
-  m_TagString: Untagged
+  m_TagString: walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8054466954200640497
 Transform:
@@ -125,14 +125,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4256751565435274681, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3039099756191140757, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
         type: 3}
       propertyPath: m_Name
       value: ST_U_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1218912716677395249, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218912716677395249, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1400086564404443856, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
@@ -140,9 +160,24 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1400086564404443856, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3361634513375469152, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361634513375469152, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702473544836248546, guid: 3bf9ac357fd2bca46bbe3bf91d44f112,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -264,6 +299,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TreeModel_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9542cb1e9f74d8543a88fa9142063c15,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9542cb1e9f74d8543a88fa9142063c15, type: 3}

@@ -4767,6 +4767,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_DriftSound: {fileID: 6661284220346678479}
+  carClasses: 0
 --- !u!1 &8262871642904044204
 GameObject:
   m_ObjectHideFlags: 0
@@ -4861,6 +4862,12 @@ MonoBehaviour:
   straightSmokes:
   - {fileID: 5391911261012112706}
   - {fileID: 3007944755124814213}
+  speedLimitRemoverTrails:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nitroBoostVFX: []
   electricArc: {fileID: 0}
 --- !u!1 &8785230037437107794
 GameObject:
@@ -6248,6 +6255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966996120508759436, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8111466339416296260, guid: 9b9d08f2f9d349341a2407a891f6b443,
         type: 3}
