@@ -180,8 +180,10 @@ public class PlayerStateMachine : NetworkBehaviour
     }
     private void LimitRemover(bool switchTo)
     {
-        vfxCon.SetVFX(VFXContainer.VFXTypes.SpeedLimitRemover, switchTo);
-        if (CurrentPowerState == PlayerStates.LimitRemover && switchTo == false)
+        
+            vfxCon.SetVFX(VFXContainer.VFXTypes.SpeedLimitRemover, switchTo);
+      
+        if (switchTo == false)
         {
             ChangeCurrentState(PlayerStates.IdlePower, true);
         }

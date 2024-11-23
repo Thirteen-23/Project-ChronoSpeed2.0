@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup MainMenuCG;
     [SerializeField] private CanvasGroup JoinHostCG;
+    [SerializeField] private CanvasGroup OptionsCG;
     [SerializeField] private TMP_InputField ipInput;
     [SerializeField] GameObject joinServerButton;
     [SerializeField] GameObject joinButton;
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     {
         MainMenu,
         JoinHost,
+        Options,
 
     }
 
@@ -36,6 +38,9 @@ public class UIManager : MonoBehaviour
                 JoinHostCG.interactable = false;
                 JoinHostCG.blocksRaycasts = false;
 
+                OptionsCG.alpha = 0f;
+                OptionsCG.interactable = false;
+                OptionsCG.blocksRaycasts = false;
                 EventSystem.current.SetSelectedGameObject(joinServerButton);
                 break;
             case MainMenuStates.JoinHost:
@@ -47,7 +52,24 @@ public class UIManager : MonoBehaviour
                 JoinHostCG.interactable = true;
                 JoinHostCG.blocksRaycasts = true;
 
+                OptionsCG.alpha = 0f;
+                OptionsCG.interactable = false;
+                OptionsCG.blocksRaycasts = false;
                 EventSystem.current.SetSelectedGameObject(joinButton);
+                break;
+            case MainMenuStates.Options:
+                MainMenuCG.alpha = 0f;
+                MainMenuCG.interactable = false;
+                MainMenuCG.blocksRaycasts = false;
+
+                JoinHostCG.alpha = 0f;
+                JoinHostCG.interactable = false;
+                JoinHostCG.blocksRaycasts = false;
+
+                OptionsCG.alpha = 1f;
+                OptionsCG.interactable = true;
+                OptionsCG.blocksRaycasts = true; 
+
                 break;
         }
     }
@@ -63,5 +85,13 @@ public class UIManager : MonoBehaviour
     public void JoinHost()
     {
         ServerManager.Singleton.StartClient(ipInput.text);
+    }
+
+    public void fullscreen()
+    {
+        // toogle Fullscreen
+        Screen.fullScreen = !Screen.fullScreen;
+
+       
     }
 }
