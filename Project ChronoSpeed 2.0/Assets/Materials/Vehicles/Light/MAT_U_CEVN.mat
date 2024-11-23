@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_U_CEVN
-  m_Shader: {fileID: -6465566751694194690, guid: 85765f827bc246d40a3f7bcc185fbcc0,
+  m_Shader: {fileID: -6465566751694194690, guid: 42940406358d87d40b3059d6bf6c0b37,
     type: 3}
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
@@ -38,7 +38,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColour:
-        m_Texture: {fileID: 2800000, guid: 5749ebb5243fc4a4894dfbab38c85a90, type: 3}
+        m_Texture: {fileID: 2800000, guid: f32fe37590486774885fb59156216cc6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -61,10 +61,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _EmissionMaskStack:
-        m_Texture: {fileID: 2800000, guid: 7dea46036f4e1e64fab2dec1178ab695, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -82,7 +78,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MRAO:
-        m_Texture: {fileID: 2800000, guid: 26ff8348b6da86442bf45f6170937bae, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7eaa20502d66ad54db5834e62dd03063, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -94,7 +90,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 6cb4d242010e86c4ca1310d5925e2d20, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5fbf6646c2192fb4f88f2f30b391efab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -178,10 +174,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
-    - _EmissionIntensity: 9.4
-    - _EmissionIntensity_Body: 10
-    - _EmissionIntensity_Headlights: 0
-    - _EmissionIntensity_Rear: 0
+    - _EmissionIntensity: 47.14
     - _Emission_Intensity_2: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
@@ -275,9 +268,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EmissionCol_Body: {r: 0, g: 0.8105783, b: 1, a: 0}
-    - _EmissionCol_Headlights: {r: 0.567356, g: 1, b: 0, a: 0}
-    - _EmissionCol_Rear: {r: 1, g: 0.6236603, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColour: {r: 1, g: 1, b: 1, a: 0}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}

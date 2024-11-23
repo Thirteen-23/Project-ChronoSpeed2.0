@@ -24,7 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_D_ BakedAccessories
-  m_Shader: {fileID: -6465566751694194690, guid: 85765f827bc246d40a3f7bcc185fbcc0,
+  m_Shader: {fileID: -6465566751694194690, guid: 42940406358d87d40b3059d6bf6c0b37,
     type: 3}
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
@@ -54,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColour:
-        m_Texture: {fileID: 2800000, guid: bd05e13141df82844be77b8ba2ccf4b1, type: 3}
+        m_Texture: {fileID: 2800000, guid: ce9deea7a00399748ae43cfcf8a2c40f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -77,10 +77,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _EmissionMaskStack:
-        m_Texture: {fileID: 2800000, guid: bff0d88a9b235de429392764049fff78, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -98,7 +94,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MRAO:
-        m_Texture: {fileID: 2800000, guid: 2eb2a0c9ebe30e44596fbeb896eece69, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93577738dd19fdd40833d1e9a0cc9613, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -114,7 +110,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: ea1df7a894623bd40a479b7079e75865, type: 3}
+        m_Texture: {fileID: 2800000, guid: 86c9ee585f5994448b551a3735ea7a55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -125,24 +121,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_43b1a9092a5245cd8091ab3660d1d51c_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 3d2719e21741cce499cdef32a680e694, type: 3}
+    - _SampleTexture2D_3e72671ee27e4895ab5ff5926475d028_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 9ecd96406f682144293580decbb6f0b8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_57288f9a0d4a41febc2c43b2b673b40a_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 9603d37b8bf972a4a9f78a729153bfa5, type: 3}
+    - _SampleTexture2D_4ac810d4f6f44bf19349e5d863380100_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 0e331377cd735ea4bbeea48738873898, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_7a97a14d430e40f38ad75160bd9a02ec_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 3d2719e21741cce499cdef32a680e694, type: 3}
+    - _SampleTexture2D_8c14ed0ce75e45319f96ee1e1d04bb1c_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 0e331377cd735ea4bbeea48738873898, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_e26a60fa25304b1bb341ab4a7960c6e9_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 9603d37b8bf972a4a9f78a729153bfa5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_eadbc3a9d27d47b788eb5c5d2533b22f_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 3d2719e21741cce499cdef32a680e694, type: 3}
+    - _SampleTexture2D_8d16a0a0479040adb17657a0442dcc9e_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d444d4236c00d994eba5707b451c6ef9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularColorMap:
@@ -218,10 +210,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
-    - _EmissionIntensity: 15.9
-    - _EmissionIntensity_Body: 10
-    - _EmissionIntensity_Headlights: 0
-    - _EmissionIntensity_Rear: 0
+    - _EmissionIntensity: -8.4
     - _Emission_Intensity_2: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
@@ -231,7 +220,6 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
-    - _Fuzziness: 0
     - _GlossAdjustment: 1
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
@@ -243,11 +231,12 @@ Material:
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
     - _InvTilingScale: 1
-    - _InvertEmission: 0
+    - _InvertEmission: 1
     - _Ior: 1.5
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
+    - _Mask_Range: 0
     - _MaterialID: 1
     - _Metallic: 0
     - _MetallicAdjustment: 1
@@ -261,7 +250,6 @@ Material:
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
-    - _Range_Adjustment: 0
     - _RayTracing: 0
     - _Rear_Light_Adjustments: 0
     - _ReceivesSSR: 1
@@ -315,13 +303,11 @@ Material:
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Car_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 0.40566036, g: 0.11672299, b: 0.14650893, a: 1}
+    - _ColourChange: {r: 1, g: 1, b: 1, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EmissionCol_Body: {r: 0, g: 0.6203108, b: 0.764151, a: 0}
-    - _EmissionCol_Headlights: {r: 0.567356, g: 1, b: 0, a: 0}
-    - _EmissionCol_Rear: {r: 1, g: 0.6236603, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColour: {r: 1, g: 1, b: 1, a: 0}
+    - _EmissionColour: {r: 0, g: 0.8307624, b: 1, a: 0}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
