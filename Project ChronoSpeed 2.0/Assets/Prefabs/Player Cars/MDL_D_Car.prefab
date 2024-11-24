@@ -4110,6 +4110,7 @@ GameObject:
   - component: {fileID: 832651492297267958}
   - component: {fileID: 1030777677}
   - component: {fileID: -5923482915379910636}
+  - component: {fileID: 4139704555390401608}
   m_Layer: 0
   m_Name: MDL_D_Car
   m_TagString: Player
@@ -4498,10 +4499,6 @@ MonoBehaviour:
     m_ActionId: 70805d7b-93b7-4292-bb53-75df513a4a80
     m_ActionName: Movement/Blink[/DualSenseGamepadHID/buttonNorth,/Keyboard/g]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 92ff09ed-63d5-4cdb-924f-71b1797ba4db
-    m_ActionName: UI/Navigate[/DualSenseGamepadHID/leftStick,/DualSenseGamepadHID/dpad,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1387420509638381194}
         m_TargetAssemblyTypeName: TimeRecording, Assembly-CSharp
@@ -4517,6 +4514,62 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f963ea18-95bb-4cc0-9ac5-641dde1b78d0
     m_ActionName: Movement/Rewind[/DualSenseGamepadHID/buttonNorth,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3e7780de-62c1-4d51-9c8f-82713cd6ae38
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61ee2c65-3fde-4f8f-896e-0b9f5851959e
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 208e988d-c27d-4185-962e-b3a78f25840a
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3e3c4f6b-a5fa-41e7-83be-b2e2f7b4e48b
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 832fd78d-5ce5-4831-ae0e-4571798ae1b9
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1a4991f-1c8d-49e6-a088-6c72b620da15
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d9a54b9-28d5-4f21-aa2a-31f225e272e4
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 103f52fc-6205-413c-86c8-8165939c3036
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96c1210c-893c-4760-838a-c3bb11aea642
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 72b6a20c-76c9-49d9-aa17-d277a2869ce9
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4139704555390401608}
+        m_TargetAssemblyTypeName: PSWrapper, Assembly-CSharp
+        m_MethodName: OpenPauseMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c109dbdb-f458-480d-8aae-4e859edc58ef
+    m_ActionName: Movement/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -4603,7 +4656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3611437128
+  GlobalObjectIdHash: 391577787
   InScenePlacedSourceGlobalObjectIdHash: 391577787
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -4768,6 +4821,18 @@ MonoBehaviour:
   - {fileID: 0}
   m_DriftSound: {fileID: 6661284220346678479}
   carClasses: 0
+--- !u!114 &4139704555390401608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564646704286003995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad42b1376c22e7841811e5011963e4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8262871642904044204
 GameObject:
   m_ObjectHideFlags: 0

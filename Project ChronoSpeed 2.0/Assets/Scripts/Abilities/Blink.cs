@@ -126,7 +126,7 @@ public class Blink : MonoBehaviour
         currentMirage = curMir;
         mirageCol = curMir.GetComponent<SphereCollider>();
 
-        Transform electricTarget = GetComponent<VFXContainer>().electricArc.transform.GetChild(0);
+        Transform electricTarget = GetComponentInChildren<VFXContainer>().electricArc.transform.GetChild(0);
         electricTarget.parent = currentMirage.transform;
 
         currentMirage.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);

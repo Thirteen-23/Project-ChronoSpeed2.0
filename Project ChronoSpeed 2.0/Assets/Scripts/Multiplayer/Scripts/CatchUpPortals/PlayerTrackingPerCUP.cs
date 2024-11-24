@@ -65,13 +65,13 @@ public class PlayerTrackingPerCUP : NetworkBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        GameObject player = ConfirmPlayer(other);
+         GameObject player = ConfirmPlayer(other);
         if (player == null)
             return;
 
-        if(PassedThisLap.Contains(player) && !IsPlayerLast(player))
+        if(!PassedThisLap.Contains(player) && !IsPlayerLast(player))
         {
-            if (PassedThisLap.Count == playerPoses.Count - 1)
+            if (PassedThisLap.Count + 1 == playerPoses.Count - 1)
                 OpenAllPortalsRpc();
             else
                 OpenPortalRpc(PassedThisLap.Count);
@@ -82,7 +82,7 @@ public class PlayerTrackingPerCUP : NetworkBehaviour
     GameObject ConfirmPlayer(Collider other)
     {
         GameObject player;
-        var FK = GetComponent<FakeCollision>();
+        var FK = other.GetComponent<FakeCollision>();
         if (FK != null)
         {
             player = FK.myTransform.gameObject;
@@ -107,7 +107,7 @@ public class PlayerTrackingPerCUP : NetworkBehaviour
 
     bool IsPlayerLast(GameObject playerCar)
     {
-        if(playerCar == playerPoses[PassedThisLap.Count - 1].Car)
+        if(playerCar == playerPoses[playerPoses.Count - 1].Car)
             return true;
         return false;
     }
