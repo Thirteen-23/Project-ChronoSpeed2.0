@@ -52,7 +52,7 @@ public class FakeCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.isTrigger)
+        if (!other.isTrigger || myRB == null)
             return;
 
         if (other.transform.CompareTag("CarBody"))
@@ -66,7 +66,7 @@ public class FakeCollision : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (!other.isTrigger)
+        if (!other.isTrigger || myRB == null)
             return;
         
         if(other.transform.CompareTag("CarBody"))
@@ -78,7 +78,7 @@ public class FakeCollision : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (!other.isTrigger)
+        if (!other.isTrigger || myRB == null)
             return;
 
         if (other.transform.CompareTag("CarBody"))
@@ -103,7 +103,7 @@ public class FakeCollision : MonoBehaviour
         CollisionRequiredInfo dontNeedThis;
         if (!currentCollidingCars.TryGetValue(other.transform, out dontNeedThis))
             return;
-
+        
         float otherMass = currentCollidingCars[other.transform].theirMass;
 
         Vector3 relativeVelocity = myRB.velocity - currentCollidingCars[other.transform].theirVel.Velocity;

@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8244382845888449313}
   - component: {fileID: 8244382845888449318}
-  m_Layer: 0
+  - component: {fileID: 12594500260540929}
+  - component: {fileID: 1157339166812399784}
+  m_Layer: 8
   m_Name: PRF_D_Tree_02
-  m_TagString: walls
+  m_TagString: RigidBodyObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -42,12 +44,40 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8244382845888449312}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.43
   m_Height: 3.7019858
   m_Direction: 1
   m_Center: {x: 0, y: 1.3509929, z: 0}
+--- !u!54 &12594500260540929
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244382845888449312}
+  serializedVersion: 2
+  m_Mass: 30
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1157339166812399784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244382845888449312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27484f98281bf5145991eff75dfc0561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8244382846003084655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,10 +140,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7608521099284572644, guid: 29853f4d8190b0042a70b39c2edeb830,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 29853f4d8190b0042a70b39c2edeb830,
         type: 3}
       propertyPath: m_Name
       value: ST_D_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 29853f4d8190b0042a70b39c2edeb830,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218912716677395249, guid: 29853f4d8190b0042a70b39c2edeb830,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1218912716677395249, guid: 29853f4d8190b0042a70b39c2edeb830,
         type: 3}
@@ -122,13 +167,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1400086564404443856, guid: 29853f4d8190b0042a70b39c2edeb830,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400086564404443856, guid: 29853f4d8190b0042a70b39c2edeb830,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3361634513375469152, guid: 29853f4d8190b0042a70b39c2edeb830,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361634513375469152, guid: 29853f4d8190b0042a70b39c2edeb830,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912545123311759568, guid: 29853f4d8190b0042a70b39c2edeb830,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267330470170619679, guid: 29853f4d8190b0042a70b39c2edeb830,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29853f4d8190b0042a70b39c2edeb830, type: 3}
@@ -229,6 +294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TreeModel_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9542cb1e9f74d8543a88fa9142063c15,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9542cb1e9f74d8543a88fa9142063c15, type: 3}

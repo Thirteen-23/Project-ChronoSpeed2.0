@@ -60,8 +60,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.700691, y: 0.40116024, z: 0.25581628}
-  m_Center: {x: -0.00011253357, y: 6.0501075, z: 0.0010770857}
+  m_Size: {x: 4.56, y: 0.40116024, z: 0.25581628}
+  m_Center: {x: -1.16, y: 6.0501075, z: 0.0010770857}
 --- !u!54 &-1311992731382487354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -167,7 +167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PRF_U_TrafficLights_02
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1471927678997588609, guid: c4798d34bfd6274429d86b74fe89a793, type: 3}
+    - {fileID: 1471927678997588608, guid: c4798d34bfd6274429d86b74fe89a793, type: 3}
+    - {fileID: 6877559228742597037, guid: c4798d34bfd6274429d86b74fe89a793, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c4798d34bfd6274429d86b74fe89a793, type: 3}
 --- !u!4 &7637084278846750483 stripped
 Transform:
