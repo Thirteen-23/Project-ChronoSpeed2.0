@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.ConstrainedExecution;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -38,13 +39,14 @@ public class MultiplayerCarSelection : NetworkBehaviour
         if(IsClient)
         {
             CarCharacter[] allCars = carDatabase.GetAllCars();
-
+            CharacterSelectButton[] buttons = FindObjectsByType<CharacterSelectButton>(FindObjectsSortMode.InstanceID);
             
-            foreach(var car in allCars)
+            for(int i = 0; i < buttons.Length; i++)
             {
-                var selectButtonInstance = Instantiate(selectButtonPrefab, carSelectButtonHolder);
-                selectButtonInstance.SetCharacter(this, car);
+                buttons[i].SetCharacter(this, allCars[i]);
+                Debug.Log(buttons[i].name);
             }
+                
 
             players.OnListChanged += HandlePlayersStateChanged;
         }

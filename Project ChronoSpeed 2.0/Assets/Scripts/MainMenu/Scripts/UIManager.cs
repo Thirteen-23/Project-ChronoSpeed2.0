@@ -7,15 +7,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private CanvasGroup MainMenuCG;
     [SerializeField] private CanvasGroup JoinHostCG;
     [SerializeField] private CanvasGroup OptionsCG;
-    [SerializeField] private TMP_InputField ipInput;
-    [SerializeField] GameObject joinServerButton;
-    [SerializeField] GameObject joinButton;
+    [SerializeField] private CanvasGroup CarSelectCG;
+    [SerializeField] GameObject mainMenuMainButton;
+    [SerializeField] GameObject joinHostMainButton;
+    [SerializeField] GameObject optionsMainButton;
+    [SerializeField] GameObject carSelectMainButton;
     public enum MainMenuStates
     {
         MainMenu,
         JoinHost,
         Options,
-
+        CarSelect,
+        LoadScreen,
+        Count
     }
 
     /// <summary>
@@ -23,75 +27,45 @@ public class UIManager : MonoBehaviour
     /// 1 for Join Host Menu,
     /// 
     /// </summary>
-    /// <param name="pluh"></param>
-    public void SwitchUI(int pluh)
+    /// <param name="menu"></param>
+    public void SwitchUI(int menu, int alpha)
     {
-        MainMenuStates newState = (MainMenuStates)pluh;
+        bool switchTo = alpha == 1;
+        MainMenuStates newState = (MainMenuStates)menu;
         switch(newState)
         {
             case MainMenuStates.MainMenu:
-                MainMenuCG.alpha = 1.0f;
-                MainMenuCG.interactable = true;
-                MainMenuCG.blocksRaycasts = true;
+                MainMenuCG.alpha = alpha;
+                MainMenuCG.interactable = switchTo;
+                MainMenuCG.blocksRaycasts = switchTo;
 
-                JoinHostCG.alpha = 0f;
-                JoinHostCG.interactable = false;
-                JoinHostCG.blocksRaycasts = false;
-
-                OptionsCG.alpha = 0f;
-                OptionsCG.interactable = false;
-                OptionsCG.blocksRaycasts = false;
-                EventSystem.current.SetSelectedGameObject(joinServerButton);
+                if(switchTo)
+                    EventSystem.current.SetSelectedGameObject(mainMenuMainButton);
                 break;
             case MainMenuStates.JoinHost:
-                MainMenuCG.alpha = 0f;
-                MainMenuCG.interactable = false;
-                MainMenuCG.blocksRaycasts= false;
-
-                JoinHostCG.alpha = 1.0f;
-                JoinHostCG.interactable = true;
-                JoinHostCG.blocksRaycasts = true;
-
-                OptionsCG.alpha = 0f;
-                OptionsCG.interactable = false;
-                OptionsCG.blocksRaycasts = false;
-                EventSystem.current.SetSelectedGameObject(joinButton);
+                JoinHostCG.alpha = alpha;
+                JoinHostCG.interactable = switchTo;
+                JoinHostCG.blocksRaycasts = switchTo;
+                if (switchTo)
+                    EventSystem.current.SetSelectedGameObject(joinHostMainButton);
                 break;
             case MainMenuStates.Options:
-                MainMenuCG.alpha = 0f;
-                MainMenuCG.interactable = false;
-                MainMenuCG.blocksRaycasts = false;
 
-                JoinHostCG.alpha = 0f;
-                JoinHostCG.interactable = false;
-                JoinHostCG.blocksRaycasts = false;
-
-                OptionsCG.alpha = 1f;
-                OptionsCG.interactable = true;
-                OptionsCG.blocksRaycasts = true; 
-
+                OptionsCG.alpha = alpha;
+                OptionsCG.interactable = switchTo;
+                OptionsCG.blocksRaycasts = switchTo;
+                if (switchTo)
+                    EventSystem.current.SetSelectedGameObject(optionsMainButton);
+                break;
+            case MainMenuStates.CarSelect:
+                CarSelectCG.alpha = alpha;
+                CarSelectCG.interactable = switchTo;
+                CarSelectCG.blocksRaycasts = switchTo;
+                if (switchTo)
+                    EventSystem.current.SetSelectedGameObject(carSelectMainButton);
                 break;
         }
     }
 
-    public void StartServer()
-    {
-        ServerManager.Singleton.StartServer();
-    }
-    public void StartHost()
-    {
-        ServerManager.Singleton.StartHost();
-    }
-    public void JoinHost()
-    {
-        ServerManager.Singleton.StartClient(ipInput.text);
-    }
-
-    public void fullscreen()
-    {
-        // toogle Fullscreen
-        Screen.fullScreen = !Screen.fullScreen;
-
-       
-    }
+    
 }
