@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using static AI;
+using UnityEngine.UI;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
@@ -91,7 +92,10 @@ public class MultiplayerGameManager : NetworkBehaviour
         
 
     }
-    public AudioSource countdown; 
+    public AudioSource countdown;
+    [SerializeField] Image[] m_set;
+    [SerializeField] Image[] m_ready;
+    [SerializeField] Image[] m_go;
     public IEnumerator StartGame()
     {
         
@@ -100,9 +104,39 @@ public class MultiplayerGameManager : NetworkBehaviour
         {
             CountDownRpc(i, false);
             yield return new WaitForSeconds(1);
+            if (i== 6)
+            {
+
+                m_ready[4].enabled = true;
+            }
+            if(i == 5)
+            {
+                m_ready[3].enabled = true;
+            }
             if( i == 4)
             {
+                m_ready[0].enabled = true;
                 countdown.Play();
+            }
+            if (i == 3)
+            {
+                m_ready[2].enabled = true;
+               
+            }
+            if(i == 2)
+            {
+                m_ready[1].enabled = true;
+                //foreach (Image read in m_ready)
+                //{ read.enabled = false; }
+            }
+            if(i == 1)
+            {
+                foreach (Image read in m_set)
+                { read.enabled = false; }
+                foreach (Image read in m_go)
+                {
+                    read.enabled = true;
+                }
             }
         }
         CountDownRpc(0, true);
@@ -127,15 +161,23 @@ public class MultiplayerGameManager : NetworkBehaviour
         portalManager.SpawnPortal(firstPortPos, secondPortPos, firstPortRot, secondPortRot, portalLast);
     }
 
-    
+   
+
+
     [Rpc(SendTo.ClientsAndHost)]
     public void CountDownRpc(int time, bool RaceStart)
     {
         if (time > 0) startCountdownText.text = time.ToString();
-        else startCountdownText.text = "GO!!!!";
-
+        else
+        {
+            startCountdownText.text = "GO!!!!";
+        }
         if (RaceStart)
         {
+            foreach (Image read in m_go)
+            {
+                read.enabled = false;
+            }
             startCountdownText.enabled = false;
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();

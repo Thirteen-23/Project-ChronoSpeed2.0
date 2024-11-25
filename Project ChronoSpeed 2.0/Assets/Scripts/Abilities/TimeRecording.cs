@@ -9,8 +9,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class TimeRecording : MonoBehaviour
 {
-    [SerializeField] float rewindTime = 5;
-    [SerializeField] float cooldown = 5;
+    public float rewindTime = 5;
+    public float cooldown = 5;
     [SerializeField] VolumeProfile rewindProfile;
 
     PlayerStateMachine m_PlayerStateMachine;
@@ -26,9 +26,9 @@ public class TimeRecording : MonoBehaviour
     Rigidbody carRigidbody;
     Coroutine curRewindCor;
 
-    int currentRewindIteration;
+   public int currentRewindIteration;
     bool isRecording = true;
-    bool isUsable = true;
+   [SerializeField] bool isUsable = true;
     Volume mainCamVol;
     
 
@@ -50,8 +50,13 @@ public class TimeRecording : MonoBehaviour
             });
 
             if (storedData.Count > 50 * rewindTime) storedData.RemoveAt(0);
+            if (countDown <= cooldown)
+            {
+                countDown += Time.deltaTime;
+            }
         }
     }
+    public float countDown = 5;
 
     public void Rewind(CallbackContext callbackContext)
     {
@@ -60,10 +65,12 @@ public class TimeRecording : MonoBehaviour
         {
             isRecording = false;
             curRewindCor = StartCoroutine(Rewind());
+           
         }
         else if(callbackContext.canceled)
         {
             OnRelease();
+           
         }
     }
 
@@ -87,6 +94,7 @@ public class TimeRecording : MonoBehaviour
         }
 
         isUsable = false;
+       
         StartCoroutine(Cooldown());
         StartCoroutine(DischargeVisual());
     }
@@ -115,6 +123,11 @@ public class TimeRecording : MonoBehaviour
                 float halfRewindTime = rewindTime / 2; //2.5f
                 mainCamVol.weight += 1 / (halfRewindTime * 50);
                 if (mainCamVol.weight > 1) mainCamVol.weight = 1;
+             if(countDown > 0)
+                {
+                    countDown -= Time.deltaTime * 2;
+                }
+               
             }
             
 
@@ -151,6 +164,9 @@ public class TimeRecording : MonoBehaviour
     IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(cooldown);
+     
+      
+
         isUsable = true;
     }
 }
