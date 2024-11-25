@@ -5,9 +5,9 @@ public class CharacterSelectButton : MonoBehaviour
 {
     private Image iconImage;
     private Button button;
-    private MultiplayerCarSelection carSelect;
+    [SerializeField] private MultiplayerCarSelection carSelect;
+    [SerializeField] private CarCharacter CarC;
 
-    public CarCharacter CarC { get; private set; }
     public bool IsDisabled { get; private set; }
     private void Awake()
     {
@@ -15,8 +15,6 @@ public class CharacterSelectButton : MonoBehaviour
     }
     public void SetCharacter(MultiplayerCarSelection carselect, CarCharacter carC)
     {
-        iconImage.sprite = carC.CarIcon.sprite;
-        iconImage.color = carC.CarIcon.color;
         carSelect = carselect;
         CarC = carC;
     }

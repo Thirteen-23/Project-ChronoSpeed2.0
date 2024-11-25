@@ -1,24 +1,34 @@
 using System;
 using System.Collections;
+using System.Runtime.ConstrainedExecution;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MultiplayerCarSelection : NetworkBehaviour
 {
     [SerializeField] private CarCharacterStorage carDatabase;
-    [SerializeField] private Transform mainPlayerSpawnPositon;
-    [SerializeField] private CarSpotlight[] carSpawnPositions; //set 0 to be behind main player, then 1 to the left of 0, 2 to the right of 0, 3 to the left of 1 etc...
-    [SerializeField] private CharacterSelectButton selectButtonPrefab;
-    [SerializeField] private GameObject characterInfoPanel;
-    [SerializeField] private TMP_Text characterNameText;
-    [SerializeField] private TMP_Text characterDescText;
-    [SerializeField] private Transform carSelectButtonHolder;
+    [SerializeField] private Image[] playerImages;
+    [SerializeField] private GameObject L2R2Image;
 
-    [SerializeField] private TMP_Text countDownText;
+    [SerializeField] private Sprite readySprite;
+    [SerializeField] private Sprite selectingSprite;
+    [SerializeField] private Sprite noPlayerSprite;
+    [SerializeField] private Sprite readyButtonPressed;
+
+    [SerializeField] private Button ReadyButton;
+    [SerializeField] private Button BackButton;
 
     private NetworkList<CharacterSelectState> players;
+    /// <summary>
+    /// 0 = modern button, 1 = dystopian, 2 = utopian
+    /// </summary>
+    public Button[] carSelectButtons;
+
+    public bool carSelected = false;
 
     private void Awake()
     {
@@ -34,32 +44,25 @@ public class MultiplayerCarSelection : NetworkBehaviour
             foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
                 HandleClientConnected(client.ClientId);
         }
-        
-        if(IsClient)
+
+        if (IsClient)
         {
             CarCharacter[] allCars = carDatabase.GetAllCars();
 
-            
-            foreach(var car in allCars)
-            {
-                var selectButtonInstance = Instantiate(selectButtonPrefab, carSelectButtonHolder);
-                selectButtonInstance.SetCharacter(this, car);
-            }
-
             players.OnListChanged += HandlePlayersStateChanged;
         }
-       
+
     }
 
     public override void OnNetworkDespawn()
     {
-        if(IsServer)
+        if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback -= HandleClientConnected;
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnected;
         }
-        
-        if(IsClient)
+
+        if (IsClient)
         {
             players.OnListChanged -= HandlePlayersStateChanged;
         }
@@ -67,12 +70,19 @@ public class MultiplayerCarSelection : NetworkBehaviour
 
     private void HandleClientConnected(ulong clientid)
     {
-        players.Add(new CharacterSelectState(clientid));
+        bool doesNotExist = false;
+
+        for(int i = 0; i < players.Count; i++)
+        {
+            if(players[i].ClientID == clientid)
+                doesNotExist = true;
+        }
+        if(!doesNotExist) players.Add(new CharacterSelectState(clientid));
     }
 
     private void HandleClientDisconnected(ulong clientid)
     {
-        for(int i = 0; i < players.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             if (players[i].ClientID == clientid)
             {
@@ -80,11 +90,16 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 return;
             }
         }
+        
     }
 
     public void Select(CarCharacter carc)
     {
-        for (int i  = 0; i < players.Count; i++)
+        if (carSelected)
+            return;
+        
+
+        for (int i = 0; i < players.Count; i++)
         {
             if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
             {
@@ -93,11 +108,41 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 if (players[i].CharacterID == carc.Id) { return; }
             }
         }
-        characterNameText.text = carc.CarName;
-        characterDescText.text = carc.CarDesc;
-        characterInfoPanel.SetActive(true);
+
+        //UI Shit OMGOMGOMGOMGOMGOMG
+        EventSystem.current.SetSelectedGameObject(null);
+        carSelected = true;
+        ReadyButton.interactable = true;
+        L2R2Image.SetActive(true);
+        BackButton.interactable = true;
 
         CarSelectServerRpc(carc.Id);
+    }
+
+    public void UnSelect(InputAction.CallbackContext context)
+    {
+        if (context.performed != true)
+            return;
+        
+        carSelected = false;
+        ReadyButton.interactable = false;
+        BackButton.interactable = false;
+        L2R2Image.SetActive(false);
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
+            {
+                EventSystem.current.SetSelectedGameObject(carSelectButtons[players[i].CharacterID - 1].gameObject);
+            }
+        }
+    }
+
+    public void ReadyUp(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+        ExecuteEvents.Execute(ReadyButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -122,8 +167,11 @@ public class MultiplayerCarSelection : NetworkBehaviour
             if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
             {
                 if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) return;
-
-                readyUpBtn.color = Color.green;
+                readyUpBtn.sprite = readyButtonPressed;
+                
+                //Very temp solution
+                Destroy(ReadyButton);
+                //readyUpBtn.color = Color.green;
                 LockInServerRpc();
                 break;
             }
@@ -150,91 +198,53 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 //Every player is locked in
                 if (i + 1 == players.Count)
                 {
-                    StartCoroutine(ServerSetupGame());
-                    CountdownClientRpc();
+                    ServerSetupGame();
                 }
             }
             else
                 break;
         }
     }
-
-    [ClientRpc]
-    private void CountdownClientRpc()
-    {
-        countDownText.gameObject.SetActive(true);
-        StartCoroutine(ClientCountDown());
-    }
-    private IEnumerator ServerSetupGame()
+    private void ServerSetupGame()
     {
         foreach (var player in players)
         {
             ServerManager.Singleton.SetCharacter(player.ClientID, player.CharacterID);
         }
-        //count three seconds or something
-        yield return new WaitForSeconds(3.0f);
+
         ServerManager.Singleton.StartGame();
-    }
-    private IEnumerator ClientCountDown()
-    {
-        for (int i = 3; i > 0; i--)
-        {
-            countDownText.text = $"{i}";
-            yield return new WaitForSeconds(1.0f);
-        }
-        
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<CharacterSelectState> changeEvent)
     {
-        int curSpawnPoint = 0;
-        if (changeEvent.PreviousValue.LockedIn != changeEvent.Value.LockedIn)
+        int iDifference = 0;
+        for (int i = 0; i < playerImages.Length; i++)
         {
-            for (int i = 0; i < carSpawnPositions.Length + 1; i++)
+            if (players.Count > i + iDifference)
             {
-                if (players.Count > i)
+                if (NetworkManager.Singleton.LocalClientId == players[i + iDifference].ClientID)
                 {
-                    if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
-                    {
-                        curSpawnPoint = 1;
-                    }
-                    else
-                        carSpawnPositions[i - curSpawnPoint].UpdateName(players[i].LockedIn, players[i].ClientID);
-                }
-            }
-            return;
-        }
-
-        for (int i = 0; i < carSpawnPositions.Length + 1; i++)
-        {
-            if(players.Count > i)
-            {
-                if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
-                {
-                    CarCharacter car = carDatabase.GetCarById(players[i].CharacterID);
-
-                    if (mainPlayerSpawnPositon.childCount == 0)
-                    {
-                        if (car != null) Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
-                    }
-                    else
-                    {
-                        var curCar = mainPlayerSpawnPositon.GetChild(0);
-                        if (car == curCar)
-                            continue;
-                        Destroy(curCar.gameObject); //Later make it portal out
-                        if (car != null)  Instantiate(car.CarModel, mainPlayerSpawnPositon); //Later make it portal in
-                    }
-                    curSpawnPoint = 1;
+                    //so it ignores you in the checks of stuff, but still goes through the 3 images
+                    iDifference++;
+                    i--;
+                    continue;
                 }
                 else
-                    carSpawnPositions[i - curSpawnPoint].UpdateDisplay(players[i]);
+                {
+                    if (players[i + iDifference].LockedIn)
+                    {
+                        playerImages[i].sprite = readySprite;
+                    }
+                    else
+                    {
+                        playerImages[i].sprite = selectingSprite;
+                    }
+                }
             }
             else
-            {
-                carSpawnPositions[i - curSpawnPoint].DisableDisplay();
-            }
+                playerImages[i].sprite = noPlayerSprite;
         }
+
     }
 
     public override void OnDestroy()

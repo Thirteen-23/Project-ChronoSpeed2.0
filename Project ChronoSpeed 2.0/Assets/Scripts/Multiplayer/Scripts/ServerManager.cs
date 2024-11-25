@@ -12,8 +12,9 @@ public class ServerManager : MonoBehaviour
 {
     [SerializeField] private string characterSelectionSceneName = "CharacterSelect";
     [SerializeField] private string raceSceneName = "RaceTrack";
-    [SerializeField] private int MaxPlayers = 12;
-
+    [SerializeField] private int MaxPlayers = 4;
+    
+    private MainMenuManager mainMenuManager;
     private bool gameHasStarted;
     public Dictionary<ulong, ClientData> ClientDic { get; private set; }
 
@@ -27,23 +28,28 @@ public class ServerManager : MonoBehaviour
             Singleton = this;
             DontDestroyOnLoad(Singleton);
         }
+
+        mainMenuManager = FindAnyObjectByType<MainMenuManager>();
     }
 
     public void StartClient(string ip)
     {
         ClientDic = null;
+
+        NetworkManager.Singleton.OnClientDisconnectCallback += HandelDisconnect;
+        NetworkManager.Singleton.OnClientConnectedCallback += HandelConnect;
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(ip, (ushort)15000);
-        Debug.Log(NetworkManager.Singleton.StartClient());
+        Debug.Log("Client started: " + NetworkManager.Singleton.StartClient());
     }
-    public void StartServer()
-    {
-        NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
-        NetworkManager.Singleton.OnServerStarted += OnNetworkReady;
+    //public void StartServer()
+    //{
+    //    NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
+    //    NetworkManager.Singleton.OnServerStarted += OnNetworkReady;
 
-        ClientDic = new Dictionary<ulong, ClientData>();
+    //    ClientDic = new Dictionary<ulong, ClientData>();
 
-        NetworkManager.Singleton.StartServer();
-    }
+    //    NetworkManager.Singleton.StartServer();
+    //}
 
     public void StartHost()
     {
@@ -75,8 +81,9 @@ public class ServerManager : MonoBehaviour
     private void OnNetworkReady()
     {
         NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
+        mainMenuManager.SwitchCameraArea(2);
 
-        NetworkManager.Singleton.SceneManager.LoadScene(characterSelectionSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        //NetworkManager.Singleton.SceneManager.LoadScene(characterSelectionSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     private void HandleClientDisconnect(ulong clientId)
@@ -88,6 +95,17 @@ public class ServerManager : MonoBehaviour
                 Debug.Log($"Removed client {clientId}");
             }
         }
+    }
+
+    private void HandelDisconnect(ulong clientId)
+    {
+        Debug.Log("FailedToConnectLol");
+    }
+
+    private void HandelConnect(ulong clientId)
+    {
+        Debug.Log("SuccesfullyConnected");
+        mainMenuManager.SwitchCameraArea(2);
     }
 
     public void SetCharacter(ulong clientId, int characterId)
