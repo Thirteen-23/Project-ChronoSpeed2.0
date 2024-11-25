@@ -5,12 +5,14 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MultiplayerCarSelection : NetworkBehaviour
 {
     [SerializeField] private CarCharacterStorage carDatabase;
     [SerializeField] private Image[] playerImages;
+    [SerializeField] private GameObject L2R2Image;
 
     [SerializeField] private Sprite readySprite;
     [SerializeField] private Sprite selectingSprite;
@@ -68,7 +70,14 @@ public class MultiplayerCarSelection : NetworkBehaviour
 
     private void HandleClientConnected(ulong clientid)
     {
-        players.Add(new CharacterSelectState(clientid));
+        bool doesNotExist = false;
+
+        for(int i = 0; i < players.Count; i++)
+        {
+            if(players[i].ClientID == clientid)
+                doesNotExist = true;
+        }
+        if(!doesNotExist) players.Add(new CharacterSelectState(clientid));
     }
 
     private void HandleClientDisconnected(ulong clientid)
@@ -81,12 +90,14 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 return;
             }
         }
+        
     }
 
     public void Select(CarCharacter carc)
     {
         if (carSelected)
             return;
+        
 
         for (int i = 0; i < players.Count; i++)
         {
@@ -98,27 +109,39 @@ public class MultiplayerCarSelection : NetworkBehaviour
             }
         }
 
-        CarSelectServerRpc(carc.Id);
+        //UI Shit OMGOMGOMGOMGOMGOMG
+        EventSystem.current.SetSelectedGameObject(null);
         carSelected = true;
+        ReadyButton.interactable = true;
+        L2R2Image.SetActive(true);
+        BackButton.interactable = true;
+
+        CarSelectServerRpc(carc.Id);
     }
 
-    public void UnSelect()
+    public void UnSelect(InputAction.CallbackContext context)
     {
+        if (context.performed != true)
+            return;
+        
         carSelected = false;
-
-        ExecuteEvents.Execute(BackButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+        ReadyButton.interactable = false;
+        BackButton.interactable = false;
+        L2R2Image.SetActive(false);
 
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
             {
-                EventSystem.current.SetSelectedGameObject(carSelectButtons[i - 1].gameObject);
+                EventSystem.current.SetSelectedGameObject(carSelectButtons[players[i].CharacterID - 1].gameObject);
             }
         }
     }
 
-    public void ReadyUp()
+    public void ReadyUp(InputAction.CallbackContext context)
     {
+        if (!context.performed)
+            return;
         ExecuteEvents.Execute(ReadyButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
     }
 
@@ -145,7 +168,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
             {
                 if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) return;
                 readyUpBtn.sprite = readyButtonPressed;
-
+                
                 //Very temp solution
                 Destroy(ReadyButton);
                 //readyUpBtn.color = Color.green;

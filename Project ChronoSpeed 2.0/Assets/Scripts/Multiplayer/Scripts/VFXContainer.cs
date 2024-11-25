@@ -54,7 +54,5 @@ public class VFXContainer : MonoBehaviour
                 }
                 break; 
         }
-        
-        Debug.Log("Switched " + type.ToString() + "to " + setTo);
     }
 }

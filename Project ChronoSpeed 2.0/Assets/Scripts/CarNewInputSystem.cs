@@ -1026,7 +1026,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c804eb53-0c3b-4ccb-9dca-e0be3005f64d"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1035,59 +1035,37 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Button With Two Modifiers"",
-                    ""id"": ""388070be-1175-4e1d-91cf-1b9d6e9ad83f"",
-                    ""path"": ""ButtonWithTwoModifiers"",
+                    ""name"": ""One Modifier"",
+                    ""id"": ""3905d0da-9548-488d-bbd7-af92df8f1d6a"",
+                    ""path"": ""OneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BackPress"",
+                    ""action"": ""ReadyPress"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Modifier 1"",
-                    ""id"": ""62fa8159-35da-4ad3-b614-d12697726993"",
+                    ""name"": ""modifier"",
+                    ""id"": ""ee2790cf-3337-4abb-b8df-797f57c24417"",
                     ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""BackPress"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Modifier 2"",
-                    ""id"": ""4d979308-b19b-4135-af1e-7099781d42b7"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""BackPress"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Button"",
-                    ""id"": ""cc6dda8f-6158-4c39-b5e7-193d7fad2019"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""BackPress"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""337433a1-53db-40cf-a58e-51719c1bc1b6"",
-                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ReadyPress"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""a7ad90f3-820a-4fbe-afbd-a019e9563f46"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadyPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
