@@ -1288,7 +1288,8 @@ AudioSource:
   m_GameObject: {fileID: 2328899771616681081}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 230a1f98bb8374198a7569a9edb21dd4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -1300,7 +1301,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3230,7 +3231,8 @@ AudioSource:
   m_GameObject: {fileID: 5318232029298041796}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: ac1c1fad47d2449c5815c8199bc44faa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -3242,7 +3244,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3619,7 +3621,7 @@ MonoBehaviour:
   carValues: {fileID: 0}
   m_AICarValues: {fileID: 0}
   rpm: 0
-  masterVolume: 0.05
+  masterVolume: 1
 --- !u!114 &8285725012386799397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3652,6 +3654,8 @@ MonoBehaviour:
   trails:
   - {fileID: 0}
   - {fileID: 0}
+  m_DriftSound: {fileID: 0}
+  carClasses: 0
 --- !u!1 &5731147183975128354
 GameObject:
   m_ObjectHideFlags: 0
@@ -4656,7 +4660,8 @@ AudioSource:
   m_GameObject: {fileID: 7372162149480305518}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: a394a054539394bf09bd79a74b799175, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
@@ -4668,7 +4673,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

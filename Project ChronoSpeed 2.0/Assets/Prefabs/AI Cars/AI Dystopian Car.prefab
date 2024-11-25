@@ -1154,7 +1154,8 @@ AudioSource:
   m_GameObject: {fileID: 6300018330096425426}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 316224186e8ae6543990a05f4dc13981, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
@@ -1168,7 +1169,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1282,7 +1283,8 @@ AudioSource:
   m_GameObject: {fileID: 6360098393863559475}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: ff89099d49f4dfb46981d1be1b34544d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
@@ -1296,7 +1298,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1493,7 +1495,8 @@ AudioSource:
   m_GameObject: {fileID: 6627256063554955823}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b049660b860c8334a852b54855bce599, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
@@ -1507,7 +1510,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -3290,7 +3293,7 @@ MonoBehaviour:
   carValues: {fileID: 0}
   m_AICarValues: {fileID: 0}
   rpm: 0
-  masterVolume: 0.5
+  masterVolume: 1
 --- !u!114 &-3220841527253370344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3384,6 +3387,11 @@ MonoBehaviour:
   CurrentPowerState: 0
   colForFakeCollision: {fileID: 6036112331843046875}
   HologramShader: {fileID: 0}
+  trails:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_DriftSound: {fileID: 0}
+  carClasses: 0
 --- !u!1 &7673808563447282355
 GameObject:
   m_ObjectHideFlags: 0

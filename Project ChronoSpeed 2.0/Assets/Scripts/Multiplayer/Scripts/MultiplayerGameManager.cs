@@ -100,13 +100,12 @@ public class MultiplayerGameManager : NetworkBehaviour
     {
         
         //float endTime = Time.realtimeSinceStartup - startTime;   i think? use this to tell player how fast they did the game, maybe even lap
-        for (int i = 5; i > -1; i--)
+        for (int i = 6; i > -1; i--)
         {
             CountDownRpc(i, false);
             yield return new WaitForSeconds(1);
-            if (i== 6)
+            if (i == 6)
             {
-
                 m_ready[4].enabled = true;
             }
             if(i == 5)
@@ -120,17 +119,20 @@ public class MultiplayerGameManager : NetworkBehaviour
             }
             if (i == 3)
             {
-                m_ready[2].enabled = true;
+                m_ready[1].enabled = true;
                
             }
             if(i == 2)
             {
-                m_ready[1].enabled = true;
+                m_ready[2].enabled = true;
                 //foreach (Image read in m_ready)
                 //{ read.enabled = false; }
+           
             }
             if(i == 1)
             {
+                foreach (Image read in m_ready)
+                { read.enabled = false; }
                 foreach (Image read in m_set)
                 { read.enabled = false; }
                 foreach (Image read in m_go)
@@ -167,11 +169,11 @@ public class MultiplayerGameManager : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     public void CountDownRpc(int time, bool RaceStart)
     {
-        if (time > 0) startCountdownText.text = time.ToString();
+        /*if (time > 0) startCountdownText.text = time.ToString();
         else
         {
             startCountdownText.text = "GO!!!!";
-        }
+        }*/
         if (RaceStart)
         {
             foreach (Image read in m_go)

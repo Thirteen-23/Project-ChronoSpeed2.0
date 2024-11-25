@@ -1285,7 +1285,6 @@ MonoBehaviour:
   maxRPMAngle: -240
   m_RPM: {fileID: 0}
   speedLabel: {fileID: 2501671509354496651}
-  m_Speedo: {fileID: 2337174918056465173}
   maxSpeed: 300
   currentGearLabel: {fileID: 2501671508677602657}
   gear: 0
@@ -1582,7 +1581,8 @@ AudioSource:
   m_GameObject: {fileID: 2687724803932261098}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 75fa27e467267c74f91f1f6f4e74ff88, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
@@ -1593,10 +1593,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 8
+  MinDistance: 1
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1873,6 +1873,7 @@ MonoBehaviour:
   numberOfLaps: 0
   valueBeingRead: {fileID: 0}
   bridge: {fileID: 0}
+  currentWaypointchange: 0
   dists: 0
   difference: {x: 0, y: 0, z: 0}
   speedTimer: 0
@@ -2003,6 +2004,11 @@ MonoBehaviour:
   CurrentPowerState: 0
   colForFakeCollision: {fileID: 364352989554959519}
   HologramShader: {fileID: 0}
+  trails:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_DriftSound: {fileID: 0}
+  carClasses: 0
 --- !u!1 &3988157569408614375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,7 +2050,8 @@ AudioSource:
   m_GameObject: {fileID: 3988157569408614375}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 22cd46996da3b624bb08935264560d8c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -2055,10 +2062,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 8
+  MinDistance: 1
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -3430,7 +3437,8 @@ AudioSource:
   m_GameObject: {fileID: 8816091797953357275}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: e9643d8581d235f45a62997cba851988, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -3441,10 +3449,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 8
+  MinDistance: 1
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
