@@ -1,6 +1,8 @@
 using Cinemachine;
 using System.Collections;
 using TMPro;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -9,10 +11,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] float CameraSpeed;
     [SerializeField] CinemachineDollyCart cart;
     [SerializeField] private TMP_InputField ipInput;
-
+    [SerializeField] GameObject pivotPoint;
     private UIManager uiManager;
 
     private float targetPosition;
+    float time;
+    private Vector3 startRotation;
+    [SerializeField] public Vector3 targetRotation;
+
     private int targetUI;
 
     private void Awake()
@@ -20,6 +26,17 @@ public class MainMenuManager : MonoBehaviour
         uiManager = GetComponentInChildren<UIManager>();
     }
 
+    private void Update()
+    {
+        if (pivotPoint.transform.eulerAngles != targetRotation)
+        {
+            time += Time.deltaTime;
+            if(time > 0.5f) time = 0.5f;
+            float yLerp = Mathf.LerpAngle(startRotation.y, targetRotation.y, time / 0.5f);
+            Vector3 Lerped = new Vector3(0, yLerp, 0);
+            pivotPoint.transform.eulerAngles = Lerped;
+        }
+    }
     public void OpenMainMenuCG()
     {
         for(int i = 1; i < (int)UIManager.MainMenuStates.Count; i++)
@@ -79,6 +96,12 @@ public class MainMenuManager : MonoBehaviour
         StartCoroutine(MoveCamera());
     }
 
+    public void PivotCars(int angleY)
+    {
+        startRotation = pivotPoint.transform.eulerAngles;
+        targetRotation = new Vector3(0, angleY, 0);
+        time = 0;
+    }
     void SwitchUI(int alpha)
     {
         uiManager.SwitchUI(targetUI, alpha);
@@ -115,6 +138,7 @@ public class MainMenuManager : MonoBehaviour
         SwitchUI(1);            
     }
 
+    
     
     public void StartHost()
     {
