@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Windows;
 
 public class MainMenuManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] CinemachineDollyCart cart;
     [SerializeField] private TMP_InputField ipInput;
     [SerializeField] GameObject pivotPoint;
+
+    [SerializeField] GameObject BackButton;
+
     private UIManager uiManager;
 
     private float targetPosition;
@@ -62,7 +66,7 @@ public class MainMenuManager : MonoBehaviour
         SwitchUI(0);
 
         targetUI = 2;
-        SwitchUI(2);
+        SwitchUI(1);
     }
 
     public void OpenCarSelectCG()
@@ -147,7 +151,6 @@ public class MainMenuManager : MonoBehaviour
     public void JoinHost()
     {
         ServerManager.Singleton.StartClient(ipInput.text);
-        
     }
 
     public void fullscreen()

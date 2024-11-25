@@ -584,6 +584,24 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BackPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c05e02a-c4da-40a9-891f-1d09fa286fdb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReadyPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ee0f555-dec1-44d1-bf34-2e4a4d39dbee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1004,6 +1022,72 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c804eb53-0c3b-4ccb-9dca-e0be3005f64d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Button With Two Modifiers"",
+                    ""id"": ""388070be-1175-4e1d-91cf-1b9d6e9ad83f"",
+                    ""path"": ""ButtonWithTwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackPress"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Modifier 1"",
+                    ""id"": ""62fa8159-35da-4ad3-b614-d12697726993"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""BackPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Modifier 2"",
+                    ""id"": ""4d979308-b19b-4135-af1e-7099781d42b7"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""BackPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button"",
+                    ""id"": ""cc6dda8f-6158-4c39-b5e7-193d7fad2019"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""BackPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""337433a1-53db-40cf-a58e-51719c1bc1b6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadyPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1070,6 +1154,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_BackPress = m_UI.FindAction("BackPress", throwIfNotFound: true);
+        m_UI_ReadyPress = m_UI.FindAction("ReadyPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1275,6 +1361,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Submit;
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_BackPress;
+    private readonly InputAction m_UI_ReadyPress;
     public struct UIActions
     {
         private @CarNewInputSystem m_Wrapper;
@@ -1289,6 +1377,8 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Submit => m_Wrapper.m_UI_Submit;
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @BackPress => m_Wrapper.m_UI_BackPress;
+        public InputAction @ReadyPress => m_Wrapper.m_UI_ReadyPress;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1328,6 +1418,12 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
+            @BackPress.started += instance.OnBackPress;
+            @BackPress.performed += instance.OnBackPress;
+            @BackPress.canceled += instance.OnBackPress;
+            @ReadyPress.started += instance.OnReadyPress;
+            @ReadyPress.performed += instance.OnReadyPress;
+            @ReadyPress.canceled += instance.OnReadyPress;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1362,6 +1458,12 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
+            @BackPress.started -= instance.OnBackPress;
+            @BackPress.performed -= instance.OnBackPress;
+            @BackPress.canceled -= instance.OnBackPress;
+            @ReadyPress.started -= instance.OnReadyPress;
+            @ReadyPress.performed -= instance.OnReadyPress;
+            @ReadyPress.canceled -= instance.OnReadyPress;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1433,5 +1535,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+        void OnBackPress(InputAction.CallbackContext context);
+        void OnReadyPress(InputAction.CallbackContext context);
     }
 }
