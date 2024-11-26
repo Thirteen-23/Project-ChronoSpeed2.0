@@ -148,7 +148,8 @@ public class PlayerStateMachine : NetworkBehaviour
     [SerializeField] AudioSource m_DriftSound;
     private void Drifting(bool switchTo)
     {
-        vfxCon.SetVFX(VFXContainer.VFXTypes.spinSmoke, switchTo);
+        //vfxCon.SetVFX(VFXContainer.VFXTypes.spinSmoke, switchTo);
+        vfxCon.SetVFX(VFXContainer.VFXTypes.Drifting, switchTo);
         m_DriftSound.volume = Convert.ToInt32(switchTo);
 
         //tireParticles = switchTo;

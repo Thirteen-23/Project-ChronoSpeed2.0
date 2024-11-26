@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Blending_Mask:
-        m_Texture: {fileID: 2800000, guid: 2270c923c74a5a44eb287533b94f37eb, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CoatMaskMap:
@@ -78,7 +78,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMaskStack:
-        m_Texture: {fileID: 2800000, guid: 909039ec12a194f4cbbfb3926e099d7d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7fedb9f2364e21d41b44f1e26c3c2f07, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
@@ -219,9 +219,9 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _EmissionIntensity: 202.3
-    - _EmissionIntensity_Body: 171.54
-    - _EmissionIntensity_Headlights: 34.45
-    - _EmissionIntensity_Rear: 0
+    - _EmissionIntensity_Body: 100
+    - _EmissionIntensity_Headlights: 100
+    - _EmissionIntensity_Rear: 100
     - _Emission_Intensity_2: -0.145
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
@@ -304,7 +304,7 @@ Material:
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _Use_Blending_Mask: 1
+    - _Use_Blending_Mask: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
@@ -316,8 +316,8 @@ Material:
     - _Color: {r: 1, g: 0.7015508, b: 0.0047169924, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EmissionCol_Body: {r: 0, g: 0.48246393, b: 0.5943396, a: 0}
-    - _EmissionCol_Headlights: {r: 1, g: 0.3766535, b: 0, a: 0}
+    - _EmissionCol_Body: {r: 0, g: 0.7582536, b: 1, a: 0}
+    - _EmissionCol_Headlights: {r: 0.8490566, g: 0.66250575, b: 0.38047346, a: 0}
     - _EmissionCol_Rear: {r: 1, g: 0.21543363, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColour: {r: 1, g: 1, b: 1, a: 0}

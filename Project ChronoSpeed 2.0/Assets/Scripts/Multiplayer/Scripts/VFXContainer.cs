@@ -7,6 +7,7 @@ public class VFXContainer : MonoBehaviour
     [SerializeField] public GameObject[] spinSmokes = new GameObject[2];
     [SerializeField] public GameObject[] straightSmokes = new GameObject[2];
     [SerializeField] public TrailRenderer[] speedLimitRemoverTrails = new TrailRenderer[4];
+    [SerializeField] public TrailRenderer[] drifting;
     [SerializeField] GameObject[] nitroBoostVFX; 
     /*[HideInInspector]*/
     public VisualEffect electricArc;
@@ -18,6 +19,7 @@ public class VFXContainer : MonoBehaviour
         electricBall,
         SpeedLimitRemover,
         Boosting, 
+        Drifting, 
 
     }
 
@@ -52,7 +54,14 @@ public class VFXContainer : MonoBehaviour
                 {
                     SM.SetActive(setTo);
                 }
-                break; 
+                break;
+            case VFXTypes.Drifting:
+                foreach (TrailRenderer SM in drifting)
+                {
+                    SM.emitting = setTo;
+                }
+
+                break;
         }
     }
 }

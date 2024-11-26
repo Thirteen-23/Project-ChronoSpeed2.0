@@ -1084,10 +1084,10 @@ public class Car_Movement : MonoBehaviour
                         //leftTrail.emitting = true;
                         //rightTrail.emitting = true;
 
-                        rightWheel.Play();
-                        leftWheel.Play();
-                        leftWheelSmoke.Play();
-                        rightWheelSmoke.Play();
+                       //rightWheel.Play();
+                        //leftWheel.Play();
+                        //leftWheelSmoke.Play();
+                        //rightWheelSmoke.Play();
 
                         m_DriftingSound.volume = 1f;
 
@@ -1114,12 +1114,12 @@ public class Car_Movement : MonoBehaviour
                     {
                         // leftTrail.emitting = false;
                         // rightTrail.emitting = false;
-                        m_StateMach.ChangeCurrentState(PlayerStates.StartDrifting, false);
-                        m_StateMach.ChangeCurrentState(PlayerStates.Drifting, false);
-                        rightWheel.Stop();
-                        leftWheel.Stop();
-                        leftWheelSmoke.Stop();
-                        rightWheelSmoke.Stop();
+                        m_StateMach.ChangeCurrentState(PlayerStates.Driving, true);
+                       // m_StateMach.ChangeCurrentState(PlayerStates.Drifting, false);
+                       // rightWheel.Stop();
+                       // leftWheel.Stop();
+                        //leftWheelSmoke.Stop();
+                        // rightWheelSmoke.Stop();
                         lightCar = false;
                         mediumCar = false;
                         heavyCar = false;
