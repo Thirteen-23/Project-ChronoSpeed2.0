@@ -2831,6 +2831,9 @@ MonoBehaviour:
   rewindTime: 5
   cooldown: 5
   rewindProfile: {fileID: 11400000, guid: b19fee55a431d2a40a7634e16b824da1, type: 2}
+  currentRewindIteration: 0
+  isUsable: 1
+  countDown: 5
 --- !u!114 &832651492297267958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4605,6 +4608,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8106939037500274895, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.55
+      objectReference: {fileID: 0}
     - target: {fileID: 8111466339416296260, guid: 9b9d08f2f9d349341a2407a891f6b443,
         type: 3}
       propertyPath: m_Layer
@@ -4619,6 +4627,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237337769313257685, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237337769313257685, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 25000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b9d08f2f9d349341a2407a891f6b443, type: 3}
@@ -4863,7 +4881,7 @@ PrefabInstance:
     - target: {fileID: 5932888113558946043, guid: a17940235c82926478a0cbb97b0291c2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5932888113558946044, guid: a17940235c82926478a0cbb97b0291c2,
         type: 3}
@@ -4918,6 +4936,21 @@ PrefabInstance:
     - target: {fileID: 5932888113558946044, guid: a17940235c82926478a0cbb97b0291c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932888113689589138, guid: a17940235c82926478a0cbb97b0291c2,
+        type: 3}
+      propertyPath: m_UseViewFrustumForShadowCasterCull
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932888113927804448, guid: a17940235c82926478a0cbb97b0291c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5932888113955285675, guid: a17940235c82926478a0cbb97b0291c2,
+        type: 3}
+      propertyPath: m_UseViewFrustumForShadowCasterCull
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

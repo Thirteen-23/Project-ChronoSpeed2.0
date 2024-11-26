@@ -18,7 +18,7 @@ public class Blink : MonoBehaviour
 
     private void Awake()
     {
-        m_VFXContainer = GetComponent<VFXContainer>();
+        m_VFXContainer = GetComponentInChildren<VFXContainer>();
         mainCamVol = Camera.main.GetComponent<Volume>();
         stateMach = GetComponent<PlayerStateMachine>();
     }
@@ -48,7 +48,7 @@ public class Blink : MonoBehaviour
         dischargeCoroutine = StartCoroutine(DischargeVisual());
         currentMirage.enabled = false;
         mirageCol.enabled = false;
-
+        stateMach.ChangeCurrentState(PlayerStateMachine.PlayerStates.IdlePower, true);
         //tell the server
     }
 
@@ -61,7 +61,7 @@ public class Blink : MonoBehaviour
        // m_VFXContainer.SetVFX(VFXManager.VFXTypes.electricBall, false);
         //VFXManager.AlterVFXState(transform.root.gameObject, VFXManager.VFXTypes.electricBall, false);
 
-        stateMach.ChangeCurrentState(PlayerStateMachine.PlayerStates.Blinking, false);
+        stateMach.ChangeCurrentState(PlayerStateMachine.PlayerStates.IdlePower, true);
 
         if (chargeCoroutine != null) StopCoroutine(chargeCoroutine);
         chargeCoroutine = null;

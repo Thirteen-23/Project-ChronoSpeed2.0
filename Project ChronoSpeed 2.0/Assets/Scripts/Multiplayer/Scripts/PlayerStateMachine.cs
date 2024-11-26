@@ -91,7 +91,7 @@ public class PlayerStateMachine : NetworkBehaviour
             case PlayerStates.Reversing:
                 Reversing(SwitchTo); break;
             case PlayerStates.Breaking:
-                Breaking(SwitchTo); break;
+                Braking(SwitchTo); break;
             case PlayerStates.Drifting:
                 Drifting(SwitchTo); break;
             case PlayerStates.DroppingPortal:
@@ -138,7 +138,7 @@ public class PlayerStateMachine : NetworkBehaviour
         //reverse the direction of particles possible, and maybe reduce the smokeparticle effect so it doesnt cover the screen
     }
 
-    private void Breaking(bool switchTo)
+    private void Braking(bool switchTo)
     {
         //tireParticles = switchTo;
         //bunch up tire smoke?
@@ -165,6 +165,7 @@ public class PlayerStateMachine : NetworkBehaviour
     {
         //blinkVFX = switchTo;
         //blinkNoise = switchTo; same thing with the droppingPortalNoise
+        vfxCon.SetVFX(VFXContainer.VFXTypes.electricBall, switchTo); 
     }
 
     private void Rewinding(bool switchTo)
@@ -183,10 +184,7 @@ public class PlayerStateMachine : NetworkBehaviour
         
             vfxCon.SetVFX(VFXContainer.VFXTypes.SpeedLimitRemover, switchTo);
       
-        if (switchTo == false)
-        {
-            ChangeCurrentState(PlayerStates.IdlePower, true);
-        }
+       
     }
     private IEnumerator TempInvonrability(bool switchTo)
     {

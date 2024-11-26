@@ -3546,6 +3546,9 @@ MonoBehaviour:
   rewindTime: 5
   cooldown: 5
   rewindProfile: {fileID: 11400000, guid: b19fee55a431d2a40a7634e16b824da1, type: 2}
+  currentRewindIteration: 0
+  isUsable: 1
+  countDown: 5
 --- !u!114 &-1593979974587260023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6585,6 +6588,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8106939037500274895, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237337769313257685, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237337769313257685, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 25000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b9d08f2f9d349341a2407a891f6b443, type: 3}
 --- !u!4 &5169752372737931839 stripped
@@ -6744,6 +6762,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4352269258587667326}
     m_Modifications:
+    - target: {fileID: 727367698910576579, guid: 1c866aa7f40a97c48a3edaa35cef8bb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 727367699065899901, guid: 1c866aa7f40a97c48a3edaa35cef8bb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 727367699076393986, guid: 1c866aa7f40a97c48a3edaa35cef8bb3,
         type: 3}
       propertyPath: m_Name

@@ -2675,6 +2675,7 @@ GameObject:
   - component: {fileID: 369546771}
   - component: {fileID: 3222927327560705700}
   - component: {fileID: 7214305715692781150}
+  - component: {fileID: 4189181152404968331}
   m_Layer: 0
   m_Name: LightCar
   m_TagString: Player
@@ -3137,6 +3138,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 72b6a20c-76c9-49d9-aa17-d277a2869ce9
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3c05e02a-c4da-40a9-891f-1d09fa286fdb
+    m_ActionName: UI/BackPress[/DualSenseGamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
+    m_ActionName: UI/ReadyPress[/DualSenseGamepadHID/leftTrigger,/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -3402,6 +3411,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad42b1376c22e7841811e5011963e4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4189181152404968331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5727530261080087962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f3f3b604f4db64e874f8cede559343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6241498031530955137
@@ -6090,6 +6111,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4915563276677072672}
     m_Modifications:
+    - target: {fileID: 5197302197145062563, guid: 851bfd0f7f5d0fa46b1c073e429ab21d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5197302197459589336, guid: 851bfd0f7f5d0fa46b1c073e429ab21d,
         type: 3}
       propertyPath: m_RootOrder
@@ -6172,7 +6198,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8456312397284336417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3d7f56a545f8ef40bcbe33c34d90b93, type: 3}
   m_Name: 
@@ -6524,6 +6550,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106939037500274895, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237337769313257685, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237337769313257685, guid: 9b9d08f2f9d349341a2407a891f6b443,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 25000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b9d08f2f9d349341a2407a891f6b443, type: 3}

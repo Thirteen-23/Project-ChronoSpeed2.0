@@ -777,8 +777,8 @@ public class Car_Movement : MonoBehaviour
 
     // values for friction
     [Header("Friction Values for Cars ")]
-    [SerializeField] float m_TForwardFrictionValue;
-    [SerializeField] float m_TSidewaysFrictionValue;
+    public float m_TForwardFrictionValue;
+    public float m_TSidewaysFrictionValue;
     [SerializeField] float m_SForwardFrictionValue;
     [SerializeField] float m_SSidewaysFrictionValue;
     [SerializeField] float m_ExtraGripOnHigherSpeed;
