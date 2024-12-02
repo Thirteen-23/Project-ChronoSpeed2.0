@@ -150,12 +150,12 @@ public class MultiplayerGameManager : NetworkBehaviour
         if (time == 4)
         {
             m_ready[0].enabled = true;
-            countdown.Play();
+            
         }
         if (time == 3)
         {
             m_ready[1].enabled = true;
-
+            countdown.Play();
         }
         if (time == 2)
         {
@@ -184,7 +184,7 @@ public class MultiplayerGameManager : NetworkBehaviour
             startCountdownText.enabled = false;
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();
-          
+
             input.enabled = true;
             input.SwitchCurrentActionMap("Movement");
             
@@ -196,8 +196,10 @@ public class MultiplayerGameManager : NetworkBehaviour
                 foreach (var curAI in AIs)
                 {
 
-                    curAI.GetComponent<AI>().difficultness = AI.aI_Difficulty.normal;
-                   
+                    curAI.GetComponent<AI>().difficultness = (aI_Difficulty)UnityEngine.Random.Range(1, 4);
+                    curAI.GetComponent<AI>().AIChange(); 
+
+
                 }
             }
         }

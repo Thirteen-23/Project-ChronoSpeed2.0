@@ -2828,8 +2828,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 6000
-      value: 1000
+      time: 4500
+      value: 600
       inSlope: -0.111747734
       outSlope: -0.111747734
       tangentMode: 0
@@ -2837,7 +2837,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 1
     - serializedVersion: 3
-      time: 8000
+      time: 6500
       value: 0
       inSlope: 0
       outSlope: 0
@@ -2853,9 +2853,9 @@ MonoBehaviour:
   acceration_Value: 0
   AccelerationDamping: 0
   idleRPM: 800
-  maxRPM: 6500
+  maxRPM: 4500
   minRPM: 3000
-  maxRPMForCar: 8000
+  maxRPMForCar: 5500
   engineRPM: 0
   finalDriveRatio: 3
   gearSpeedBox:
@@ -3194,6 +3194,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c109dbdb-f458-480d-8aae-4e859edc58ef
     m_ActionName: Movement/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3c05e02a-c4da-40a9-891f-1d09fa286fdb
+    m_ActionName: UI/BackPress[/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
+    m_ActionName: UI/ReadyPress[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -3548,19 +3556,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elecArcPrefab: {fileID: 2202564959583954569, guid: cec451dd38a2ce04ab3a0efefe2301a4,
     type: 3}
-  spinSmokes:
-  - {fileID: 3740260554062549488}
-  - {fileID: 5802224290668815671}
-  straightSmokes:
-  - {fileID: 5391911261012112706}
-  - {fileID: 3007944755124814213}
-  speedLimitRemoverTrails:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  drifting: []
-  nitroBoostVFX: []
+  spinSmokes: []
+  straightSmokes: []
+  speedLimitRemoverTrails: []
+  drifting:
+  - {fileID: 5631018397752959332}
+  - {fileID: 2050411547198832914}
+  - {fileID: 4812964152695932813}
+  - {fileID: 1507415426891445875}
+  nitroBoostVFX:
+  - {fileID: 8022568477276950865}
+  - {fileID: 1288255162618978662}
+  m_NBoost: []
   electricArc: {fileID: 0}
 --- !u!1001 &332808800997284269
 PrefabInstance:
@@ -4197,6 +4204,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6294220937509489275, guid: 82914aefa62cc7445805ab68040958f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9162056805257624487, guid: 82914aefa62cc7445805ab68040958f5,
         type: 3}
       propertyPath: playOnAwake
@@ -4204,18 +4216,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82914aefa62cc7445805ab68040958f5, type: 3}
---- !u!1 &3007944755124814213 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3905691900192932775, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2273635867118010914}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5802224290668815671 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5694862778957637397, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2273635867118010914}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6209975036008091760 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5306314183756108370, guid: 82914aefa62cc7445805ab68040958f5,
@@ -4244,7 +4244,7 @@ PrefabInstance:
     - target: {fileID: 3935036480736072275, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
         type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
         type: 3}
@@ -4255,6 +4255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3935036480736072277, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
         type: 3}
@@ -4316,6 +4321,12 @@ PrefabInstance:
 --- !u!198 &1288255162618978657 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3935036480736072275, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
+    type: 3}
+  m_PrefabInstance: {fileID: 2845364475178890034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1288255162618978662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
     type: 3}
   m_PrefabInstance: {fileID: 2845364475178890034}
   m_PrefabAsset: {fileID: 0}
@@ -4405,22 +4416,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 7.24e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -4602,17 +4613,17 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 1.8346086e+9
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 7.29e-43
+      value: 8e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 2.2e-44
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
@@ -4713,12 +4724,12 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 7.29e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
@@ -5037,6 +5048,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3935036480736072277, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
         type: 3}
       propertyPath: m_RootOrder
@@ -5097,6 +5113,12 @@ PrefabInstance:
 --- !u!4 &8022568477276950864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3935036480736072277, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
+    type: 3}
+  m_PrefabInstance: {fileID: 6469963279596569349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8022568477276950865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
     type: 3}
   m_PrefabInstance: {fileID: 6469963279596569349}
   m_PrefabAsset: {fileID: 0}
@@ -5414,6 +5436,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6294220937509489275, guid: 82914aefa62cc7445805ab68040958f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9162056805257624487, guid: 82914aefa62cc7445805ab68040958f5,
         type: 3}
       propertyPath: playOnAwake
@@ -5427,12 +5454,6 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 8998232386907993829}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3740260554062549488 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5694862778957637397, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8998232386907993829}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3838179642803922103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5306314183756108370, guid: 82914aefa62cc7445805ab68040958f5,
@@ -5442,12 +5463,6 @@ Transform:
 --- !u!198 &4129552760484218943 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5021296935059177178, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8998232386907993829}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5391911261012112706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3905691900192932775, guid: 82914aefa62cc7445805ab68040958f5,
     type: 3}
   m_PrefabInstance: {fileID: 8998232386907993829}
   m_PrefabAsset: {fileID: 0}

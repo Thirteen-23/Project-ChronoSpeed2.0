@@ -1015,14 +1015,15 @@ public class Car_Movement : MonoBehaviour
                 {
                     m_StateMach.ChangeCurrentState(PlayerStates.Driving, false);
                     m_StateMach.ChangeCurrentState(PlayerStates.StartDrifting, true);
+                    m_StateMach.ChangeCurrentState(PlayerStates.Drifting, true);
 
-                   // leftWheelSmoke.Play();
-                   // var leftMain = leftWheelSmoke.emission;
-                   // leftMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
-                   // 
-                   // rightWheelSmoke.Play();
-                   // var rightMain = rightWheelSmoke.emission;
-                   // rightMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
+                    // leftWheelSmoke.Play();
+                    // var leftMain = leftWheelSmoke.emission;
+                    // leftMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
+                    // 
+                    // rightWheelSmoke.Play();
+                    // var rightMain = rightWheelSmoke.emission;
+                    // rightMain.rateOverTime = ((int)currentSpeed * 10 <= 2000) ? (int)currentSpeed * 10 : 200;
                 }
 
             }

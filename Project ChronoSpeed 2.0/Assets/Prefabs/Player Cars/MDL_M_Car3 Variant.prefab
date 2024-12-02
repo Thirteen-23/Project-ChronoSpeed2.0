@@ -2639,19 +2639,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elecArcPrefab: {fileID: 2202564959583954569, guid: cec451dd38a2ce04ab3a0efefe2301a4,
     type: 3}
-  spinSmokes:
-  - {fileID: 4481161876766983590}
-  - {fileID: 2043332667340058738}
-  straightSmokes:
-  - {fileID: 5119380484303610132}
-  - {fileID: 7305007565841274048}
+  spinSmokes: []
+  straightSmokes: []
   speedLimitRemoverTrails:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  drifting: []
-  nitroBoostVFX: []
+  drifting:
+  - {fileID: 2716493059910562508}
+  - {fileID: 7677423046660539109}
+  - {fileID: 6113269609894399732}
+  - {fileID: 6409440430350862465}
+  nitroBoostVFX:
+  - {fileID: 1345372336672947173}
+  m_NBoost: []
   electricArc: {fileID: 0}
 --- !u!1 &3231836158345881310
 GameObject:
@@ -2993,7 +2995,7 @@ MonoBehaviour:
   - {fileID: 8792583485545511205}
   - {fileID: 4245817664527984752}
   centerMass: {fileID: 4593876732615919091}
-  downForceValue: 700
+  downForceValue: 800
   horsePower: 0
   enginePower:
     serializedVersion: 2
@@ -3006,9 +3008,9 @@ MonoBehaviour:
   acceration_Value: 0
   AccelerationDamping: 0
   idleRPM: 800
-  maxRPM: 6000
+  maxRPM: 5500
   minRPM: 2500
-  maxRPMForCar: 7000
+  maxRPMForCar: 6000
   engineRPM: 0
   finalDriveRatio: 3.5
   gearSpeedBox:
@@ -3021,8 +3023,8 @@ MonoBehaviour:
   smoothTime: 0.07
   keyRPMSet:
   - {x: 0, y: 250}
-  - {x: 6000, y: 500}
-  - {x: 8000, y: 0}
+  - {x: 4500, y: 500}
+  - {x: 6500, y: 0}
   exhaust_Shift: {fileID: 2937486862101330548}
   slip:
   - 0
@@ -3103,10 +3105,10 @@ MonoBehaviour:
   maxTimeToShiftGear: 0.025
   timerToShift: 0.025
   rpmLimiter: 5000
-  m_TForwardFrictionValue: 0.3
-  m_TSidewaysFrictionValue: 0.1
-  m_SForwardFrictionValue: 0
-  m_SSidewaysFrictionValue: 0
+  m_TForwardFrictionValue: 0.5
+  m_TSidewaysFrictionValue: 0.5
+  m_SForwardFrictionValue: 0.5
+  m_SSidewaysFrictionValue: 0.5
   m_ExtraGripOnHigherSpeed: 0
   m_ValueToChangeSpeedForGrip: 180
   m_DriftingSound: {fileID: 6440882967023571150}
@@ -6108,22 +6110,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.09765625
-      objectReference: {fileID: 0}
-    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.05e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
+        type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: -2.4224048e+38
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -6344,22 +6346,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.03515625
-      objectReference: {fileID: 0}
-    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 7.08e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
+        type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: -2.4224048e+38
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -6700,6 +6702,12 @@ ParticleSystem:
 --- !u!4 &1345372336672947172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3935036480736072277, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
+    type: 3}
+  m_PrefabInstance: {fileID: 2609756645386693041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1345372336672947173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
     type: 3}
   m_PrefabInstance: {fileID: 2609756645386693041}
   m_PrefabAsset: {fileID: 0}
@@ -7263,6 +7271,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6294220937509489275, guid: 82914aefa62cc7445805ab68040958f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8231611545500107527, guid: 82914aefa62cc7445805ab68040958f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7302,21 +7315,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6004239186647603047}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2043332667340058738 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5694862778957637397, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 6004239186647603047}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &3203604858972728512 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 9162056805257624487, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 6004239186647603047}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7305007565841274048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3905691900192932775, guid: 82914aefa62cc7445805ab68040958f5,
     type: 3}
   m_PrefabInstance: {fileID: 6004239186647603047}
   m_PrefabAsset: {fileID: 0}
@@ -7657,22 +7658,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: -2.5291641e+38
+      value: 7.05e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0.16796875
+      value: 6e-45
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0.45703125
+      value: 4.556e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -7775,6 +7776,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6294220937509489275, guid: 82914aefa62cc7445805ab68040958f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8231611545500107527, guid: 82914aefa62cc7445805ab68040958f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7817,18 +7823,6 @@ ParticleSystem:
 --- !u!4 &4079047232320663777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5306314183756108370, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8158410888251253427}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4481161876766983590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5694862778957637397, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8158410888251253427}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5119380484303610132 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3905691900192932775, guid: 82914aefa62cc7445805ab68040958f5,
     type: 3}
   m_PrefabInstance: {fileID: 8158410888251253427}
   m_PrefabAsset: {fileID: 0}
