@@ -1035,6 +1035,17 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""83014b1d-f8d7-47d7-9f5b-18a6a59899a7"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""One Modifier"",
                     ""id"": ""3905d0da-9548-488d-bbd7-af92df8f1d6a"",
                     ""path"": ""OneModifier"",
@@ -1066,6 +1077,17 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""ReadyPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9440197-b563-498c-b19a-a2350d2e0168"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadyPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
