@@ -23,6 +23,7 @@ public class OnPlayerSpawn : NetworkBehaviour
             Destroy(input);
             Destroy(carMove);
             Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<TimeRecording>());
             gameObject.tag = "OtherPlayer";
 
             foreach (Transform child in transform)
