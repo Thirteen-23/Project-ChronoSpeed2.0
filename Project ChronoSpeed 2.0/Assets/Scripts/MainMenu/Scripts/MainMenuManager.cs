@@ -90,7 +90,7 @@ public class MainMenuManager : MonoBehaviour
         else if(i == 2)
         {
             targetUI = 3;
-            targetPosition = 46.2f;
+            targetPosition = 61.5f;
         }
         else if(i == 3)
         {

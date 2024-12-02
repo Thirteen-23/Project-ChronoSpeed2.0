@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class ServerManager : MonoBehaviour
 {
     [SerializeField] private string characterSelectionSceneName = "CharacterSelect";
-    [SerializeField] private string raceSceneName = "RaceTrack";
+    [SerializeField] private string raceSceneName;
     [SerializeField] private int MaxPlayers = 4;
     
     private MainMenuManager mainMenuManager;
