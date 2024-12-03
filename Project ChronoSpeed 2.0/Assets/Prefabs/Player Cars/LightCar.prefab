@@ -1560,6 +1560,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: ed73f769020d2b0418637fcea3116171, type: 2}
+  - {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1717,7 +1718,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3846143060323767317}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2287,12 +2288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elecArcPrefab: {fileID: 2202564959583954569, guid: cec451dd38a2ce04ab3a0efefe2301a4,
     type: 3}
-  spinSmokes:
-  - {fileID: 2204622447287945925}
-  - {fileID: 6138015908312273101}
-  straightSmokes:
-  - {fileID: 7467986322350714487}
-  - {fileID: 3176556591845848191}
   speedLimitRemoverTrails:
   - {fileID: 4893924514796328986}
   - {fileID: 4521786811611943766}
@@ -2301,9 +2296,12 @@ MonoBehaviour:
   - {fileID: 7718356517431867168}
   - {fileID: 6928272273368052467}
   - {fileID: 1323454525318982867}
-  nitroBoostVFX:
-  - {fileID: 8983809370363853921}
   m_NBoost: []
+  m_MRS:
+  - {fileID: 3505258020962718340}
+  - {fileID: 2480733040467691559}
+  hologramMat: {fileID: 2100000, guid: a1d8f618d002f214091d0fd3f667e819, type: 2}
+  basicMat: {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   electricArc: {fileID: 0}
 --- !u!1 &5157027952505749143
 GameObject:
@@ -3224,7 +3222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1106096736
+  GlobalObjectIdHash: 4086998015
   InScenePlacedSourceGlobalObjectIdHash: 1106096736
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -3491,6 +3489,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 91078266650444a47903dc34e72cfdbb, type: 2}
+  - {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5352,21 +5351,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82914aefa62cc7445805ab68040958f5, type: 3}
---- !u!1 &3176556591845848191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3905691900192932775, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1884382012714481624}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6018352637137462666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5306314183756108370, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1884382012714481624}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6138015908312273101 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5694862778957637397, guid: 82914aefa62cc7445805ab68040958f5,
     type: 3}
   m_PrefabInstance: {fileID: 1884382012714481624}
   m_PrefabAsset: {fileID: 0}
@@ -6363,12 +6350,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5346029848897187381}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8983809370363853921 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
-    type: 3}
-  m_PrefabInstance: {fileID: 5346029848897187381}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &8983809370363853926 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3935036480736072275, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
@@ -6697,21 +6678,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5877289774752886224}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2204622447287945925 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5694862778957637397, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 5877289774752886224}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &3366011869435975287 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 9162056805257624487, guid: 82914aefa62cc7445805ab68040958f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 5877289774752886224}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7467986322350714487 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3905691900192932775, guid: 82914aefa62cc7445805ab68040958f5,
     type: 3}
   m_PrefabInstance: {fileID: 5877289774752886224}
   m_PrefabAsset: {fileID: 0}

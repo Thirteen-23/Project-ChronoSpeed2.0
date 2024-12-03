@@ -733,6 +733,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1b97a4b5ad3bc814fa8a8ee6a0aae06e, type: 2}
+  - {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2639,8 +2640,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elecArcPrefab: {fileID: 2202564959583954569, guid: cec451dd38a2ce04ab3a0efefe2301a4,
     type: 3}
-  spinSmokes: []
-  straightSmokes: []
   speedLimitRemoverTrails:
   - {fileID: 0}
   - {fileID: 0}
@@ -2651,9 +2650,14 @@ MonoBehaviour:
   - {fileID: 7677423046660539109}
   - {fileID: 6113269609894399732}
   - {fileID: 6409440430350862465}
-  nitroBoostVFX:
-  - {fileID: 1345372336672947173}
-  m_NBoost: []
+  m_NBoost:
+  - {fileID: 1345372336672947170}
+  m_MRS:
+  - {fileID: 7629526743039720989}
+  - {fileID: 5624668947715471799}
+  - {fileID: 3914603217553763334}
+  hologramMat: {fileID: 2100000, guid: a7b40d942b3d88e40bf4a4ad6faf605e, type: 2}
+  basicMat: {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   electricArc: {fileID: 0}
 --- !u!1 &3231836158345881310
 GameObject:
@@ -2717,6 +2721,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7c233100f6122b94fb764c552c3a59ac, type: 2}
+  - {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3090,7 +3095,7 @@ MonoBehaviour:
   maxAmountOfGrip: 3
   minAmountOfGripAtStart: 1
   meBoosting: 0
-  boostValue: 25000
+  boostValue: 30000
   leftWheel: {fileID: 1017344459801729300}
   rightWheel: {fileID: 3203604858972728512}
   leftWheelSmoke: {fileID: 3789574092207725673}
@@ -3113,7 +3118,7 @@ MonoBehaviour:
   m_ValueToChangeSpeedForGrip: 180
   m_DriftingSound: {fileID: 6440882967023571150}
   m_StateMach: {fileID: 7114129123964733764}
-  m_AmountOfForceOfTheStart: 50000
+  m_AmountOfForceOfTheStart: 25000
   imFlying: 0
 --- !u!114 &3975989593886958022
 MonoBehaviour:
@@ -3349,6 +3354,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c109dbdb-f458-480d-8aae-4e859edc58ef
     m_ActionName: Movement/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3c05e02a-c4da-40a9-891f-1d09fa286fdb
+    m_ActionName: UI/BackPress[/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
+    m_ActionName: UI/ReadyPress[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -3929,8 +3942,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.2
-  m_SuspensionDistance: 0.2
+    targetPosition: 0.6
+  m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
   m_WheelDampingRate: 0.25
@@ -3941,7 +3954,7 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 1.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 0.02
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
@@ -4092,8 +4105,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.2
-  m_SuspensionDistance: 0.2
+    targetPosition: 0.6
+  m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
   m_WheelDampingRate: 0.25
@@ -4154,8 +4167,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.2
-  m_SuspensionDistance: 0.2
+    targetPosition: 0.6
+  m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
   m_WheelDampingRate: 0.25
@@ -4216,8 +4229,8 @@ WheelCollider:
   m_SuspensionSpring:
     spring: 85000
     damper: 4500
-    targetPosition: 0.2
-  m_SuspensionDistance: 0.2
+    targetPosition: 0.6
+  m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: -0.6
   m_Mass: 25
   m_WheelDampingRate: 0.25
@@ -4228,7 +4241,7 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 1.5
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
+    m_ExtremumSlip: 0.02
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
@@ -5236,6 +5249,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 91bff8dec39d6434f8bb4c037d7ea0a8, type: 2}
+  - {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6702,12 +6716,6 @@ ParticleSystem:
 --- !u!4 &1345372336672947172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3935036480736072277, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
-    type: 3}
-  m_PrefabInstance: {fileID: 2609756645386693041}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1345372336672947173 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3935036480736072276, guid: 49d4dfb8dea3b9b4aae6d5f395c7abac,
     type: 3}
   m_PrefabInstance: {fileID: 2609756645386693041}
   m_PrefabAsset: {fileID: 0}

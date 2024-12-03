@@ -172,7 +172,7 @@ public class PlayerStateMachine : NetworkBehaviour
     private void Rewinding(bool switchTo)
     {
         colForFakeCollision.enabled = !switchTo;
-
+        vfxCon.SetVFX(VFXContainer.VFXTypes.Ghosting, switchTo);
         //rewindHologramVFX = switchTo;
     }
     public Class carClasses;
@@ -182,18 +182,15 @@ public class PlayerStateMachine : NetworkBehaviour
     }
     private void LimitRemover(bool switchTo)
     {
-        
             vfxCon.SetVFX(VFXContainer.VFXTypes.SpeedLimitRemover, switchTo);
-      
-       
     }
     private IEnumerator TempInvonrability(bool switchTo)
     {
         if(switchTo == false) { yield break; }
         colForFakeCollision.enabled = false;
-        //start blink graphic = true
+        vfxCon.SetVFX(VFXContainer.VFXTypes.Ghosting, true);
         yield return new WaitForSeconds(2f);
-        //start blink graphic = false
+        vfxCon.SetVFX(VFXContainer.VFXTypes.Ghosting, false);
         colForFakeCollision.enabled = true;
         if(CurrentPowerState == PlayerStates.TempInvonrability) 
         {

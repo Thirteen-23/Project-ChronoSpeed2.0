@@ -4,15 +4,14 @@ using UnityEngine.VFX;
 public class VFXContainer : MonoBehaviour
 {
     [SerializeField] public GameObject elecArcPrefab;
-    [SerializeField] public GameObject[] spinSmokes = new GameObject[2];
-    [SerializeField] public GameObject[] straightSmokes = new GameObject[2];
     [SerializeField] public TrailRenderer[] speedLimitRemoverTrails = new TrailRenderer[4];
     [SerializeField] public TrailRenderer[] drifting;
-    [SerializeField] GameObject[] nitroBoostVFX;
-    [SerializeField] ParticleSystem[] m_NBoost; 
+    [SerializeField] ParticleSystem[] m_NBoost;
+    [SerializeField] MeshRenderer[] m_MRS;
+    [SerializeField] Material hologramMat;
+    [SerializeField] Material basicMat;
 
-    /*[HideInInspector]*/
-    public VisualEffect electricArc;
+    [HideInInspector] public VisualEffect electricArc;
     public enum VFXTypes
     {
         spinSmoke,
@@ -22,7 +21,7 @@ public class VFXContainer : MonoBehaviour
         SpeedLimitRemover,
         Boosting, 
         Drifting, 
-
+        Ghosting,
     }
 
     public void SetVFX(VFXTypes type, bool setTo)
@@ -32,18 +31,6 @@ public class VFXContainer : MonoBehaviour
             case VFXTypes.electricBall:
                 electricArc.enabled = setTo;
                 break;
-            case VFXTypes.spinSmoke:
-                foreach(GameObject SM in spinSmokes)
-                {
-                    SM.SetActive(setTo);
-                }
-                break;
-            case VFXTypes.straightSmoke:
-                foreach(GameObject SM in straightSmokes)
-                {
-                    SM.SetActive(setTo);
-                }
-                break;
             case VFXTypes.SpeedLimitRemover:
                 foreach (TrailRenderer SM in speedLimitRemoverTrails)
                 {
@@ -52,22 +39,29 @@ public class VFXContainer : MonoBehaviour
 
                 break;
             case VFXTypes.Boosting:
-                //foreach (GameObject SM in nitroBoostVFX)
-                //{
-                //    SM.SetActive(setTo);
-                   
-                //}
                 foreach (ParticleSystem SM in m_NBoost)
                 {
-                    SM.Play(setTo);  
+                    if (setTo)
+                        SM.Play();
+                    else
+                        SM.Stop();  
                 }
-                    break;
+                break;
             case VFXTypes.Drifting:
                 foreach (TrailRenderer SM in drifting)
                 {
                     SM.emitting = setTo;
                 }
 
+                break;
+            case VFXTypes.Ghosting:
+                foreach(MeshRenderer SM in m_MRS)
+                {
+                    Material[] tempMats = SM.materials;
+                    tempMats[1] = setTo ? hologramMat : basicMat;
+                    SM.materials = tempMats;
+
+                }
                 break;
         }
     }

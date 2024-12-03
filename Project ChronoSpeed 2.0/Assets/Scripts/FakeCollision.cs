@@ -72,7 +72,6 @@ public class FakeCollision : MonoBehaviour
         if(other.transform.CompareTag("CarBody"))
         {
             Depenetrate(trigger, other);
-            ApplyRelVelocity(other);
         }
         
     }
@@ -117,11 +116,11 @@ public class FakeCollision : MonoBehaviour
 
         //IDK why but if truck is 90, light is 30, total is 120, 
         //90 / 120 is 0.7, but 30 / 120 = 0.3. But i want the truck to have reduced velocity not light car so i use othermass
-        dot *= otherMass /  (myMass + otherMass);
+        //dot *= otherMass /  (myMass + otherMass);
 
         Vector3 velChange = normal * dot;
 
-        velChange = Vector3.ClampMagnitude(velChange, 20);
+        velChange = Vector3.ClampMagnitude(velChange, 5);
         myRB.AddForce(-velChange, ForceMode.VelocityChange);
     }
 
