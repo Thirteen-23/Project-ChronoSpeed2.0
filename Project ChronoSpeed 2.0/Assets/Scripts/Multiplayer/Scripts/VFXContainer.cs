@@ -58,8 +58,16 @@ public class VFXContainer : MonoBehaviour
                    
                 //}
                 foreach (ParticleSystem SM in m_NBoost)
-                {
-                    SM.Play(setTo);  
+                {if (setTo)
+                    { 
+                        SM.Play(true); 
+                    }
+                else
+                    {
+                        SM.Stop(); 
+                    }
+                
+
                 }
                     break;
             case VFXTypes.Drifting:

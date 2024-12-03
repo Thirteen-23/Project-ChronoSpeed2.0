@@ -1830,7 +1830,7 @@ MonoBehaviour:
   - source: {fileID: 6297045740859617014}
     minRPM: 3000
     peakRPM: 5000
-    maxRPM: 8000
+    maxRPM: 6000
     pitchReferenceRPM: 5000
   carValues: {fileID: 0}
   m_AICarValues: {fileID: 0}
@@ -1880,6 +1880,7 @@ MonoBehaviour:
   activeTime: 5
   cooldownTimer: 5
   rewindback: {fileID: 0}
+  rewindTimer: 0
 --- !u!114 &2111018335806438509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2524,7 +2525,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1.5
+    m_Stiffness: 2.5
   m_Enabled: 1
 --- !u!1 &4593876732923096149
 GameObject:
@@ -2687,7 +2688,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1.5
+    m_Stiffness: 2.5
   m_Enabled: 1
 --- !u!1 &4593876734409949897
 GameObject:
@@ -2749,7 +2750,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1.5
+    m_Stiffness: 2.5
   m_Enabled: 1
 --- !u!1 &4593876734487059859
 GameObject:
@@ -2842,7 +2843,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 1
-    m_Stiffness: 1.5
+    m_Stiffness: 2.5
   m_Enabled: 1
 --- !u!1 &4759903189171196353
 GameObject:

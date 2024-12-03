@@ -139,55 +139,48 @@ public class MultiplayerGameManager : NetworkBehaviour
         {
             startCountdownText.text = "GO!!!!";
         }*/
-        if (time == 6)
+        if (time == 5)
         {
             m_ready[4].enabled = true;
         }
-        if (time == 5)
-        {
-            m_ready[3].enabled = true;
-        }
         if (time == 4)
         {
-            m_ready[0].enabled = true;
-            
+            m_ready[3].enabled = true;
+
         }
         if (time == 3)
         {
-            m_ready[1].enabled = true;
+            m_ready[0].enabled = true;
             countdown.Play();
         }
         if (time == 2)
         {
-            m_ready[2].enabled = true;
+           
+            m_ready[1].enabled = true;
             //foreach (Image read in m_ready)
             //{ read.enabled = false; }
 
         }
         if (time == 1)
         {
+            m_ready[2].enabled = true;
+           
+           
+          
+        }
+        if(time == 0)
+        {
             foreach (Image read in m_ready)
             { read.enabled = false; }
             foreach (Image read in m_set)
             { read.enabled = false; }
-            foreach (Image read in m_go)
-            {
-                read.enabled = true;
-            }
-        }
-        if (RaceStart)
-        {
-            foreach (Image read in m_go)
-            {
-                read.enabled = false;
-            }
-            startCountdownText.enabled = false;
+
             var player = GameObject.FindGameObjectWithTag("Player");
             var input = player.GetComponent<PlayerInput>();
 
             input.enabled = true;
             input.SwitchCurrentActionMap("Movement");
-            
+
 
             if (IsServer)
             {
@@ -197,15 +190,28 @@ public class MultiplayerGameManager : NetworkBehaviour
                 {
 
                     curAI.GetComponent<AI>().difficultness = (aI_Difficulty)UnityEngine.Random.Range(1, 4);
-                    curAI.GetComponent<AI>().AIChange(); 
+                    curAI.GetComponent<AI>().AIChange();
 
 
                 }
             }
         }
+        if (RaceStart)
+        {
+           
+            foreach (Image read in m_go)
+            {
+                read.enabled = false;
+            }
+            startCountdownText.enabled = false;
+            
+        }
         else
         {
-            
+            foreach (Image read in m_go)
+            {
+                read.enabled = true;
+            }
             startCountdownText.enabled = true;
             
         }

@@ -121,7 +121,7 @@ public class FakeCollision : MonoBehaviour
 
         Vector3 velChange = normal * dot;
 
-        velChange = Vector3.ClampMagnitude(velChange, 20);
+        velChange = Vector3.ClampMagnitude(velChange, 5);
         myRB.AddForce(-velChange, ForceMode.VelocityChange);
     }
 
