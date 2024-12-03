@@ -812,8 +812,8 @@ public class Car_Movement : MonoBehaviour
                             {
                                 if (checkingTerrain.collider.CompareTag("Tarmac"))
                                 {
-                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
 
                                     wheel.forwardFriction = forwardFriction;
                                     wheel.sidewaysFriction = sidewaysFriction;
@@ -821,8 +821,8 @@ public class Car_Movement : MonoBehaviour
                                 }
                                 else if (checkingTerrain.collider.CompareTag("SideWalk"))
                                 {
-                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
-                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction + 0.5f;
+                                    forwardFriction.stiffness = checkingTerrain.collider.material.staticFriction;
+                                    sidewaysFriction.stiffness = checkingTerrain.collider.material.staticFriction;
 
                                     wheel.forwardFriction = forwardFriction;
                                     wheel.sidewaysFriction = sidewaysFriction;

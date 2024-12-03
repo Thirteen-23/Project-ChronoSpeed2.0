@@ -107,7 +107,7 @@ public class AI : MonoBehaviour
         switch (classforAI)
         {
             case Class.Light:
-                currentWaypointchange = Random.Range(0, (int)Mathf.Ceil(waypointLength / 3f));
+                currentWaypointchange = Random.Range(0,3);
                 //currentWaypointchange = Random.Range(0, 2);
                 if (currentWaypointchange == 0)
                 {
@@ -124,8 +124,8 @@ public class AI : MonoBehaviour
                 break;
 
             case Class.Medium:
-                // currentWaypointchange = Random.Range(3, 5);
-                currentWaypointchange = Random.Range((int)Mathf.Ceil(waypointLength / 3f), (int)Mathf.Ceil(waypointLength / 3f) * 2);
+                 currentWaypointchange = Random.Range(3, 5);
+                currentWaypointchange = Random.Range(3, 6);
                 if (currentWaypointchange == 3)
                 {
                     difficultness = aI_Difficulty.easy;
@@ -141,19 +141,19 @@ public class AI : MonoBehaviour
                 break;
 
             case Class.Heavy:
-                currentWaypointchange = Random.Range((int)Mathf.Ceil(waypointLength / 3f) * 2, waypointLength);
+                currentWaypointchange = Random.Range(6, 9);
                 //  currentWaypointchange = Random.Range(6, 8);
-                if (currentWaypointchange == 6)
+                if (difficultness == aI_Difficulty.easy)
                 {
-                    difficultness = aI_Difficulty.easy;
+                    currentWaypointchange = 6;
                 }
-                else if (currentWaypointchange == 7)
+                else if (difficultness == aI_Difficulty.normal)
                 {
-                    difficultness = aI_Difficulty.normal;
+                    currentWaypointchange = 7;
                 }
-                else if (currentWaypointchange == 8)
+                else if (difficultness == aI_Difficulty.hard)
                 {
-                    difficultness = aI_Difficulty.hard;
+                    currentWaypointchange = 8;
                 }
                 break;
 
@@ -351,7 +351,7 @@ public class AI : MonoBehaviour
             case aI_Difficulty.hard:
 
                 acceration_Value = 1.5f;
-                carAI.downForceValue = 500f;
+                carAI.downForceValue = 1000f;
 
                 break;
 
@@ -382,7 +382,7 @@ public class AI : MonoBehaviour
                 acceration_Value = 1.5f;
                 steeringForce = 1.2f;
                 minimumWayPointApproachThreshold = 20f;
-                carAI.downForceValue = 700;
+                carAI.downForceValue = 1000;
             }
         }
 
@@ -425,7 +425,7 @@ public class AI : MonoBehaviour
                 distanceOffset = 4;
                 steeringForce = 1f;
                 minimumWayPointApproachThreshold = 20f;
-                carAI.downForceValue = 700f;
+                carAI.downForceValue = 1000f;
             }
 
         }
@@ -460,13 +460,42 @@ public class AI : MonoBehaviour
     {
         if (nodes[currentWaypointIndex].gameObject.CompareTag("AccerateNode"))
         {
+            if(difficultness == aI_Difficulty.easy)
+            {
+                speed_Limiter = valueBeingRead.changingSpeedToAccerate - 50;
+            }
+           else if (difficultness == aI_Difficulty.normal)
+            {
+                speed_Limiter = valueBeingRead.changingSpeedToAccerate - 20;
+            }
+            else
             speed_Limiter = valueBeingRead.changingSpeedToAccerate;
         }
         else if (nodes[currentWaypointIndex].gameObject.CompareTag("SlowNode"))
         {
+            if (difficultness == aI_Difficulty.easy)
+            {
+                speed_Limiter = valueBeingRead.changingSpeedToAccerate - 50;
+            }
+            else if (difficultness == aI_Difficulty.normal)
+            {
+                speed_Limiter = valueBeingRead.changingSpeedToAccerate - 20;
+            }
+            else
             speed_Limiter = valueBeingRead.changingSpeedToSlowDown;
         }
-        else
+        else if(nodes[currentWaypointIndex].gameObject.CompareTag("BrakeNode"))
+        {
+            if (carAI.currentSpeed > valueBeingRead.changingSpeedToSlowDown)
+            {
+                carAI.brakes_value = 1;
+            }
+            else
+            {
+                carAI.brakes_value = 0f;
+            }
+
+        }
             return;
 
     }
