@@ -3,7 +3,7 @@ using UnityEngine;
 public class ColliderFollow : MonoBehaviour
 {
     Transform carBase;
-
+    [SerializeField] Vector3 offset;
     private void Start()
     {
         carBase = transform.root;
@@ -12,7 +12,7 @@ public class ColliderFollow : MonoBehaviour
 
     private void Update()
     {
-        transform.position = carBase.position;
+        transform.position = carBase.position + offset;
         transform.rotation = carBase.rotation;
     }
 

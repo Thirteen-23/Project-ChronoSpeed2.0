@@ -60,8 +60,19 @@ public class FakeCollision : MonoBehaviour
             Class theirClass = other.transform.GetComponent<FakeCollision>().myClass;
             currentCollidingCars.Add(other.transform, new CollisionRequiredInfo(theirClass, GetMass(theirClass), other.transform.GetComponent<VerleyVelocity>()));
 
-            ApplyRelVelocity(other);
-            Depenetrate(trigger, other);
+            Vector3 direction;
+            float distance;
+
+            if(Physics.ComputePenetration(trigger, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out direction, out distance))
+            {
+                direction.y = 0; direction.Normalize();
+                Depenetrate(direction, distance);
+
+                CollisionRequiredInfo otherCarInfo;
+                currentCollidingCars.TryGetValue(other.transform, out otherCarInfo);
+                ApplyRelVelocity(otherCarInfo, direction);
+            }
+            
         }
     }
     private void OnTriggerStay(Collider other)
@@ -71,7 +82,14 @@ public class FakeCollision : MonoBehaviour
         
         if(other.transform.CompareTag("CarBody"))
         {
-            Depenetrate(trigger, other);
+            Vector3 dir;
+            float dist;
+
+            if(Physics.ComputePenetration(trigger, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out dir, out dist));
+            {
+                Depenetrate(dir, dist);
+            }
+
         }
         
     }
@@ -86,39 +104,22 @@ public class FakeCollision : MonoBehaviour
 
     
 
-    void Depenetrate(Collider me, Collider other)
+    void Depenetrate(Vector3 direction, float distance)
     {
-        Vector3 dir;
-        float dist;
-
-        Physics.ComputePenetration(me, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out dir, out dist);
-        dir.y = 0; dir.Normalize();
-
-        myTransform.position += dir * dist;
+        myTransform.position += direction * distance;
     }
 
-    void ApplyRelVelocity(Collider other)
+    void ApplyRelVelocity(CollisionRequiredInfo CRI, Vector3 collisionNorm)
     {
-        CollisionRequiredInfo dontNeedThis;
-        if (!currentCollidingCars.TryGetValue(other.transform, out dontNeedThis))
-            return;
-        
-        float otherMass = currentCollidingCars[other.transform].theirMass;
+        float otherMass = CRI.theirMass;
+        Vector3 relativeVelocity = myRB.velocity - CRI.theirVel.Velocity;
 
-        Vector3 relativeVelocity = myRB.velocity - currentCollidingCars[other.transform].theirVel.Velocity;
-        //TODO: GET FINN TO FIX NORMALS
-        Vector3 normal = other.transform.position - transform.position;
+        //collisionNorm.y = 0; collisionNorm.Normalize();
+        float dot = (1f + bounceFactor) * Vector3.Dot(relativeVelocity, collisionNorm);
 
-        normal.y = 0;
-        normal.Normalize();
-
-        float dot = (1f + bounceFactor) * Vector3.Dot(relativeVelocity, normal);
-
-        //IDK why but if truck is 90, light is 30, total is 120, 
-        //90 / 120 is 0.7, but 30 / 120 = 0.3. But i want the truck to have reduced velocity not light car so i use othermass
         //dot *= otherMass /  (myMass + otherMass);
 
-        Vector3 velChange = normal * dot;
+        Vector3 velChange = collisionNorm * dot;
 
         velChange = Vector3.ClampMagnitude(velChange, 5);
         myRB.AddForce(-velChange, ForceMode.VelocityChange);
