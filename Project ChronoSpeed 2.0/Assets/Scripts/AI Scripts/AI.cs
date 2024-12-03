@@ -73,6 +73,7 @@ public class AI : MonoBehaviour
         rewindback = GetComponent<AIRewind>();
         difficultness = aI_Difficulty.raceStart;
         carAI.acceration_Value = 0f;
+        currentWaypoint = waypoints[currentWaypointchange].transform;
         // difficultness = (aI_Difficulty)Random.Range(1, 3);
         //AIChange();
 
@@ -107,41 +108,41 @@ public class AI : MonoBehaviour
         switch (classforAI)
         {
             case Class.Light:
-                currentWaypointchange = Random.Range(0,3);
+                //currentWaypointchange = Random.Range(0,3);
                 //currentWaypointchange = Random.Range(0, 2);
-                if (currentWaypointchange == 0)
+                if (difficultness == aI_Difficulty.easy)
                 {
-                    difficultness = aI_Difficulty.easy;
+                    currentWaypointchange = 0;
                 }
-                else if (currentWaypointchange == 1)
+                else if (difficultness == aI_Difficulty.normal)
                 {
-                    difficultness = aI_Difficulty.normal;
+                    currentWaypointchange = 1;
                 }
-                else if (currentWaypointchange == 2)
+                else if (difficultness == aI_Difficulty.hard)
                 {
-                    difficultness = aI_Difficulty.hard;
+                    currentWaypointchange = 2;
                 }
                 break;
 
             case Class.Medium:
-                 currentWaypointchange = Random.Range(3, 5);
-                currentWaypointchange = Random.Range(3, 6);
-                if (currentWaypointchange == 3)
+               //  currentWaypointchange = Random.Range(3, 5);
+                //currentWaypointchange = Random.Range(3, 6);
+                if (difficultness == aI_Difficulty.easy)
                 {
-                    difficultness = aI_Difficulty.easy;
+                    currentWaypointchange = 3;
                 }
-                else if (currentWaypointchange == 4)
+                else if (difficultness == aI_Difficulty.normal)
                 {
-                    difficultness = aI_Difficulty.normal;
+                    currentWaypointchange = 4;
                 }
-                else if (currentWaypointchange == 5)
+                else if (difficultness == aI_Difficulty.hard)
                 {
-                    difficultness = aI_Difficulty.hard;
+                    currentWaypointchange = 5;
                 }
                 break;
 
             case Class.Heavy:
-                currentWaypointchange = Random.Range(6, 9);
+               // currentWaypointchange = Random.Range(6, 9);
                 //  currentWaypointchange = Random.Range(6, 8);
                 if (difficultness == aI_Difficulty.easy)
                 {
@@ -171,7 +172,7 @@ public class AI : MonoBehaviour
         AISteer();
         AIState();
         Debug.Log(waypoints[currentWaypointchange]);
-        currentWaypoint = waypoints[currentWaypointchange].transform;
+      
 
     }
     private void definingRays()
@@ -340,13 +341,13 @@ public class AI : MonoBehaviour
             case aI_Difficulty.easy:
 
                 acceration_Value = 1f;
-                carAI.downForceValue = 500f;
+                carAI.downForceValue = 700f;
 
                 break;
             case aI_Difficulty.normal:
 
                 acceration_Value = 1.2f;
-                carAI.downForceValue = 500f;
+                carAI.downForceValue = 700f;
                 break;
             case aI_Difficulty.hard:
 
@@ -367,14 +368,14 @@ public class AI : MonoBehaviour
                 distanceOffset = 2;
                 acceration_Value = 1f;
                 minimumWayPointApproachThreshold = 17f;
-                carAI.downForceValue = 600f;
+                carAI.downForceValue = 800f;
             }
             if (difficultness == aI_Difficulty.normal)
             {
                 distanceOffset = 2;
                 acceration_Value = 1.2f;
                 minimumWayPointApproachThreshold = 17f;
-                carAI.downForceValue = 600f;
+                carAI.downForceValue = 800f;
             }
             if (difficultness == aI_Difficulty.hard)
             {
@@ -418,7 +419,7 @@ public class AI : MonoBehaviour
             {
                 distanceOffset = 2;
                 minimumWayPointApproachThreshold = 17f;
-                carAI.downForceValue = 700f;
+                carAI.downForceValue = 900f;
             }
             if (difficultness == aI_Difficulty.hard)
             {
