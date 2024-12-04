@@ -41,6 +41,7 @@ public class ServerManager : MonoBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(ip, (ushort)15000);
         Debug.Log("Client started: " + NetworkManager.Singleton.StartClient());
     }
+
     //public void StartServer()
     //{
     //    NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
@@ -58,7 +59,7 @@ public class ServerManager : MonoBehaviour
 
         ClientDic = new Dictionary<ulong, ClientData>();
 
-        NetworkManager.Singleton.StartHost();
+        Debug.Log("Host started: " + NetworkManager.Singleton.StartHost());
     }
 
     ///maybe
@@ -81,7 +82,7 @@ public class ServerManager : MonoBehaviour
     private void OnNetworkReady()
     {
         NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
-        mainMenuManager.SwitchCameraArea(2);
+        //mainMenuManager.SwitchCameraArea(2);
 
         //NetworkManager.Singleton.SceneManager.LoadScene(characterSelectionSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }

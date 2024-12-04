@@ -113,7 +113,7 @@ public class FakeCollision : MonoBehaviour
     {
         float otherMass = CRI.theirMass;
         Vector3 relativeVelocity = myRB.velocity - CRI.theirVel.Velocity;
-
+        relativeVelocity.y = 0;
         //collisionNorm.y = 0; collisionNorm.Normalize();
         float dot = (1f + bounceFactor) * Vector3.Dot(relativeVelocity, collisionNorm);
 
