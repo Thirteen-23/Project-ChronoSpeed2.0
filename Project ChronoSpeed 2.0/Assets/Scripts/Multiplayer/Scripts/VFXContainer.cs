@@ -9,7 +9,6 @@ public class VFXContainer : MonoBehaviour
     [SerializeField] ParticleSystem[] m_NBoost;
     [SerializeField] MeshRenderer[] m_MRS;
     [SerializeField] Material hologramMat;
-    [SerializeField] Material basicMat;
 
     [HideInInspector] public VisualEffect electricArc;
     public enum VFXTypes
@@ -57,9 +56,19 @@ public class VFXContainer : MonoBehaviour
             case VFXTypes.Ghosting:
                 foreach(MeshRenderer SM in m_MRS)
                 {
-                    Material[] tempMats = SM.materials;
-                    tempMats[1] = setTo ? hologramMat : basicMat;
-                    SM.materials = tempMats;
+                    if(setTo)
+                    {
+                        Material[] tempMaterials = new Material[2];
+                        tempMaterials[0] = SM.material;
+                        tempMaterials[1] = hologramMat;
+                        SM.materials = tempMaterials;
+                    }
+                    else
+                    {
+                        Material[] tempMaterials = new Material[1];
+                        tempMaterials[0] = SM.materials[0];
+                        SM.materials = tempMaterials;
+                    }
 
                 }
                 break;
