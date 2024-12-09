@@ -65,8 +65,8 @@ public class FakeCollision : MonoBehaviour
 
             if(Physics.ComputePenetration(trigger, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out direction, out distance))
             {
-                direction.y = 0; direction.Normalize();
-                Depenetrate(direction, distance);
+                //direction.y = 0; direction.Normalize();
+                Depenetrate(direction, distance / 2);
 
                 CollisionRequiredInfo otherCarInfo;
                 currentCollidingCars.TryGetValue(other.transform, out otherCarInfo);
@@ -87,7 +87,8 @@ public class FakeCollision : MonoBehaviour
 
             if(Physics.ComputePenetration(trigger, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out dir, out dist));
             {
-                Depenetrate(dir, dist);
+                //dir.y = 0; dir.Normalize();
+                Depenetrate(dir, dist / 2);
             }
 
         }

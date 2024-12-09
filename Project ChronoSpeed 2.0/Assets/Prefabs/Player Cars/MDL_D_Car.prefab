@@ -3569,7 +3569,6 @@ MonoBehaviour:
   - {fileID: 7462366917468485837}
   - {fileID: 3352648863834841036}
   hologramMat: {fileID: 2100000, guid: 9b54b58410d930a46b614a40f4471fab, type: 2}
-  basicMat: {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   electricArc: {fileID: 0}
 --- !u!1001 &332808800997284269
 PrefabInstance:
@@ -3960,6 +3959,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7183477481603312033}
     m_Modifications:
+    - target: {fileID: 796459821291770449, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
         type: 3}
       propertyPath: myClass

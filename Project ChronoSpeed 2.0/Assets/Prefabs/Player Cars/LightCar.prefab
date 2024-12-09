@@ -1620,7 +1620,6 @@ MonoBehaviour:
   - {fileID: 3505258020962718340}
   - {fileID: 2480733040467691559}
   hologramMat: {fileID: 2100000, guid: a1d8f618d002f214091d0fd3f667e819, type: 2}
-  basicMat: {fileID: 2100000, guid: ded31eefedf801140a657520624a7174, type: 2}
   electricArc: {fileID: 0}
 --- !u!1 &5157027952505749143
 GameObject:
@@ -4266,6 +4265,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4915563276677072672}
     m_Modifications:
+    - target: {fileID: 796459821291770449, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2242303227696079738, guid: 3a3f0e1da7806b74fa75c931c1fb5b42,
         type: 3}
       propertyPath: myClass
