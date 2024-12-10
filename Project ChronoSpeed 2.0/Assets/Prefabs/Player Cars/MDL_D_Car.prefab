@@ -3030,7 +3030,7 @@ MonoBehaviour:
   minRPM: 3000
   maxRPMForCar: 5500
   engineRPM: 0
-  finalDriveRatio: 3.5
+  finalDriveRatio: 2.7
   gearSpeedBox:
   - 3.6
   - 2.5
@@ -3093,7 +3093,7 @@ MonoBehaviour:
   m_RayRange: 20
   draftingMultiplierValue: 5
   floorRange: 3
-  boostWhenExitingDrift: 23000
+  boostWhenExitingDrift: 24000
   findme: 0
   lightCar: 0
   mediumCar: 0
@@ -3376,21 +3376,9 @@ MonoBehaviour:
     m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
     m_ActionName: UI/ReadyPress[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1030777677}
-        m_TargetAssemblyTypeName: CamCycle, Assembly-CSharp
-        m_MethodName: SwapView
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3698bd99-a118-408e-afbe-8f26da713920
-    m_ActionName: Movement/Change Perspective[/Keyboard/v]
+      m_Calls: []
+    m_ActionId: 410fca49-15c6-4ca8-9da1-8acc4798f8f0
+    m_ActionName: Movement/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -3477,7 +3465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 391577787
+  GlobalObjectIdHash: 3611437128
   InScenePlacedSourceGlobalObjectIdHash: 391577787
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

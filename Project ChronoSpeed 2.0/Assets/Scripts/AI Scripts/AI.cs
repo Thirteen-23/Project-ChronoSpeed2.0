@@ -18,7 +18,8 @@ public class AI : MonoBehaviour
         raceStart,
         easy,
         normal,
-        hard
+        hard,
+        nothing
     }
     public enum AI_Brain
     {
@@ -103,7 +104,7 @@ public class AI : MonoBehaviour
     int waypointLength;
     public void AIChange()
     {
-        waypointLength = waypoints.Length - 1;
+        //waypointLength = waypoints.Length - 1;
 
         switch (classforAI)
         {
