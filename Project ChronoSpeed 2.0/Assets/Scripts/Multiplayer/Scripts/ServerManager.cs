@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
@@ -13,7 +12,7 @@ public class ServerManager : MonoBehaviour
     [SerializeField] private string characterSelectionSceneName = "CharacterSelect";
     [SerializeField] private string raceSceneName;
     [SerializeField] private int MaxPlayers = 4;
-    
+    MainMenuManager menuManager;
     
     private bool gameHasStarted;
     public Dictionary<ulong, ClientData> ClientDic { get; private set; }
@@ -27,6 +26,18 @@ public class ServerManager : MonoBehaviour
         {
             Singleton = this;
             DontDestroyOnLoad(Singleton);
+
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
+    }
+
+
+
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if(arg0.name == "MainMenu")
+        {
+            menuManager = FindAnyObjectByType<MainMenuManager>();
         }
     }
 
@@ -80,7 +91,7 @@ public class ServerManager : MonoBehaviour
     private void OnNetworkReady()
     {
         NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
-        //mainMenuManager.SwitchCameraArea(2);
+        menuManager.SwitchCameraArea(2);
 
         //NetworkManager.Singleton.SceneManager.LoadScene(characterSelectionSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }

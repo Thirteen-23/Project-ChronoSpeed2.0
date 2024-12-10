@@ -748,7 +748,7 @@ AudioSource:
   m_GameObject: {fileID: 1749917324009602478}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -8536791408124211146, guid: c2dfa3b30069f224ba67eea0bcb43144,
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: ac1c1fad47d2449c5815c8199bc44faa, type: 3}
   m_PlayOnAwake: 1
@@ -2091,7 +2091,6 @@ GameObject:
   - component: {fileID: 369546771}
   - component: {fileID: 3222927327560705700}
   - component: {fileID: 7214305715692781150}
-  - component: {fileID: 4189181152404968331}
   m_Layer: 0
   m_Name: LightCar
   m_TagString: Player
@@ -2561,21 +2560,9 @@ MonoBehaviour:
     m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
     m_ActionName: UI/ReadyPress[/DualSenseGamepadHID/leftTrigger,/DualSenseGamepadHID/rightTrigger]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 369546771}
-        m_TargetAssemblyTypeName: CamCycle, Assembly-CSharp
-        m_MethodName: SwapView
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3698bd99-a118-408e-afbe-8f26da713920
-    m_ActionName: Movement/Change Perspective[/Keyboard/v]
+      m_Calls: []
+    m_ActionId: 410fca49-15c6-4ca8-9da1-8acc4798f8f0
+    m_ActionName: Movement/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -2650,7 +2637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4086998015
+  GlobalObjectIdHash: 1106096736
   InScenePlacedSourceGlobalObjectIdHash: 1106096736
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -2673,7 +2660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
-  portalLast: 60
+  portalLast: 210
 --- !u!114 &6879482677545975896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,18 +2829,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad42b1376c22e7841811e5011963e4a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4189181152404968331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5727530261080087962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f3f3b604f4db64e874f8cede559343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6241498031530955137
@@ -3676,7 +3651,7 @@ AudioSource:
   m_GameObject: {fileID: 8258685070993021319}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -8536791408124211146, guid: c2dfa3b30069f224ba67eea0bcb43144,
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 230a1f98bb8374198a7569a9edb21dd4, type: 3}
   m_PlayOnAwake: 1
@@ -3805,7 +3780,7 @@ AudioSource:
   m_GameObject: {fileID: 8957551992162579460}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -8536791408124211146, guid: c2dfa3b30069f224ba67eea0bcb43144,
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: a394a054539394bf09bd79a74b799175, type: 3}
   m_PlayOnAwake: 1

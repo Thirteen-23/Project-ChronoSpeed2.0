@@ -795,7 +795,8 @@ AudioSource:
   m_GameObject: {fileID: 2755285361811445863}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 75fa27e467267c74f91f1f6f4e74ff88, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
@@ -1681,21 +1682,9 @@ MonoBehaviour:
     m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
     m_ActionName: UI/ReadyPress[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 373795989}
-        m_TargetAssemblyTypeName: CamCycle, Assembly-CSharp
-        m_MethodName: SwapView
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3698bd99-a118-408e-afbe-8f26da713920
-    m_ActionName: Movement/Change Perspective[/Keyboard/v]
+      m_Calls: []
+    m_ActionId: 410fca49-15c6-4ca8-9da1-8acc4798f8f0
+    m_ActionName: Movement/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -1825,7 +1814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
-  portalLast: 60
+  portalLast: 210
 --- !u!114 &2821819758476164102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,7 +2459,8 @@ AudioSource:
   m_GameObject: {fileID: 5301390248404454750}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: e9643d8581d235f45a62997cba851988, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -3407,7 +3397,8 @@ AudioSource:
   m_GameObject: {fileID: 8548364314902245180}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 22cd46996da3b624bb08935264560d8c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
