@@ -81,7 +81,7 @@
                     "name": "LookBack",
                     "type": "Value",
                     "id": "6ce4ddb1-9083-4776-bc87-a3a66b0d76f1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -108,6 +108,15 @@
                     "name": "Escape",
                     "type": "Button",
                     "id": "c109dbdb-f458-480d-8aae-4e859edc58ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Change Perspective",
+                    "type": "Button",
+                    "id": "3698bd99-a118-408e-afbe-8f26da713920",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -464,6 +473,28 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96e19979-afb6-4109-8d88-06985d0c9c11",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Change Perspective",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d012a38-bfa3-456e-8310-591f0351a8fa",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller;Joystick",
+                    "action": "Change Perspective",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

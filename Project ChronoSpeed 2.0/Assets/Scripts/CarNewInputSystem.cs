@@ -103,7 +103,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""LookBack"",
                     ""type"": ""Value"",
                     ""id"": ""6ce4ddb1-9083-4776-bc87-a3a66b0d76f1"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -130,6 +130,15 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Escape"",
                     ""type"": ""Button"",
                     ""id"": ""c109dbdb-f458-480d-8aae-4e859edc58ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change Perspective"",
+                    ""type"": ""Button"",
+                    ""id"": ""3698bd99-a118-408e-afbe-8f26da713920"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -486,6 +495,28 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96e19979-afb6-4109-8d88-06985d0c9c11"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Change Perspective"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d012a38-bfa3-456e-8310-591f0351a8fa"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller;Joystick"",
+                    ""action"": ""Change Perspective"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1142,6 +1173,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_Movement_Blink = m_Movement.FindAction("Blink", throwIfNotFound: true);
         m_Movement_Rewind = m_Movement.FindAction("Rewind", throwIfNotFound: true);
         m_Movement_Escape = m_Movement.FindAction("Escape", throwIfNotFound: true);
+        m_Movement_ChangePerspective = m_Movement.FindAction("Change Perspective", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
@@ -1229,6 +1261,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Blink;
     private readonly InputAction m_Movement_Rewind;
     private readonly InputAction m_Movement_Escape;
+    private readonly InputAction m_Movement_ChangePerspective;
     public struct MovementActions
     {
         private @CarNewInputSystem m_Wrapper;
@@ -1245,6 +1278,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Blink => m_Wrapper.m_Movement_Blink;
         public InputAction @Rewind => m_Wrapper.m_Movement_Rewind;
         public InputAction @Escape => m_Wrapper.m_Movement_Escape;
+        public InputAction @ChangePerspective => m_Wrapper.m_Movement_ChangePerspective;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1290,6 +1324,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @Escape.started += instance.OnEscape;
             @Escape.performed += instance.OnEscape;
             @Escape.canceled += instance.OnEscape;
+            @ChangePerspective.started += instance.OnChangePerspective;
+            @ChangePerspective.performed += instance.OnChangePerspective;
+            @ChangePerspective.canceled += instance.OnChangePerspective;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -1330,6 +1367,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @Escape.started -= instance.OnEscape;
             @Escape.performed -= instance.OnEscape;
             @Escape.canceled -= instance.OnEscape;
+            @ChangePerspective.started -= instance.OnChangePerspective;
+            @ChangePerspective.performed -= instance.OnChangePerspective;
+            @ChangePerspective.canceled -= instance.OnChangePerspective;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -1522,6 +1562,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void OnBlink(InputAction.CallbackContext context);
         void OnRewind(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
+        void OnChangePerspective(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
