@@ -197,7 +197,8 @@ AudioSource:
   m_GameObject: {fileID: 428183942}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b049660b860c8334a852b54855bce599, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
@@ -420,7 +421,8 @@ AudioSource:
   m_GameObject: {fileID: 1047955195}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 316224186e8ae6543990a05f4dc13981, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
@@ -755,7 +757,8 @@ AudioSource:
   m_GameObject: {fileID: 1882123456}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5819150432950581800, guid: c2dfa3b30069f224ba67eea0bcb43144,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: ff89099d49f4dfb46981d1be1b34544d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
@@ -3376,21 +3379,9 @@ MonoBehaviour:
     m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
     m_ActionName: UI/ReadyPress[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1030777677}
-        m_TargetAssemblyTypeName: CamCycle, Assembly-CSharp
-        m_MethodName: SwapView
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3698bd99-a118-408e-afbe-8f26da713920
-    m_ActionName: Movement/Change Perspective[/Keyboard/v]
+      m_Calls: []
+    m_ActionId: 410fca49-15c6-4ca8-9da1-8acc4798f8f0
+    m_ActionName: Movement/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -3464,7 +3455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHoldTime: 5
   cooldown: 20
-  portalLast: 60
+  portalLast: 210
 --- !u!114 &-3220841527253370344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3477,7 +3468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 391577787
+  GlobalObjectIdHash: 3611437128
   InScenePlacedSourceGlobalObjectIdHash: 391577787
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
