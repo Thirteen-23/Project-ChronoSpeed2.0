@@ -9,7 +9,7 @@
                     "name": "Acceleration",
                     "type": "Value",
                     "id": "1076a2c9-1f6a-4953-9358-676dde72db6c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "410fca49-15c6-4ca8-9da1-8acc4798f8f0",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -177,6 +186,39 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller;Keyboard;Joystick",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "b82a782f-63fa-4fa6-bdec-c2682c2ebe4c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "6029dda6-f181-4927-ad0d-16c37ee9aec9",
+                    "path": "<HID::Driving Force GT>/button13",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3cf686ae-06be-494f-9879-a837a46f3dc9",
+                    "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Acceleration",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -249,6 +291,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3be7c562-4396-470a-9e96-f884fe5f6194",
+                    "path": "<HID::Driving Force GT>/{Primary2DMotion}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller;Joystick",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f31bc3ed-f115-46eb-b59a-8ad1017bdc3c",
                     "path": "<Keyboard>/x",
                     "interactions": "",
@@ -265,6 +318,17 @@
                     "interactions": "",
                     "processors": "Clamp(max=1)",
                     "groups": "Controller;Joystick",
+                    "action": "braking",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09bdb96c-6956-4e91-a2ab-e9d3b16649f4",
+                    "path": "<Joystick>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "braking",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -337,6 +401,28 @@
                 },
                 {
                     "name": "",
+                    "id": "45d45773-37b2-453d-9182-a6aed8267ba2",
+                    "path": "<HID::Driving Force GT>/button14",
+                    "interactions": "",
+                    "processors": "Clamp(max=1)",
+                    "groups": "Joystick",
+                    "action": "Handbrake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "717f28d7-6a88-4086-b9b2-d96666ea4efb",
+                    "path": "<HID::Driving Force GT>/button5",
+                    "interactions": "",
+                    "processors": "Clamp(max=1)",
+                    "groups": "Joystick",
+                    "action": "Handbrake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "dbd412fc-bf56-4451-9c35-9c71f24d84c0",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -353,6 +439,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "1st - Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c64df39-1f61-4e63-89e1-f62108ce9267",
+                    "path": "<HID::Driving Force GT>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "1st - Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -381,6 +478,17 @@
                 },
                 {
                     "name": "",
+                    "id": "79b9eac0-036a-4b1b-baa5-c4c1a9bae3e3",
+                    "path": "<HID::Driving Force GT>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "PortalDumpTemp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "652c6b86-097f-4d43-a882-01f68add1ef6",
                     "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
@@ -397,6 +505,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "LookBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b74a315-f134-40c8-bed5-d8ed78830fba",
+                    "path": "<HID::Driving Force GT>/button20",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "LookBack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -425,6 +544,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5a6e4344-61b8-4792-b823-1252efce03a3",
+                    "path": "<HID::Driving Force GT>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Blink",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0b10d6d1-b3e1-40e3-8658-2cc2459c8882",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
@@ -447,6 +577,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a1d6948b-7a22-4281-aa35-a02526d643b5",
+                    "path": "<HID::Driving Force GT>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Rewind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "17395315-5647-4875-bba4-81446c7ce7df",
                     "path": "<Gamepad>/start",
                     "interactions": "",
@@ -463,6 +604,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2109c332-2dba-46b3-9631-31e45ddf51f0",
+                    "path": "<HID::Driving Force GT>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false

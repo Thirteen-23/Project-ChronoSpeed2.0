@@ -14,7 +14,7 @@ public class ServerManager : MonoBehaviour
     [SerializeField] private string raceSceneName;
     [SerializeField] private int MaxPlayers = 4;
     
-    private MainMenuManager mainMenuManager;
+    
     private bool gameHasStarted;
     public Dictionary<ulong, ClientData> ClientDic { get; private set; }
 
@@ -28,8 +28,6 @@ public class ServerManager : MonoBehaviour
             Singleton = this;
             DontDestroyOnLoad(Singleton);
         }
-
-        mainMenuManager = FindAnyObjectByType<MainMenuManager>();
     }
 
     public void StartClient(string ip)
@@ -106,7 +104,6 @@ public class ServerManager : MonoBehaviour
     private void HandelConnect(ulong clientId)
     {
         Debug.Log("SuccesfullyConnected");
-        mainMenuManager.SwitchCameraArea(2);
     }
 
     public void SetCharacter(ulong clientId, int characterId)

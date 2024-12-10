@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerStateMachine;
 using UnityEngine.InputSystem.LowLevel;
+using Cinemachine;
 public enum Class
 {
     Light,
@@ -544,12 +545,10 @@ public class Car_Movement : MonoBehaviour
         }
         if (context.performed)
         {
-
-            if (lookBackValue == 1)
+            lookBackValue = context.ReadValue<float>();
+            if (lookBackValue > 0.1)
             {
-                lookBackValue = context.ReadValue<float>();
                 ture = true;
-
             }
         }
         if (context.canceled)
@@ -558,6 +557,8 @@ public class Car_Movement : MonoBehaviour
             ture = false;
         }
     }
+
+   
     [Header("Shifting Time Values")]
     public float maxTimeToShiftGear;
     public float timerToShift;
