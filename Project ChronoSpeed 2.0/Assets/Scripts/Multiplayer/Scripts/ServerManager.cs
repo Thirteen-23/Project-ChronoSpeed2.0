@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -13,7 +14,7 @@ public class ServerManager : NetworkBehaviour
     [SerializeField] private int MaxPlayers = 4;
     MainMenuManager menuManager;
     
-    private bool gameHasStarted;
+    public bool gameHasStarted;
     public Dictionary<ulong, ClientData> ClientDic { get; private set; }
 
     public static ServerManager Singleton { get; private set; }
@@ -114,15 +115,13 @@ public class ServerManager : NetworkBehaviour
 
     public void StartGame()
     {
-        gameHasStarted = true;
-        NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManager_OnSceneEvent;
         NetworkManager.Singleton.SceneManager.LoadScene(raceSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     CarPlayerPrefabSpawner cpps;
     GameObject miragePrefab;
     int startPos = 0;
-    private void SceneManager_OnSceneEvent(SceneEvent sceneEvent)
+    public void SceneManager_OnSceneEvent(SceneEvent sceneEvent)
     {
         if (sceneEvent.SceneEventType == SceneEventType.LoadComplete)
         {
@@ -191,6 +190,8 @@ public class ServerManager : NetworkBehaviour
 
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
+
+
 }
 
 [Serializable]

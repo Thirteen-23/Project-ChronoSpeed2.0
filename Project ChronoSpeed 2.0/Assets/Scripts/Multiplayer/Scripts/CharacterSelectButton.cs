@@ -21,7 +21,7 @@ public class CharacterSelectButton : MonoBehaviour
 
     public void SelectCharacter()
     {
-        carSelect.Select(CarC);
+        carSelect.SelectSkin(CarC);
     }
 
     public void SetDisabled()
