@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 
 //not fake one
 
-public class ServerManager : MonoBehaviour
+public class ServerManager : NetworkBehaviour
 {
-    [SerializeField] private string characterSelectionSceneName = "CharacterSelect";
     [SerializeField] private string raceSceneName;
     [SerializeField] private int MaxPlayers = 4;
     MainMenuManager menuManager;
@@ -178,6 +177,7 @@ public class ServerManager : MonoBehaviour
     }
 
 
+    [Rpc(SendTo.ClientsAndHost, RequireOwnership = false)]
     public void EndSessionRpc()
     {
         if (NetworkManager.Singleton.IsServer)
