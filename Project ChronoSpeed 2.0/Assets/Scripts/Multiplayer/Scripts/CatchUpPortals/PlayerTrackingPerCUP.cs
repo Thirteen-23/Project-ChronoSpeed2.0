@@ -65,6 +65,7 @@ public class PlayerTrackingPerCUP : NetworkBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if(other.enabled == false) return;
          GameObject player = ConfirmPlayer(other);
         if (player == null)
             return;

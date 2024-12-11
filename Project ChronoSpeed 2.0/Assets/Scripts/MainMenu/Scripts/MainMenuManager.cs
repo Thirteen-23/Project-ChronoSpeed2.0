@@ -14,8 +14,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_InputField ipInput;
     [SerializeField] GameObject pivotPoint;
 
-    [SerializeField] GameObject BackButton;
-
     private UIManager uiManager;
 
     private float targetPosition;

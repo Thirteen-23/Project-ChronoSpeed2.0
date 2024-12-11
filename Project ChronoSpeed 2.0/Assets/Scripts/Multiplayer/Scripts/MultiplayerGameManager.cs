@@ -13,7 +13,6 @@ public class MultiplayerGameManager : NetworkBehaviour
 {
     [SerializeField] private PortalManager portalManager;
     [SerializeField] private Tracking_Manager_Script lapManager;
-    [SerializeField] private TMP_Text startCountdownText;
     [SerializeField] private TMP_Text gameEndedText;
     [SerializeField] private GameObject leaveGameBtn;
     [SerializeField] private LeadboardPlayerBar mainPlayerLB;
@@ -134,11 +133,6 @@ public class MultiplayerGameManager : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     public void CountDownRpc(int time, bool RaceStart)
     {
-        /*if (time > 0) startCountdownText.text = time.ToString();
-        else
-        {
-            startCountdownText.text = "GO!!!!";
-        }*/
         if (time == 5)
         {
             m_ready[4].enabled = true;
@@ -155,17 +149,11 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
         if (time == 2)
         {
-           
             m_ready[1].enabled = true;
-            //foreach (Image read in m_ready)
-            //{ read.enabled = false; }
-
         }
         if (time == 1)
         {
             m_ready[2].enabled = true;
-           
-           
           
         }
         if(time == 0)
@@ -188,23 +176,17 @@ public class MultiplayerGameManager : NetworkBehaviour
 
                 foreach (var curAI in AIs)
                 {
-
                     curAI.GetComponent<AI>().difficultness = (aI_Difficulty)UnityEngine.Random.Range(1, 4);
                     curAI.GetComponent<AI>().AIChange();
-
-
                 }
             }
         }
         if (RaceStart)
         {
-           
             foreach (Image read in m_go)
             {
                 read.enabled = false;
             }
-            startCountdownText.enabled = false;
-            
         }
         else
         {
@@ -212,8 +194,6 @@ public class MultiplayerGameManager : NetworkBehaviour
             {
                 read.enabled = true;
             }
-            startCountdownText.enabled = true;
-            
         }
     }
 
@@ -273,8 +253,6 @@ public class MultiplayerGameManager : NetworkBehaviour
 
                 if (leaderboardInfoToShare[i].raceCompletedIn > 0)
                     othersLB[i].SetFinishedTime(true);
-
-
             }
         }
         else
