@@ -112,8 +112,16 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public void LeaveGame()
     {
-        ServerManager.Singleton.EndSessionRpc();
+        if(NetworkManager.Singleton.IsServer)
+        {
+            ServerManager.Singleton.EndSessionRpc();
+        }
+        else
+        {
+            NetworkManager.Singleton.Shutdown();
+        }
     }
+
     //RPCs
     [Rpc(SendTo.ClientsAndHost, RequireOwnership = false)]
     public void SpawnPortalStandInRpc(Vector3 position, Quaternion rotation)

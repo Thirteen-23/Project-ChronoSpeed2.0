@@ -119,23 +119,44 @@ public class MultiplayerCarSelection : NetworkBehaviour
         CarSelectServerRpc(carc.Id);
     }
 
+    enum CurrentBackPhase
+    {
+        CarSelect,
+        SkinSelect,
+        LoadingImage
+    }
+    CurrentBackPhase currentBackPhase = CurrentBackPhase.CarSelect;
+    public void BackPress(InputAction.CallbackContext context)
+    {
+        if(context.performed != true) return;
+    }
     public void UnSelect(InputAction.CallbackContext context)
     {
         if (context.performed != true)
             return;
-        
-        carSelected = false;
-        ReadyButton.interactable = false;
-        BackButton.interactable = false;
-        L2R2Image.SetActive(false);
-
-        for (int i = 0; i < players.Count; i++)
+        if(currentBackPhase == CurrentBackPhase.CarSelect)
         {
-            if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
+            NetworkManager.Singleton.Shutdown();
+        }
+        else if(currentBackPhase == CurrentBackPhase.SkinSelect)
+        {
+            carSelected = false;
+            ReadyButton.interactable = false;
+            L2R2Image.SetActive(false);
+
+            for (int i = 0; i < players.Count; i++)
             {
-                EventSystem.current.SetSelectedGameObject(carSelectButtons[players[i].CharacterID - 1].gameObject);
+                if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
+                {
+                    EventSystem.current.SetSelectedGameObject(carSelectButtons[players[i].CharacterID - 1].gameObject);
+                }
             }
         }
+        else if(currentBackPhase == CurrentBackPhase.LoadingImage)
+        {
+
+        }
+        
     }
 
     public void ReadyUp(InputAction.CallbackContext context)

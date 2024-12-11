@@ -8,6 +8,7 @@ public class OptionsManager : MonoBehaviour
     static public OptionsManager instance;
     public AudioMixer MainMixer;
     public bool IsControllerXbox;
+    public bool IsControlsLoading;
 
     private void Awake()
     {
