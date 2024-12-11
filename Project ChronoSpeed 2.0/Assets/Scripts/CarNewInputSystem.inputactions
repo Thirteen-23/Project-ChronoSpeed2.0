@@ -121,6 +121,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TEST",
+                    "type": "Value",
+                    "id": "681d814d-726a-4ca1-accd-0ddb30e4aca8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -638,6 +647,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "SwapView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c67134bb-e50a-4084-bbae-28fef3181e6b",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "TEST",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

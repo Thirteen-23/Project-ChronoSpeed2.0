@@ -143,6 +143,15 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TEST"",
+                    ""type"": ""Value"",
+                    ""id"": ""681d814d-726a-4ca1-accd-0ddb30e4aca8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -660,6 +669,17 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""SwapView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c67134bb-e50a-4084-bbae-28fef3181e6b"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""TEST"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1317,6 +1337,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_Movement_Rewind = m_Movement.FindAction("Rewind", throwIfNotFound: true);
         m_Movement_Escape = m_Movement.FindAction("Escape", throwIfNotFound: true);
         m_Movement_SwapView = m_Movement.FindAction("SwapView", throwIfNotFound: true);
+        m_Movement_TEST = m_Movement.FindAction("TEST", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
@@ -1405,6 +1426,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Rewind;
     private readonly InputAction m_Movement_Escape;
     private readonly InputAction m_Movement_SwapView;
+    private readonly InputAction m_Movement_TEST;
     public struct MovementActions
     {
         private @CarNewInputSystem m_Wrapper;
@@ -1422,6 +1444,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Rewind => m_Wrapper.m_Movement_Rewind;
         public InputAction @Escape => m_Wrapper.m_Movement_Escape;
         public InputAction @SwapView => m_Wrapper.m_Movement_SwapView;
+        public InputAction @TEST => m_Wrapper.m_Movement_TEST;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1470,6 +1493,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @SwapView.started += instance.OnSwapView;
             @SwapView.performed += instance.OnSwapView;
             @SwapView.canceled += instance.OnSwapView;
+            @TEST.started += instance.OnTEST;
+            @TEST.performed += instance.OnTEST;
+            @TEST.canceled += instance.OnTEST;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -1513,6 +1539,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @SwapView.started -= instance.OnSwapView;
             @SwapView.performed -= instance.OnSwapView;
             @SwapView.canceled -= instance.OnSwapView;
+            @TEST.started -= instance.OnTEST;
+            @TEST.performed -= instance.OnTEST;
+            @TEST.canceled -= instance.OnTEST;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -1706,6 +1735,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void OnRewind(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnSwapView(InputAction.CallbackContext context);
+        void OnTEST(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

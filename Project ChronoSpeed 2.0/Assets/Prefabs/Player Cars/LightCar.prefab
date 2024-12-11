@@ -2563,6 +2563,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 410fca49-15c6-4ca8-9da1-8acc4798f8f0
     m_ActionName: Movement/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7966510881082960446}
+        m_TargetAssemblyTypeName: PlayerResetScript, Assembly-CSharp
+        m_MethodName: MoveMe
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 681d814d-726a-4ca1-accd-0ddb30e4aca8
+    m_ActionName: Movement/TEST[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -2637,7 +2653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1106096736
+  GlobalObjectIdHash: 4086998015
   InScenePlacedSourceGlobalObjectIdHash: 1106096736
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -4854,6 +4870,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7966510881082960446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4721296146638105479, guid: 6f66891362e06c9468c4df9d00e141d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3390034749261283769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d3357bb4d120a4a81339a8f514463c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4429956114514377720

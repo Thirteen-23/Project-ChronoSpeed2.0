@@ -1000,16 +1000,12 @@ public class Car_Movement : MonoBehaviour
             }
             // bodyOfCar.AddForce(bodyOfCar.transform.forward * (currentSpeed / 400) * boostInDrifting);
 
-            if (wheels4[0].steerAngle > 20 )
+            if (wheels4[0].steerAngle > 20 || wheels4[0].steerAngle < -20)
             {
-                bodyOfCar.AddForce(bodyOfCar.transform.forward * boostWhileDrifting * (100 / wheels4[0].steerAngle));
+                bodyOfCar.AddForce(bodyOfCar.transform.forward * boostWhileDrifting);
                 m_DriftingSound.volume = 1f;
             }
-            if ( wheels4[0].steerAngle < -20)
-            {
-                bodyOfCar.AddForce(bodyOfCar.transform.forward * boostWhileDrifting * (100 / -wheels4[0].steerAngle));
-                m_DriftingSound.volume = 1f;
-            }
+           
                 // bodyOfCar.AddRelativeForce(bodyOfCar.transform.forward * steeringCurve.Evaluate(180f));
                 WheelHit wheelHit;
 
