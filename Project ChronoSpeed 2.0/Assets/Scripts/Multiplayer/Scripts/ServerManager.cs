@@ -91,7 +91,7 @@ public class ServerManager : MonoBehaviour
     private void OnNetworkReady()
     {
         NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
-        menuManager.SwitchCameraArea(2);
+        ///menuManager.SwitchCameraArea(2);
 
         //NetworkManager.Singleton.SceneManager.LoadScene(characterSelectionSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
@@ -115,6 +115,7 @@ public class ServerManager : MonoBehaviour
     private void HandelConnect(ulong clientId)
     {
         Debug.Log("SuccesfullyConnected");
+        menuManager.SwitchCameraArea(2);
     }
 
     public void SetCharacter(ulong clientId, int characterId)
