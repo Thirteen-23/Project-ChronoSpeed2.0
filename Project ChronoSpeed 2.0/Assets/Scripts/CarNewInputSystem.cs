@@ -136,10 +136,10 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""SwapView"",
                     ""type"": ""Value"",
                     ""id"": ""410fca49-15c6-4ca8-9da1-8acc4798f8f0"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -638,6 +638,28 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Joystick"",
                     ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dd0c13b-3c3a-46a9-b750-a4b23c9d7379"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller;Joystick"",
+                    ""action"": ""SwapView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b6c84cd-571c-4d16-b21f-7b2ed812720d"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SwapView"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1294,7 +1316,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         m_Movement_Blink = m_Movement.FindAction("Blink", throwIfNotFound: true);
         m_Movement_Rewind = m_Movement.FindAction("Rewind", throwIfNotFound: true);
         m_Movement_Escape = m_Movement.FindAction("Escape", throwIfNotFound: true);
-        m_Movement_Newaction = m_Movement.FindAction("New action", throwIfNotFound: true);
+        m_Movement_SwapView = m_Movement.FindAction("SwapView", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
@@ -1382,7 +1404,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Blink;
     private readonly InputAction m_Movement_Rewind;
     private readonly InputAction m_Movement_Escape;
-    private readonly InputAction m_Movement_Newaction;
+    private readonly InputAction m_Movement_SwapView;
     public struct MovementActions
     {
         private @CarNewInputSystem m_Wrapper;
@@ -1399,7 +1421,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Blink => m_Wrapper.m_Movement_Blink;
         public InputAction @Rewind => m_Wrapper.m_Movement_Rewind;
         public InputAction @Escape => m_Wrapper.m_Movement_Escape;
-        public InputAction @Newaction => m_Wrapper.m_Movement_Newaction;
+        public InputAction @SwapView => m_Wrapper.m_Movement_SwapView;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1445,9 +1467,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @Escape.started += instance.OnEscape;
             @Escape.performed += instance.OnEscape;
             @Escape.canceled += instance.OnEscape;
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @SwapView.started += instance.OnSwapView;
+            @SwapView.performed += instance.OnSwapView;
+            @SwapView.canceled += instance.OnSwapView;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -1488,9 +1510,9 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
             @Escape.started -= instance.OnEscape;
             @Escape.performed -= instance.OnEscape;
             @Escape.canceled -= instance.OnEscape;
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @SwapView.started -= instance.OnSwapView;
+            @SwapView.performed -= instance.OnSwapView;
+            @SwapView.canceled -= instance.OnSwapView;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -1683,7 +1705,7 @@ public partial class @CarNewInputSystem: IInputActionCollection2, IDisposable
         void OnBlink(InputAction.CallbackContext context);
         void OnRewind(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnSwapView(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -1437,7 +1437,7 @@ MonoBehaviour:
   m_ValueToChangeSpeedForGrip: 180
   m_DriftingSound: {fileID: 6440882967023571150}
   m_StateMach: {fileID: 7114129123964733764}
-  m_AmountOfForceOfTheStart: 25000
+  m_AmountOfForceOfTheStart: 5000
   imFlying: 0
 --- !u!114 &3975989593886958022
 MonoBehaviour:
@@ -1682,7 +1682,19 @@ MonoBehaviour:
     m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
     m_ActionName: UI/ReadyPress[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 373795989}
+        m_TargetAssemblyTypeName: CamCycle, Assembly-CSharp
+        m_MethodName: SwapView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 410fca49-15c6-4ca8-9da1-8acc4798f8f0
     m_ActionName: Movement/New action
   m_NeverAutoSwitchControlSchemes: 0
@@ -1815,6 +1827,7 @@ MonoBehaviour:
   maxHoldTime: 5
   cooldown: 20
   portalLast: 210
+  portalDropSound: {fileID: 3268832720703339864}
 --- !u!114 &2821819758476164102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3731,22 +3744,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: -4.3579542e-27
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0.19921875
+      value: 6.53e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 55
+      value: 7.1e-44
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}
@@ -3967,17 +3980,17 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: -7.4882274e-24
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 6.5e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1e-45
+      value: 7.1e-44
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
@@ -4175,7 +4188,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: fc74900833fc0db4096dc9a263b53f7e, type: 3}
+      objectReference: {fileID: 8300000, guid: cd8b3892fb9a8184bafe40ef581f3670, type: 3}
     - target: {fileID: 7944751332299774316, guid: 1228717cf6040f247a6c804aae245e65,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
@@ -4196,6 +4209,12 @@ PrefabInstance:
 --- !u!4 &878204454565974664 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1678667795752781816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3268832720703339864 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4185789626868939424, guid: 1228717cf6040f247a6c804aae245e65,
     type: 3}
   m_PrefabInstance: {fileID: 1678667795752781816}
   m_PrefabAsset: {fileID: 0}
@@ -5283,22 +5302,22 @@ PrefabInstance:
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 2.3120463e-19
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 4.54e-43
+      value: 6.5e-43
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 42
+      value: 7.1e-44
       objectReference: {fileID: 0}
     - target: {fileID: 5756986325886908018, guid: cd769ae166f77fd4a805d8a3ab69e8af,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd769ae166f77fd4a805d8a3ab69e8af, type: 3}

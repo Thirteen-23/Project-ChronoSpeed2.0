@@ -7,6 +7,7 @@ public class PortalSpawn : MonoBehaviour
     [SerializeField] float maxHoldTime;
     [SerializeField] float cooldown;
     [SerializeField] float portalLast = 60f;
+    [SerializeField] AudioSource portalDropSound; 
 
     Coroutine curForceReleaseCor;
 
@@ -14,6 +15,10 @@ public class PortalSpawn : MonoBehaviour
     Quaternion startRot;
     public void PortalDrop(CallbackContext callbackContext)
     {
+        if(callbackContext.started)
+        {
+            portalDropSound.Play();
+        }
         if (callbackContext.performed)
         {
             startPos = transform.position + transform.forward * -4;
@@ -29,7 +34,8 @@ public class PortalSpawn : MonoBehaviour
 
     void OnRelease()
     {
-        if(startPos == Vector3.zero && startRot == Quaternion.identity) { return; }
+        portalDropSound.Play();
+        if (startPos == Vector3.zero && startRot == Quaternion.identity) { return; }
         MultiplayerGameManager.Singleton.SpawnPortalRpc(startPos, startRot, transform.position + transform.forward * -4, transform.rotation, portalLast);
 
         startPos = Vector3.zero;

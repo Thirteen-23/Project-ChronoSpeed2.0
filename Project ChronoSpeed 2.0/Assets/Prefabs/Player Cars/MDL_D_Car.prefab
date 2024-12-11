@@ -3054,7 +3054,7 @@ MonoBehaviour:
   ifHandBraking: 0
   handBrakefrictionMulitplier: 1.5
   whenNotDrifting: 1.5
-  whenDrifting: 1.3
+  whenDrifting: 1
   driftFactor: 0.05
   turnOnAllTerrain: 0
   frictionPlusValueForAbility: 0
@@ -3103,7 +3103,7 @@ MonoBehaviour:
   heavyCar: 0
   minDrag: 0.5
   maxDrag: 4
-  boostWhileDrifting: 25000
+  boostWhileDrifting: 24000
   tt: 0
   maxAmountOfGrip: 4
   minAmountOfGripAtStart: 1
@@ -3379,7 +3379,19 @@ MonoBehaviour:
     m_ActionId: 1ee0f555-dec1-44d1-bf34-2e4a4d39dbee
     m_ActionName: UI/ReadyPress[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030777677}
+        m_TargetAssemblyTypeName: CamCycle, Assembly-CSharp
+        m_MethodName: SwapView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 410fca49-15c6-4ca8-9da1-8acc4798f8f0
     m_ActionName: Movement/New action
   m_NeverAutoSwitchControlSchemes: 0
@@ -3456,6 +3468,7 @@ MonoBehaviour:
   maxHoldTime: 5
   cooldown: 20
   portalLast: 210
+  portalDropSound: {fileID: 2904263552004149593}
 --- !u!114 &-3220841527253370344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3949,7 +3962,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: fc74900833fc0db4096dc9a263b53f7e, type: 3}
+      objectReference: {fileID: 8300000, guid: cd8b3892fb9a8184bafe40ef581f3670, type: 3}
     - target: {fileID: 7944751332299774316, guid: 1228717cf6040f247a6c804aae245e65,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
@@ -3970,6 +3983,12 @@ PrefabInstance:
 --- !u!4 &658436036089773705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1980406513418212720, guid: 1228717cf6040f247a6c804aae245e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1322067268722224121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2904263552004149593 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4185789626868939424, guid: 1228717cf6040f247a6c804aae245e65,
     type: 3}
   m_PrefabInstance: {fileID: 1322067268722224121}
   m_PrefabAsset: {fileID: 0}
