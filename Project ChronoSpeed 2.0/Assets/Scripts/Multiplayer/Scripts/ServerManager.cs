@@ -89,6 +89,10 @@ public class ServerManager : NetworkBehaviour
         {
             if (ClientDic.Remove(clientId))
             {
+                if(SceneManager.GetActiveScene().name == raceSceneName)
+                {
+                    FindAnyObjectByType<MultiplayerGameManager>().MaxPlayers--;
+                }
                 Debug.Log($"Removed client {clientId}");
             }
         }
@@ -186,8 +190,11 @@ public class ServerManager : NetworkBehaviour
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnect;
             gameHasStarted = false;
         }
-        if (NetworkManager.Singleton != null) NetworkManager.Singleton.Shutdown();
-
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.Shutdown();
+            Destroy(NetworkManager.Singleton.gameObject, 1);
+        }
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 

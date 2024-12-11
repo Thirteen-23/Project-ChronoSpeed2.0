@@ -8,11 +8,15 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using static AI;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Net;
+using Unity.VisualScripting;
 
 public class MultiplayerGameManager : NetworkBehaviour
 {
     [SerializeField] private PortalManager portalManager;
     [SerializeField] private Tracking_Manager_Script lapManager;
+    [SerializeField] private GameObject loadingScreen;
     [SerializeField] private TMP_Text gameEndedText;
     [SerializeField] private GameObject leaveGameBtn;
     [SerializeField] private LeadboardPlayerBar mainPlayerLB;
@@ -50,7 +54,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         lapManager.AddTrackedCar(spawnedPlayer, false, clientID);
     }
 
-    int MaxPlayers = 0;
+    public int MaxPlayers = 0;
     public void AddSpawnedPlayer(GameObject spawnedPlayer, ulong clientID)
     {
         playerPrefabRef.Add(clientID, spawnedPlayer);
@@ -119,6 +123,8 @@ public class MultiplayerGameManager : NetworkBehaviour
         else
         {
             NetworkManager.Singleton.Shutdown();
+            Destroy(NetworkManager.Singleton.gameObject, 1);
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
     }
 
@@ -137,12 +143,12 @@ public class MultiplayerGameManager : NetworkBehaviour
 
    
 
-
     [Rpc(SendTo.ClientsAndHost)]
     public void CountDownRpc(int time, bool RaceStart)
     {
         if (time == 5)
         {
+            loadingScreen.SetActive(false);
             m_ready[4].enabled = true;
         }
         if (time == 4)
@@ -166,6 +172,8 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
         if(time == 0)
         {
+            if (RaceStart) { goto SkipToEnd; }
+
             foreach (Image read in m_ready)
             { read.enabled = false; }
             foreach (Image read in m_set)
@@ -189,6 +197,8 @@ public class MultiplayerGameManager : NetworkBehaviour
                 }
             }
         }
+
+        SkipToEnd:
         if (RaceStart)
         {
             foreach (Image read in m_go)

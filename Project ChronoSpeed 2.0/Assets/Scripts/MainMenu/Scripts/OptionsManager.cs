@@ -36,4 +36,9 @@ public class OptionsManager : MonoBehaviour
         else
             Debug.Log(mixer + "- is not a proper mixer name");
     }
+
+    public void SetIsControlsLoading(bool IsIt)
+    {
+        IsControlsLoading = IsIt;
+    }
 }

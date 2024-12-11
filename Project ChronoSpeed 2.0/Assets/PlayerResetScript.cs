@@ -54,7 +54,7 @@ public class PlayerResetScript : MonoBehaviour
     private void WhenPlayerIsStuck()
     {
        
-            if (carscript.currentSpeed < 5 || carscript.currentSpeed > 500)
+            if (carscript.currentSpeed < 5 || carscript.currentSpeed > 300)
             {
                 timer += Time.deltaTime;
                 if (timer >= 3)

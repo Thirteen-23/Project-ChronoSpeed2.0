@@ -18,9 +18,10 @@ public class MultiplayerCarSelection : NetworkBehaviour
     [SerializeField] private Sprite selectingSprite;
     [SerializeField] private Sprite noPlayerSprite;
     [SerializeField] private Sprite readyButtonPressed;
+    [SerializeField] private Sprite readyButtonDisabled;
+    [SerializeField] private Sprite readyButtonInteractable;
 
-    [SerializeField] private Button ReadyButton;
-    [SerializeField] private Button BackButton;
+    [SerializeField] private Image ReadyButton;
 
     [SerializeField] private Image[] VertArrows;
     [SerializeField] private Image[] HorArrows;
@@ -131,7 +132,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
         {
             currentBackPhase = CurrentBackPhase.CarSelect;
 
-            ReadyButton.interactable = false;
+            ReadyButton.sprite = readyButtonDisabled;
             L2R2Image.SetActive(false);
 
             for(int i  = 0; i < VertArrows.Length; i++)
@@ -167,40 +168,42 @@ public class MultiplayerCarSelection : NetworkBehaviour
         }
         else if (currentBackPhase == CurrentBackPhase.LoadingImage)
         {
-            currentBackPhase = CurrentBackPhase.SkinSelect;
-            for (int i = 0; i < VertArrows.Length; i++)
-            {
-                VertArrows[i].enabled = true;
-            }
+            //currentBackPhase = CurrentBackPhase.SkinSelect;
+            //for (int i = 0; i < VertArrows.Length; i++)
+            //{
+            //    VertArrows[i].enabled = true;
+            //}
 
-            for (int i = 0; i < players.Count; i++)
-            {
-                if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
-                {
-                    if (players[i].CharacterID < 7)
-                    {
-                        EventSystem.current.SetSelectedGameObject(null);
-                        EventSystem.current.SetSelectedGameObject(PresentSkinSelect);
-                    }
-                    else if (players[i].CharacterID < 12)
-                    {
-                        EventSystem.current.SetSelectedGameObject(null);
-                        EventSystem.current.SetSelectedGameObject(DystopiaSkinSelect);
-                    }
-                    else if (players[i].CharacterID < 15)
-                    {
-                        EventSystem.current.SetSelectedGameObject(null);
-                        EventSystem.current.SetSelectedGameObject(UtopiaSkinSelect);
-                    }
-                }
-            }
-            
+            //for (int i = 0; i < players.Count; i++)
+            //{
+            //    if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
+            //    {
+            //        if (players[i].CharacterID < 7)
+            //        {
+            //            EventSystem.current.SetSelectedGameObject(null);
+            //            EventSystem.current.SetSelectedGameObject(PresentSkinSelect);
+            //        }
+            //        else if (players[i].CharacterID < 12)
+            //        {
+            //            EventSystem.current.SetSelectedGameObject(null);
+            //            EventSystem.current.SetSelectedGameObject(DystopiaSkinSelect);
+            //        }
+            //        else if (players[i].CharacterID < 15)
+            //        {
+            //            EventSystem.current.SetSelectedGameObject(null);
+            //            EventSystem.current.SetSelectedGameObject(UtopiaSkinSelect);
+            //        }
+            //    }
+            //}
         }
     }
 
     public void SelectCar(int carType)
     {
         currentBackPhase = CurrentBackPhase.SkinSelect;
+
+        ReadyButton.sprite = readyButtonInteractable;
+        L2R2Image.SetActive(true);
 
         for (int i = 0; i < VertArrows.Length; i++)
         {
@@ -240,10 +243,8 @@ public class MultiplayerCarSelection : NetworkBehaviour
         }
 
         //UI Shit OMGOMGOMGOMGOMGOMG
-        EventSystem.current.SetSelectedGameObject(null);
-        ReadyButton.interactable = true;
-        L2R2Image.SetActive(true);
-        BackButton.interactable = true;
+        
+        
 
         CarSelectServerRpc(carc.Id);
     }
@@ -252,15 +253,15 @@ public class MultiplayerCarSelection : NetworkBehaviour
     {
         if (!context.performed)
             return;
-        currentBackPhase = CurrentBackPhase.LoadingImage;
+        
 
         for (int i = 0; i < players.Count; i++)
         {
             if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
             {
                 if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) return;
-
-                ReadyButton.GetComponent<Image>().sprite = readyButtonPressed;
+                currentBackPhase = CurrentBackPhase.LoadingImage;
+                ReadyButton.sprite = readyButtonPressed;
 
                 for(int j = 0; j < VertArrows.Length;  j++)
                 {

@@ -85,7 +85,7 @@ public class FakeCollision : MonoBehaviour
             Vector3 dir;
             float dist;
 
-            if(Physics.ComputePenetration(trigger, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out dir, out dist));
+            if(Physics.ComputePenetration(trigger, transform.position, transform.rotation, other, other.transform.position, other.transform.rotation, out dir, out dist))
             {
                 //dir.y = 0; dir.Normalize();
                 Depenetrate(dir, dist / 2);
