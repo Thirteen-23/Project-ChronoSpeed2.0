@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CarDatabase", menuName = "CarSelection/CarStorage")]
 public class CarCharacterStorage : ScriptableObject
 {
-    [SerializeField] private CarCharacter[] cars = new CarCharacter[0];
+    [SerializeField] private CarCharacter[] cars = new CarCharacter[14];
 
     public CarCharacter[] GetAllCars() => cars;
 

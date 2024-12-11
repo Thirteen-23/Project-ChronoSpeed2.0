@@ -22,11 +22,21 @@ public class MultiplayerCarSelection : NetworkBehaviour
     [SerializeField] private Button ReadyButton;
     [SerializeField] private Button BackButton;
 
+    [SerializeField] private Image[] VertArrows;
+    [SerializeField] private Image[] HorArrows;
+
+    [SerializeField] private GameObject DystopiaCarSelect;
+    [SerializeField] private GameObject PresentCarSelect;
+    [SerializeField] private GameObject UtopiaCarSelect;
+
+    [SerializeField] private GameObject DystopiaSkinSelect;
+    [SerializeField] private GameObject PresentSkinSelect;
+    [SerializeField] private GameObject UtopiaSkinSelect;
+
+    [SerializeField] private GameObject LoadingScreen;
+    [SerializeField] private GameObject ControlsLoadingButton;
+
     private NetworkList<CharacterSelectState> players;
-    /// <summary>
-    /// 0 = modern button, 1 = dystopian, 2 = utopian
-    /// </summary>
-    public Button[] carSelectButtons;
 
     public bool carSelected = false;
 
@@ -93,12 +103,132 @@ public class MultiplayerCarSelection : NetworkBehaviour
         
     }
 
-    public void Select(CarCharacter carc)
-    {
-        if (carSelected)
-            return;
-        
 
+    enum CurrentBackPhase
+    {
+        CarSelect,
+        SkinSelect,
+        LoadingImage
+    }
+    CurrentBackPhase currentBackPhase = CurrentBackPhase.CarSelect;
+    public void BackPress(InputAction.CallbackContext context)
+    {
+        if (context.performed != true) return;
+
+        if (currentBackPhase == CurrentBackPhase.CarSelect)
+        {
+            if(IsServer)
+            {
+                ServerManager.Singleton.EndSessionRpc();
+            }
+            else
+            {
+                NetworkManager.Singleton.Shutdown();
+            }
+            //GoToMainScreen
+        }
+        else if (currentBackPhase == CurrentBackPhase.SkinSelect)
+        {
+            currentBackPhase = CurrentBackPhase.CarSelect;
+
+            ReadyButton.interactable = false;
+            L2R2Image.SetActive(false);
+
+            for(int i  = 0; i < VertArrows.Length; i++)
+            {
+                VertArrows[i].enabled = false;
+            }
+            for (int i = 0; i < HorArrows.Length; i++)
+            {
+                HorArrows[i].enabled = true;
+            }
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
+                {
+                    if(players[i].CharacterID < 7)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(PresentCarSelect);
+                    }
+                    else if (players[i].CharacterID < 12)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(DystopiaCarSelect);
+                    }
+                    else if (players[i].CharacterID < 15)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(UtopiaCarSelect);
+                    }
+                }
+            }
+        }
+        else if (currentBackPhase == CurrentBackPhase.LoadingImage)
+        {
+            currentBackPhase = CurrentBackPhase.SkinSelect;
+            for (int i = 0; i < VertArrows.Length; i++)
+            {
+                VertArrows[i].enabled = true;
+            }
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
+                {
+                    if (players[i].CharacterID < 7)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(PresentSkinSelect);
+                    }
+                    else if (players[i].CharacterID < 12)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(DystopiaSkinSelect);
+                    }
+                    else if (players[i].CharacterID < 15)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(UtopiaSkinSelect);
+                    }
+                }
+            }
+            
+        }
+    }
+
+    public void SelectCar(int carType)
+    {
+        currentBackPhase = CurrentBackPhase.SkinSelect;
+
+        for (int i = 0; i < VertArrows.Length; i++)
+        {
+            VertArrows[i].enabled = true;
+        }
+        for (int i = 0; i < HorArrows.Length; i++)
+        {
+            HorArrows[i].enabled = false;
+        }
+
+        if (carType == 0)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(PresentSkinSelect);
+        }
+        else if (carType == 1)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(DystopiaSkinSelect);
+        }
+        else if (carType == 2)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(UtopiaSkinSelect);
+        }
+    }
+    public void SelectSkin(CarCharacter carc)
+    {
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
@@ -111,7 +241,6 @@ public class MultiplayerCarSelection : NetworkBehaviour
 
         //UI Shit OMGOMGOMGOMGOMGOMG
         EventSystem.current.SetSelectedGameObject(null);
-        carSelected = true;
         ReadyButton.interactable = true;
         L2R2Image.SetActive(true);
         BackButton.interactable = true;
@@ -119,51 +248,34 @@ public class MultiplayerCarSelection : NetworkBehaviour
         CarSelectServerRpc(carc.Id);
     }
 
-    enum CurrentBackPhase
-    {
-        CarSelect,
-        SkinSelect,
-        LoadingImage
-    }
-    CurrentBackPhase currentBackPhase = CurrentBackPhase.CarSelect;
-    public void BackPress(InputAction.CallbackContext context)
-    {
-        if(context.performed != true) return;
-    }
-    public void UnSelect(InputAction.CallbackContext context)
-    {
-        if (context.performed != true)
-            return;
-        if(currentBackPhase == CurrentBackPhase.CarSelect)
-        {
-            NetworkManager.Singleton.Shutdown();
-        }
-        else if(currentBackPhase == CurrentBackPhase.SkinSelect)
-        {
-            carSelected = false;
-            ReadyButton.interactable = false;
-            L2R2Image.SetActive(false);
-
-            for (int i = 0; i < players.Count; i++)
-            {
-                if (players[i].ClientID == NetworkManager.Singleton.LocalClientId)
-                {
-                    EventSystem.current.SetSelectedGameObject(carSelectButtons[players[i].CharacterID - 1].gameObject);
-                }
-            }
-        }
-        else if(currentBackPhase == CurrentBackPhase.LoadingImage)
-        {
-
-        }
-        
-    }
-
     public void ReadyUp(InputAction.CallbackContext context)
     {
         if (!context.performed)
             return;
-        ExecuteEvents.Execute(ReadyButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+        currentBackPhase = CurrentBackPhase.LoadingImage;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
+            {
+                if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) return;
+
+                ReadyButton.GetComponent<Image>().sprite = readyButtonPressed;
+
+                for(int j = 0; j < VertArrows.Length;  j++)
+                {
+                    VertArrows[j].enabled = false;
+                }
+
+                LoadingScreen.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(ControlsLoadingButton);
+
+                //readyUpBtn.color = Color.green;
+                LockInServerRpc();
+                break;
+            }
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -176,24 +288,6 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 if (!carDatabase.IsValidCharacterId(charid)) { return; }
 
                 players[i] = new CharacterSelectState(players[i].ClientID, charid);
-                break;
-            }
-        }
-    }
-
-    public void ReadyUP(Image readyUpBtn)
-    {
-        for(int i =0; i<players.Count; i++)
-        {
-            if (NetworkManager.Singleton.LocalClientId == players[i].ClientID)
-            {
-                if (!carDatabase.IsValidCharacterId(players[i].CharacterID)) return;
-                readyUpBtn.sprite = readyButtonPressed;
-                
-                //Very temp solution
-                Destroy(ReadyButton);
-                //readyUpBtn.color = Color.green;
-                LockInServerRpc();
                 break;
             }
         }
@@ -219,20 +313,32 @@ public class MultiplayerCarSelection : NetworkBehaviour
                 //Every player is locked in
                 if (i + 1 == players.Count)
                 {
-                    ServerSetupGame();
+                    StartCoroutine(ServerSetupGame());
                 }
             }
             else
                 break;
         }
     }
-    private void ServerSetupGame()
+    private IEnumerator ServerSetupGame()
     {
         foreach (var player in players)
         {
             ServerManager.Singleton.SetCharacter(player.ClientID, player.CharacterID);
         }
 
+        //doing it out here cause cant be assed making new function
+        ServerManager.Singleton.gameHasStarted = true;
+        NetworkManager.Singleton.SceneManager.OnSceneEvent += ServerManager.Singleton.SceneManager_OnSceneEvent;
+
+        for (int i = 0; i < 5; i++)
+        {
+            if(i > 2 && i < 4)
+            {
+                players.OnListChanged -= HandlePlayersStateChanged;
+            }
+            yield return new WaitForSeconds(1);
+        }
         ServerManager.Singleton.StartGame();
     }
 
