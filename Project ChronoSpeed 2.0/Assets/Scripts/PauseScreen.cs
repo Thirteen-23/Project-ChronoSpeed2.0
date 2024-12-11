@@ -7,10 +7,13 @@ using UnityEngine.InputSystem;
 public class PauseScreen : MonoBehaviour
 {
     [SerializeField] GameObject pauseScreen;
-    [SerializeField] GameObject optionsScreen;
+    [SerializeField] CanvasGroup pauseGroup;
+    [SerializeField] CanvasGroup optionsGroup;
     [SerializeField] GameObject buttonToSetToWhenOpeningPS;
     [SerializeField] GameObject buttonToSetToWhenOpeningOS;
+
     public PlayerInput mainPlayerInput;
+
     public void OpenPauseMenu()
     {
         pauseScreen.SetActive(true);
@@ -24,22 +27,31 @@ public class PauseScreen : MonoBehaviour
         mainPlayerInput.SwitchCurrentActionMap("Movement");
     }
 
-    public void OpenOptions()
-    {
-        pauseScreen.SetActive(false);
-        optionsScreen.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(buttonToSetToWhenOpeningOS);
-    }
-
-    public void CloseOptions()
-    {
-        pauseScreen.SetActive(true);
-        optionsScreen.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(buttonToSetToWhenOpeningPS);
-    }
-
     public void LeaveRace()
     {
         //idk
+    }
+    public void SwitchToOptions()
+    {
+        optionsGroup.alpha = 1.0f;
+        optionsGroup.interactable = true;
+
+        pauseGroup.alpha = 0f;
+        pauseGroup.interactable = false;
+
+        EventSystem.current.SetSelectedGameObject(buttonToSetToWhenOpeningOS);
+
+    }
+
+    public void SwitchToPause()
+    {
+        optionsGroup.alpha = 0f;
+        optionsGroup.interactable = false;
+
+        pauseGroup.alpha = 1.0f;
+        pauseGroup.interactable = true;
+
+        EventSystem.current.SetSelectedGameObject(buttonToSetToWhenOpeningPS);
+
     }
 }
