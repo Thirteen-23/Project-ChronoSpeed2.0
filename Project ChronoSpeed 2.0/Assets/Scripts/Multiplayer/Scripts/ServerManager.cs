@@ -19,25 +19,26 @@ public class ServerManager : NetworkBehaviour
 
     public static ServerManager Singleton { get; private set; }
     private void Awake()
-    {
-        if (Singleton != null && Singleton != this)
-            Destroy(gameObject);
-        else
-        {
-            Singleton = this;
-            DontDestroyOnLoad(Singleton);
+    {        
+        Singleton = this;
+        DontDestroyOnLoad(Singleton);
 
-            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        }
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
-
-
+    int TestIfLived = 0;
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if(arg0.name == "MainMenu")
         {
             menuManager = FindAnyObjectByType<MainMenuManager>();
+            
+            if (TestIfLived > 0)
+            {
+                SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+                Destroy(gameObject);
+            }
+            TestIfLived++;
         }
     }
 
@@ -189,16 +190,33 @@ public class ServerManager : NetworkBehaviour
             NetworkManager.Singleton.OnServerStarted -= OnNetworkReady;
             NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnect;
             gameHasStarted = false;
+
+            GetComponent<NetworkObject>().Despawn(false);
         }
+        StartCoroutine(LeaveCoroutine());
+    }
+
+    public IEnumerator LeaveCoroutine()
+    {
+        
         if (NetworkManager.Singleton != null)
         {
             NetworkManager.Singleton.Shutdown();
-            Destroy(NetworkManager.Singleton.gameObject, 1);
+
+            yield return new WaitForSeconds(0.2f);
+
+            Destroy(NetworkManager.Singleton.gameObject);
+            
+            yield return new WaitForSeconds(0.5f);
         }
+
+        //SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+        //Singleton = null;
+
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+
+        //Destroy(gameObject);
     }
-
-
 }
 
 [Serializable]

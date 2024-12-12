@@ -199,10 +199,10 @@ public class Car_Movement : MonoBehaviour
         {
             bodyOfCar.velocity = Vector3.zero;
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            quitApplication();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    quitApplication();
+        //}
 
     }
     // For Handling, acceration and brake

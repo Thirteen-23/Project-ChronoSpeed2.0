@@ -32,7 +32,7 @@ public class PlayerResetScript : MonoBehaviour
     void Start()
     {
         currentWaypoint = waypoints[currentWaypointchange].transform;
-        timer = -5; 
+        timer = -15; 
          rb = GetComponentInParent<Rigidbody>();
         carscript = GetComponentInParent<Car_Movement>().gameObject.GetComponentInParent<Car_Movement>().gameObject.GetComponent<Car_Movement>();
         

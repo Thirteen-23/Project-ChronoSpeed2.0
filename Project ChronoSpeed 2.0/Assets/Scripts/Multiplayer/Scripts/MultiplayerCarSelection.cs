@@ -251,7 +251,7 @@ public class MultiplayerCarSelection : NetworkBehaviour
 
     public void ReadyUp(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed && currentBackPhase != CurrentBackPhase.SkinSelect)
             return;
         
 

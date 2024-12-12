@@ -660,6 +660,39 @@
                     "action": "TEST",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "f2f731d2-16ee-4ad3-8073-7f2cade9cfc0",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TEST",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "ffa5965a-9b71-4849-9ddf-375c8b9d34dd",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller;Joystick",
+                    "action": "TEST",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "b049c6c6-8ba9-4f8e-97bd-051616403936",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller;Joystick",
+                    "action": "TEST",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -1253,7 +1286,7 @@
                 {
                     "name": "",
                     "id": "e9440197-b563-498c-b19a-a2350d2e0168",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

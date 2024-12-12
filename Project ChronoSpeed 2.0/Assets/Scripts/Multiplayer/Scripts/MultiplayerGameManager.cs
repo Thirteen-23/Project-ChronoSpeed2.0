@@ -62,6 +62,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         MaxPlayers++;
     }
 
+    
     bool gameGoing = true;
     private void ShareTrackedCars()
     {  
@@ -122,10 +123,25 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
         else
         {
-            NetworkManager.Singleton.Shutdown();
-            Destroy(NetworkManager.Singleton.gameObject, 1);
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            StartCoroutine(LeaveCoroutine());
         }
+    }
+
+    public IEnumerator LeaveCoroutine()
+    {
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.Shutdown();
+
+            yield return new WaitForSeconds(1);
+
+            Destroy(NetworkManager.Singleton.gameObject);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     //RPCs
